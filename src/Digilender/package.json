@@ -1,0 +1,14 @@
+{
+  "name": "Digilender",
+  "version": "1.0.0",
+  "description": "E-callendar",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron --disable-gpu ."
+  },
+  "author": "Digilender Team",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^3.0.4"
+  }
+}
