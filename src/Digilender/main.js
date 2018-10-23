@@ -10,7 +10,7 @@ let mainWindow;
 function createWindow () {
   // Create the browser window.
   console.log("ayylmao");
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({width: 800, height: 600, frame: false});
   mainWindow.setMenu(null);
 
   // and load the index.html of the app.
