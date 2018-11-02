@@ -1,7 +1,7 @@
 {
   "name": "Digilender",
   "version": "1.0.0",
-  "description": "E-callendar",
+  "description": "A digital calendar for the family",
   "main": "main.js",
   "scripts": {
     "start": "electron --disable-gpu ."
@@ -9,6 +9,6 @@
   "author": "Digilender Team",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^3.0.4"
+    "electron": "^3.0.7"
   }
 }
