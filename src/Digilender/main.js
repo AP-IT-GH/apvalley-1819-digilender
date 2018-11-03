@@ -11,8 +11,8 @@ function createWindow() {
   mainWindow = new BrowserWindow({ width: 800, height: 600, frame: false });
   // mainWindow.setMenu(null);
 
-  // and load the index.html of the app.
-  mainWindow.loadFile('index.html');
+  // and load the main window of the app.
+  mainWindow.loadFile('mainWindow.html');
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -22,9 +22,11 @@ function createWindow() {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
-    mainWindow = null;
+    // mainWindow = null;
+    app.quit();
   });
 }
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
