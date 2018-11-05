@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Digilender</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Digilender</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    <h2>Software versions</h2>
+    Node.js: <script>document.write(process.versions.node)</script> <br>
+    Chromium: <script>document.write(process.versions.chrome)</script> <br>
+    Electron: <script>document.write(process.versions.electron)</script> <br><br>
+
+    <button type="button" id="btnOptions" class="waves-effect waves-light btn-large">Options</button>
+  </div>
+  
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js');
+    const { BrowserWindow } = require('electron').remote
+
+    const button = document.querySelector('button');
+    button.addEventListener('click', createOptionsWindow);
+
+    function createOptionsWindow() {
+      optionsWindow = new BrowserWindow({ width: 800, height: 600, frame: false, title: 'Options' });
+      optionsWindow.loadFile('optionsWindow.html');
+    }
+  </script>
+</body>
+
+</html>
