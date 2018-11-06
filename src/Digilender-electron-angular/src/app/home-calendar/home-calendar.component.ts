@@ -14,14 +14,23 @@ export class HomeCalendarComponent implements OnInit {
   constructor() { }
   ngOnInit() {
     this.calendarOptions = {
-      editable: true,
+      editable: false,
+      handleWindowResize: true,
+      defaultView: 'agendaWeek',
       eventLimit: false,
+      //minTime: '07:30:00', // Start time for the calendar
+      //maxTime: '22:00:00', // End time for the calendar
       header: {
-        left: 'prev,next today',
+        left: 'today previus, next',
         center: 'title',
-        right: 'month,agendaWeek,agendaDay,listMonth'
+        right: 'agendaWeek,month'
       },
-      //events: data
+      displayEventTime: true, // Display event time
+
+      events: 'https://fullcalendar.io/demo-events.json?with-resources=2'
+
+      ,
+
     };
   }
 

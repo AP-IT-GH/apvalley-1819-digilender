@@ -19,7 +19,7 @@ import { HomeCalendarComponent } from './home-calendar/home-calendar.component';
     FormsModule,
     FullCalendarModule,
     AppRoutingModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
