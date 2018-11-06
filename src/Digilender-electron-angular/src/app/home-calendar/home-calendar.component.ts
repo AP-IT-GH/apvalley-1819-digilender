@@ -18,13 +18,13 @@ export class HomeCalendarComponent implements OnInit {
       handleWindowResize: true,
       defaultView: 'agendaWeek',
       eventLimit: false,
-      //minTime: '07:30:00', // Start time for the calendar
-      //maxTime: '22:00:00', // End time for the calendar
+
       header: {
-        left: 'today previus, next',
+        left: 'today, prev, next',
         center: 'title',
         right: 'agendaWeek,month'
       },
+
       displayEventTime: true, // Display event time
 
       events: 'https://fullcalendar.io/demo-events.json?with-resources=2'
