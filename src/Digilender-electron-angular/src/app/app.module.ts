@@ -16,7 +16,7 @@ import { WeatherComponent } from './weather/weather.component';
 
 @NgModule({
   declarations: [
-    WeatherComponent
+    WeatherComponent,
     AppComponent,
     HomeCalendarComponent
   ],
@@ -25,7 +25,7 @@ import { WeatherComponent } from './weather/weather.component';
     FormsModule,
     FullCalendarModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
     MDBBootstrapModule.forRoot(),
   ],
   providers: [

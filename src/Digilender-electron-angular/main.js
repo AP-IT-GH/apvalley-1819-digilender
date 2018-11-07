@@ -7,7 +7,9 @@ let win;
 log.info("test");
 
 function createWindow() {
-    win = new BrowserWindow({ width: 1280, height: 800 });
+    win = new BrowserWindow();
+    //win = new BrowserWindow({ width: 1280, height: 800 );
+    win.setFullScreen(true)
     win.setMenu(null);
 
     // load the dist folder from Angular
