@@ -8,10 +8,12 @@ import {WeatherService} from './weather.service'
 
 //import { HttpModule } from '@angular/http'
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { WeatherComponent } from './weather/weather.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,
