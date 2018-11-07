@@ -10,7 +10,9 @@ function createWindow() {
     win = new BrowserWindow();
     //win = new BrowserWindow({ width: 1280, height: 800 );
     win.setFullScreen(true)
-    win.setMenu(null);
+
+    // Uncomment the following line to remove the menu bar
+    // win.setMenu(null);
 
     // load the dist folder from Angular
     win.loadURL(
