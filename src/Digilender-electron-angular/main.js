@@ -1,8 +1,10 @@
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const url = require("url");
+var log = require('electron-log');
 
 let win;
+log.info("test");
 
 function createWindow() {
     win = new BrowserWindow({ width: 1280, height: 800 });
@@ -19,7 +21,6 @@ function createWindow() {
 
     // The following is optional and will open the DevTools:
     // win.webContents.openDevTools()
-
     win.on("closed", () => {
         win = null;
     });
