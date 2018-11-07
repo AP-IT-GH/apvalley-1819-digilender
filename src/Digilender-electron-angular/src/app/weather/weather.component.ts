@@ -14,7 +14,6 @@ export class WeatherComponent implements OnInit {
   minTemp: number;
   darkMode: boolean;
 
-
   constructor(public weather: WeatherService) { }
 
 

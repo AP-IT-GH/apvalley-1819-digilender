@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Subject} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
 
 @Injectable({
@@ -41,7 +41,7 @@ export class WeatherService {
     return dataSubject;
   }
 
- getCurrentTemp(city: string, metric: 'metric' | 'imperial' = 'metric'): Subject<number> {
+  getCurrentTemp(city: string, metric: 'metric' | 'imperial' = 'metric'): Subject<number> {
     const dataSubject = new Subject<number>();
     this.http.get(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${metric}&APPID=a54b87c5a39fed1429dcbda86a35318f`)
@@ -50,32 +50,33 @@ export class WeatherService {
       });
     return dataSubject;
   }
-/*
 
-  getCurrentHum(city: string, metric: 'metric' | 'imperial' = 'metric'): Subject<number> {
-    const dataSubject = new Subject<number>();
-    this.http.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${metric}&APPID=952d6b1a52fe15a7b901720074680562`)
-      .subscribe((weather: any) => {
-        console.log(weather);
-        dataSubject.next(weather.main.humidity);
-      });
-    return dataSubject;
-  }
+  /*
+  
+    getCurrentHum(city: string, metric: 'metric' | 'imperial' = 'metric'): Subject<number> {
+      const dataSubject = new Subject<number>();
+      this.http.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${metric}&APPID=952d6b1a52fe15a7b901720074680562`)
+        .subscribe((weather: any) => {
+          console.log(weather);
+          dataSubject.next(weather.main.humidity);
+        });
+      return dataSubject;
+    }
+  
+  
+    getCurrentWind(city: string, metric: 'metric' | 'imperial' = 'metric'): Subject<number>  {
+      const dataSubject = new Subject<number>();
+      this.http.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${metric}&APPID=952d6b1a52fe15a7b901720074680562`)
+        .subscribe((weather: any) => {
+          dataSubject.next(Math.round(Math.round(weather.wind.speed)));
+        });
+      return dataSubject;
+    }
+  */
 
-
-  getCurrentWind(city: string, metric: 'metric' | 'imperial' = 'metric'): Subject<number>  {
-    const dataSubject = new Subject<number>();
-    this.http.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${metric}&APPID=952d6b1a52fe15a7b901720074680562`)
-      .subscribe((weather: any) => {
-        dataSubject.next(Math.round(Math.round(weather.wind.speed)));
-      });
-    return dataSubject;
-  }
-*/
-
-  getMaxTemp(city: string, metric: 'metric' | 'imperial' = 'metric'): Subject<number>  {
+  getMaxTemp(city: string, metric: 'metric' | 'imperial' = 'metric'): Subject<number> {
     const dataSubject = new Subject<number>();
     let max: number;
     this.http.get(
@@ -92,7 +93,7 @@ export class WeatherService {
     return dataSubject;
   }
 
-  getMinTemp(city: string, metric: 'metric' | 'imperial' = 'metric'): Subject<number>  {
+  getMinTemp(city: string, metric: 'metric' | 'imperial' = 'metric'): Subject<number> {
     const dataSubject = new Subject<number>();
     let min: number;
     this.http.get(
@@ -108,15 +109,14 @@ export class WeatherService {
       });
     return dataSubject;
   }
-/*
-  getForecast(city: string, metric: 'metric' | 'imperial' = 'metric'): Subject<Array<any>>  {
-    const dataSubject = new Subject<Array<any>>();
-    this.http.get(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${metric}&APPID=952d6b1a52fe15a7b901720074680562`)
-      .subscribe((weather: any) => {
-        dataSubject.next(weather.list);
-      });
-    return dataSubject;
-  } */
-
+  /*
+    getForecast(city: string, metric: 'metric' | 'imperial' = 'metric'): Subject<Array<any>>  {
+      const dataSubject = new Subject<Array<any>>();
+      this.http.get(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${metric}&APPID=952d6b1a52fe15a7b901720074680562`)
+        .subscribe((weather: any) => {
+          dataSubject.next(weather.list);
+        });
+      return dataSubject;
+    } */
 } 
