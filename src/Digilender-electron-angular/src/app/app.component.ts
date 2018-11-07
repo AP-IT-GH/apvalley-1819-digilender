@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     
     var city = 'Antwerp';
-    /*
+    
      this.weather.getWeatherState(city).subscribe((data: string) => {
         this.condition = data;
       });
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
     });
     this.weather.getMaxTemp(city).subscribe((data: number) => {
       this.maxTemp = data;
-    });  */
+    });  
     this.weather.getCurrentTemp(city).subscribe((data: number) => {
       this.currentTemp = data;
       console.log(this.currentTemp);

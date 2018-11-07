@@ -73,7 +73,7 @@ export class WeatherService {
       });
     return dataSubject;
   }
-
+*/
 
   getMaxTemp(city: string, metric: 'metric' | 'imperial' = 'metric'): Subject<number>  {
     const dataSubject = new Subject<number>();
@@ -108,7 +108,7 @@ export class WeatherService {
       });
     return dataSubject;
   }
-
+/*
   getForecast(city: string, metric: 'metric' | 'imperial' = 'metric'): Subject<Array<any>>  {
     const dataSubject = new Subject<Array<any>>();
     this.http.get(
