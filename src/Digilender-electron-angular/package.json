@@ -26,6 +26,7 @@
     "angular5-csv": "^0.2.10",
     "chart.js": "^2.5.0",
     "core-js": "^2.5.4",
+    "electron-log": "^2.2.17",
     "electron-reload": "^1.2.5",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
@@ -34,13 +35,13 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.10.0",
+    "@angular-devkit/build-angular": "^0.10.4",
     "@angular/cli": "~7.0.4",
     "@angular/compiler-cli": "~7.0.0",
     "@angular/language-service": "~7.0.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "~8.9.4",
+    "@types/node": "^8.9.5",
     "codelyzer": "~4.5.0",
     "electron": "^3.0.7",
     "jasmine-core": "~2.99.1",
