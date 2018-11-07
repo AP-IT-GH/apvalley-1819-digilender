@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
     "@types/chart.js": "^2.7.40",
+    "@types/jquery": "^3.3.22",
     "@types/lodash": "^4.14.118",
     "angular-bootstrap-md": "^6.2.6",
     "angular5-csv": "^0.2.10",
