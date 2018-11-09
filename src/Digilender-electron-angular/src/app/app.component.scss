@@ -11,6 +11,10 @@
   width: 70px;
 }
 
+.maincol2 img:active {
+  transform: rotate(20deg);
+}
+
 .column1 {
   float: left;
   width: 20.0%;
