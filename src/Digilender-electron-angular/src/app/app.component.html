@@ -11,13 +11,14 @@
     </div>
     <!-- The options panel -->
     <div rightPane>
+      <img class="backarrow" src="assets/images/back-arrow.png" width="150px" *ngIf="!isLeftVisible" (click)="isLeftVisible = !isLeftVisible">
       <app-options></app-options>
     </div>
   </slide-panel>
 </div>
 
 <div class="maincol2">
-  <img class="img-fluid" src="assets/images/gear-icon.png" (click)="isLeftVisible = !isLeftVisible" />
+  <img class="img-fluid" *ngIf="isLeftVisible" src="assets/images/gear-icon.png" (click)="isLeftVisible = !isLeftVisible" />
 </div>
 
 <router-outlet></router-outlet>
