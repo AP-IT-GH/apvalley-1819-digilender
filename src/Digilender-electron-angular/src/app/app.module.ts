@@ -15,13 +15,15 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { WeatherComponent } from './weather/weather.component';
 import { SlidePanelComponent } from './slide-panel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OptionsComponent } from './options/options.component';
 
 @NgModule({
   declarations: [
     WeatherComponent,
     AppComponent,
     HomeCalendarComponent,
-    SlidePanelComponent
+    SlidePanelComponent,
+    OptionsComponent
   ],
   imports: [
     BrowserModule,
