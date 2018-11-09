@@ -1,24 +1,23 @@
-
-  <div class="maincol1">
-    <slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
-      <!-- The main panel -->
-      <div leftPane class="row">
-        <div class="column1">
-          <app-weather></app-weather>
-        </div>
-        <div class="column2">
-          <app-home-calendar></app-home-calendar>
-        </div>
+<div class="maincol1">
+  <slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
+    <!-- The main panel -->
+    <div leftPane class="row">
+      <div class="column1">
+        <app-weather></app-weather>
       </div>
-      <!-- The options panel -->
-      <div rightPane>
-        <app-options></app-options>
+      <div class="column2">
+        <app-home-calendar></app-home-calendar>
       </div>
-    </slide-panel>
-  </div>
+    </div>
+    <!-- The options panel -->
+    <div rightPane>
+      <app-options></app-options>
+    </div>
+  </slide-panel>
+</div>
 
-  <div class="maincol2">
-    <img src="assets/images/gear-icon.png" (click)="isLeftVisible = !isLeftVisible"/>
-  </div>
+<div class="maincol2">
+  <img class="img-fluid" src="assets/images/gear-icon.png" (click)="isLeftVisible = !isLeftVisible" />
+</div>
 
 <router-outlet></router-outlet>
