@@ -7,6 +7,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 
 export class AppComponent implements OnInit {
+  isLeftVisible = true;
   ngOnInit() {
 
   }

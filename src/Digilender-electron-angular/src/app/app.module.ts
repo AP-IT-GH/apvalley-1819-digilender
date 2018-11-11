@@ -7,18 +7,23 @@ import { FullCalendarModule } from 'ng-fullcalendar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {WeatherService} from './weather.service'
+import { WeatherService } from './weather.service'
 import { HomeCalendarComponent } from './home-calendar/home-calendar.component';
 
 //import { HttpModule } from '@angular/http'
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { WeatherComponent } from './weather/weather.component';
+import { SlidePanelComponent } from './slide-panel';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OptionsComponent } from './options/options.component';
 
 @NgModule({
   declarations: [
     WeatherComponent,
     AppComponent,
-    HomeCalendarComponent
+    HomeCalendarComponent,
+    SlidePanelComponent,
+    OptionsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +32,7 @@ import { WeatherComponent } from './weather/weather.component';
     AppRoutingModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     WeatherService
