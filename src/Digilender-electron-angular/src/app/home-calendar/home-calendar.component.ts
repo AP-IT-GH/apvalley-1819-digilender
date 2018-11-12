@@ -1,6 +1,6 @@
+import * as $ from 'jquery';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CalendarComponent } from 'ng-fullcalendar';
-import { Options } from 'fullcalendar';
+import 'fullcalendar';
 
 @Component({
   selector: 'app-home-calendar',
@@ -8,30 +8,73 @@ import { Options } from 'fullcalendar';
   styleUrls: ['./home-calendar.component.scss']
 })
 export class HomeCalendarComponent implements OnInit {
+  ngOnInit(): void {
+    $(function () {
 
-  calendarOptions: Options;
-  @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
-  constructor() { }
-  ngOnInit() {
-    this.calendarOptions = {
-      editable: false,
-      handleWindowResize: true,
-      defaultView: 'agendaWeek',
-      eventLimit: false,
+      var getDaysInMonth = function () {
+        var d = new Date();
+        var year = d.getFullYear();
+        var month = d.getMonth() + 1;
+        return new Date(year, month, 0).getDate();
+      };
 
-      header: {
-        left: 'today, prev, next',
-        center: 'title',
-        right: 'agendaWeek,month'
-      },
+      var getMonthDay = function () {
+        var d = new Date();
+        return d.getDate();
+      };
 
-      displayEventTime: true, // Display event time
+      var getMinTime = function () {
+        var days = getMonthDay() - 1;
+        var time = "-" + days + ".00:00:00";
+        return time;
+      };
 
-      events: 'https://fullcalendar.io/demo-events.json?with-resources=2'
+      var getMaxTime = function () {
+        var days = getDaysInMonth() - getMonthDay() + 1;
+        var time = days + ".00:00:00";
+        return time;
+      };
 
-      ,
+      let containerEl: JQuery = $('#calendar');
 
-    };
+      containerEl.fullCalendar({
+        defaultView: 'agendaMonth',
+        groupByResource: true,
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'agendaMonth,listThreeDay,agendaWeek,month'
+        },
+        views: {
+          agendaMonth: {
+            type: 'agendaDay',
+            minTime: getMinTime(),
+            maxTime: getMaxTime(),
+            slotDuration: '24:00:00',
+            slotLabelFormat: [
+              'MMMM YYYY', // top level of text
+              'D' // lower level of text
+            ],
+            buttonText: 'Week'
+          },
+        },
+        selectable: false,
+        nowIndicator: false,
+        allDaySlot: false,
+        resources: [
+          { id: '1', title: 'Bram' },
+          { id: '2', title: 'Tom' },
+          { id: '3', title: 'Bram' },
+          { id: '4', title: 'Bram' },
+          { id: '5', title: 'Bram' }
+        ],
+        events: 'https://fullcalendar.io/demo-events.json?with-resources=2'
+      });
+
+    });
+
   }
+
+
 
 }
