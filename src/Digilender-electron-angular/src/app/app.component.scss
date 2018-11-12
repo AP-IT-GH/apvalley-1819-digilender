@@ -1,10 +1,12 @@
 .maincol1 {
-  width: 96%;
+  width: 95%;
   float: left;
 }
 
 .maincol2 {
-  float: right;
+  position:absolute;
+  top:0;
+  right:0;
 }
 
 .maincol2 img {
