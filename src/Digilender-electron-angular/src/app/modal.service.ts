@@ -13,7 +13,7 @@
 
     open(id: string) {
         // open modal specified by id
-        console.log("modal service open "+ id);
+        //console.log("modal service open "+ id);
         let modal: any = this.modals.filter(x => x.id === id)[0];
         modal.open();
     }

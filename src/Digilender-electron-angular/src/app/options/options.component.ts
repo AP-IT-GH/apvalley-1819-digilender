@@ -16,7 +16,7 @@ export class OptionsComponent implements OnInit {
 
   openModal(id: string) {
     this.modalService.open(id);
-    console.log("open modal "+ id);
+    //console.log("open modal "+ id);
   }
 
   closeModal(id: string) {
