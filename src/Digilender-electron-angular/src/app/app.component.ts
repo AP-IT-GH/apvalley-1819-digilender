@@ -8,7 +8,7 @@ import '../app/modal/modal.scss';
 })
 
 export class AppComponent implements OnInit {
-  isLeftVisible = true;
+
   ngOnInit() {
 
   }
