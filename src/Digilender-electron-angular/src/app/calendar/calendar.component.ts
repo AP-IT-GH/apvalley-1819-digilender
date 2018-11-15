@@ -3,9 +3,9 @@ import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 
 @Component({
-  selector: 'app-home-calendar',
-  templateUrl: './home-calendar.component.html',
-  styleUrls: ['./home-calendar.component.scss']
+  selector: 'app-calendar',
+  templateUrl: './calendar.component.html',
+  styleUrls: ['./calendar.component.scss']
 })
 export class HomeCalendarComponent implements OnInit {
 

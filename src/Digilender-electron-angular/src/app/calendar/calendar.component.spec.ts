@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeCalendarComponent } from './home-calendar.component';
+import { HomeCalendarComponent } from './calendar.component';
 
 describe('HomeCalendarComponent', () => {
   let component: HomeCalendarComponent;
