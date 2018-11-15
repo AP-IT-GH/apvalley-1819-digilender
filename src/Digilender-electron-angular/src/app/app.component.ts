@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import '../app/modal/modal.scss';
 
 @Component({
   selector: 'app-root',

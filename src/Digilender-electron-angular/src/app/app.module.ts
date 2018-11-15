@@ -19,6 +19,8 @@ import { HomeComponent } from './home/home.component';
 
 //services
 import { WeatherService } from './weather.service';
+import { ModalComponent } from './modal/modal.component';
+import { ModalService } from './modal.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { WeatherService } from './weather.service';
     SlidePanelComponent,
     OptionsComponent,
     UsersComponent,
-    HomeComponent
+    HomeComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { WeatherService } from './weather.service';
     BrowserAnimationsModule
   ],
   providers: [
-    WeatherService
+    WeatherService,
+    ModalService
   ],
   bootstrap: [AppComponent]
 })

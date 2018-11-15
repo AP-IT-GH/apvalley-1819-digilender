@@ -1,6 +1,6 @@
   <div class="row align-items-center">
     <div class="col-sm-4">
-      <div class="card text-center mb-3" style="width: 20rem;">
+      <div class="card text-center mb-3" style="width: 20rem;" (click)="openModal('Wifi')">
         <div class="card-body">
           <img class="img-fluid" src="assets/images/wifi-icon.png">
           <h3 class="card-title">WiFi</h3>
@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="col-sm-4">
-      <div class="card text-center mb-3" style="width: 20rem;">
+      <div class="card text-center mb-3" style="width: 20rem;" (click)="openModal('Thema')">
         <div class="card-body">
           <img class="img-fluid" src="assets/images/theme-icon.png">
           <h3 class="card-title">Thema's</h3>
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="col-sm-4">
-      <div class="card text-center mb-3" style="width: 20rem;">
+      <div class="card text-center mb-3" style="width: 20rem;" (click)="openModal('Locatie')">
         <div class="card-body">
           <img class="img-fluid" src="assets/images/location-icon.png">
           <h3 class="card-title">Locatie</h3>
@@ -26,7 +26,7 @@
   </div>
   <div class="row align-items-center">
     <div class="col-sm-4">
-      <div class="card text-center mb-3" style="width: 20rem;">
+      <div class="card text-center mb-3" style="width: 20rem;" (click)="openModal('Scherm')">
         <div class="card-body">
           <img class="img-fluid" src="assets/images/display-icon.png">
           <h3 class="card-title">Scherm</h3>
@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="col-sm-4">
-      <div class="card text-center mb-3" style="width: 20rem;" (click)="openModalUsers()">
+      <div class="card text-center mb-3" style="width: 20rem;" (click)="openModal('Users')">
         <div class="card-body">
           <img class="img-fluid" src="assets/images/user-icon.png">
           <h3 class="card-title">Users</h3>
@@ -42,3 +42,30 @@
       </div>
     </div>
   </div>
+
+
+  <!--Modals-->
+  <jw-modal id="Users">
+    <h1 style="height:1000px">Users!</h1>
+    <button (click)="closeModal('Users');">Close</button>
+  </jw-modal>
+
+  <jw-modal id="Scherm">
+    <h1 style="height:1000px">Scherm!</h1>
+    <button (click)="closeModal('Scherm');">Close</button>
+  </jw-modal>
+
+  <jw-modal id="Locatie">
+    <h1 style="height:1000px">Locatie!</h1>
+    <button (click)="closeModal('Locatie');">Close</button>
+  </jw-modal>
+
+  <jw-modal id="Thema">
+    <h1 style="height:1000px">Thema!</h1>
+    <button (click)="closeModal('Thema');">Close</button>
+  </jw-modal>
+
+  <jw-modal id="Wifi">
+    <h1 style="height:1000px">Wifi!</h1>
+    <button (click)="closeModal('Wifi');">Close</button>
+  </jw-modal>
