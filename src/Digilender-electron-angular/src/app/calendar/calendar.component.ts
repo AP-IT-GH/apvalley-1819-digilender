@@ -36,14 +36,14 @@ export class HomeCalendarComponent implements OnInit {
         return time;
       };
 
-    // let containerEl: JQuery = $('#calendar');
+      // let containerEl: JQuery = $('#calendar');
       $('#calendar').fullCalendar({
-        defaultView: 'agendaMonth',
+        defaultView: 'agendaWeek',
         groupByResource: true,
         header: {
           left: 'prev,next today',
           center: 'title',
-          right: 'agendaMonth,listThreeDay,agendaWeek,month'
+          right: 'agendaWeek,agendaMonth,listThreeDay,month'
         },
         views: {
           listThreeDay: {
@@ -71,7 +71,22 @@ export class HomeCalendarComponent implements OnInit {
         //   { id: '4', title: 'Elke' },
         //   { id: '5', title: 'Mirko' }
         // ],
-        events: 'https://fullcalendar.io/demo-events.json?with-resources=2'
+        events: 'https://fullcalendar.io/demo-events.json?with-resources=2',
+        dayClick: function (date, jsEvent, view) {
+          date.utc()
+
+          // alert('Clicked on: ' + date.format());
+          // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+          // alert('Current view: ' + view.name);
+
+          $('#calendar').fullCalendar('renderEvent', {
+            title: 'A new event',
+            start: date.format(),
+            allDay: false
+          }, true);
+
+          // $(this).css('background-color', 'red');
+        }
       });
 
     })
