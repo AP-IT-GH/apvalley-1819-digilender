@@ -16,6 +16,12 @@ import { WeatherComponent } from './weather/weather.component';
 import { SlidePanelComponent } from './slide-panel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OptionsComponent } from './options/options.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +29,8 @@ import { OptionsComponent } from './options/options.component';
     AppComponent,
     HomeCalendarComponent,
     SlidePanelComponent,
-    OptionsComponent
+    OptionsComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +39,11 @@ import { OptionsComponent } from './options/options.component';
     AppRoutingModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase, 'Digilender'), // imports firebase/app needed for everything
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    AngularFireStorageModule // imports firebase/storage only needed for storage features
   ],
   providers: [
     WeatherService
