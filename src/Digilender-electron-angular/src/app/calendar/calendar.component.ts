@@ -82,7 +82,8 @@ export class HomeCalendarComponent implements OnInit {
           $('#calendar').fullCalendar('renderEvent', {
             title: 'A new event',
             start: date.format(),
-            allDay: false
+            allDay: false,
+            editable: true
           }, true);
 
           // $(this).css('background-color', 'red');
