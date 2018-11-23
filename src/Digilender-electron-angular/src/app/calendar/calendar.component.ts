@@ -72,7 +72,7 @@ export class HomeCalendarComponent implements OnInit {
         //   { id: '4', title: 'Elke' },
         //   { id: '5', title: 'Mirko' }
         // ],
-        events: 'https://fullcalendar.io/demo-events.json?with-resources=2',
+        // events: 'https://fullcalendar.io/demo-events.json?with-resources=2',
         dayClick: function (date, jsEvent, view) {
           date.utc()
 
