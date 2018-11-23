@@ -83,10 +83,16 @@ export class HomeCalendarComponent implements OnInit {
             title: 'A new event',
             start: date.format(),
             allDay: false,
-            editable: true
+            editable: true,
+            description: 'A description'
           }, true);
 
           // $(this).css('background-color', 'red');
+        },
+
+        eventRender: function (event, element) {
+          if (event.description)
+            element.find('.fc-title').after("</br> <span class=\"event-description\">" + event.description + "</span>");
         }
       });
 
