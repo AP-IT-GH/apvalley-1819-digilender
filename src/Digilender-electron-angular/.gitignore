@@ -6,8 +6,8 @@
 /out-tsc
 
 # dependencies
-/node_modules
-!/node_modules/fullcalendar-scheduler/node_modules/fullcalendar/dist/fullcalendar.d.ts
+/node_modules/*
+!/node_modules/fullcalendar-scheduler
 
 # IDEs and editors
 /.idea
