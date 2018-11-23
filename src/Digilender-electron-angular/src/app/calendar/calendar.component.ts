@@ -64,6 +64,7 @@ export class HomeCalendarComponent implements OnInit {
         selectable: false,
         nowIndicator: false,
         allDaySlot: false,
+        eventTextColor: 'white',
         // resources: [
         //   { id: '1', title: 'Bram' },
         //   { id: '2', title: 'Tom' },
