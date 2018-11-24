@@ -82,7 +82,7 @@ export class HomeCalendarComponent implements OnInit {
           // alert('Current view: ' + view.name);
 
           var title = prompt('Enter a title');
-          var description = prompt('Enter a description (optional)')
+          var description = prompt('Enter a description (optional)');
 
           if (title != '') {
             $('#calendar').fullCalendar('renderEvent', {
