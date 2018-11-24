@@ -65,14 +65,14 @@ export class HomeCalendarComponent implements OnInit {
         nowIndicator: false,
         allDaySlot: false,
         eventTextColor: 'white',
-        resources: [
-          { id: '1', title: 'Bram' },
-          { id: '2', title: 'Tom' },
-          { id: '3', title: 'Tim' },
-          { id: '4', title: 'Elke' },
-          { id: '5', title: 'Mirko' }
-        ],
-        events: 'https://fullcalendar.io/demo-events.json?with-resources=2',
+        // resources: [
+        //   { id: '1', title: 'Bram' },
+        //   { id: '2', title: 'Tom' },
+        //   { id: '3', title: 'Tim' },
+        //   { id: '4', title: 'Elke' },
+        //   { id: '5', title: 'Mirko' }
+        // ],
+        // events: 'https://fullcalendar.io/demo-events.json?with-resources=2',
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
         dayClick: function (date, jsEvent, view) {
           date.utc()
@@ -81,13 +81,20 @@ export class HomeCalendarComponent implements OnInit {
           // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
           // alert('Current view: ' + view.name);
 
-          $('#calendar').fullCalendar('renderEvent', {
-            title: 'A new event',
-            start: date.format(),
-            allDay: false,
-            editable: true,
-            description: 'A description'
-          }, true);
+          var title = prompt('Enter a title');
+          var description = prompt('Enter a description (optional)')
+
+          if (title != '') {
+            $('#calendar').fullCalendar('renderEvent', {
+              title: title,
+              start: date.format(),
+              allDay: false,
+              editable: true,
+              description: description
+            }, true);
+          }
+          else
+            alert('Invalid title');
 
           // $(this).css('background-color', 'red');
         },
