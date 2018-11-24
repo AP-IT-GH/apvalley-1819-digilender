@@ -8,7 +8,7 @@ import 'fullcalendar-scheduler';
 @Component({
   selector: 'app-home-calendar',
   templateUrl: './home-calendar.component.html',
-  styleUrls: ['./home-calendar.component.css']
+  styleUrls: ['./home-calendar.component.scss']
 })
 export class HomeCalendarComponent implements OnInit {
   ngOnInit(): void {
