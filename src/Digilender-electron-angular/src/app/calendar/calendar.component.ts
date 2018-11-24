@@ -65,14 +65,15 @@ export class HomeCalendarComponent implements OnInit {
         nowIndicator: false,
         allDaySlot: false,
         eventTextColor: 'white',
-        // resources: [
-        //   { id: '1', title: 'Bram' },
-        //   { id: '2', title: 'Tom' },
-        //   { id: '3', title: 'Tim' },
-        //   { id: '4', title: 'Elke' },
-        //   { id: '5', title: 'Mirko' }
-        // ],
-        // events: 'https://fullcalendar.io/demo-events.json?with-resources=2',
+        resources: [
+          { id: '1', title: 'Bram' },
+          { id: '2', title: 'Tom' },
+          { id: '3', title: 'Tim' },
+          { id: '4', title: 'Elke' },
+          { id: '5', title: 'Mirko' }
+        ],
+        events: 'https://fullcalendar.io/demo-events.json?with-resources=2',
+        schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
         dayClick: function (date, jsEvent, view) {
           date.utc()
 
