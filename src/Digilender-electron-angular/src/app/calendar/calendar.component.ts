@@ -19,6 +19,7 @@ export class HomeCalendarComponent implements OnInit {
         return new Date(year, month, 0).getDate();
       };
 
+      //niet meer nodig door today-functie
       var getMonthDay = function () {
         var d = new Date();
         return d.getDate();
@@ -37,6 +38,7 @@ export class HomeCalendarComponent implements OnInit {
 
       // let containerEl: JQuery = $('#calendar');
       $('#calendar').fullCalendar({
+        height: $(window).height()*0.83,
         defaultView: 'agendaWeek',
         groupByResource: true,
         header: {
@@ -99,11 +101,8 @@ export class HomeCalendarComponent implements OnInit {
             element.find('.fc-title').after("</br> <span class=\"event-description\">" + event.description + "</span>");
         }
       });
-      $('#calendar').fullCalendar('option', 'height', "parent");
-      $('#calendar').fullCalendar('option', 'contentHeigth', "parent");
       //werkende optie om overschot onderaan calender weg te halen
       $('#calendar').fullCalendar('option', 'contentHeight', "auto");
-      $('#calendar').fullCalendar('render');
     })
 
   }
