@@ -1,3 +1,10 @@
 * {
     padding: 0.8em
 }
+.fc-cell-content{
+    min-height: 100px !important;   
+}
+.fc-time-grid .fc-slats td {
+    height: 100px !important;
+    border-bottom: 0;
+  }

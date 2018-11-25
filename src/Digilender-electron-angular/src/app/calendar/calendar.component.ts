@@ -25,13 +25,12 @@ export class HomeCalendarComponent implements OnInit {
       };
 
       var getMinTime = function () {
-        var days = getMonthDay() - 1;
-        var time = "-" + days + ".00:00:00";
+        var time= $('#calendar').fullCalendar('today');
         return time;
       };
 
       var getMaxTime = function () {
-        var days = getDaysInMonth() - getMonthDay() - 22;
+        var days = getDaysInMonth() - getMonthDay();
         var time = days + ".00:00:00";
         return time;
       };
@@ -43,7 +42,7 @@ export class HomeCalendarComponent implements OnInit {
         header: {
           left: 'prev,next today',
           center: 'title',
-          right: 'agendaWeek,agendaMonth,listThreeDay,month'
+          right: 'agendaWeek,family,listThreeDay,month'
         },
         views: {
           listThreeDay: {
@@ -52,17 +51,20 @@ export class HomeCalendarComponent implements OnInit {
               days: 31
             }
           },
-          agendaMonth: {
+          family: {
             type: 'agendaDay',
+            duration: {
+              days: 1
+            },
             minTime: getMinTime(),
             maxTime: getMaxTime(),
             slotDuration: '24:00:00',
             slotLabelFormat: 'D MMMM YYYY',
-            buttonText: 'Week'
+            buttonText: 'family Calendar'
           },
         },
         selectable: false,
-        nowIndicator: false,
+        nowIndicator: true,
         allDaySlot: false,
         eventTextColor: 'white',
         resources: [
@@ -97,7 +99,11 @@ export class HomeCalendarComponent implements OnInit {
             element.find('.fc-title').after("</br> <span class=\"event-description\">" + event.description + "</span>");
         }
       });
-
+      $('#calendar').fullCalendar('option', 'height', "parent");
+      $('#calendar').fullCalendar('option', 'contentHeigth', "parent");
+      //werkende optie om overschot onderaan calender weg te halen
+      $('#calendar').fullCalendar('option', 'contentHeight', "auto");
+      $('#calendar').fullCalendar('render');
     })
 
   }
