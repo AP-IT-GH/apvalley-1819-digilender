@@ -30,7 +30,7 @@ export class HomeCalendarComponent implements OnInit {
       };
 
       var getMaxTime = function () {
-        var days = getDaysInMonth() - getMonthDay();
+        var days = 7;
         var time = days + ".00:00:00";
         return time;
       };
