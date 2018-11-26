@@ -19,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 
 //services
 import { WeatherService } from './weather.service';
+import { DatabaseService } from './database.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { WeatherService } from './weather.service';
     BrowserAnimationsModule
   ],
   providers: [
-    WeatherService
+    WeatherService,
+    DatabaseService
   ],
   bootstrap: [AppComponent]
 })

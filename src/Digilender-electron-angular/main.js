@@ -1,10 +1,13 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const url = require("url");
 var log = require('electron-log');
+const DBManager = require ('./DBManager');
+
 
 let win;
 log.info("test");
+let db = new DBManager();
 
 function createWindow() {
     win = new BrowserWindow();
@@ -28,6 +31,11 @@ function createWindow() {
     win.on("closed", () => {
         win = null;
     });
+    
+    //respond to messages
+    ipcMain.on('querryDB', (event, arg) => {
+        console.log(arg);
+        console.log(event); 
 }
 
 app.on("ready", createWindow);
