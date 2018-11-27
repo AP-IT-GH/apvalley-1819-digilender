@@ -19,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 
 //services
 import { WeatherService } from './weather.service';
+import { DatabaseService } from './database.service';
 import { ModalComponent } from './modal/modal.component';
 import { ModalService } from './modal.service';
 
@@ -45,6 +46,7 @@ import { ModalService } from './modal.service';
   ],
   providers: [
     WeatherService,
+    DatabaseService,
     ModalService
   ],
   bootstrap: [AppComponent]

@@ -1,3 +1,17 @@
 * {
     padding: 0.8em
 }
+
+//werkt allemaal niet
+.fc-cell-content{
+    min-height: 100px !important;   
+}
+.fc-time-grid .fc-slats td {
+    height: 100px !important;
+    border-bottom: 0;
+  }
+
+  //dit zou een minimum weergave grootte geven aan een event
+  .fc-event-vert {
+    min-height: 50px;
+  }

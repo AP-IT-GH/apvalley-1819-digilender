@@ -1,10 +1,13 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const url = require("url");
 var log = require('electron-log');
+const DBManager = require ('./DBManager');
+
 
 let win;
-log.info("test");
+log.info("starting");
+let db = new DBManager();
 
 function createWindow() {
     win = new BrowserWindow();
@@ -27,6 +30,13 @@ function createWindow() {
     // win.webContents.openDevTools()
     win.on("closed", () => {
         win = null;
+    });
+    
+    //respond to messages
+    ipcMain.on('querryDB', (event, arg) => {
+        log.info(arg);
+        log.info(event);
+        event.returnValue = 'returnValue';
     });
 }
 

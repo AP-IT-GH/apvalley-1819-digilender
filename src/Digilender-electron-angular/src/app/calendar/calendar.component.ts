@@ -19,31 +19,32 @@ export class HomeCalendarComponent implements OnInit {
         return new Date(year, month, 0).getDate();
       };
 
+      //niet meer nodig door today-functie
       var getMonthDay = function () {
         var d = new Date();
         return d.getDate();
       };
 
       var getMinTime = function () {
-        var days = getMonthDay() - 1;
-        var time = "-" + days + ".00:00:00";
+        var time= $('#calendar').fullCalendar('today');
         return time;
       };
 
       var getMaxTime = function () {
-        var days = getDaysInMonth() - getMonthDay() - 22;
+        var days = 7;
         var time = days + ".00:00:00";
         return time;
       };
 
-    // let containerEl: JQuery = $('#calendar');
+      // let containerEl: JQuery = $('#calendar');
       $('#calendar').fullCalendar({
-        defaultView: 'agendaMonth',
+        height: $(window).height()*0.83,
+        defaultView: 'agendaWeek',
         groupByResource: true,
         header: {
           left: 'prev,next today',
           center: 'title',
-          right: 'agendaMonth,listThreeDay,agendaWeek,month'
+          right: 'agendaWeek,family,listThreeDay,month'
         },
         views: {
           listThreeDay: {
@@ -52,18 +53,22 @@ export class HomeCalendarComponent implements OnInit {
               days: 31
             }
           },
-          agendaMonth: {
+          family: {
             type: 'agendaDay',
+            duration: {
+              days: 1
+            },
             minTime: getMinTime(),
             maxTime: getMaxTime(),
             slotDuration: '24:00:00',
             slotLabelFormat: 'D MMMM YYYY',
-            buttonText: 'Week'
+            buttonText: 'family Calendar'
           },
         },
         selectable: false,
-        nowIndicator: false,
+        nowIndicator: true,
         allDaySlot: false,
+        eventTextColor: 'white',
         // resources: [
         //   { id: '1', title: 'Bram' },
         //   { id: '2', title: 'Tom' },
@@ -71,9 +76,40 @@ export class HomeCalendarComponent implements OnInit {
         //   { id: '4', title: 'Elke' },
         //   { id: '5', title: 'Mirko' }
         // ],
-        events: 'https://fullcalendar.io/demo-events.json?with-resources=2'
-      });
+        // events: 'https://fullcalendar.io/demo-events.json?with-resources=2',
+        schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+        dayClick: function (date, jsEvent, view) {
+          date.utc()
 
+          // alert('Clicked on: ' + date.format());
+          // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+          // alert('Current view: ' + view.name);
+
+          var title = prompt('Enter a title');
+
+          if (title != '' && title != null) {
+            var description = prompt('Enter a description (optional)');
+            $('#calendar').fullCalendar('renderEvent', {
+              title: title,
+              start: date.format(),
+              allDay: false,
+              editable: true,
+              description: description
+            }, true);
+          }
+          else
+            alert('Invalid title');
+
+          // $(this).css('background-color', 'red');
+        },
+
+        eventRender: function (event, element) {
+          if (event.description)
+            element.find('.fc-title').after("</br> <span class=\"event-description\">" + event.description + "</span>");
+        }
+      });
+      //werkende optie om overschot onderaan calender weg te halen
+      $('#calendar').fullCalendar('option', 'contentHeight', "auto");
     })
 
   }
