@@ -36,6 +36,7 @@ function createWindow() {
     ipcMain.on('querryDB', (event, arg) => {
         log.info(arg);
         log.info(event);
+        event.returnValue = 'returnValue';
     });
 }
 
