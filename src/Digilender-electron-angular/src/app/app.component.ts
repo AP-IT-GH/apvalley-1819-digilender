@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import '../app/modal/modal.scss';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 
 export class AppComponent implements OnInit {
-  isLeftVisible = true;
+
   ngOnInit() {
 
   }
