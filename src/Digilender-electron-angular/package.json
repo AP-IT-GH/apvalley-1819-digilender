@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-guru/electron-builder": "^6.1.7",
     "@angular/animations": "^7.0.3",
     "@angular/common": "^7.0.3",
     "@angular/compiler": "^7.0.3",
@@ -40,6 +41,7 @@
     "npm": "^6.4.1",
     "rxjs": "~6.3.3",
     "sequelize": "^4.41.2",
+    "sequelize-typescript": "^0.6.6",
     "sqlite3": "^4.0.4",
     "zone.js": "~0.8.26"
   },

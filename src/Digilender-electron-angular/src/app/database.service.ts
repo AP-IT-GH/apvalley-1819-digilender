@@ -6,9 +6,11 @@ import { ipcRenderer } from 'electron';
 })
 export class DatabaseService {
 
-    constructor() { }
+  constructor() {
+    this.getUsers();
+  }
 
-    getUsers(){
-        return ipcRenderer.sendSync('querryDB', 'hey');
-    }
+  getUsers(){
+    return ipcRenderer.sendSync('querryDB', 'hey');
+  }
 }

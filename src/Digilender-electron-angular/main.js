@@ -6,7 +6,7 @@ const DBManager = require ('./DBManager');
 
 
 let win;
-log.info("test");
+log.info("starting");
 let db = new DBManager();
 
 function createWindow() {
@@ -34,8 +34,9 @@ function createWindow() {
     
     //respond to messages
     ipcMain.on('querryDB', (event, arg) => {
-        console.log(arg);
-        console.log(event); 
+        log.info(arg);
+        log.info(event);
+    });
 }
 
 app.on("ready", createWindow);
