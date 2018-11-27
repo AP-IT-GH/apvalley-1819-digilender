@@ -42,16 +42,16 @@ export class HomeCalendarComponent implements OnInit {
         header: {
           left: 'prev,next today',
           center: 'title',
-          right: 'agendaWeek,family,listThreeDay,month'
+          right: 'agendaWeek,agendaMonth,month'
         },
         views: {
-          listThreeDay: {
-            type: 'list',
-            duration: {
-              days: 31
-            }
-          },
-          family: {
+          // listThreedays:{
+          //     type: 'list',
+          //     duration:{
+          //       days:31
+          //     }
+          // },
+          agendaMonth: {
             type: 'agendaDay',
             duration: {
               days: 1
