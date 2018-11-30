@@ -16,7 +16,7 @@ export class HomeCalendarComponent implements OnInit {
   selectedDate = "";
 
   ngOnInit(): void {
-    var _x = this;
+    var self = this;
     $(function () {
 
       var getDaysInMonth = function () {
@@ -92,19 +92,18 @@ export class HomeCalendarComponent implements OnInit {
           // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
           // alert('Current view: ' + view.name);
 
-          _x.selectedDate = date.format();
-          console.log(_x.selectedDate);
+          self.selectedDate = date.format();
           // var title = prompt('Enter a title');
 
           // if (title != '' && title != null) {
-          //   var description = prompt('Enter a description (optional)');
-          //   $('#calendar').fullCalendar('renderEvent', {
-          //     title: title,
-          //     start: date.format(),
-          //     allDay: false,
-          //     editable: true,
-          //     description: description
-          //   }, true);
+          // var description = prompt('Enter a description (optional)');
+          // $('#calendar').fullCalendar('renderEvent', {
+          //   title: title,
+          //   start: date.format(),
+          //   allDay: false,
+          //   editable: true,
+          //   description: description
+          // }, true);
           // }
           // else
           //   alert('Invalid title');
