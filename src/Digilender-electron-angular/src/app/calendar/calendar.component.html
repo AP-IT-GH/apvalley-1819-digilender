@@ -7,6 +7,12 @@
     <script src='scheduler.js'></script> -->
 </head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
-<div >
-    <div id='calendar'></div>
+<div>
+    <div id='calendar' (click)="openModal('Scherm')"></div>
 </div>
+
+<jw-modal id="Scherm">
+    <h1 style="height:500px">Scherm!</h1>
+    <p>{{selectedDate}}</p>
+    <button (click)="closeModal('Scherm');">Close</button>
+</jw-modal>
