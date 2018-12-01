@@ -15,11 +15,19 @@
     <h1>Add a new event</h1>
     <h2>Selected date and time: {{selectedDate}}</h2>
 
-    <p class="title">Title</p>
-    <input type="text" id="Title">
+    <div class="md-form input-group input-group-lg">
+        <div class="input-group-prepend">
+            <span class="input-group-text md-addon" id="inputGroupMaterial-sizing-lg">Title</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroupMaterial-sizing-lg">
+    </div>
 
-    <p class="title">Description</p>
-    <input type="text" id="Description">
+    <div class="md-form input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text md-addon">Description</span>
+        </div>
+        <textarea class="md-textarea form-control" aria-label="With textarea"></textarea>
+    </div>
 
     <br><br><button type="button" mdbBtn color="info" mdbWavesEffect style="width: 300px">Save</button>
 </jw-modal>
