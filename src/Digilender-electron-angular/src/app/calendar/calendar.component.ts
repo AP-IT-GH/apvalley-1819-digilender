@@ -112,7 +112,6 @@ export class HomeCalendarComponent implements OnInit {
 
   openModal(id: string) {
     this.modalService.open(id);
-    //console.log("open modal "+ id);
   }
 
   closeModal(id: string) {
