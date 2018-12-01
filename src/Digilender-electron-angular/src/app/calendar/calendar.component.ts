@@ -2,6 +2,7 @@ import * as $ from 'jquery';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import 'fullcalendar';
 import 'fullcalendar-scheduler';
+import { ModalService } from '../modal.service';
 
 @Component({
   selector: 'app-calendar',
@@ -9,7 +10,15 @@ import 'fullcalendar-scheduler';
   styleUrls: ['./calendar.component.scss']
 })
 export class HomeCalendarComponent implements OnInit {
+
+  constructor(private modalService: ModalService) { }
+
+  selectedDate: string;
+  eventTitle: string;
+  eventDescription: string;
+
   ngOnInit(): void {
+    var self = this;
     $(function () {
 
       var getDaysInMonth = function () {
@@ -26,7 +35,7 @@ export class HomeCalendarComponent implements OnInit {
       };
 
       var getMinTime = function () {
-        var time= $('#calendar').fullCalendar('today');
+        var time = $('#calendar').fullCalendar('today');
         return time;
       };
 
@@ -38,7 +47,7 @@ export class HomeCalendarComponent implements OnInit {
 
       // let containerEl: JQuery = $('#calendar');
       $('#calendar').fullCalendar({
-        height: $(window).height()*0.83,
+        height: $(window).height() * 0.83,
         defaultView: 'agendaWeek',
         groupByResource: true,
         header: {
@@ -69,13 +78,13 @@ export class HomeCalendarComponent implements OnInit {
         nowIndicator: true,
         allDaySlot: false,
         eventTextColor: 'white',
-        resources: [
-          { id: '1', title: 'Bram' },
-          { id: '2', title: 'Tom' },
-          { id: '3', title: 'Tim' },
-          { id: '4', title: 'Elke' },
-          { id: '5', title: 'Mirko' }
-        ],
+        // resources: [
+        //   { id: '1', title: 'Bram' },
+        //   { id: '2', title: 'Tom' },
+        //   { id: '3', title: 'Tim' },
+        //   { id: '4', title: 'Elke' },
+        //   { id: '5', title: 'Mirko' }
+        // ],
         events: 'https://fullcalendar.io/demo-events.json?with-resources=2',
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
         dayClick: function (date, jsEvent, view) {
@@ -85,21 +94,9 @@ export class HomeCalendarComponent implements OnInit {
           // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
           // alert('Current view: ' + view.name);
 
-          var title = prompt('Enter a title');
+          self.selectedDate = date.format();
 
-          if (title != '' && title != null) {
-            var description = prompt('Enter a description (optional)');
-            $('#calendar').fullCalendar('renderEvent', {
-              title: title,
-              start: date.format(),
-              allDay: false,
-              editable: true,
-              description: description
-            }, true);
-          }
-          else
-            alert('Invalid title');
-
+          self.openModal('Event');
           // $(this).css('background-color', 'red');
         },
 
@@ -111,6 +108,27 @@ export class HomeCalendarComponent implements OnInit {
       //werkende optie om overschot onderaan calender weg te halen
       $('#calendar').fullCalendar('option', 'contentHeight', "auto");
     })
+  }
 
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
+
+  addEvent() {
+    $('#calendar').fullCalendar('renderEvent', {
+      title: this.eventTitle,
+      start: this.selectedDate,
+      allDay: false,
+      editable: true,
+      description: this.eventDescription
+    }, true);
+
+    this.closeModal('Event');
+    this.eventTitle = "";
+    this.eventDescription = "";
   }
 }

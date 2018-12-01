@@ -7,6 +7,27 @@
     <script src='scheduler.js'></script> -->
 </head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
-<div >
+<div>
     <div id='calendar'></div>
 </div>
+
+<jw-modal id="Event">
+    <h1>Add a new event</h1>
+    <!-- <h2>Selected date and time: {{selectedDate}}</h2> -->
+
+    <div class="md-form input-group input-group-lg">
+        <div class="input-group-prepend">
+            <span class="input-group-text md-addon" id="inputGroupMaterial-sizing-lg">Title</span>
+        </div>
+        <input type="text" class="form-control" aria-describedby="inputGroupMaterial-sizing-lg" [(ngModel)]="eventTitle">
+    </div>
+
+    <div class="md-form input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text md-addon">Description</span>
+        </div>
+        <textarea class="md-textarea form-control" [(ngModel)]="eventDescription"></textarea>
+    </div>
+
+    <br><br><button type="button" mdbBtn color="info" mdbWavesEffect style="width: 300px" (click)="addEvent()">Save</button>
+</jw-modal>
