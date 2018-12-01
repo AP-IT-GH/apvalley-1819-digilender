@@ -13,7 +13,9 @@ export class HomeCalendarComponent implements OnInit {
 
   constructor(private modalService: ModalService) { }
 
-  selectedDate = "";
+  selectedDate: string;
+  eventTitle: string;
+  eventDescription: string;
 
   ngOnInit(): void {
     var self = this;
@@ -93,20 +95,14 @@ export class HomeCalendarComponent implements OnInit {
           // alert('Current view: ' + view.name);
 
           self.selectedDate = date.format();
-          // var title = prompt('Enter a title');
 
-          // if (title != '' && title != null) {
-          // var description = prompt('Enter a description (optional)');
           // $('#calendar').fullCalendar('renderEvent', {
-          //   title: title,
+          //   title: self.eventTitle,
           //   start: date.format(),
           //   allDay: false,
           //   editable: true,
-          //   description: description
+          //   description: self.eventDescription
           // }, true);
-          // }
-          // else
-          //   alert('Invalid title');
 
           // $(this).css('background-color', 'red');
         },
@@ -128,5 +124,19 @@ export class HomeCalendarComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  addEvent() {
+    $('#calendar').fullCalendar('renderEvent', {
+      title: this.eventTitle,
+      start: this.selectedDate,
+      allDay: false,
+      editable: true,
+      description: this.eventDescription
+    }, true);
+
+    this.closeModal('Event');
+    this.eventTitle = "";
+    this.eventDescription = "";
   }
 }

@@ -19,15 +19,15 @@
         <div class="input-group-prepend">
             <span class="input-group-text md-addon" id="inputGroupMaterial-sizing-lg">Title</span>
         </div>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroupMaterial-sizing-lg">
+        <input type="text" class="form-control" aria-describedby="inputGroupMaterial-sizing-lg" [(ngModel)]="eventTitle">
     </div>
 
     <div class="md-form input-group">
         <div class="input-group-prepend">
             <span class="input-group-text md-addon">Description</span>
         </div>
-        <textarea class="md-textarea form-control" aria-label="With textarea"></textarea>
+        <textarea class="md-textarea form-control" [(ngModel)]="eventDescription"></textarea>
     </div>
 
-    <br><br><button type="button" mdbBtn color="info" mdbWavesEffect style="width: 300px">Save</button>
+    <br><br><button type="button" mdbBtn color="info" mdbWavesEffect style="width: 300px" (click)="addEvent()">Save</button>
 </jw-modal>
