@@ -96,14 +96,7 @@ export class HomeCalendarComponent implements OnInit {
 
           self.selectedDate = date.format();
 
-          // $('#calendar').fullCalendar('renderEvent', {
-          //   title: self.eventTitle,
-          //   start: date.format(),
-          //   allDay: false,
-          //   editable: true,
-          //   description: self.eventDescription
-          // }, true);
-
+          self.openModal('Event');
           // $(this).css('background-color', 'red');
         },
 
