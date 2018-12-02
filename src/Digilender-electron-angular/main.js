@@ -1,14 +1,42 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const url = require("url");
+const CONFIG = require('./settings.js');
+const CalendarAPI= require('node-google-calendar');
 var log = require('electron-log');
 const DBManager = require('./DBManager');
 
 let win;
 log.info("starting");
 let db = new DBManager();
+let cal = new CalendarAPI(CONFIG);
+// let params = {
+//     showHidden: true
+// };
+// cal.CalendarList.list(params).then(resp => {
+//     console.log("ladididididididid hier ben ik " + resp);
+// }).catch(err => {
+//     console.log(err.message)
+// });
+ let params = {
+    timeMin:'2017-05-20T06:00:00+08:00',
+    timeMax:'2017-05-25T22:00:00+08:00',
+    q:'query term',
+    singleEvents: true,
+    orderBy:'startTime'
+ };
+
+
+ cal.Events.list(CONFIG.calendarId,params)
+     .then(json => {
+         console.log('list of events on calendar with time range');
+         console.log(json);
+     }).catch(err=>{
+         console.log('Error : listingSingleEvents -' + err.message);
+     });
 
 function createWindow() {
+    cal.Events.list();
     win = new BrowserWindow();
     //win = new BrowserWindow({ width: 1280, height: 800 );
     win.setFullScreen(true)
@@ -52,5 +80,7 @@ app.on("window-all-closed", () => {
 app.on("activate", () => {
     if (win === null) {
         createWindow();
+
+
     }
 });

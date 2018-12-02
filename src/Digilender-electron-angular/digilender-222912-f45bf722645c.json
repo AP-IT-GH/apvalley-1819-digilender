@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "digilender-222912",
+  "private_key_id": "f45bf722645cbc10b8e4a81355287c39d6058a6c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCzvFeRioDz5N0z\nBgmGV+h9xwYyrAu/p8CAgZNFbmp1xmrPV94lTUj5IaXKpbIYfsooi98dIiCN50as\n+X97KYx3UhDyOZ8SSNZXn5e4+wDyIQNSVOuN9cxfJUTohMZTr9muqEH9/6SIupZ+\nnWy2NwKrBojLvESiNqcOk0UPInU7L11pTyJaVZI0WX21JCdZUmEvrFz99kuEMS3C\ncnB/aMAQ9XZvRX1oTDI9l72y3JOSJuIvcGNHwDkfm2ioWjtsKZvbcMD/ICH4kJll\nBTUggMSpu42yLgBB24tLP5OsVY7OmP8kQAyhTw7E8V3UOfYG4VOx4c5J3fyuTW/6\nJjNnl18xAgMBAAECggEAAg6PufypySC/X0wcY8sxv+69JWtOnxzeWRoig1LmKP7i\nTgklY6vkv+UgrpcC2MDqs1gWb5DqanVRG72nNdOd5eeshfke1ui6ezo6VEWbFypF\njXWnVHKRqi0VAswyMNb8WMFYL/3y9hWcj0ph6hvrDeX/PsWiy3BwrPwGeEvep5S4\nNHJCAzXAfLn2u3TAOPXDh7JNc/ptUi44cX0cmMQ8pNp+fK5qrphjnRbhLZllBtFd\nyswnEtblfDIouK8pCYbnkuS8soUIAE7+JEmaJLyFwUB1q7GM5MbBkigYbCWd03hS\n7fFh7YKqxi9tSHjMZJhiWtqp/OKzT0zmL1ig1U6H2QKBgQD9kw+ZVvykw+8FJ9f8\nndKj3vGEF2vJFxePfIGxfxUeQvRIVjKu6kBvVf1Bqcb7606pqU3WqTQA9/XV5Zel\n6jXtMLnR6yacT6I0PvDJLuFtspA+FZJbdyCM7YVd8DYvQ/7DU2V5lQ/oo69q0JTS\nmM7ZU0gwkJga3mlxmOPOuxqf4wKBgQC1dHgKN/48dxawC8RtDL2x5Oz449nwIMxD\nk+qSq2Q3noMcoUxeMIn7vnmgDarh/Wi858Zu7RCLwAC8zFuYr7Xd1vtXGNiTid85\nBWYxzTa5WLegHTcXXk5UwNP0HbsHygoN/HAfX1Q259hRQb1rUSKJpe6pe5kZylui\n0Z8st6CI2wKBgFRISBwIjKrbMRv+lUyyzGuJU6869al+Emev04/ClKtdR8KvW+NF\nmysmYqormybqnFfKHUQnM1DLGhwBVvlfspLm6ix6w3ebBGfnL7M+8NC8VDM+ikn6\ne4g7/mMtz2TAbfJQSt8xi3sgxNJ1B7JD9iTICKuTs+riWBvY3Ic/K2dPAoGAHP0c\naFWFslc8MqfOm7VbYN431ZNhL/GtcGZjJUdoXVJfk+VY8/tBMAzAFYfZcv0vDG7i\nzrnk2M61z3O+dmgr3+MGiGWZxAhUtyFbsD0erwGzZEsGkB8q2HNt6SQOyzHF5XIc\n34Y1SAhGEMU14700jVULCdyLGwmvFhXzHgvAA90CgYAqudTs0BKV2sGGCZXxN4d+\n4Kqyl+vJNzqyPfAWgKvpqgRmlIgwpC+PODios201MJl5VvaRO3Ag3I+7GsK44XFM\nZHtbTL5Cxg18eJhy+dHZigPC8iAHGdUQD+i9Zynpwa0hdDFs+hDPGt1g9XswLYrv\nJu7yH3iASrKgRYUsQKS6Pw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "digilender@digilender-222912.iam.gserviceaccount.com",
+  "client_id": "108599927337940618323",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/digilender%40digilender-222912.iam.gserviceaccount.com"
+}
