@@ -1,9 +1,9 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const url = require("url");
-var log = require('electron-log');
+const log = require('electron-log');
 const DBManager = require ('./DBManager');
-
+const promiseIpc = require('electron-promise-ipc');
 
 let win;
 log.info("starting");
@@ -11,6 +11,7 @@ let db = new DBManager();
 
 function createWindow() {
     win = new BrowserWindow();
+    win.webContents.openDevTools();
     //win = new BrowserWindow({ width: 1280, height: 800 );
     win.setFullScreen(true)
 
@@ -33,11 +34,38 @@ function createWindow() {
     });
     
     //respond to messages
-    ipcMain.on('querryDB', (event, arg) => {
-        log.info(arg);
-        log.info(event);
-        event.returnValue = 'returnValue';
+    promiseIpc.on("users", (arg) => {
+        if (arg == 'all'){
+            return db.getUsers();
+        }
     });
+
+    /*
+    ipcMain.on("querryDB", (event, arg) => {
+        log.info(arg);
+        args = arg.split(" ");
+        if (args.length < 2){
+            event.returnValue = {"error": "too few arguments"};
+            return;
+        }
+        else {
+            switch (args[0]) {
+                case "events":
+                    if (args[1] == "all"){
+                        event.returnValue = db.getEvents();
+                        return;
+                    }
+                    else if (args[1] == "of"){
+                        event.returnValue = db.getEvents(args[2]);
+                        return;
+                    }
+                    break;
+            }
+            event.returnValue = {"error": "argument error"};
+        }
+
+    });
+    */
 }
 
 app.on("ready", createWindow);

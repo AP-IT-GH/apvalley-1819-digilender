@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ipcRenderer } from 'electron';
-
+//import { ipcRenderer } from 'electron';
+import { PromiseIpc } from 'electron-promise-ipc';
+const promiseIpc = new PromiseIpc();
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,10 @@ export class DatabaseService {
   }
 
   getUsers(){
-    console.log(ipcRenderer.sendSync('querryDB', 'users all')); 
+    console.log(promiseIpc);
+    promiseIpc.send('users', 'all').then((users) =>{
+        console.log(users);
+    });
     let users = new Array<User>();
     users.push({name: "Elke", calType: 0, login: 'elkun', pass: 'elkpw'});
     users.push({name: "Antoinne", calType: 0, login: 'antun', pass: 'antpw'});
@@ -24,7 +28,7 @@ export class DatabaseService {
   }
 
   getEvents(name: string){
-    console.log(ipcRenderer.sendSync('querryDB', 'events select name' + name));
+    //console.log(ipcRenderer.sendSync('querryDB', 'events select name' + name));
     let events = new Array<Event>();
     events.push({eventId: 0, userName: name, startDate: '2018-11-28T08:00:00', stopDate: '2018-11-28T08:00:00', Description: 'wash my spaceship'});
     events.push({eventId: 1, userName: name, startDate: '2018-11-29T08:00:00', stopDate: '2018-11-29T08:00:00', Description: 'wash my spaceship'});
