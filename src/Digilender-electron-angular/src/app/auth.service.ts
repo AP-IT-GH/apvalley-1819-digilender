@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
+import { first } from 'rxjs/operators';
 
 declare var gapi: any;
 
@@ -34,6 +35,11 @@ export class AuthService {
       gapi.client.load('calendar', 'v3', () => console.log('loaded calendar'));
 
     });
+
+  }
+
+  isLoggedIn() {
+    return this.afAuth.authState.pipe(first()).toPromise();
   }
 
   async login() {
@@ -47,7 +53,6 @@ export class AuthService {
     const credential = auth.GoogleAuthProvider.credential(token);
 
     await this.afAuth.auth.signInAndRetrieveDataWithCredential(credential);
-
 
     // Alternative approach, use the Firebase login with scopes and make RESTful API calls
     //const provider = new auth.GoogleAuthProvider()
