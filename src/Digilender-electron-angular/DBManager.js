@@ -27,15 +27,15 @@ class DBManager{
       UserId: Sequelize.STRING,   // ID of owning user
       startDate: Sequelize.STRING,// datetime event starts
       stopDate: Sequelize.STRING, // datetime event stops
-      Description: Sequelize.TEXT // description of event
+      description: Sequelize.TEXT // description of event
     });
 
     me.Event.belongsTo(me.User);
 
     me.Event.drop().then(() => {
-      return me.User.sync({force: true})
+      return me.User.sync();
     }).then(() => { 
-      return me.Event.sync({force:true})
+      return me.Event.sync();
     }).then(() => {
       me.User.create({name: "Antoinne", calType: 0, login: 'antun', pass: 'antpw'});
       me.User.create({name: "Mohammed",  calType: 0 , login: 'mohun', pass: 'mohpw'});
@@ -45,14 +45,14 @@ class DBManager{
     }).then((user) => {
       console.log(user);
       console.log(user.name);
-      me.Event.create({UserId: user.id, startDate: '2018-11-28T08:00:00', stopDate: '2018-11-28T08:00:00', Description: 'wash my spaceship'});
-      me.Event.create({UserId: user.id, startDate: '2018-11-29T08:00:00', stopDate: '2018-11-29T08:00:00', Description: 'wash my spaceship'});
-      me.Event.create({UserId: user.id, startDate: '2018-11-30T08:00:00', stopDate: '2018-11-30T08:00:00', Description: 'wash my spaceship'});
-      me.Event.create({UserId: user.id, startDate: '2018-12-01T08:00:00', stopDate: '2018-12-01T08:00:00', Description: 'wash my spaceship'});
-      me.Event.create({UserId: user.id, startDate: '2018-12-02T08:00:00', stopDate: '2018-12-02T08:00:00', Description: 'wash my spaceship'});
-      me.Event.create({UserId: user.id, startDate: '2018-12-03T08:00:00', stopDate: '2018-12-03T08:00:00', Description: 'wash my spaceship'});
-      me.Event.create({UserId: user.id, startDate: '2018-12-04T08:00:00', stopDate: '2018-12-04T08:00:00', Description: 'wash my spaceship'});
-      me.Event.create({UserId: user.id, startDate: '2018-12-05T08:00:00', stopDate: '2018-12-05T08:00:00', Description: 'wash my spaceship'});
+      me.Event.create({UserId: user.id, startDate: '2018-11-28T08:00:00', stopDate: '2018-11-28T08:00:00', description: 'wash my spaceship'});
+      me.Event.create({UserId: user.id, startDate: '2018-11-29T08:00:00', stopDate: '2018-11-29T08:00:00', description: 'wash my spaceship'});
+      me.Event.create({UserId: user.id, startDate: '2018-11-30T08:00:00', stopDate: '2018-11-30T08:00:00', description: 'wash my spaceship'});
+      me.Event.create({UserId: user.id, startDate: '2018-12-01T08:00:00', stopDate: '2018-12-01T08:00:00', description: 'wash my spaceship'});
+      me.Event.create({UserId: user.id, startDate: '2018-12-02T08:00:00', stopDate: '2018-12-02T08:00:00', description: 'wash my spaceship'});
+      me.Event.create({UserId: user.id, startDate: '2018-12-03T08:00:00', stopDate: '2018-12-03T08:00:00', description: 'wash my spaceship'});
+      me.Event.create({UserId: user.id, startDate: '2018-12-04T08:00:00', stopDate: '2018-12-04T08:00:00', description: 'wash my spaceship'});
+      me.Event.create({UserId: user.id, startDate: '2018-12-05T08:00:00', stopDate: '2018-12-05T08:00:00', description: 'wash my spaceship'});
       me.initialised = true;
     });
 
@@ -64,8 +64,36 @@ class DBManager{
     return this.User.findAll(); 
   }
 
+  addUser(user){
+    console.log('adding user');
+    console.log(user);
+    if(user.id == undefined){
+      return this.User.build(user).save(); //return promise of new user
+    }
+    else{
+      return this.User.findById(user.id)
+        .then((oldUser)=>{
+          return oldUser.update(user);
+        });
+    }
+  }
+
+  addEvent(newEvent){
+    console.log('adding event');
+    console.log(newEvent);
+    if(newEvent.id == undefined){
+      return this.Event.build(newEvent).save(); //return promise of new event
+    }
+    else{
+      return this.Event.findById(event.id)
+        .then((oldEvent)=>{
+          return oldEvent.update(newEvent);
+        });
+    }
+  }
+
   getEvents(userId){
-    if(user == undefined){
+    if(userId == undefined){
       return this.Event.findAll();
     }   
     else {

@@ -34,12 +34,26 @@ function createWindow() {
     });
 
     //respond to messages
-    promiseIpc.on("users", (arg) => {
-        if (arg == 'all'){
+    promiseIpc.on('users', (arg) => {
+        if (arg.action == 'get'){
             return db.getUsers();
+        }
+        else if (arg.action == 'put'){
+            return db.addUser(arg.value);
+        }
+        else{
+            return {error: "invalid action"};
         }
     });
 
+    promiseIpc.on('events', (arg) => {
+        if (arg.action == 'get'){
+            return db.getEvents(arg.userId);
+        }
+        else if (arg.action == 'put'){
+            return db.addEvent(arg.value);
+        }
+    });
     /*
     ipcMain.on("querryDB", (event, arg) => {
         log.info(arg);

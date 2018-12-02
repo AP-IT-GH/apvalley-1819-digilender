@@ -10,40 +10,38 @@ export class DatabaseService {
 
   constructor() {
     this.getUsers();
+    this.getEvents(5);
+    this.addUser({id: undefined, name: 'joeri', calType: 0, login: 'jlogin', pass: 'jpass'});
+    this.addEvent({id: undefined, UserId: 1, startDate: '2018-12-02T08:00:00', stopDate: '', description: "ayy lmao" });
   }
 
   getUsers(){
-    console.log(promiseIpc);
-    promiseIpc.send('users', 'all').then((users) =>{
+    return promiseIpc.send('Users', {action: 'get'})
+      .then((users) => {
         console.log(users);
-    });
-    let users = new Array<User>();
-    users.push({name: "Elke", calType: 0, login: 'elkun', pass: 'elkpw'});
-    users.push({name: "Antoinne", calType: 0, login: 'antun', pass: 'antpw'});
-    users.push({name: "Mohammed",  calType: 0 , login: 'mohun', pass: 'mohpw'});
-    users.push({name: "Reno", calType: 0, login: 'renun', pass: 'renpw'});
-    users.push({name: "Coralie", calType: 0, login: 'corun', pass: 'corpw'});
-    return users;
-      
+        return users;
+      });
   }
 
-  getEvents(name: string){
-    //console.log(ipcRenderer.sendSync('querryDB', 'events select name' + name));
-    let events = new Array<Event>();
-    events.push({eventId: 0, userName: name, startDate: '2018-11-28T08:00:00', stopDate: '2018-11-28T08:00:00', Description: 'wash my spaceship'});
-    events.push({eventId: 1, userName: name, startDate: '2018-11-29T08:00:00', stopDate: '2018-11-29T08:00:00', Description: 'wash my spaceship'});
-    events.push({eventId: 2, userName: name, startDate: '2018-11-30T08:00:00', stopDate: '2018-11-30T08:00:00', Description: 'wash my spaceship'});
-    events.push({eventId: 3, userName: name, startDate: '2018-12-01T08:00:00', stopDate: '2018-12-01T08:00:00', Description: 'wash my spaceship'});
-    events.push({eventId: 4, userName: name, startDate: '2018-12-02T08:00:00', stopDate: '2018-12-02T08:00:00', Description: 'wash my spaceship'});
-    events.push({eventId: 5, userName: name, startDate: '2018-12-03T08:00:00', stopDate: '2018-12-03T08:00:00', Description: 'wash my spaceship'});
-    events.push({eventId: 6, userName: name, startDate: '2018-12-04T08:00:00', stopDate: '2018-12-04T08:00:00', Description: 'wash my spaceship'});
-    events.push({eventId: 7, userName: name, startDate: '2018-12-05T08:00:00', stopDate: '2018-12-05T08:00:00', Description: 'wash my spaceship'});
-    events.push({eventId: 8, userName: name, startDate: '2018-12-06T08:00:00', stopDate: '2018-12-06T08:00:00', Description: 'wash my spaceship'});
-    return events
+  addUser(user: User){
+    return promiseIpc.send('users', {action: 'put', value: user});
+  }
+
+  getEvents(userId: number){
+    return promiseIpc.send('events', {action: 'get', userId: userId})
+      .then((events) =>{
+        console.log(events);
+        return events;
+    });
+  }
+
+  addEvent(event: Event){
+    return promiseIpc.send('events', {action: 'put', value: event});
   }
 }
 
 export interface User{
+  id: number;
   name: string;
   calType: number;
   login: string;
@@ -51,11 +49,11 @@ export interface User{
 }  
 
 export interface Event{
-  eventId: number;
-  userName: string;
+  id: number;
+  UserId: number;
   startDate: string;
   stopDate: string;
-  Description: string;
+  description: string;
 }
 
 
