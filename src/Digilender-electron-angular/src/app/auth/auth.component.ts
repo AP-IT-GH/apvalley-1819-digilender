@@ -18,7 +18,7 @@ export class AuthComponent implements OnInit {
   async isUserInlogged() {
     const user = await this.auth.isLoggedIn()
     if (user) {
-      this.router.navigate(['/calendar'], { relativeTo: this.route });
+      this.router.navigate(['/home'], { relativeTo: this.route });
     } else {
       this.router.navigate(['/auth'], { relativeTo: this.route });
     }

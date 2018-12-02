@@ -22,6 +22,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { AuthComponent } from './auth/auth.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AuthComponent } from './auth/auth.component';
     SlidePanelComponent,
     OptionsComponent,
     AuthComponent,
-    routingComponents
+    routingComponents,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
