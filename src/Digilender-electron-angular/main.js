@@ -2,7 +2,7 @@ const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const url = require("url");
 const log = require('electron-log');
-const DBManager = require ('./DBManager');
+const DBManager = require('./DBManager');
 const promiseIpc = require('electron-promise-ipc');
 
 let win;
@@ -32,7 +32,7 @@ function createWindow() {
     win.on("closed", () => {
         win = null;
     });
-    
+
     //respond to messages
     promiseIpc.on("users", (arg) => {
         if (arg == 'all'){
