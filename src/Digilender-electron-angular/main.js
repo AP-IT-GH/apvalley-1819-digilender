@@ -10,33 +10,27 @@ let win;
 log.info("starting");
 let db = new DBManager();
 let cal = new CalendarAPI(CONFIG);
-// let params = {
-//     showHidden: true
-// };
-// cal.CalendarList.list(params).then(resp => {
-//     console.log("ladididididididid hier ben ik " + resp);
-// }).catch(err => {
-//     console.log(err.message)
-// });
+
  let params = {
-    timeMin:'2017-05-20T06:00:00+08:00',
-    timeMax:'2017-05-25T22:00:00+08:00',
-    q:'query term',
+    timeMin: '2017-05-20T06:00:00+08:00',
+    timeMax: '2019-05-25T22:00:00+08:00',
     singleEvents: true,
-    orderBy:'startTime'
- };
+    orderBy: 'startTime'
+    };
+    var calId = 'antoinevmasure@gmail.com';
 
-
- cal.Events.list(CONFIG.calendarId,params)
-     .then(json => {
-         console.log('list of events on calendar with time range');
-         console.log(json);
-     }).catch(err=>{
-         console.log('Error : listingSingleEvents -' + err.message);
-     });
+   cal.Events.list(calId,params)
+        .then(json=>{
+            console.log("List of calendar events");
+            console.log(json);
+        }).catch(err=>{
+            console.log('error: llllistingevents -'+err.message);
+        });
+  
+     
 
 function createWindow() {
-    cal.Events.list();
+
     win = new BrowserWindow();
     //win = new BrowserWindow({ width: 1280, height: 800 );
     win.setFullScreen(true)
