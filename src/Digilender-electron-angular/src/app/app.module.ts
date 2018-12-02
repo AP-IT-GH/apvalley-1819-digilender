@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { FullCalendarModule } from 'ng-fullcalendar';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WeatherService } from './weather.service'
 import { HomeCalendarComponent } from './home-calendar/home-calendar.component';
@@ -30,7 +30,8 @@ import { AuthComponent } from './auth/auth.component';
     HomeCalendarComponent,
     SlidePanelComponent,
     OptionsComponent,
-    AuthComponent
+    AuthComponent,
+    routingComponents
   ],
   imports: [
     BrowserModule,
