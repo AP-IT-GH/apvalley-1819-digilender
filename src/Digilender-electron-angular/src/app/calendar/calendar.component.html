@@ -29,5 +29,13 @@
         <textarea class="md-textarea form-control" [(ngModel)]="eventDescription"></textarea>
     </div>
 
-    <br><br><button type="button" mdbBtn color="info" mdbWavesEffect style="width: 300px" (click)="addEvent()">Save</button>
+    <br><br>
+    <div class="row">
+        <div class="col">
+            <button type="button" mdbBtn color="info" mdbWavesEffect style="width: 300px" (click)="addEvent()">Save</button>
+        </div>
+        <div class="col">
+            <button type="button" mdbBtn color="danger" mdbWavesEffect style="width: 300px" (click)="closeModal('Event')">Cancel</button>
+        </div>
+    </div>
 </jw-modal>

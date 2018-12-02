@@ -95,8 +95,8 @@ export class HomeCalendarComponent implements OnInit {
           // alert('Current view: ' + view.name);
 
           self.selectedDate = date.format();
-
           self.openModal('Event');
+
           // $(this).css('background-color', 'red');
         },
 
@@ -119,16 +119,18 @@ export class HomeCalendarComponent implements OnInit {
   }
 
   addEvent() {
-    $('#calendar').fullCalendar('renderEvent', {
-      title: this.eventTitle,
-      start: this.selectedDate,
-      allDay: false,
-      editable: true,
-      description: this.eventDescription
-    }, true);
+    if (this.eventTitle != "" && this.eventTitle != null) {
+      $('#calendar').fullCalendar('renderEvent', {
+        title: this.eventTitle,
+        start: this.selectedDate,
+        allDay: false,
+        editable: true,
+        description: this.eventDescription
+      }, true);
 
-    this.closeModal('Event');
-    this.eventTitle = "";
-    this.eventDescription = "";
+      this.closeModal('Event');
+      this.eventTitle = "";
+      this.eventDescription = "";
+    }
   }
 }
