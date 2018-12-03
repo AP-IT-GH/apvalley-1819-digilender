@@ -1,13 +1,15 @@
 
 <!-- https://github.com/hamedbaatour/Minimus/blob/master/src/app/ui/weather-card/weather-card.component.html -->
 <div class="weather__card" [ngClass]="{'weather__card-dark': darkMode}">
-    <span class="city-name__text">Antwerpen</span>
   
    
   
     <div class="temperature-text__container">
-      <span class="temperature__text">{{ currentTemp }}</span>
-      <span class="temperature-metric__text">°</span>
+      <span class="city-name__text">Antwerpen</span>
+      <div class="temp">
+          <span class="temperature__text">{{ currentTemp }}</span>
+          <span class="temperature-metric__text">°</span>
+      </div>
       <span class="weather-condition__text">{{condition}}</span>
     </div>
   

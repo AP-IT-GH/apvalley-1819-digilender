@@ -1,15 +1,26 @@
+'use strict';
+
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const url = require("url");
 var log = require('electron-log');
 const DBManager = require('./DBManager');
+const electron = require('electron');
 
 let win;
 log.info("starting");
 let db = new DBManager();
 
+require('electron-reload')(__dirname);
+
 function createWindow() {
-    win = new BrowserWindow();
+    win = new BrowserWindow(
+       /*  {
+            webPreferences: {
+              webSecurity: false
+            }
+        } */
+    );
     //win = new BrowserWindow({ width: 1280, height: 800 );
     win.setFullScreen(true)
 
@@ -24,7 +35,7 @@ function createWindow() {
             slashes: true
         })
     );
-
+  
     // The following is optional and will open the DevTools:
     // win.webContents.openDevTools()
     win.on("closed", () => {
