@@ -26,7 +26,7 @@ export class AuthService {
 
       // It's OK to expose these credentials, they are client safe.
       gapi.client.init({
-        //apiKey: 'AIzaSyC5s71KnhbfQpRlDMDf6gEqy6t4RiSY6_8',
+        apiKey: 'AIzaSyC5s71KnhbfQpRlDMDf6gEqy6t4RiSY6_8',
         clientId: '214527435995-iu22s71kmdp4i55eddab7jq3ubtvv93b.apps.googleusercontent.com',
         discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
         scope: 'https://www.googleapis.com/auth/calendar'
