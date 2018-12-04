@@ -12,31 +12,48 @@ export class DatabaseService {
     this.getUsers();
     this.getEvents(5);
     this.addUser({id: undefined, name: 'joeri', calType: 0, login: 'jlogin', pass: 'jpass'});
-    this.addEvent({id: undefined, UserId: 1, startDate: '2018-12-02T08:00:00', stopDate: '', description: "ayy lmao" });
+    this.addEvent({id: undefined, UserId: 1, start: '2018-12-02T08:00:00', stop: '', description: "ayy lmao", title: "lol" });
   }
 
   getUsers(){
     return promiseIpc.send('Users', {action: 'get'})
       .then((users) => {
         console.log(users);
-        return users;
+        let tmp = JSON.parse(users);
+        console.log(tmp);
+        return tmp;
       });
   }
 
   addUser(user: User){
-    return promiseIpc.send('users', {action: 'put', value: user});
+    return promiseIpc.send('users', {action: 'put', value: user})
+      .then((user) => {
+        console.log(user);
+        let tmp = JSON.parse(user);
+        console.log(tmp);
+        return tmp;
+      });
   }
 
   getEvents(userId: number){
     return promiseIpc.send('events', {action: 'get', userId: userId})
-      .then((events) =>{
+      .then((events) => {
         console.log(events);
-        return events;
-    });
+        let tmp = JSON.parse(events);
+        console.log(tmp);
+        return tmp;
+      });
+    
   }
 
   addEvent(event: Event){
-    return promiseIpc.send('events', {action: 'put', value: event});
+    return promiseIpc.send('events', {action: 'put', value: event})
+      .then((newEvent) => {
+        console.log(newEvent);
+        let tmp = JSON.parse(newEvent);
+        console.log(tmp);
+        return tmp;
+      });
   }
 }
 
@@ -51,8 +68,9 @@ export interface User{
 export interface Event{
   id: number;
   UserId: number;
-  startDate: string;
-  stopDate: string;
+  start: string;
+  stop: string;
+  title: string;
   description: string;
 }
 

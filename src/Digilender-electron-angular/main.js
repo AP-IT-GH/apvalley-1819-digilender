@@ -36,10 +36,18 @@ function createWindow() {
     //respond to messages
     promiseIpc.on('users', (arg) => {
         if (arg.action == 'get'){
-            return db.getUsers();
+            return db.getUsers().then((users) => {
+              var tmp = JSON.stringify(users);
+              console.log(tmp);
+              return tmp;
+            });
         }
         else if (arg.action == 'put'){
-            return db.addUser(arg.value);
+            return db.addUser(arg.value).then((user) => {
+              var tmp = JSON.stringify(user);
+              console.log(tmp);
+              return tmp;
+            });
         }
         else{
             return {error: "invalid action"};
@@ -48,10 +56,19 @@ function createWindow() {
 
     promiseIpc.on('events', (arg) => {
         if (arg.action == 'get'){
-            return db.getEvents(arg.userId);
+            return db.getEvents(arg.userId)
+              .then((events) => {
+                var tmp = JSON.stringify(events);
+                console.log(tmp);
+                return tmp;
+              });
         }
         else if (arg.action == 'put'){
-            return db.addEvent(arg.value);
+            return db.addEvent(arg.value).then((newEvent) => {
+              var tmp = JSON.stringify(newEvent);
+              console.log(tmp);
+              return tmp;
+            });
         }
     });
     /*
