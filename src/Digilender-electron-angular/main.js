@@ -1,13 +1,17 @@
 const { app, BrowserWindow } = require("electron");
+'use strict';
 const path = require("path");
 const url = require("url");
 const log = require('electron-log');
 const DBManager = require('./DBManager');
 const promiseIpc = require('electron-promise-ipc');
+//const electron = require('electron');
 
 let win;
 log.info("starting");
 let db = new DBManager();
+
+//require('electron-reload')(__dirname);
 
 function createWindow() {
     win = new BrowserWindow();
@@ -26,7 +30,7 @@ function createWindow() {
             slashes: true
         })
     );
-
+  
     // The following is optional and will open the DevTools:
     // win.webContents.openDevTools()
     win.on("closed", () => {

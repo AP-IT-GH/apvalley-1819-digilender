@@ -2,6 +2,11 @@
   "name": "digilender-electron-angular",
   "version": "0.0.0",
   "main": "main.js",
+  "build": {
+    "directories": {
+    "output": "release/"
+    }
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng build --base-href ./ && electron --disable-gpu .",

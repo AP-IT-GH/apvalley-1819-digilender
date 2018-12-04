@@ -1,6 +1,5 @@
 <div class="row">
   <div class="col-md-11">
-
   </div>
   <div class="col-md-1">
     <img class="img-fluid" *ngIf="isLeftVisible" src="assets/images/gear-icon.png" (click)="isLeftVisible = !isLeftVisible" />
@@ -22,10 +21,11 @@
 
       <!-- The options panel -->
       <div rightPane class="row">
-        <div class="col-sm-1">
-          <img class="backarrow" src="assets/images/back-arrow.png" width="150px" *ngIf="!isLeftVisible" (click)="isLeftVisible = !isLeftVisible">
+        <div class="col-sm-2">
+          <img class="backarrow" src="assets/images/back-arrow.png" width="50px" *ngIf="!isLeftVisible" (click)="isLeftVisible = !isLeftVisible"
+          style="position:relative; top:20rem; left: 2rem">
         </div>
-        <div class="col-sm-1"></div>
+        <!-- <div class="col-sm-1"></div> -->
         <div class="col-sm-10">
           <app-options></app-options>
         </div>

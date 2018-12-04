@@ -33,7 +33,6 @@ class DBManager{
 
     me.Event.belongsTo(me.User);
 
-    /*
     me.User.sync()
     .then(() => { 
       return me.Event.sync();
@@ -44,6 +43,7 @@ class DBManager{
       me.User.create({name: "Coralie", calType: 0, login: 'corun', pass: 'corpw'});
       return me.User.create({name: "Elke", calType: 0, login: 'elkun', pass: 'elkpw'})
     }).then((user) => {
+      /*
       me.Event.create({UserId: user.id, start: '2018-11-28T08:00:00', stop: '2018-11-28T08:00:00', description: 'wash my spaceship', title: 'wash ship'});
       me.Event.create({UserId: user.id, start: '2018-11-29T08:00:00', stop: '2018-11-29T08:00:00', description: 'wash my spaceship', title: 'wash ship'});
       me.Event.create({UserId: user.id, start: '2018-11-30T08:00:00', stop: '2018-11-30T08:00:00', description: 'wash my spaceship', title: 'wash ship'});
@@ -52,9 +52,9 @@ class DBManager{
       me.Event.create({UserId: user.id, start: '2018-12-03T08:00:00', stop: '2018-12-03T08:00:00', description: 'wash my spaceship', title: 'wash ship'});
       me.Event.create({UserId: user.id, start: '2018-12-04T08:00:00', stop: '2018-12-04T08:00:00', description: 'wash my spaceship', title: 'wash ship'});
       me.Event.create({UserId: user.id, start: '2018-12-05T08:00:00', stop: '2018-12-05T08:00:00', description: 'wash my spaceship', title: 'wash ship'});
+      */
       me.initialised = true;
     });
-    */
     me.sequelize.authenticate()
       .then(() => console.log('authed'));
   }
