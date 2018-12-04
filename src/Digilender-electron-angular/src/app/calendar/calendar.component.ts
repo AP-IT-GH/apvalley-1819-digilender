@@ -16,11 +16,12 @@ export class HomeCalendarComponent implements OnInit {
   selectedDate: string;
   eventTitle: string;
   eventDescription: string;
+  calendar;
 
   ngOnInit(): void {
-    var self = this;
+    var me = this;
     $(function () {
-
+      me.calendar = $('#calendar');
       var getDaysInMonth = function () {
         var d = new Date();
         var year = d.getFullYear();
@@ -86,7 +87,7 @@ export class HomeCalendarComponent implements OnInit {
         //   { id: '5', title: 'Mirko' }
         // ],
         events: (start, end, timezone, callback) => {
-          self.db.getEvents(undefined).then((events) => {
+          me.db.getEvents(undefined).then((events) => {
             callback(events);
           });
         },
@@ -98,8 +99,8 @@ export class HomeCalendarComponent implements OnInit {
           // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
           // alert('Current view: ' + view.name);
 
-          self.selectedDate = date.format();
-          self.openModal('Event');
+          me.selectedDate = date.format();
+          me.openModal('Event');
 
           // $(this).css('background-color', 'red');
         },
@@ -123,19 +124,21 @@ export class HomeCalendarComponent implements OnInit {
   }
   
   addEvent() {
+    var me = this;
     if (this.eventTitle != "" && this.eventTitle != null) {
-      this.db.addEvent({id: undefined, UserId: 1, start: this.selectedDate, stop: '', description: this.eventDescription, title: this.eventTitle }).then((newEvent) => {
-        console.log('adding event to UI');
-        console.log(newEvent);
-        console.log($('#calendar'));
-        $('#calendar').fullCalendar('renderEvent', {
-          title: newEvent.description,
-          start: newEvent.startDate,
-          allDay: false,
-          editable: true,
-          description: newEvent.description
-        }, true);
-      });
+      me.calendar.fullCalendar('renderEvent', {
+        title: this.eventTitle,
+        start: this.selectedDate,
+        allDay: false,
+        editable: true,
+        description: this.eventDescription
+      }, false);
+      this.db.addEvent(
+        {id: undefined,
+          UserId: 1, start: this.selectedDate,
+          stop: '', description: this.eventDescription,
+          title: this.eventTitle
+        });
       this.closeModal('Event');
       this.eventTitle = "";
       this.eventDescription = "";
