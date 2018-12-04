@@ -1,0 +1,40 @@
+<div class="text-center">
+        <form [formGroup]= "addUserForm" >
+    <!--Table-->
+    <table class="table table-hover table-sm">
+
+        <!--Table head-->
+        <thead>
+            <tr>
+                <th  class="font-weight-bold">Naam</th>
+                <th  class="font-weight-bold">Kleur</th>
+                <th  class="font-weight-bold">Agenda</th>
+            </tr>
+        </thead>
+        <!--Table head-->
+    
+        <!--Table body *ngFor="let country of completeList; let i = index"-->
+        <tbody>
+            <tr *ngFor="let user of users;">
+                <td>{{user.Naam}}</td>
+                <td>{{user.Kleur}}</td>
+                <td>{{user.Agenda}}</td>
+            </tr>
+            <tr *ngIf="addUser">
+                
+                    <td><input class="form-control" type="text" id="Naam" formControlName="Naam"></td>
+                    <td><input class="form-control" type="text" id="Kleur" formControlName="Kleur"></td>
+                    <td><input class="form-control" type="text" id="Agenda" formControlName="Agenda"></td>
+                    <td><button (click)= saveUser()>Save</button></td>
+
+                
+            </tr>
+        </tbody>
+        <!--Table body-->
+
+    </table>
+</form>
+    <!--Table-->
+    <button *ngIf="!addUser" (click)= "addUser = !addUser" >Nieuwe gebruiker</button>
+    <button *ngIf="addUser" (click)= "cancel()" >Cancel</button>
+</div>

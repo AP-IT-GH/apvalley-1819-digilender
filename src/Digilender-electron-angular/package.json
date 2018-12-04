@@ -2,16 +2,27 @@
   "name": "digilender-electron-angular",
   "version": "0.0.0",
   "main": "main.js",
+  "build": {
+    "directories": {
+    "output": "release/"
+    }
+  },
   "scripts": {
     "ng": "ng",
     "start": "concurrently \"nodemon server.js\" \"ng build --base-href ./ && electron --disable-gpu .\"",
+    "start": "ng build --base-href ./ && electron --disable-gpu .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . digilender --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Digilender\"",
+    "package-linux": "electron-packager . digilender --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "install-app-deps"
   },
   "private": true,
   "dependencies": {
+    "@angular-guru/electron-builder": "^6.1.7",
     "@angular/animations": "^7.0.3",
     "@angular/common": "^7.0.3",
     "@angular/compiler": "^7.0.3",
@@ -29,7 +40,10 @@
     "chart.js": "^2.7.3",
     "concurrently": "^4.1.0",
     "core-js": "^2.5.4",
+    "electron-builder": "^20.36.2",
     "electron-log": "^2.2.17",
+    "electron-promise-ipc": "^0.1.3",
+    "electron-packager": "^12.2.0",
     "electron-reload": "^1.3.0",
     "express": "^4.16.4",
     "firebase": "^5.5.8",
@@ -38,9 +52,13 @@
     "fullcalendar-scheduler": "^1.9.4",
     "hammerjs": "^2.0.8",
     "jquery": "^3.3.1",
+    "mdbootstrap": "^4.5.15",
     "ng-fullcalendar": "^1.7.1",
     "npm": "^6.4.1",
     "rxjs": "~6.3.3",
+    "sequelize": "^4.41.2",
+    "sequelize-typescript": "^0.6.6",
+    "sqlite3": "^4.0.4",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

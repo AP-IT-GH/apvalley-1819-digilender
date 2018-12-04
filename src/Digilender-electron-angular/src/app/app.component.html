@@ -1,25 +1,3 @@
-<!-- <div class="maincol1">
-  <slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
-    <!-- The main panel --!>
-    <div leftPane class="row">
-      <div class="column1">
-        <app-weather></app-weather>
-      </div>
-      <div class="column2">
-        <app-home-calendar></app-home-calendar>
-      </div>
-    </div>
-    <!-- The options panel --!>
-    <div rightPane>
-      <img class="backarrow" src="assets/images/back-arrow.png" width="150px" *ngIf="!isLeftVisible" (click)="isLeftVisible = !isLeftVisible">
-      <app-options></app-options>
-    </div>
-  </slide-panel>
-</div>
-
-<div class="maincol2">
-  <img class="img-fluid" *ngIf="isLeftVisible" src="assets/images/gear-icon.png" (click)="isLeftVisible = !isLeftVisible" />
-</div> -->
-<!-- <app-auth></app-auth> -->
-
+<app-home></app-home>
 <router-outlet></router-outlet>
+
