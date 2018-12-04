@@ -4,9 +4,6 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { WeatherService } from './weather.service'
-import { HomeCalendarComponent } from './home-calendar/home-calendar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { HttpModule } from '@angular/http'
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -40,7 +37,7 @@ import { ModalService } from './modal.service';
     SlidePanelComponent,
     AuthComponent,
     routingComponents,
-    HomeComponent
+    HomeComponent,
     OptionsComponent,
     UsersComponent,
     ModalComponent
