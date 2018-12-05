@@ -23,10 +23,6 @@ install:
 - npm install
 - npm update
 
-script:
-  - ng test --watch false -cc
-  - npm run e2e
-  
 deploy:
   provider: pages
   skip_cleanup: true
