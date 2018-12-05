@@ -8,7 +8,6 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 })
 export class UsersComponent implements OnInit {
 
-  private just_a_change;
   public addUser:boolean = false;
   public users: Array<IUser>= [];
   public addUserForm = new FormGroup({
