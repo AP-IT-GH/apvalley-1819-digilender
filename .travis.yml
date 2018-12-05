@@ -18,7 +18,7 @@ addons:
     packages:
     - fakeroot
     - rpm
-
+script: ./run_build.sh
 install:
 - npm install
 - npm update
