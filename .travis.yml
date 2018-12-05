@@ -13,7 +13,6 @@ before_install:
  - sleep 3 # give xvfb some time to start
   
 addons:
-  chrome: stable
   apt:
     packages:
       - xvfb
