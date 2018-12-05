@@ -22,7 +22,9 @@ cache:
 
 install:
 - npm install
+- npm install @angular-guru/electron-builder --save-dev
 - npm update
+- npm start
 
 deploy:
   provider: pages
