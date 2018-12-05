@@ -13,12 +13,6 @@ cache:
   - node_modules
   - $HOME/.cache/electron
 
-addons:
-  apt:
-    packages:
-    - fakeroot
-    - rpm
-script: ./run_build.sh
 install:
 - npm install
 - npm update
