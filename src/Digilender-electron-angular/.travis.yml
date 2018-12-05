@@ -22,15 +22,12 @@ addons:
     - rpm
 
 install:
-- npm install -g yarn
 - npm install
 - npm update
 
 script:
   - ng test --watch false -cc
   - npm run e2e
-  - yarn lint
-  - yarn build --base-href https://github.com/AP-Elektronica-ICT/apvalley-1819-digilender
   
 deploy:
   provider: pages
