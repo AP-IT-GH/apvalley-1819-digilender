@@ -1,6 +1,5 @@
 language: node_js
 node_js: "8.9.4"
-
 dist: trusty
 sudo: false
 
@@ -8,25 +7,33 @@ branches:
   only:
   - master
   
-cache:
-  directories:
-  - node_modules
-  - $HOME/.cache/electron
-
+before_install:
+ - export DISPLAY=:99.0
+ - sh -e /etc/init.d/xvfb start
+ - sleep 3 # give xvfb some time to start
+  
 addons:
   apt:
     packages:
-    - fakeroot
-    - rpm
+      - xvfb
+  
+env:
+  global:
+    - ELECTRON_CACHE=$HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
+    - $HOME/.npm/_prebuilds
 
 install:
 - npm install
 - npm update
 
-script:
-  - ng test --watch false -cc
-  - npm run e2e
-  
 deploy:
   provider: pages
   skip_cleanup: true
