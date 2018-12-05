@@ -19,12 +19,23 @@ cache:
   directories:
   - node_modules
   - $HOME/.cache/electron
+  
+#env:
+#  global:
+#    - ELECTRON_CACHE=$HOME/.cache/electron
+#    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-#builder
+
+#cache:
+#  yarn: true
+#  directories:
+#    - $HOME/.cache/electron
+#    - $HOME/.cache/electron-builder
+#    - $HOME/.npm/_prebuilds
 
 install:
 - npm install
 - npm install @angular-guru/electron-builder --save-dev
 - npm update
-- npm start
 
 deploy:
   provider: pages
