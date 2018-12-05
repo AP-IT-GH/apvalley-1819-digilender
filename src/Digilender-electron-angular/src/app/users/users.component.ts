@@ -8,6 +8,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 })
 export class UsersComponent implements OnInit {
 
+  private just_a_variable_to_add_change_to_test_ci;
   public addUser:boolean = false;
   public users: Array<IUser>= [];
   public addUserForm = new FormGroup({
