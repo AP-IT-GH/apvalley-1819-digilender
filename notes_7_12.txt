@@ -1,0 +1,33 @@
+auto scroll, vandaag staat telkens bovenaan
+
+achter einde maand: volgende maand donker
+
+bovenaan maand aanduiding: dropdown met maanden
+
+bovenaan knop voor direct naar "vandaag"
+
+minimum hoogte voor events
+
+per persoon kleur
+
+linksonder huidige dag, 24 uur
+huidig uur lijntje daar
+
+digilender maximum +-6 pers
+digilender plus maximum +-9 pers
+
+post-it scherm
+kleur gekoppeld aan afzender
+berichten toevoegen/verweideren
+
+huidige dag: ALTIJD zichtbaar
+
+afgeronde hoeken overal
+
+kleur per persoon?
+kleuren verzameling zit in thema
+eg. standaardthema = {geel, blauw, oranje}
+bonusthema1 = { roos, paars, geel}
+
+
+
