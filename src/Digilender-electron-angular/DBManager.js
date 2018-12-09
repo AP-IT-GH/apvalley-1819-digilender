@@ -16,10 +16,12 @@ class DBManager{
 
     me.User = me.sequelize.define('User', {
       id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true}, 
-      name: Sequelize.STRING, // display name
-      calType: Sequelize.INTEGER, // type of calendar, 0=purely local, 1=google
-      login: Sequelize.STRING, // login for third party calendars?
-      pass: Sequelize.STRING // possible key for third party calendars?
+      title: Sequelize.STRING,
+      eventColor:Sequelize.STRING
+      // name: Sequelize.STRING, // display name
+      // calType: Sequelize.INTEGER, // type of calendar, 0=purely local, 1=google
+      // login: Sequelize.STRING, // login for third party calendars?
+      // pass: Sequelize.STRING // possible key for third party calendars?
     });
 
     me.Event = me.sequelize.define('Event', {
@@ -38,11 +40,11 @@ class DBManager{
     }).then(() => { 
       return me.Event.sync();
     }).then(() => {
-      me.User.create({name: "Antoinne", calType: 0, login: 'antun', pass: 'antpw'});
-      me.User.create({name: "Mohammed",  calType: 0 , login: 'mohun', pass: 'mohpw'});
-      me.User.create({name: "Reno", calType: 0, login: 'renun', pass: 'renpw'});
-      me.User.create({name: "Coralie", calType: 0, login: 'corun', pass: 'corpw'});
-      return me.User.create({name: "Elke", calType: 0, login: 'elkun', pass: 'elkpw'})
+      me.User.create({title: "Antoinne",eventColor:"#f48f42",calType: 0, login: 'antun', pass: 'antpw'});
+      me.User.create({title: "Mohammed",  eventColor:"#f48f82",calType: 0, login: 'moun', pass: 'mopw'});
+      me.User.create({title: "Reno", eventColor:"#f48f82",calType: 0, login: 'renun', pass: 'renpw'});
+      me.User.create({title: "Coralie", eventColor:"#f48f82",calType: 0, login: 'corun', pass: 'corpw'});
+       return me.User.create({name: "Elke", eventColor:"#f48f82",calType: 0, login: 'elkun', pass: 'elkpw'})
     }).then((user) => {
       /*
       me.Event.create({UserId: user.id, start: '2018-11-28T08:00:00', stop: '2018-11-28T08:00:00', description: 'wash my spaceship', title: 'wash ship'});
