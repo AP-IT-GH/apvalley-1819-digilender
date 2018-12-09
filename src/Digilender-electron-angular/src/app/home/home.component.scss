@@ -1,38 +1,37 @@
 .maincol1 {
-    width: 95%;
-    float: left;
-  }
-  
-  .maincol2 {
-    position:absolute;
-    top:0;
-    right:0;
-  }
-  
-  .maincol2 img {
-    width: 70px;
-  }
-  
-  .maincol2 img:active {
-    transform: rotate(20deg);
-  }
-  
-  .backarrow {
-    position: absolute;
-    top:30%;
-  }
-  
-  .column1 {
-    float: left;
-    width: 20.0%;
-  }
-  
-  .column2 {
-    float: left;
-    width: 80.0%;
-  }
-  
-  .img-fluid:active {
-    transform: rotate(20deg);
-  }
+  width: 95%;
+  float: left;
+}
 
+.maincol2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.maincol2 img {
+  width: 70px;
+}
+
+.maincol2 img:active {
+  transform: rotate(20deg);
+}
+
+.backarrow {
+  position: absolute;
+  top: 30%;
+}
+
+.column1 {
+  float: left;
+  width: 20%;
+}
+
+.column2 {
+  float: left;
+  width: 80%;
+}
+
+.img-fluid:active {
+  transform: rotate(20deg);
+}

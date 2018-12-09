@@ -23,9 +23,10 @@ export class CalendarListComponent implements OnInit {
         header: false,
         views: { listDay: {} },
         selectable: false,
-        nowIndicator: true,
         allDaySlot: false,
         listDayFormat: false,
+        listDayAltFormat: false,
+        noEventsMessage: "There are no events today",
         eventTextColor: 'white',
         // resources: [
         //   { id: '1', title: 'Bram' },
