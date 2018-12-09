@@ -79,6 +79,11 @@ export class HomeCalendarComponent implements OnInit {
         nowIndicator: true,
         allDaySlot: false,
         eventTextColor: 'white',
+        resources:function(callback){
+          me.db.getUsers().then(function(users){
+            callback(users);
+          })
+        },
         // resources: [
         //   { id: '1', title: 'Bram' },
         //   { id: '2', title: 'Tom' },
