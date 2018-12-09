@@ -54,7 +54,8 @@ export class HomeCalendarComponent implements OnInit {
         header: {
           left: 'today',
           center: 'title',
-          right: 'family,month'
+          // right: 'family,month',
+          right: ''
         },
         views: {
           family: {
