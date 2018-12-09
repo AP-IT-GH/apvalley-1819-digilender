@@ -16,24 +16,23 @@ class DBManager{
 
     me.User = me.sequelize.define('User', {
       id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true}, 
-      title: Sequelize.STRING,
-      eventColor:Sequelize.STRING
-      // name: Sequelize.STRING, // display name
-      // calType: Sequelize.INTEGER, // type of calendar, 0=purely local, 1=google
-      // login: Sequelize.STRING, // login for third party calendars?
-      // pass: Sequelize.STRING // possible key for third party calendars?
+      title: Sequelize.STRING,      // user name
+      eventColor:Sequelize.STRING,   // colour asociated with user
+      calType: Sequelize.INTEGER,   // type of calendar, 0=purely local, 1=google
+      login: Sequelize.STRING,      // login for third party calendars?
+      pass: Sequelize.STRING        // possible key for third party calendars?
     });
 
     me.Event = me.sequelize.define('Event', {
       id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
-      UserId: Sequelize.STRING,   // ID of owning user
+      resourceId: Sequelize.INTEGER,   // ID of owning user
       start: Sequelize.STRING,    // datetime event starts
       stop: Sequelize.STRING, // datetime event stops
       title: Sequelize.STRING,    //
       description: Sequelize.TEXT // description of event
     });
 
-    me.Event.belongsTo(me.User);
+    me.Event.belongsTo(me.User, {foreignKey: "resourceId"});
 
     me.Event.drop().then(() => {
       return me.User.sync({force: true})
@@ -46,16 +45,14 @@ class DBManager{
       me.User.create({title: "Coralie", eventColor:"#f48f82",calType: 0, login: 'corun', pass: 'corpw'});
        return me.User.create({name: "Elke", eventColor:"#f48f82",calType: 0, login: 'elkun', pass: 'elkpw'})
     }).then((user) => {
-      /*
-      me.Event.create({UserId: user.id, start: '2018-11-28T08:00:00', stop: '2018-11-28T08:00:00', description: 'wash my spaceship', title: 'wash ship'});
-      me.Event.create({UserId: user.id, start: '2018-11-29T08:00:00', stop: '2018-11-29T08:00:00', description: 'wash my spaceship', title: 'wash ship'});
-      me.Event.create({UserId: user.id, start: '2018-11-30T08:00:00', stop: '2018-11-30T08:00:00', description: 'wash my spaceship', title: 'wash ship'});
-      me.Event.create({UserId: user.id, start: '2018-12-01T08:00:00', stop: '2018-12-01T08:00:00', description: 'wash my spaceship', title: 'wash ship'});
-      me.Event.create({UserId: user.id, start: '2018-12-02T08:00:00', stop: '2018-12-02T08:00:00', description: 'wash my spaceship', title: 'wash ship'});
-      me.Event.create({UserId: user.id, start: '2018-12-03T08:00:00', stop: '2018-12-03T08:00:00', description: 'wash my spaceship', title: 'wash ship'});
-      me.Event.create({UserId: user.id, start: '2018-12-04T08:00:00', stop: '2018-12-04T08:00:00', description: 'wash my spaceship', title: 'wash ship'});
-      me.Event.create({UserId: user.id, start: '2018-12-05T08:00:00', stop: '2018-12-05T08:00:00', description: 'wash my spaceship', title: 'wash ship'});
-      */
+      me.Event.create({resourceId: 0, start: '2018-12-10T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship'});
+      me.Event.create({resourceId: 1, start: '2018-12-11T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship'});
+      me.Event.create({resourceId: 2, start: '2018-12-12T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship'});
+      me.Event.create({resourceId: 3, start: '2018-12-13T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship'});
+      me.Event.create({resourceId: 4, start: '2018-12-14T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship'});
+      me.Event.create({resourceId: 0, start: '2018-12-15T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship'});
+      me.Event.create({resourceId: 1, start: '2018-12-16T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship'});
+      me.Event.create({resourceId: 2, start: '2018-12-17T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship'});
       me.initialised = true;
     });
     me.sequelize.authenticate()

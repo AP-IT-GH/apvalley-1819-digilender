@@ -10,9 +10,7 @@ export class DatabaseService {
 
   constructor() {
     this.getUsers();
-    this.getEvents(5);
-    this.addUser({id: undefined, title: 'joeri', eventColor:"#f48f42"});
-    this.addEvent({id: undefined, UserId: 1, start: '2018-12-02T08:00:00', stop: '', description: "ayy lmao", title: "lol" });
+    this.getEvents(undefined);
   }
 
   getUsers(){
@@ -66,7 +64,7 @@ export interface User{
 
 export interface Event{
   id: number;
-  UserId: number;
+  resourceId: number;
   start: string;
   stop: string;
   title: string;
