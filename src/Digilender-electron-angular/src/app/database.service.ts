@@ -16,8 +16,9 @@ export class DatabaseService {
   }
 
   getUsers(){
-    return promiseIpc.send('Users', {action: 'get'})
+    return promiseIpc.send('users', {action: 'get'})
       .then((users) => {
+        console.log("got users");
         console.log(users);
         let tmp = JSON.parse(users);
         console.log(tmp);

@@ -80,7 +80,10 @@ export class HomeCalendarComponent implements OnInit {
         allDaySlot: false,
         eventTextColor: 'white',
         resources:function(callback){
+          console.log("getting resources");
           me.db.getUsers().then(function(users){
+            console.log("got resources");
+            console.log(users);
             callback(users);
           })
         },

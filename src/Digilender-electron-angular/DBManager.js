@@ -33,8 +33,9 @@ class DBManager{
 
     me.Event.belongsTo(me.User);
 
-    me.User.sync()
-    .then(() => { 
+    me.Event.drop().then(() => {
+      return me.User.sync({force: true})
+    }).then(() => { 
       return me.Event.sync();
     }).then(() => {
       me.User.create({name: "Antoinne", calType: 0, login: 'antun', pass: 'antpw'});
