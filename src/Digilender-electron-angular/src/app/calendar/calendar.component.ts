@@ -49,20 +49,14 @@ export class HomeCalendarComponent implements OnInit {
       // let containerEl: JQuery = $('#calendar');
       $('#calendar').fullCalendar({
         height: $(window).height() * 0.83,
-        defaultView: 'agendaWeek',
+        defaultView: 'family',
         groupByResource: true,
         header: {
-          left: 'prev,next today',
+          left: 'today',
           center: 'title',
-          right: 'agendaWeek,family,listThreeDay,month'
+          right: 'family,month'
         },
         views: {
-          listThreeDay: {
-            type: 'list',
-            duration: {
-              days: 31
-            }
-          },
           family: {
             type: 'agendaDay',
             duration: {
