@@ -36,10 +36,16 @@ export class HomeCalendarComponent implements OnInit {
         return d.getDate();
       };
 
+      var getTitle = function(){
+
+      }
+
       var getMinTime = function () {
         var time = $('#calendar').fullCalendar('today');
+        console.log("getMinTime: "+time);
         return time;
       };
+
 
       var getMaxTime = function () {
         var days = 7;
@@ -66,6 +72,7 @@ export class HomeCalendarComponent implements OnInit {
             minTime: getMinTime(),
             maxTime: getMaxTime(),
             slotDuration: '24:00:00',
+            titleFormat: 'MMMM YYYY',
             slotLabelFormat: 'D MMMM YYYY',
             buttonText: 'family Calendar'
           },
@@ -103,7 +110,14 @@ export class HomeCalendarComponent implements OnInit {
         eventRender: function (event, element) {
           if (event.description)
             element.find('.fc-title').after("</br> <span class=\"event-description\">" + event.description + "</span>");
-        }
+        },
+        viewRender: function(view, element) {
+         
+          $('.fc-center')[0].children[0].textContent= view.title.replace(new RegExp("undefined", 'g'), ""); ;
+          
+        },
+        
+
       });
       //werkende optie om overschot onderaan calender weg te halen
       $('#calendar').fullCalendar('option', 'contentHeight', "auto");
