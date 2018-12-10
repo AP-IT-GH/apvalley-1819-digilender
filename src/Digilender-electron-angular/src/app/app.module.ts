@@ -19,7 +19,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
-import { AuthComponent } from './auth/auth.component';
+import { AuthComponent } from './googleSyncCalendar/auth.component';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 

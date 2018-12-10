@@ -12,4 +12,4 @@ app.get('/*', (req, res) => res.sendfile(path.join(__dirname)))
 
 const server = http.createServer(app)
 
-server.listen(port, () => console.log('Running on port ' + port))
+server.listen(port, () => console.log('Running please wait ...'))
