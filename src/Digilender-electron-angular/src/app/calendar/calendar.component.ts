@@ -75,9 +75,9 @@ export class HomeCalendarComponent implements OnInit {
         nowIndicator: true,
         allDaySlot: false,
         eventTextColor: 'white',
-        resources:function(callback){
+        resources: function (callback) {
           console.log("getting resources");
-          me.db.getUsers().then(function(users){
+          me.db.getUsers().then(function (users) {
             console.log("got resources");
             console.log(users);
             callback(users);
@@ -94,6 +94,7 @@ export class HomeCalendarComponent implements OnInit {
           // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
           // alert('Current view: ' + view.name);
 
+          date.utc();
           me.selectedUser = resource;
           me.selectedDate = date.format();
           me.openModal('Event');
@@ -118,7 +119,7 @@ export class HomeCalendarComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
   }
-  
+
   addEvent() {
     var me = this;
     if (this.eventTitle != "" && this.eventTitle != null) {
@@ -131,7 +132,8 @@ export class HomeCalendarComponent implements OnInit {
         description: this.eventDescription
       }, false);
       this.db.addEvent(
-        {id: undefined,
+        {
+          id: undefined,
           resourceId: this.selectedUser.id, start: this.selectedDate,
           stop: '', description: this.eventDescription,
           title: this.eventTitle
