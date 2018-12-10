@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 //import { ipcRenderer } from 'electron';
 import { PromiseIpc } from 'electron-promise-ipc';
 const promiseIpc = new PromiseIpc();
@@ -13,8 +13,8 @@ export class DatabaseService {
     this.getEvents(undefined);
   }
 
-  getUsers(){
-    return promiseIpc.send('users', {action: 'get'})
+  getUsers() {
+    return promiseIpc.send('users', { action: 'get' })
       .then((users) => {
         console.log("got users");
         console.log(users);
@@ -24,8 +24,8 @@ export class DatabaseService {
       });
   }
 
-  addUser(user: User){
-    return promiseIpc.send('users', {action: 'put', value: user})
+  addUser(user: User) {
+    return promiseIpc.send('users', { action: 'put', value: user })
       .then((user) => {
         console.log(user);
         let tmp = JSON.parse(user);
@@ -34,19 +34,19 @@ export class DatabaseService {
       });
   }
 
-  getEvents(userId: number){
-    return promiseIpc.send('events', {action: 'get', userId: userId})
+  getEvents(userId: number) {
+    return promiseIpc.send('events', { action: 'get', userId: userId })
       .then((events) => {
         console.log(events);
         let tmp = JSON.parse(events);
         console.log(tmp);
         return tmp;
       });
-    
+
   }
 
-  addEvent(event: Event){
-    return promiseIpc.send('events', {action: 'put', value: event})
+  addEvent(event: Event) {
+    return promiseIpc.send('events', { action: 'put', value: event })
       .then((newEvent) => {
         console.log(newEvent);
         let tmp = JSON.parse(newEvent);
@@ -54,15 +54,21 @@ export class DatabaseService {
         return tmp;
       });
   }
+
+  public change: EventEmitter<any> = new EventEmitter();
+
+  public emitChange() {
+    this.change.emit();
+  }
 }
 
-export interface User{
+export interface User {
   id: String;
-  title:String;
-  eventColor:String;
-}  
+  title: String;
+  eventColor: String;
+}
 
-export interface Event{
+export interface Event {
   id: number;
   resourceId: number;
   start: string;

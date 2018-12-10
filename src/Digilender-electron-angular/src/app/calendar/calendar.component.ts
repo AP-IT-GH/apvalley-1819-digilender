@@ -4,6 +4,7 @@ import 'fullcalendar';
 import 'fullcalendar-scheduler';
 import { ModalService } from '../modal.service';
 import { DatabaseService } from '../database.service';
+
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -61,7 +62,8 @@ export class HomeCalendarComponent implements OnInit {
         header: {
           left: 'today',
           center: 'title',
-          right: 'family,month'
+          // right: 'family,month',
+          right: ''
         },
         views: {
           family: {
@@ -78,12 +80,13 @@ export class HomeCalendarComponent implements OnInit {
           },
         },
         selectable: false,
+        editable: true,
         nowIndicator: true,
         allDaySlot: false,
         eventTextColor: 'white',
-        resources:function(callback){
+        resources: function (callback) {
           console.log("getting resources");
-          me.db.getUsers().then(function(users){
+          me.db.getUsers().then(function (users) {
             console.log("got resources");
             console.log(users);
             callback(users);
@@ -131,7 +134,7 @@ export class HomeCalendarComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
   }
-  
+
   addEvent() {
     var me = this;
     if (this.eventTitle != "" && this.eventTitle != null) {
@@ -144,7 +147,8 @@ export class HomeCalendarComponent implements OnInit {
         description: this.eventDescription
       }, false);
       this.db.addEvent(
-        {id: undefined,
+        {
+          id: undefined,
           resourceId: this.selectedUser.id, start: this.selectedDate,
           stop: '', description: this.eventDescription,
           title: this.eventTitle
@@ -152,6 +156,8 @@ export class HomeCalendarComponent implements OnInit {
       this.closeModal('Event');
       this.eventTitle = "";
       this.eventDescription = "";
+      // Alert that there has been a change in the database
+      this.db.emitChange();
     }
   }
 }

@@ -28,6 +28,7 @@ import { WeatherService } from './weather.service';
 import { DatabaseService } from './database.service';
 import { ModalComponent } from './modal/modal.component';
 import { ModalService } from './modal.service';
+import { CalendarListComponent } from './calendar-list/calendar-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ModalService } from './modal.service';
     HomeComponent,
     OptionsComponent,
     UsersComponent,
-    ModalComponent
+    ModalComponent,
+    CalendarListComponent
   ],
   imports: [
     BrowserModule,
