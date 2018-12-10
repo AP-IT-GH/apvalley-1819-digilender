@@ -15,6 +15,11 @@ export class CalendarListComponent implements OnInit {
 
   ngOnInit(): void {
     var self = this;
+    // Dynamically add events to the list when one is added to the database
+    this.db.change.subscribe(result => {
+      $('#calendar-list').fullCalendar('refetchEvents');
+      console.log("Change detected from calendar component");
+    });
     $(function () {
       $('#calendar-list').fullCalendar({
         height: $(window).height() * 0.83,

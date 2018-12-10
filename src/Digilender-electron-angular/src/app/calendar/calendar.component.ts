@@ -4,6 +4,7 @@ import 'fullcalendar';
 import 'fullcalendar-scheduler';
 import { ModalService } from '../modal.service';
 import { DatabaseService } from '../database.service';
+
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -141,6 +142,8 @@ export class HomeCalendarComponent implements OnInit {
       this.closeModal('Event');
       this.eventTitle = "";
       this.eventDescription = "";
+      // Alert that there has been a change in the database
+      this.db.emitChange();
     }
   }
 }
