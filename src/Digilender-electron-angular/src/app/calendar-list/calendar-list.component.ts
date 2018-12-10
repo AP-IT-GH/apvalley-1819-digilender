@@ -28,13 +28,6 @@ export class CalendarListComponent implements OnInit {
         listDayAltFormat: false,
         noEventsMessage: "There are no events today",
         eventTextColor: 'white',
-        // resources: [
-        //   { id: '1', title: 'Bram' },
-        //   { id: '2', title: 'Tom' },
-        //   { id: '3', title: 'Tim' },
-        //   { id: '4', title: 'Elke' },
-        //   { id: '5', title: 'Mirko' }
-        // ],
         events: (start, end, timezone, callback) => {
           self.db.getEvents(undefined).then((events) => {
             callback(events);

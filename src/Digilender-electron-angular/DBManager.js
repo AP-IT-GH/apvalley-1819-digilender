@@ -46,7 +46,6 @@ class DBManager {
       return me.User.create({ name: "Elke", eventColor: "#f48f82", calType: 0, login: 'elkun', pass: 'elkpw' })
     }).then((user) => {
       me.Event.create({ resourceId: 3, start: '2018-12-10T09:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
-      me.Event.create({ resourceId: 1, start: '2018-12-10T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
       me.Event.create({ resourceId: 1, start: '2018-12-11T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
       me.Event.create({ resourceId: 2, start: '2018-12-12T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
       me.Event.create({ resourceId: 3, start: '2018-12-13T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
