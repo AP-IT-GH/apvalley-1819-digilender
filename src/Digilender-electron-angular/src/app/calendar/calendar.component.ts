@@ -72,6 +72,7 @@ export class HomeCalendarComponent implements OnInit {
           },
         },
         selectable: false,
+        editable: true,
         nowIndicator: true,
         allDaySlot: false,
         eventTextColor: 'white',
