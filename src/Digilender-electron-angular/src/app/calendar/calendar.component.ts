@@ -95,7 +95,6 @@ export class HomeCalendarComponent implements OnInit {
           // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
           // alert('Current view: ' + view.name);
 
-          date.utc();
           me.selectedUser = resource;
           me.selectedDate = date.format();
           me.openModal('Event');
