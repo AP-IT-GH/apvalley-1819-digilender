@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { HomeCalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/auth', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   {path: 'calendar', component: HomeCalendarComponent},
   {path: 'auth', component: AuthComponent},
   {path: 'home', component: HomeComponent}

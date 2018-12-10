@@ -40,6 +40,7 @@ function createWindow() {
         if (arg.action == 'get'){
             return db.getUsers().then((users) => {
               var tmp = JSON.stringify(users);
+              console.log("get users: ");
               console.log(tmp);
               return tmp;
             });

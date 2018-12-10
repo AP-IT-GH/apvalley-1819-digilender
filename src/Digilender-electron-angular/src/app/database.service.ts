@@ -10,14 +10,13 @@ export class DatabaseService {
 
   constructor() {
     this.getUsers();
-    this.getEvents(5);
-    this.addUser({id: undefined, name: 'joeri', calType: 0, login: 'jlogin', pass: 'jpass'});
-    this.addEvent({id: undefined, UserId: 1, start: '2018-12-02T08:00:00', stop: '', description: "ayy lmao", title: "lol" });
+    this.getEvents(undefined);
   }
 
   getUsers(){
-    return promiseIpc.send('Users', {action: 'get'})
+    return promiseIpc.send('users', {action: 'get'})
       .then((users) => {
+        console.log("got users");
         console.log(users);
         let tmp = JSON.parse(users);
         console.log(tmp);
@@ -58,16 +57,14 @@ export class DatabaseService {
 }
 
 export interface User{
-  id: number;
-  name: string;
-  calType: number;
-  login: string;
-  pass: string;
+  id: String;
+  title:String;
+  eventColor:String;
 }  
 
 export interface Event{
   id: number;
-  UserId: number;
+  resourceId: number;
   start: string;
   stop: string;
   title: string;

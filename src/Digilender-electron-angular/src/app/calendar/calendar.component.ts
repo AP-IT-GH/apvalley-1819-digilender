@@ -14,6 +14,7 @@ export class HomeCalendarComponent implements OnInit {
   constructor(private modalService: ModalService, public db: DatabaseService) { }
 
   selectedDate: string;
+  selectedUser;
   eventTitle: string;
   eventDescription: string;
   calendar;
@@ -50,7 +51,7 @@ export class HomeCalendarComponent implements OnInit {
       $('#calendar').fullCalendar({
         height: $(window).height() * 0.83,
         defaultView: 'family',
-        groupByResource: true,
+        groupByResource: false,
         header: {
           left: 'today',
           center: 'title',
@@ -74,26 +75,26 @@ export class HomeCalendarComponent implements OnInit {
         nowIndicator: true,
         allDaySlot: false,
         eventTextColor: 'white',
-        // resources: [
-        //   { id: '1', title: 'Bram' },
-        //   { id: '2', title: 'Tom' },
-        //   { id: '3', title: 'Tim' },
-        //   { id: '4', title: 'Elke' },
-        //   { id: '5', title: 'Mirko' }
-        // ],
+        resources:function(callback){
+          console.log("getting resources");
+          me.db.getUsers().then(function(users){
+            console.log("got resources");
+            console.log(users);
+            callback(users);
+          })
+        },
         events: (start, end, timezone, callback) => {
           me.db.getEvents(undefined).then((events) => {
             callback(events);
           });
         },
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
-        dayClick: function (date, jsEvent, view) {
-          date.utc()
-
+        dayClick: function (date, jsEvent, view, resource) {
           // alert('Clicked on: ' + date.format());
           // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
           // alert('Current view: ' + view.name);
 
+          me.selectedUser = resource;
           me.selectedDate = date.format();
           me.openModal('Event');
 
@@ -122,6 +123,7 @@ export class HomeCalendarComponent implements OnInit {
     var me = this;
     if (this.eventTitle != "" && this.eventTitle != null) {
       me.calendar.fullCalendar('renderEvent', {
+        resourceId: this.selectedUser.id,
         title: this.eventTitle,
         start: this.selectedDate,
         allDay: false,
@@ -130,7 +132,7 @@ export class HomeCalendarComponent implements OnInit {
       }, false);
       this.db.addEvent(
         {id: undefined,
-          UserId: 1, start: this.selectedDate,
+          resourceId: this.selectedUser.id, start: this.selectedDate,
           stop: '', description: this.eventDescription,
           title: this.eventTitle
         });
