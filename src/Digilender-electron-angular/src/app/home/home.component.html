@@ -1,6 +1,9 @@
 <!-- The main panel -->
-<div class="container-home">
+<slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
 
+
+<div leftPane class="container-home">
+  
   <div class="container-home-left">
     <div class="weather-item" >
       <app-weather></app-weather>
@@ -9,14 +12,14 @@
       <app-calendar-list></app-calendar-list>
     </div>
   </div>
-
   <div class="container-home-calendar">
-    <img class="img-fluid" *ngIf="isLeftVisible" src="assets/images/gear-icon.png" (click)="isLeftVisible = !isLeftVisible" />
     <app-calendar></app-calendar>
+    <i class="material-icons"  *ngIf="isLeftVisible" src="assets/images/gear-icon.png" (click)="isLeftVisible = !isLeftVisible" >
+        settings
+        </i>
   </div>
-
+  
 </div>
-<slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
 
 
 
@@ -28,6 +31,8 @@
     <div class="col-sm-2">
       <img class="backarrow" src="assets/images/back-arrow.png" width="50px" *ngIf="!isLeftVisible" (click)="isLeftVisible = !isLeftVisible"
         style="position:relative; top:20rem; left: 2rem">
+        
+        
     </div>
 
     <!-- <div class="col-sm-1"></div> -->

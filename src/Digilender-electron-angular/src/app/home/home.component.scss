@@ -13,8 +13,14 @@
   padding: 1rem;
 }
 
-.calendar-list-item{
+.container-home-calendar{
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+}
 
+.material-icons {
+  font-size: 48px;
 }
 
 
