@@ -37,10 +37,6 @@ export class HomeCalendarComponent implements OnInit {
         return d.getDate();
       };
 
-      var getTitle = function(){
-
-      }
-
       var getMinTime = function () {
         var time = $('#calendar').fullCalendar('today');
         console.log("getMinTime: "+time);
@@ -61,9 +57,8 @@ export class HomeCalendarComponent implements OnInit {
         groupByResource: false,
         header: {
           left: 'today',
-          center: 'title',
-          // right: 'family,month',
-          right: ''
+          center: 'prev, title, next',
+          right: 'family,month'
         },
         views: {
           family: {
@@ -114,19 +109,30 @@ export class HomeCalendarComponent implements OnInit {
           if (event.description)
             element.find('.fc-title').after("</br> <span class=\"event-description\">" + event.description + "</span>");
         },
-        viewRender: function(view, element) {
-         
-          $('.fc-center')[0].children[0].textContent= view.title.replace(new RegExp("undefined", 'g'), ""); ;
-          
+        //titel bovenaan correct tonen
+        viewRender: function(view, element) {   
+          $('.fc-center')[0].children[1].textContent= view.title.replace(new RegExp("undefined", 'g'), ""); ;       
         },
         
 
       });
+      
+     
       //werkende optie om overschot onderaan calender weg te halen
       $('#calendar').fullCalendar('option', 'contentHeight', "auto");
+     /*  $('#calendar').hammer().on("swipeleft",function(event) {   
+        $('#calendar').fullCalendar('next');
+      }); */
+      
     })
   }
-
+//http://hammerjs.github.io/getting-started/kl
+//https://jsfiddle.net/Fahreyad/w4cab9m6/1/
+ /*  var calendar=$('#calendar');
+  calendar.hammer().on("swipeleft", function(event) {   
+    calendar.fullCalendar('next');
+  });
+ */
   openModal(id: string) {
     this.modalService.open(id);
   }
