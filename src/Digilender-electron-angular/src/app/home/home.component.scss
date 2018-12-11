@@ -1,3 +1,23 @@
+
+.container-home{
+  display: flex;
+  flex-wrap: nowrap;
+}
+.container-home-left{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #F4F1EA;
+  width: 20%;
+  padding: 1rem;
+}
+
+.calendar-list-item{
+
+}
+
+
 .img-fluid {
   position: absolute;
   top: 5px;
