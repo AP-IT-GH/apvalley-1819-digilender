@@ -4,12 +4,7 @@
     justify-content: space-between;
     align-items: center;
     //box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
-    padding: 1rem;
-    margin: 1rem;
-    width: 18rem;
-    height: 11rem;
-    background-color: white;
-    border-radius: 0.5rem;
+    
     animation: fadein 1.25s ease-in-out 0ms 1;
   }
   
@@ -38,11 +33,6 @@
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
-  }
-  
- 
-  .weather-icon__container {
-    float: right;
   }
   
   .weather-icon__container {
