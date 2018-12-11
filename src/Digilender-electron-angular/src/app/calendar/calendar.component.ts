@@ -76,7 +76,7 @@ export class HomeCalendarComponent implements OnInit {
           },
         },
         selectable: false,
-        editable: true,
+        editable: false,
         nowIndicator: true,
         allDaySlot: false,
         eventTextColor: 'white',
@@ -150,7 +150,7 @@ export class HomeCalendarComponent implements OnInit {
         title: this.eventTitle,
         start: this.selectedDate,
         allDay: false,
-        editable: true,
+        editable: false,
         description: this.eventDescription
       }, false);
       this.db.addEvent(
