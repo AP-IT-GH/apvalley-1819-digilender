@@ -1,72 +1,51 @@
-/*
-====================
-Weather Card Styling
-====================
-*/
 .weather__card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-   // grid-template-rows: 1fr 1fr ;
-    box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
-    justify-items: center;
-    padding: 2rem;
-    margin: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    //box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
+    padding: 1rem;
+    margin: 1rem;
     width: 18rem;
     height: 11rem;
-   // cursor: pointer;
     background-color: white;
     border-radius: 0.5rem;
     animation: fadein 1.25s ease-in-out 0ms 1;
   }
   
   .temperature-text__container{
-    float: left;
-  }
-  .temp{
-    display: block;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:flex-start ;
   }
   .temperature__text {
-   // display: block;
-    align-self: end;
-    width: 100%;
-    font-size: 2rem;
+    font-size: 4rem;
     font-weight: 100;
     letter-spacing: 0.1rem;
   }
   
   .temperature-metric__text {
-    text-align: start;
-    font-size: 2rem;
+    font-size: 4rem;
+    font-weight: 100;
   }
   
   .city-name__text{
     text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 0.1rem;
-    height: 2px;
+    font-size: 1rem;
   }
   .weather-condition__text {
-    display: block;
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
-   // text-align: center;
   }
   
  
   .weather-icon__container {
-   /*  width: 10rem;
-    height: 5rem;
-    margin-bottom: 2rem;
-    display: flex;
-    justify-content: center; */
-   // height: 5rem;
-    padding-top: 20px;
     float: right;
   }
   
-  .weather-icon__container > svg {
-    width: 5rem;
-    height: 5rem;
+  .weather-icon__container {
+    flex: 1;
   }
   
