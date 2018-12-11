@@ -39,11 +39,11 @@ class DBManager {
     }).then(() => {
       return me.Event.sync();
     }).then(() => {
-      me.User.create({ title: "Antoinne", eventColor: "#f48f42", calType: 0, login: 'antun', pass: 'antpw' });
-      me.User.create({ title: "Mohammed", eventColor: "#f48f82", calType: 0, login: 'moun', pass: 'mopw' });
-      me.User.create({ title: "Reno", eventColor: "#f48f82", calType: 0, login: 'renun', pass: 'renpw' });
-      me.User.create({ title: "Coralie", eventColor: "#f48f82", calType: 0, login: 'corun', pass: 'corpw' });
-      return me.User.create({ name: "Elke", eventColor: "#f48f82", calType: 0, login: 'elkun', pass: 'elkpw' })
+      me.User.create({ title: "Antoinne", eventColor: "#ff6600", calType: 0, login: 'antun', pass: 'antpw' });
+      me.User.create({ title: "Mohammed", eventColor: "#0066ff", calType: 0, login: 'moun', pass: 'mopw' });
+      me.User.create({ title: "Reno", eventColor: "#ff9999", calType: 0, login: 'renun', pass: 'renpw' });
+      me.User.create({ title: "Coralie", eventColor: "#ffcc00", calType: 0, login: 'corun', pass: 'corpw' });
+      return me.User.create({ title: "Elke", eventColor: "#99ccff", calType: 0, login: 'elkun', pass: 'elkpw' })
     }).then((user) => {
       me.Event.create({ resourceId: 3, start: '2018-12-10T09:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
       me.Event.create({ resourceId: 1, start: '2018-12-11T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
