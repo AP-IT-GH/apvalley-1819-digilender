@@ -1,3 +1,29 @@
+
+.container-home{
+  display: flex;
+  flex-wrap: nowrap;
+}
+.container-home-left{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #F4F1EA;
+  width: 20%;
+  padding: 1rem;
+}
+
+.container-home-calendar{
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+}
+
+.material-icons {
+  font-size: 48px;
+}
+
+
 .img-fluid {
   position: absolute;
   top: 15px;

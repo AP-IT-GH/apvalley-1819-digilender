@@ -1,27 +1,45 @@
+<!-- The main panel -->
 <slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
 
-  <!-- The main panel -->
-  <div leftPane class="row">
-    <div class="col-md-3">
+
+<div leftPane class="container-home">
+  
+  <div class="container-home-left">
+    <div class="weather-item" >
       <app-weather></app-weather>
+    </div>
+    <div class="calendar-list-item">
       <app-calendar-list></app-calendar-list>
     </div>
-    <div class="col-md-9">
-      <img class="img-fluid" *ngIf="isLeftVisible" src="assets/images/gear-icon.png" (click)="isLeftVisible = !isLeftVisible" />
-      <app-calendar></app-calendar>
-    </div>
   </div>
+  <div class="container-home-calendar">
+    <app-calendar></app-calendar>
+    <i class="material-icons"  *ngIf="isLeftVisible" src="assets/images/gear-icon.png" (click)="isLeftVisible = !isLeftVisible" >
+        settings
+        </i>
+  </div>
+  
+</div>
+
+
+
+
 
   <!-- The options panel -->
   <div rightPane class="row">
+
     <div class="col-sm-2">
       <img class="backarrow" src="assets/images/back-arrow.png" width="50px" *ngIf="!isLeftVisible" (click)="isLeftVisible = !isLeftVisible"
         style="position:relative; top:20rem; left: 2rem">
+        
+        
     </div>
+
     <!-- <div class="col-sm-1"></div> -->
     <div class="col-sm-10">
       <app-options></app-options>
     </div>
 
   </div>
+
 </slide-panel>
