@@ -20,6 +20,8 @@ export class HomeCalendarComponent implements OnInit {
   eventTitle: string;
   eventDescription: string;
   calendar;
+  users;
+  selectedUserTitle: string;
 
   goToOptions(): void {
     this.router.navigate(['/options'], { relativeTo: this.route });
@@ -91,6 +93,7 @@ export class HomeCalendarComponent implements OnInit {
             console.log("got resources");
             console.log(users);
             callback(users);
+            me.users = users;
           })
         },
         events: (start, end, timezone, callback) => {
@@ -106,7 +109,7 @@ export class HomeCalendarComponent implements OnInit {
 
           me.selectedUser = resource;
           me.selectedDate = date.format();
-          me.openModal('Event');
+          me.openModal('event');
 
           // $(this).css('background-color', 'red');
         },
@@ -119,7 +122,9 @@ export class HomeCalendarComponent implements OnInit {
           $('.fc-center')[0].children[1].textContent = view.title.replace(new RegExp("undefined", 'g'), "");;
         },
         eventClick: function (calEvent, jsEvent, view) {
-          me.openModal('Event-detail');
+          me.selectedUserTitle = me.users[calEvent.resourceId - 1].title;
+          me.openModal('event-detail');
+          document.getElementById("event-detail").click();
           // alert('Event: ' + calEvent.title + calEvent.description + calEvent.resourceId + calEvent.start);
           // alert('Ok ' + me.selectedUser.title)
         }
@@ -167,7 +172,7 @@ export class HomeCalendarComponent implements OnInit {
           stop: '', description: this.eventDescription,
           title: this.eventTitle
         });
-      this.closeModal('Event');
+      this.closeModal('event');
       this.eventTitle = "";
       this.eventDescription = "";
       // Alert that there has been a change in the database

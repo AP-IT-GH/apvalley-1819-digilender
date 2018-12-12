@@ -14,7 +14,7 @@
     <div id='calendar'></div>
 </div>
 
-<jw-modal id="Event">
+<jw-modal id="event">
     <h1>Add a new event</h1>
     <!-- <h2>Selected date and time: {{selectedDate}}</h2> -->
 
@@ -38,11 +38,11 @@
             <button type="button" mdbBtn color="info" mdbWavesEffect style="width: 300px" (click)="addEvent()">Save</button>
         </div>
         <div class="col">
-            <button type="button" mdbBtn color="danger" mdbWavesEffect style="width: 300px" (click)="closeModal('Event')">Cancel</button>
+            <button type="button" mdbBtn color="danger" mdbWavesEffect style="width: 300px" (click)="closeModal('event')">Cancel</button>
         </div>
     </div>
 </jw-modal>
 
-<jw-modal id="Event-detail" style="text-align: center">
-    <h2>{{selectedUser.title}}</h2>
+<jw-modal id="event-detail" style="text-align: center">
+    <h2>{{selectedUserTitle}}</h2>
 </jw-modal>
