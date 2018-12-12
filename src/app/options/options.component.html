@@ -1,50 +1,49 @@
-<div style="height: 500px; width: 500px; position:relative; top:10rem; left:8rem;">
-  <div class="row align-items-center">
-    <div class="col-sm-4">
-      <div class="card text-center mb-3" (click)="openModal('Wifi')">
+<div class="container-options">
+
+      <div class="card text-center option" (click)="openModal('Wifi')">
         <div class="card-body">
           <img class="img-fluid" src="assets/images/wifi-icon.png">
           <h3 class="card-title">WiFi</h3>
         </div>
       </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="card text-center mb-3" (click)="openModal('Thema')">
+
+      <div class="card text-center option" (click)="openModal('Thema')">
         <div class="card-body">
           <img class="img-fluid" src="assets/images/theme-icon.png">
-          <h3 class="card-title">Thema's</h3>
+          <h3 class="card-title">Thema</h3>
         </div>
       </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="card text-center mb-3" (click)="openModal('Locatie')">
+
+      <div class="card text-center option" (click)="openModal('Locatie')">
         <div class="card-body">
           <img class="img-fluid" src="assets/images/location-icon.png">
           <h3 class="card-title">Locatie</h3>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row align-items-center">
-    <div class="col-sm-4">
-      <div class="card text-center mb-3" (click)="openModal('Scherm')">
+
+      <div class="card text-center option" (click)="openModal('Scherm')">
         <div class="card-body">
           <img class="img-fluid" src="assets/images/display-icon.png">
           <h3 class="card-title">Scherm</h3>
         </div>
       </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="card text-center mb-3" (click)="openModal('Users')">
+
+      <div class="card text-center option" (click)="openModal('Users')">
         <div class="card-body">
           <img class="img-fluid" src="assets/images/user-icon.png">
           <h3 class="card-title">Users</h3>
         </div>
       </div>
-    </div>
-  </div>
+      <div class="button">
+          <i class="material-icons" (click)="goToCalendar()">
+              Back to calendar
+              </i>
+      </div>
 </div>
 
+
+
+  
   <!--Modals-->
   <jw-modal id="Users">
     <h1>Users!</h1>

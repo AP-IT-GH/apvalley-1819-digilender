@@ -3,12 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './googleSyncCalendar/auth.component';
 import { HomeComponent } from './home/home.component';
 import { HomeCalendarComponent } from './calendar/calendar.component';
+import { OptionsComponent } from './options/options.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/calendar', pathMatch: 'full' },
   { path: 'calendar', component: HomeCalendarComponent },
   { path: 'auth', component: AuthComponent },
-  { path: 'home', component: HomeComponent }
+  { path: 'options', component: OptionsComponent }
 ];
 
 @NgModule({

@@ -12,7 +12,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HomeCalendarComponent } from './calendar/calendar.component';
 import { WeatherComponent } from './weather/weather.component';
-import { SlidePanelComponent } from './slide-panel';
 import { OptionsComponent } from './options/options.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -35,7 +34,6 @@ import { CalendarListComponent } from './calendar-list/calendar-list.component';
     WeatherComponent,
     AppComponent,
     HomeCalendarComponent,
-    SlidePanelComponent,
     AuthComponent,
     routingComponents,
     HomeComponent,

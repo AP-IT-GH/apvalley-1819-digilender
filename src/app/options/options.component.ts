@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../modal.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-options',
@@ -9,7 +10,7 @@ import { ModalService } from '../modal.service';
 export class OptionsComponent implements OnInit {
 
   
-  constructor(private modalService:ModalService) { }
+  constructor(private modalService:ModalService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
@@ -21,5 +22,9 @@ export class OptionsComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  goToCalendar():void{
+    this.router.navigate(['/calendar'], { relativeTo: this.route });
   }
 }

@@ -2,14 +2,11 @@
 .container-home{
   display: flex;
   flex-wrap: nowrap;
+  height:100vh;
 }
 .container-home-left{
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
   background-color: #F4F1EA;
-  width: 20%;
+  //width: 20%; de weercomponent wordt niet mee kleiner dus beter dat de sidebar niet kleiner kan worden dan column-2
   padding: 1rem;
 }
 
