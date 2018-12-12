@@ -38,3 +38,5 @@
     <button *ngIf="!addUser" (click)= "addUser = !addUser" >Nieuwe gebruiker</button>
     <button *ngIf="addUser" (click)= "cancel()" >Cancel</button>
 </div>
+<app-auth></app-auth>
+<p (click)="goTo('options')">Back</p>
