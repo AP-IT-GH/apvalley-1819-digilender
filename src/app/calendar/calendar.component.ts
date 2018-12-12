@@ -4,6 +4,7 @@ import 'fullcalendar';
 import 'fullcalendar-scheduler';
 import { ModalService } from '../modal.service';
 import { DatabaseService } from '../database.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-calendar',
@@ -12,13 +13,17 @@ import { DatabaseService } from '../database.service';
 })
 export class HomeCalendarComponent implements OnInit {
 
-  constructor(private modalService: ModalService, public db: DatabaseService) { }
+  constructor(private modalService: ModalService, public db: DatabaseService,private router: Router, private route: ActivatedRoute) { }
 
   selectedDate: string;
   selectedUser;
   eventTitle: string;
   eventDescription: string;
   calendar;
+
+  goToOptions():void{
+    this.router.navigate(['/options'], { relativeTo: this.route });
+  }
 
   ngOnInit(): void {
     var me = this;
