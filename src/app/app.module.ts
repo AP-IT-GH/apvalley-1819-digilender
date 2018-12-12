@@ -21,13 +21,17 @@ import { environment } from '../environments/environment';
 import { AuthComponent } from './googleSyncCalendar/auth.component';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
+import { CalendarListComponent } from './calendar-list/calendar-list.component';
+import { WifiComponent } from './wifi/wifi.component';
+import { LocatieComponent } from './locatie/locatie.component';
+import { ThemaComponent } from './thema/thema.component';
+import { SchermComponent } from './scherm/scherm.component';
+import { ModalComponent } from './modal/modal.component';
 
 //services
 import { WeatherService } from './weather.service';
 import { DatabaseService } from './database.service';
-import { ModalComponent } from './modal/modal.component';
 import { ModalService } from './modal.service';
-import { CalendarListComponent } from './calendar-list/calendar-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,11 @@ import { CalendarListComponent } from './calendar-list/calendar-list.component';
     OptionsComponent,
     UsersComponent,
     ModalComponent,
-    CalendarListComponent
+    CalendarListComponent,
+    WifiComponent,
+    LocatieComponent,
+    ThemaComponent,
+    SchermComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -16,11 +17,12 @@ export class UsersComponent implements OnInit {
     Agenda: new FormControl('')
   });
 
-  constructor(private formBuilder: FormBuilder) { 
- 
-}
+  constructor( private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+  }
+  goTo(pad:String):void{
+    this.router.navigate(['/'+ pad], { relativeTo: this.route });
   }
 
 public saveUser(){
