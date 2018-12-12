@@ -1,43 +1,41 @@
 <div class="container-options">
 
-      <div class="card text-center option" (click)="openModal('Wifi')">
+      <div class="card text-center option" (click)="goTo('wifi')">
         <div class="card-body">
           <img class="img-fluid" src="assets/images/wifi-icon.png">
           <h3 class="card-title">WiFi</h3>
         </div>
       </div>
 
-      <div class="card text-center option" (click)="openModal('Thema')">
+      <div class="card text-center option" (click)="goTo('thema')">
         <div class="card-body">
           <img class="img-fluid" src="assets/images/theme-icon.png">
           <h3 class="card-title">Thema</h3>
         </div>
       </div>
 
-      <div class="card text-center option" (click)="openModal('Locatie')">
+      <div class="card text-center option" (click)="goTo('locatie')">
         <div class="card-body">
           <img class="img-fluid" src="assets/images/location-icon.png">
           <h3 class="card-title">Locatie</h3>
         </div>
       </div>
 
-      <div class="card text-center option" (click)="openModal('Scherm')">
+      <div class="card text-center option" (click)="goTo('scherm')">
         <div class="card-body">
           <img class="img-fluid" src="assets/images/display-icon.png">
           <h3 class="card-title">Scherm</h3>
         </div>
       </div>
 
-      <div class="card text-center option" (click)="openModal('Users')">
+      <div class="card text-center option" (click)="goTo('users')">
         <div class="card-body">
           <img class="img-fluid" src="assets/images/user-icon.png">
           <h3 class="card-title">Users</h3>
         </div>
       </div>
       <div class="button">
-          <i class="material-icons" (click)="goToCalendar()">
-              Back to calendar
-              </i>
+          <p (click)="goTo('calendar')">Back</p>
       </div>
 </div>
 
@@ -45,7 +43,7 @@
 
   
   <!--Modals-->
-  <jw-modal id="Users">
+  <!--<jw-modal id="Users">
     <h1>Users!</h1>
     <app-users></app-users>
     <app-auth></app-auth>
@@ -70,4 +68,4 @@
   <jw-modal id="Wifi">
     <h1 style="height:1000px">Wifi!</h1>
     <button (click)="closeModal('Wifi');">Close</button>
-  </jw-modal>
+  </jw-modal>-->

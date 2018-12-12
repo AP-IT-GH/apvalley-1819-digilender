@@ -24,7 +24,7 @@ export class OptionsComponent implements OnInit {
     this.modalService.close(id);
   }
 
-  goToCalendar():void{
-    this.router.navigate(['/calendar'], { relativeTo: this.route });
+  goTo(pad:String):void{
+    this.router.navigate(['/'+ pad], { relativeTo: this.route });
   }
 }
