@@ -57,7 +57,7 @@ export class HomeCalendarComponent implements OnInit {
 
       // let containerEl: JQuery = $('#calendar');
       $('#calendar').fullCalendar({
-        themeSystem: 'bootstrap4',
+        //themeSystem: 'bootstrap4',
         height: $(window).height() * 0.83,
         defaultView: 'family',
         groupByResource: false,

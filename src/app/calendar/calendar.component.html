@@ -8,9 +8,17 @@
 </head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
 <div>
-        <i class="material-icons" src="assets/images/gear-icon.png" (click)="goToOptions()">
-            settings
-            </i>
+        <div class="btn-group">
+            <button>
+                <img class="header-icons "src="assets/images/round_add_white_48dp.png">       
+            </button>         
+            <button>
+                <img class="header-icons" src="assets/images/round_mail_white_48dp.png">
+            </button>
+            <button>
+                <img class="header-icons" src="assets/images/round_settings_white_48dp.png" (click)="goToOptions()">
+            </button>
+        </div>  
     <div id='calendar'></div>
 </div>
 

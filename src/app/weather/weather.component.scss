@@ -4,7 +4,10 @@
     justify-content: space-between;
     align-items: center;
     //box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
-    
+    height: 7em;
+    border-bottom-color: #2396CF;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
     animation: fadein 1.25s ease-in-out 0ms 1;
   }
   
