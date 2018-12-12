@@ -22,6 +22,8 @@ export class HomeCalendarComponent implements OnInit {
   calendar;
   users;
   selectedUserTitle: string;
+  selectedEventTitle: string;
+  selectedEventDescription: string;
 
   goToOptions(): void {
     this.router.navigate(['/options'], { relativeTo: this.route });
@@ -45,7 +47,7 @@ export class HomeCalendarComponent implements OnInit {
       };
 
       var getMinTime = function () {
-        var time = $('#calendar').fullCalendar('today');
+        var time = me.calendar.fullCalendar('today');
         console.log("getMinTime: " + time);
         return time;
       };
@@ -58,7 +60,7 @@ export class HomeCalendarComponent implements OnInit {
       };
 
       // let containerEl: JQuery = $('#calendar');
-      $('#calendar').fullCalendar({
+      me.calendar.fullCalendar({
         themeSystem: 'bootstrap4',
         height: $(window).height() * 0.83,
         defaultView: 'family',
@@ -123,29 +125,18 @@ export class HomeCalendarComponent implements OnInit {
         },
         eventClick: function (calEvent, jsEvent, view) {
           me.selectedUserTitle = me.users[calEvent.resourceId - 1].title;
+          me.selectedEventTitle = calEvent.title;
+          me.selectedEventDescription = calEvent.description;
           me.openModal('event-detail');
           document.getElementById("event-detail").click();
-          // alert('Event: ' + calEvent.title + calEvent.description + calEvent.resourceId + calEvent.start);
-          // alert('Ok ' + me.selectedUser.title)
         }
       });
 
-
-      //werkende optie om overschot onderaan calender weg te halen
-      $('#calendar').fullCalendar('option', 'contentHeight', "auto");
-      /*  $('#calendar').hammer().on("swipeleft",function(event) {   
-         $('#calendar').fullCalendar('next');
-       }); */
-
+      // Werkende optie om overschot onderaan calender weg te halen
+      me.calendar.fullCalendar('option', 'contentHeight', "auto");
     })
   }
-  //http://hammerjs.github.io/getting-started/kl
-  //https://jsfiddle.net/Fahreyad/w4cab9m6/1/
-  /*  var calendar=$('#calendar');
-   calendar.hammer().on("swipeleft", function(event) {   
-     calendar.fullCalendar('next');
-   });
-  */
+
   openModal(id: string) {
     this.modalService.open(id);
   }
@@ -155,9 +146,8 @@ export class HomeCalendarComponent implements OnInit {
   }
 
   addEvent() {
-    var me = this;
     if (this.eventTitle != "" && this.eventTitle != null) {
-      me.calendar.fullCalendar('renderEvent', {
+      this.calendar.fullCalendar('renderEvent', {
         resourceId: this.selectedUser.id,
         title: this.eventTitle,
         start: this.selectedDate,
