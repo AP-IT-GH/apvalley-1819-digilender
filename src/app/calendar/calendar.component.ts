@@ -76,7 +76,7 @@ export class HomeCalendarComponent implements OnInit {
             maxTime: getMaxTime(),
             slotDuration: '24:00:00',
             titleFormat: 'MMMM YYYY',
-            slotLabelFormat: 'D MMMM YYYY',
+            slotLabelFormat: 'D MMM ',
             buttonText: 'family Calendar'
           },
         },

@@ -2,10 +2,11 @@
     <div class="column-2 container-home-left">
         <div class="weather-item" >
             <app-weather></app-weather>
-          </div>
-          <div class="calendar-list-item">
+        </div>
+        <p>{{today | date:'EEEE d MMM'}}</p>
+        <div class="calendar-list-item">
             <app-calendar-list></app-calendar-list>
-          </div>
+        </div>
     </div>
     <div class="column-md-10 container-home-calendar">
         <router-outlet></router-outlet>
