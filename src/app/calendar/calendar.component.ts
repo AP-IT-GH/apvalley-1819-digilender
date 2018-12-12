@@ -16,23 +16,26 @@ export class HomeCalendarComponent implements OnInit {
   constructor(private modalService: ModalService, public db: DatabaseService, private router: Router, private route: ActivatedRoute) { }
 
   selectedDate: string;
-  selectedUser;
   eventTitle: string;
   eventDescription: string;
-  calendar;
-  users;
   selectedUserTitle: string;
   selectedEventTitle: string;
   selectedEventDescription: string;
+  calendar;
+  users;
+  selectedUser;
 
   goToOptions(): void {
     this.router.navigate(['/options'], { relativeTo: this.route });
   }
 
   ngOnInit(): void {
+    // Selector om de scope te veranderen
     var me = this;
+
     $(function () {
       me.calendar = $('#calendar');
+
       var getDaysInMonth = function () {
         var d = new Date();
         var year = d.getFullYear();
@@ -40,7 +43,7 @@ export class HomeCalendarComponent implements OnInit {
         return new Date(year, month, 0).getDate();
       };
 
-      //niet meer nodig door today-functie
+      // Niet meer nodig door today-functie
       var getMonthDay = function () {
         var d = new Date();
         return d.getDate();
@@ -51,7 +54,6 @@ export class HomeCalendarComponent implements OnInit {
         console.log("getMinTime: " + time);
         return time;
       };
-
 
       var getMaxTime = function () {
         var days = 7;
@@ -89,6 +91,7 @@ export class HomeCalendarComponent implements OnInit {
         nowIndicator: true,
         allDaySlot: false,
         eventTextColor: 'white',
+        // Haal de resources vanuit de database (= users)
         resources: function (callback) {
           console.log("getting resources");
           me.db.getUsers().then(function (users) {
@@ -98,35 +101,34 @@ export class HomeCalendarComponent implements OnInit {
             me.users = users;
           })
         },
+        // Haal de events uit de database
         events: (start, end, timezone, callback) => {
           me.db.getEvents(undefined).then((events) => {
             callback(events);
           });
         },
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+        // Klik op een lege plek op de kalender
         dayClick: function (date, jsEvent, view, resource) {
-          // alert('Clicked on: ' + date.format());
-          // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-          // alert('Current view: ' + view.name);
-
           me.selectedUser = resource;
           me.selectedDate = date.format();
           me.openModal('event');
-
-          // $(this).css('background-color', 'red');
         },
+        // Voeg een beschrijving toe
         eventRender: function (event, element) {
           if (event.description)
             element.find('.fc-title').after("</br> <span class=\"event-description\">" + event.description + "</span>");
         },
-        //titel bovenaan correct tonen
+        // Titel bovenaan correct tonen
         viewRender: function (view, element) {
           $('.fc-center')[0].children[1].textContent = view.title.replace(new RegExp("undefined", 'g'), "");;
         },
+        // Klik op een event en de details tonen
         eventClick: function (calEvent, jsEvent, view) {
           me.selectedUserTitle = me.users[calEvent.resourceId - 1].title;
           me.selectedEventTitle = calEvent.title;
           me.selectedEventDescription = calEvent.description;
+          document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor; 
           me.openModal('event-detail');
           document.getElementById("event-detail").click();
         }

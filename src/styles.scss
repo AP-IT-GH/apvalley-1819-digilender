@@ -20,8 +20,7 @@ jw-modal {
     overflow: auto;
 
     .jw-modal-body {
-      padding: 20px;
-      background: #fff;
+      background: transparent;
 
       /* margin exposes part of the modal background */
       margin: 150px;
@@ -62,7 +61,6 @@ body.jw-modal-open {
 }
 
 //dit zou een minimum weergave grootte geven aan een event
- .fc-ltr .fc-time-grid .fc-event-container {
-   min-height: 0.7rem;
- }
-
+.fc-ltr .fc-time-grid .fc-event-container {
+  min-height: 0.7rem;
+}
