@@ -13,7 +13,7 @@
 </div>
 
 <jw-modal id="event">
-    <div class="event-body" style="padding: 20px; background: #ffffff">
+    <div class="event-body" style="padding: 20px; background: #fff">
         <h1>Add a new event</h1>
 
         <div class="md-form input-group input-group-lg">
@@ -42,8 +42,8 @@
     </div>
 </jw-modal>
 
-<jw-modal id="event-detail" style="text-align: center">
-    <div id="event-detail-body" style="padding: 20px; margin-left: 350px; margin-right: 350px">
+<jw-modal id="event-detail" style="text-align: center" (mousedown)="closeModal('event-detail')">
+    <div id="event-detail-body" style="padding: 20px; margin-left: 35%; margin-right: 35%; margin-top: 35%">
         <h2>{{selectedUserTitle}}</h2>
         <p>{{selectedEventTitle}}</p>
         <p>{{selectedEventDescription}}</p>
