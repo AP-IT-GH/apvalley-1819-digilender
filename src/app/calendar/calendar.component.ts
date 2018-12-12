@@ -13,7 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HomeCalendarComponent implements OnInit {
 
-  constructor(private modalService: ModalService, public db: DatabaseService,private router: Router, private route: ActivatedRoute) { }
+  constructor(private modalService: ModalService, public db: DatabaseService, private router: Router, private route: ActivatedRoute) { }
 
   selectedDate: string;
   selectedUser;
@@ -21,7 +21,7 @@ export class HomeCalendarComponent implements OnInit {
   eventDescription: string;
   calendar;
 
-  goToOptions():void{
+  goToOptions(): void {
     this.router.navigate(['/options'], { relativeTo: this.route });
   }
 
@@ -44,7 +44,7 @@ export class HomeCalendarComponent implements OnInit {
 
       var getMinTime = function () {
         var time = $('#calendar').fullCalendar('today');
-        console.log("getMinTime: "+time);
+        console.log("getMinTime: " + time);
         return time;
       };
 
@@ -110,35 +110,37 @@ export class HomeCalendarComponent implements OnInit {
 
           // $(this).css('background-color', 'red');
         },
-
         eventRender: function (event, element) {
           if (event.description)
             element.find('.fc-title').after("</br> <span class=\"event-description\">" + event.description + "</span>");
         },
         //titel bovenaan correct tonen
-        viewRender: function(view, element) {   
-          $('.fc-center')[0].children[1].textContent= view.title.replace(new RegExp("undefined", 'g'), ""); ;       
+        viewRender: function (view, element) {
+          $('.fc-center')[0].children[1].textContent = view.title.replace(new RegExp("undefined", 'g'), "");;
         },
-        
-
+        eventClick: function (calEvent, jsEvent, view) {
+          me.openModal('Event-detail');
+          // alert('Event: ' + calEvent.title + calEvent.description + calEvent.resourceId + calEvent.start);
+          // alert('Ok ' + me.selectedUser.title)
+        }
       });
-      
-     
+
+
       //werkende optie om overschot onderaan calender weg te halen
       $('#calendar').fullCalendar('option', 'contentHeight', "auto");
-     /*  $('#calendar').hammer().on("swipeleft",function(event) {   
-        $('#calendar').fullCalendar('next');
-      }); */
-      
+      /*  $('#calendar').hammer().on("swipeleft",function(event) {   
+         $('#calendar').fullCalendar('next');
+       }); */
+
     })
   }
-//http://hammerjs.github.io/getting-started/kl
-//https://jsfiddle.net/Fahreyad/w4cab9m6/1/
- /*  var calendar=$('#calendar');
-  calendar.hammer().on("swipeleft", function(event) {   
-    calendar.fullCalendar('next');
-  });
- */
+  //http://hammerjs.github.io/getting-started/kl
+  //https://jsfiddle.net/Fahreyad/w4cab9m6/1/
+  /*  var calendar=$('#calendar');
+   calendar.hammer().on("swipeleft", function(event) {   
+     calendar.fullCalendar('next');
+   });
+  */
   openModal(id: string) {
     this.modalService.open(id);
   }
