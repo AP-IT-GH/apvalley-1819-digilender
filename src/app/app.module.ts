@@ -73,7 +73,7 @@ registerLocaleData(localeBE, 'nl-BE');
     WeatherService,
     DatabaseService,
     ModalService,
-   // {provide: LOCALE_ID, useValue: "nl-BE"}
+    {provide: LOCALE_ID, useValue: "nl-BE"}
   ],
   bootstrap: [AppComponent]
 })

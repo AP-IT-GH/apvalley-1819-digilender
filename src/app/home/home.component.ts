@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +12,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     
   }
-  //now = moment('nl');
+ 
   today: number = Date.now();
-  vandaag = new DatePipe('nl-BE');
+ 
 }
