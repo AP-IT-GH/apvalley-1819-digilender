@@ -1,36 +1,37 @@
+<div class="container-header">
+  <h1>Instellingen</h1>
+</div>
 
 <div class="container-options">
-  <button mat-raised-button class="button" (click)="goTo('wifi')">
-    <img mat-card-image class="img-fluid" src="assets/images/wifi-icon.png">
+  <button mat-raised-button class="button" color="primary" (click)="goTo('wifi')">
+    <i class="material-icons" id="icons-menu">wifi</i>
     <h3>WiFi</h3>
   </button>
 
-  <button mat-raised-button class="button" (click)="goTo('thema')">
-    <img mat-card-image class="img-fluid" src="assets/images/theme-icon.png">
+  <button mat-raised-button class="button" color="primary" (click)="goTo('thema')">
+    <i class="material-icons" id="icons-menu">color_lens</i>
     <h3>Thema</h3>
   </button>
 
-  <button mat-raised-button class="button" (click)="goTo('locatie')">
-    <img mat-card-image class="img-fluid" src="assets/images/location-icon.png">
-    <h3>Location</h3>
+  <button mat-raised-button class="button" color="primary" (click)="goTo('locatie')">
+    <i class="material-icons" id="icons-menu">location_city</i>
+    <h3>Locatie</h3>
   </button>
 
-  <button mat-raised-button class="button" (click)="goTo('scherm')">
-    <img mat-card-image class="img-fluid" src="assets/images/display-icon.png">
-    <h3>Users</h3>
+  <button mat-raised-button class="button" color="primary" (click)="goTo('scherm')">
+    <i class="material-icons" id="icons-menu">tablet</i>
+    <h3>Scherm</h3>
   </button>
 
-  <button mat-raised-button class="button" (click)="goTo('users')">
-    <img mat-card-image class="img-fluid" src="assets/images/user-icon.png">
-    <h3>Users</h3>
+  <button mat-raised-button class="button" color="primary" (click)="goTo('users')">
+    <i class="material-icons" id="icons-menu">group</i>
+    <h3>Accounts</h3>
   </button>
-  
+
 </div>
 <div class="container-footer">
-  <button class="button-footer" button mat-button (click)="goTo('calendar')">
-      <mat-icon class="icon">chevron_left</mat-icon>
+  <button class="button-footer" mat-button color="primary" (click)="goTo('calendar')">
+    <i class="material-icons" id="icon-back">chevron_left</i>
   </button>
 
 </div>
-
-

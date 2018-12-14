@@ -1,24 +1,33 @@
 .container-options {
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-around;
     align-items: center;
-    height: 90%;
-    margin-left: 1%;
-    margin-right: 1%;
+    height: 80%;
+    width: auto;
 }
 
 .button{
-    width: 18%;
+    width: 15em;
+    padding-top: 0.9em;
+    padding-bottom: 0.9em;
 }
 
-.container-footer{
-    height: 10%;
-    margin-left: 1%;
-    margin-right: 1%;
+#icons-menu{
+    font-size: 10em;
 }
+
 
 .button-footer{
     height: 64px; 
+}
+
+#icon-back{
+    font-size: 3em;
+}
+
+.container-header{
+    display: flex;
+    justify-content: center;
 }
 
