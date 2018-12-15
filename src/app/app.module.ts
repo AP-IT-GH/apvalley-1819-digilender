@@ -8,10 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import localeBE from '@angular/common/locales/nl-BE';
 import { MaterialModule } from './material.module';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
 
-
-
-//componenten
+// Componenten
 import { AppComponent } from './app.component';
 import { HomeCalendarComponent } from './calendar/calendar.component';
 import { WeatherComponent } from './weather/weather.component';
@@ -31,7 +30,7 @@ import { ThemaComponent } from './thema/thema.component';
 import { SchermComponent } from './scherm/scherm.component';
 import { ModalComponent } from './modal/modal.component';
 
-//services
+// Services
 import { WeatherService } from './weather.service';
 import { DatabaseService } from './database.service';
 import { ModalService } from './modal.service';
@@ -65,16 +64,17 @@ registerLocaleData(localeBE, 'nl-BE');
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase, 'Digilender'),
-    AngularFirestoreModule, 
-    AngularFireAuthModule, 
+    AngularFirestoreModule,
+    AngularFireAuthModule,
     AngularFireStorageModule,
-    MaterialModule
+    MaterialModule,
+    AmazingTimePickerModule
   ],
   providers: [
     WeatherService,
     DatabaseService,
     ModalService,
-    {provide: LOCALE_ID, useValue: "nl-BE"}
+    { provide: LOCALE_ID, useValue: "nl-BE" }
   ],
   bootstrap: [AppComponent]
 })

@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
+
 export class HomeCalendarComponent implements OnInit {
 
   constructor(private modalService: ModalService, public db: DatabaseService, private router: Router, private route: ActivatedRoute) { }
@@ -21,6 +22,7 @@ export class HomeCalendarComponent implements OnInit {
   selectedUserTitle: string;
   selectedEventTitle: string;
   selectedEventDescription: string;
+  selectedEventDate: string;
   calendar;
   users;
   selectedUser;
@@ -128,7 +130,8 @@ export class HomeCalendarComponent implements OnInit {
           me.selectedUserTitle = me.users[calEvent.resourceId - 1].title;
           me.selectedEventTitle = calEvent.title;
           me.selectedEventDescription = calEvent.description;
-          document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor; 
+          me.selectedEventDate = calEvent.start.toString().match(/\d{2}:\d{2}/).toString();
+          document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
           me.openModal('event-detail');
           document.getElementById("event-detail").click();
         }
