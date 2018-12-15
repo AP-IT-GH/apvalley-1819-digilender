@@ -13,6 +13,6 @@ export class HomeComponent implements OnInit {
     
   }
  
-  today: number = Date.now();
+  
  
 }

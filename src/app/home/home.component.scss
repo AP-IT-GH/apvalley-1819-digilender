@@ -1,42 +1,18 @@
-
 .container-home{
-  display: flex;
-  flex-wrap: nowrap;
-  height:100vh;
+  display: grid;
+  grid-template-areas:
+    "nav content";
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: auto;
+  height: 100vh;
 }
 .container-home-left{
+  grid-area: nav;
+  padding: 0.5rem;
   background-color: #F4F1EA;
-  //width: 20%; de weercomponent wordt niet mee kleiner dus beter dat de sidebar niet kleiner kan worden dan column-2
-  padding: 1rem;
 }
 
 .container-home-calendar{
-  width: 100%;
-  padding: 1rem;
+  grid-area: content;
+  padding: 0.5rem;
 }
-
-.material-icons {
-  font-size: 48px;
-}
-
-
-.img-fluid {
-  position: absolute;
-  top: 15px;
-  right: 255px;
-  width: 50px;
-  z-index: 10;
-}
-
-.img-fluid:active {
-  transform: rotate(20deg);
-}
-
-.backarrow {
-  position: absolute;
-  top: 30%;
-}
- div.column-2.container-home-left >p{
-   color: #2396CF;
-   padding-top: 1em;
- }
