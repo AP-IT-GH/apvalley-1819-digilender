@@ -5,9 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { HttpModule } from '@angular/http'
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import localeBE from '@angular/common/locales/nl-BE';
+import { MaterialModule } from './material.module';
 
 
 
@@ -64,10 +64,11 @@ registerLocaleData(localeBE, 'nl-BE');
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebase, 'Digilender'), // imports firebase/app needed for everything
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    AngularFireStorageModule // imports firebase/storage only needed for storage features
+    AngularFireModule.initializeApp(environment.firebase, 'Digilender'),
+    AngularFirestoreModule, 
+    AngularFireAuthModule, 
+    AngularFireStorageModule,
+    MaterialModule
   ],
   providers: [
     WeatherService,

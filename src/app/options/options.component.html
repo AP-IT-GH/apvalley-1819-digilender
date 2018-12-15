@@ -1,69 +1,37 @@
-<div class="container-options">
-
-      <div class="card text-center option" (click)="goTo('wifi')">
-        <div class="card-body">
-          <img class="img-fluid" src="assets/images/wifi-icon.png">
-          <h3 class="card-title">WiFi</h3>
-        </div>
-      </div>
-
-      <div class="card text-center option" (click)="goTo('thema')">
-        <div class="card-body">
-          <img class="img-fluid" src="assets/images/theme-icon.png">
-          <h3 class="card-title">Thema</h3>
-        </div>
-      </div>
-
-      <div class="card text-center option" (click)="goTo('locatie')">
-        <div class="card-body">
-          <img class="img-fluid" src="assets/images/location-icon.png">
-          <h3 class="card-title">Locatie</h3>
-        </div>
-      </div>
-
-      <div class="card text-center option" (click)="goTo('scherm')">
-        <div class="card-body">
-          <img class="img-fluid" src="assets/images/display-icon.png">
-          <h3 class="card-title">Scherm</h3>
-        </div>
-      </div>
-
-      <div class="card text-center option" (click)="goTo('users')">
-        <div class="card-body">
-          <img class="img-fluid" src="assets/images/user-icon.png">
-          <h3 class="card-title">Users</h3>
-        </div>
-      </div>
-      <p class="button" (click)="goTo('calendar')">Back</p>
-
+<div class="container-header">
+  <h1>Instellingen</h1>
 </div>
 
+<div class="container-options">
+  <button mat-raised-button class="button" color="primary" (click)="goTo('wifi')">
+    <i class="material-icons" id="icons-menu">wifi</i>
+    <h3>WiFi</h3>
+  </button>
 
-  
-  <!--Modals-->
-  <!--<jw-modal id="Users">
-    <h1>Users!</h1>
-    <app-users></app-users>
-    <app-auth></app-auth>
-    <button (click)="closeModal('Users');">Close</button>
-  </jw-modal>
+  <button mat-raised-button class="button" color="primary" (click)="goTo('thema')">
+    <i class="material-icons" id="icons-menu">color_lens</i>
+    <h3>Thema</h3>
+  </button>
 
-  <jw-modal id="Scherm">
-    <h1 style="height:1000px">Scherm!</h1>
-    <button (click)="closeModal('Scherm');">Close</button>
-  </jw-modal>
+  <button mat-raised-button class="button" color="primary" (click)="goTo('locatie')">
+    <i class="material-icons" id="icons-menu">location_city</i>
+    <h3>Locatie</h3>
+  </button>
 
-  <jw-modal id="Locatie">
-    <h1 style="height:1000px">Locatie!</h1>
-    <button (click)="closeModal('Locatie');">Close</button>
-  </jw-modal>
+  <button mat-raised-button class="button" color="primary" (click)="goTo('scherm')">
+    <i class="material-icons" id="icons-menu">tablet</i>
+    <h3>Scherm</h3>
+  </button>
 
-  <jw-modal id="Thema">
-    <h1 style="height:1000px">Thema!</h1>
-    <button (click)="closeModal('Thema');">Close</button>
-  </jw-modal>
+  <button mat-raised-button class="button" color="primary" (click)="goTo('users')">
+    <i class="material-icons" id="icons-menu">group</i>
+    <h3>Accounts</h3>
+  </button>
 
-  <jw-modal id="Wifi">
-    <h1 style="height:1000px">Wifi!</h1>
-    <button (click)="closeModal('Wifi');">Close</button>
-  </jw-modal>-->
+</div>
+<div class="container-footer">
+  <button class="button-footer" mat-button color="primary" (click)="goTo('calendar')">
+    <i class="material-icons" id="icon-back">chevron_left</i>
+  </button>
+
+</div>
