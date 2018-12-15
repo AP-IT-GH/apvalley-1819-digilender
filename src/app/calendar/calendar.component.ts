@@ -92,7 +92,6 @@ export class HomeCalendarComponent implements OnInit {
         },
         selectable: false,
         editable: false,
-        nowIndicator: true,
         allDaySlot: false,
         eventTextColor: 'white',
         // Haal de resources vanuit de database (= users)
@@ -118,6 +117,7 @@ export class HomeCalendarComponent implements OnInit {
           me.selectedDate = date.format().match(/.*?T/).toString();
           me.selectedStartTime = "00:00";
           me.selectedEndTime = "01:00";
+          document.getElementById("event-body").style.backgroundColor = me.users[resource.id - 1].eventColor;
           me.openModal('event');
           document.getElementById("event").click();
         },

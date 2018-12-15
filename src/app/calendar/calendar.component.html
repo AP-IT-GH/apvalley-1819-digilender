@@ -23,38 +23,38 @@
 </div>
 
 <jw-modal id="event">
-    <div class="event-body" style="padding: 20px; background: #fff">
+    <div id="event-body" style="padding: 20px; border-radius: 25px; color: white" >
         <h1>Add a new event</h1>
 
         <div class="md-form input-group input-group-lg">
             <div class="input-group-prepend">
-                <span class="input-group-text md-addon" id="inputGroupMaterial-sizing-lg">Title</span>
+                <span class="input-group-text md-addon" id="inputGroupMaterial-sizing-lg" style="color: white">Title</span>
             </div>
-            <input type="text" class="form-control" aria-describedby="inputGroupMaterial-sizing-lg" [(ngModel)]="eventTitle">
+            <input type="text" class="form-control" aria-describedby="inputGroupMaterial-sizing-lg" style="color: white" [(ngModel)]="eventTitle">
         </div>
 
         <div class="md-form input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text md-addon">Description</span>
+                <span class="input-group-text md-addon" style="color: white">Description</span>
             </div>
-            <textarea class="md-textarea form-control" [(ngModel)]="eventDescription"></textarea>
+            <textarea class="md-textarea form-control" style="color: white" [(ngModel)]="eventDescription"></textarea>
         </div>
 
         <div class="row">
             <div class="col">
                 <div class="md-form input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text md-addon">Start time</span>
+                        <span class="input-group-text md-addon" style="color: white">Start time</span>
                     </div>
-                    <input atp-time-picker type="text" class="form-control" aria-describedby="inputGroupMaterial-sizing-default" [(ngModel)]="selectedStartTime">
+                    <input atp-time-picker type="text" class="form-control" aria-describedby="inputGroupMaterial-sizing-default" style="color: white" [(ngModel)]="selectedStartTime">
                 </div>
             </div>
             <div class="col">
                 <div class="md-form input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text md-addon">End time</span>
+                        <span class="input-group-text md-addon" style="color: white">End time</span>
                     </div>
-                    <input atp-time-picker type="text" class="form-control" aria-describedby="inputGroupMaterial-sizing-default" [(ngModel)]="selectedEndTime">
+                    <input atp-time-picker type="text" class="form-control" aria-describedby="inputGroupMaterial-sizing-default" style="color: white" [(ngModel)]="selectedEndTime">
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
 </jw-modal>
 
 <jw-modal id="event-detail" style="text-align: center; color: white" (mousedown)="closeModal('event-detail')">
-    <div id="event-detail-body" style="padding: 20px; margin-left: 35%; margin-right: 35%; margin-top: 35%">
+    <div id="event-detail-body" style="padding: 20px; margin-left: 35%; margin-right: 35%; margin-top: 35%; border-radius: 25px">
         <h2><b>{{selectedUserTitle}}</b></h2>
         <p>{{selectedEventTitle}}</p>
         <p>{{selectedEventDescription}}</p>
