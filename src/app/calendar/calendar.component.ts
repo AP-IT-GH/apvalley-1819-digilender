@@ -17,6 +17,8 @@ export class HomeCalendarComponent implements OnInit {
   constructor(private modalService: ModalService, public db: DatabaseService, private router: Router, private route: ActivatedRoute) { }
 
   selectedDate: string;
+  selectedStartTime: string;
+  selectedEndTime: string;
   eventTitle: string;
   eventDescription: string;
   selectedUserTitle: string;
@@ -113,8 +115,11 @@ export class HomeCalendarComponent implements OnInit {
         // Klik op een lege plek op de kalender
         dayClick: function (date, jsEvent, view, resource) {
           me.selectedUser = resource;
-          me.selectedDate = date.format();
+          me.selectedDate = date.format().match(/.*?T/).toString();
+          me.selectedStartTime = "00:00";
+          me.selectedEndTime = "01:00";
           me.openModal('event');
+          document.getElementById("event").click();
         },
         // Voeg een beschrijving toe
         eventRender: function (event, element) {
@@ -152,26 +157,22 @@ export class HomeCalendarComponent implements OnInit {
 
   addEvent() {
     if (this.eventTitle != "" && this.eventTitle != null) {
-      this.calendar.fullCalendar('renderEvent', {
+      this.db.addEvent({
+        id: undefined,
         resourceId: this.selectedUser.id,
-        title: this.eventTitle,
-        start: this.selectedDate,
-        allDay: false,
-        editable: false,
-        description: this.eventDescription
-      }, false);
-      this.db.addEvent(
-        {
-          id: undefined,
-          resourceId: this.selectedUser.id, start: this.selectedDate,
-          stop: '', description: this.eventDescription,
-          title: this.eventTitle
-        });
+        start: this.selectedDate + this.selectedStartTime,
+        stop: this.selectedDate + this.selectedEndTime,
+        description: this.eventDescription,
+        title: this.eventTitle
+      });
       this.closeModal('event');
       this.eventTitle = "";
       this.eventDescription = "";
-      // Alert that there has been a change in the database
-      this.db.emitChange();
+      // Alert that there has been a change in the database and refetch the events
+      this.db.getEvents(undefined).then(() => {
+        this.db.emitChange();
+        this.calendar.fullCalendar('refetchEvents');
+      });
     }
   }
 }

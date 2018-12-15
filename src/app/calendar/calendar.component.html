@@ -40,6 +40,25 @@
             <textarea class="md-textarea form-control" [(ngModel)]="eventDescription"></textarea>
         </div>
 
+        <div class="row">
+            <div class="col">
+                <div class="md-form input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text md-addon">Start time</span>
+                    </div>
+                    <input atp-time-picker type="text" class="form-control" aria-describedby="inputGroupMaterial-sizing-default" [(ngModel)]="selectedStartTime">
+                </div>
+            </div>
+            <div class="col">
+                <div class="md-form input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text md-addon">End time</span>
+                    </div>
+                    <input atp-time-picker type="text" class="form-control" aria-describedby="inputGroupMaterial-sizing-default" [(ngModel)]="selectedEndTime">
+                </div>
+            </div>
+        </div>
+
         <br><br>
         <div class="row">
             <div class="col">
