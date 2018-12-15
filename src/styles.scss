@@ -61,6 +61,50 @@ body.jw-modal-open {
 }
 
 //dit zou een minimum weergave grootte geven aan een event
-.fc-ltr .fc-time-grid .fc-event-container {
-  min-height: 0.7rem;
-}
+ .fc-ltr .fc-time-grid .fc-event-container {
+  min-height: 1rem;
+  font-size: 1.3em;
+ }
+
+ .fc-time-grid-event.fc-short .fc-time:before {
+  content: none;
+} 
+//buttons in de header voor prev en volgende maand
+ #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-center >button {
+  border: none;
+  box-shadow: none;
+  background: none;
+ }
+ #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-center >button:focus { outline: none; }
+//titel
+ #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-center > h2{
+   color: #FB743D;
+ }
+
+ //header
+ #calendar > div.fc-toolbar.fc-header-toolbar{
+  height: 3em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+ }
+ #calendar > div.fc-view-container{
+  border-top-color: #2396CF;
+  border-top-width: 2px;
+  border-top-style: solid;
+ }
+ body > app-root > app-home > div > div.column-2.container-home-left > div.weather-item > app-weather > div
+
+ //onderstaande werkt niet 
+ //grafiek/raster onder de namen
+ #calendar > div.fc-view-container > div > table > tbody{
+   border-color: none !important;
+   border-top-color: yellow !important;
+   border-left-color: none !important;
+   border-right-color: none !important;  
+ }
+ //lijntje boven de namen
+ #calendar > div.fc-view-container > div > table > thead{
+   border-top-color: blue !important;
+   border-left-color: none !important;
+   border-right-color: none !important; 
+ }

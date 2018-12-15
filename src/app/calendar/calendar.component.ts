@@ -62,8 +62,8 @@ export class HomeCalendarComponent implements OnInit {
       };
 
       // let containerEl: JQuery = $('#calendar');
-      me.calendar.fullCalendar({
-        themeSystem: 'bootstrap4',
+      $('#calendar').fullCalendar({
+        //themeSystem: 'bootstrap4',
         height: $(window).height() * 0.83,
         defaultView: 'family',
         groupByResource: false,
@@ -82,7 +82,7 @@ export class HomeCalendarComponent implements OnInit {
             maxTime: getMaxTime(),
             slotDuration: '24:00:00',
             titleFormat: 'MMMM YYYY',
-            slotLabelFormat: 'D MMMM YYYY',
+            slotLabelFormat: 'D MMM ',
             buttonText: 'family Calendar'
           },
         },

@@ -1,0 +1,14 @@
+.btn-group{
+    float: right;
+}
+.btn-group button{
+    background-color: #2396CF;
+    border-radius: 10%;
+    box-shadow: none;
+    margin-left: 0.5rem;
+    border:none;
+}
+.btn-group> button:focus{outline: none; }
+.btn-group button .header-icons{
+    width: 30px;
+}

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FullCalendarModule } from 'ng-fullcalendar';
@@ -7,6 +7,9 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { HttpModule } from '@angular/http'
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import localeBE from '@angular/common/locales/nl-BE';
+
+
 
 //componenten
 import { AppComponent } from './app.component';
@@ -32,7 +35,9 @@ import { ModalComponent } from './modal/modal.component';
 import { WeatherService } from './weather.service';
 import { DatabaseService } from './database.service';
 import { ModalService } from './modal.service';
+import { registerLocaleData } from '@angular/common';
 
+registerLocaleData(localeBE, 'nl-BE');
 @NgModule({
   declarations: [
     WeatherComponent,
@@ -67,7 +72,8 @@ import { ModalService } from './modal.service';
   providers: [
     WeatherService,
     DatabaseService,
-    ModalService
+    ModalService,
+    {provide: LOCALE_ID, useValue: "nl-BE"}
   ],
   bootstrap: [AppComponent]
 })

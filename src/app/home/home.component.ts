@@ -10,6 +10,9 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
-
+ 
+  today: number = Date.now();
+ 
 }
