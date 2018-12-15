@@ -5,13 +5,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { HttpModule } from '@angular/http'
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import localeBE from '@angular/common/locales/nl-BE';
+import { MaterialModule } from './material.module';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
 
-
-
-//componenten
+// Componenten
 import { AppComponent } from './app.component';
 import { HomeCalendarComponent } from './calendar/calendar.component';
 import { WeatherComponent } from './weather/weather.component';
@@ -31,7 +30,7 @@ import { ThemaComponent } from './thema/thema.component';
 import { SchermComponent } from './scherm/scherm.component';
 import { ModalComponent } from './modal/modal.component';
 
-//services
+// Services
 import { WeatherService } from './weather.service';
 import { DatabaseService } from './database.service';
 import { ModalService } from './modal.service';
@@ -64,16 +63,18 @@ registerLocaleData(localeBE, 'nl-BE');
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebase, 'Digilender'), // imports firebase/app needed for everything
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    AngularFireStorageModule // imports firebase/storage only needed for storage features
+    AngularFireModule.initializeApp(environment.firebase, 'Digilender'),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    MaterialModule,
+    AmazingTimePickerModule
   ],
   providers: [
     WeatherService,
     DatabaseService,
     ModalService,
-    {provide: LOCALE_ID, useValue: "nl-BE"}
+    { provide: LOCALE_ID, useValue: "nl-BE" }
   ],
   bootstrap: [AppComponent]
 })

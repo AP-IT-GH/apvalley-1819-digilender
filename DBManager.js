@@ -96,7 +96,7 @@ class DBManager {
       return this.Event.findAll();
     }
     else {
-      return this.Event.findAll({ where: { UserId: userId } });
+      return this.Event.findAll({ where: { resourceId: userId } });
     }
   }
 }

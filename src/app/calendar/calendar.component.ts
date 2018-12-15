@@ -11,24 +11,35 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
+
 export class HomeCalendarComponent implements OnInit {
 
-  constructor(private modalService: ModalService, public db: DatabaseService,private router: Router, private route: ActivatedRoute) { }
+  constructor(private modalService: ModalService, public db: DatabaseService, private router: Router, private route: ActivatedRoute) { }
 
   selectedDate: string;
-  selectedUser;
+  selectedStartTime: string;
+  selectedEndTime: string;
   eventTitle: string;
   eventDescription: string;
+  selectedUserTitle: string;
+  selectedEventTitle: string;
+  selectedEventDescription: string;
+  selectedEventTime: string;
   calendar;
+  users;
+  selectedUser;
 
-  goToOptions():void{
+  goToOptions(): void {
     this.router.navigate(['/options'], { relativeTo: this.route });
   }
 
   ngOnInit(): void {
+    // Selector om de scope te veranderen
     var me = this;
+
     $(function () {
       me.calendar = $('#calendar');
+
       var getDaysInMonth = function () {
         var d = new Date();
         var year = d.getFullYear();
@@ -36,18 +47,17 @@ export class HomeCalendarComponent implements OnInit {
         return new Date(year, month, 0).getDate();
       };
 
-      //niet meer nodig door today-functie
+      // Niet meer nodig door today-functie
       var getMonthDay = function () {
         var d = new Date();
         return d.getDate();
       };
 
       var getMinTime = function () {
-        var time = $('#calendar').fullCalendar('today');
-        console.log("getMinTime: "+time);
+        var time = me.calendar.fullCalendar('today');
+        console.log("getMinTime: " + time);
         return time;
       };
-
 
       var getMaxTime = function () {
         var days = 7;
@@ -82,63 +92,66 @@ export class HomeCalendarComponent implements OnInit {
         },
         selectable: false,
         editable: false,
-        nowIndicator: true,
         allDaySlot: false,
         eventTextColor: 'white',
+        // Haal de resources vanuit de database (= users)
         resources: function (callback) {
           console.log("getting resources");
           me.db.getUsers().then(function (users) {
             console.log("got resources");
             console.log(users);
             callback(users);
+            me.users = users;
           })
         },
+        // Haal de events uit de database
         events: (start, end, timezone, callback) => {
           me.db.getEvents(undefined).then((events) => {
             callback(events);
           });
         },
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+        // Klik op een lege plek op de kalender
         dayClick: function (date, jsEvent, view, resource) {
-          // alert('Clicked on: ' + date.format());
-          // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-          // alert('Current view: ' + view.name);
-
           me.selectedUser = resource;
-          me.selectedDate = date.format();
-          me.openModal('Event');
-
-          // $(this).css('background-color', 'red');
+          me.selectedDate = date.format().match(/.*?T/).toString();
+          me.selectedStartTime = "00:00";
+          me.selectedEndTime = "01:00";
+          document.getElementById("event-body").style.backgroundColor = me.users[resource.id - 1].eventColor;
+          me.openModal('event');
+          document.getElementById("event").click();
         },
-
+        // Voeg een beschrijving toe
         eventRender: function (event, element) {
           if (event.description)
             element.find('.fc-title').after("</br> <span class=\"event-description\">" + event.description + "</span>");
         },
-        //titel bovenaan correct tonen
-        viewRender: function(view, element) {   
-          $('.fc-center')[0].children[1].textContent= view.title.replace(new RegExp("undefined", 'g'), ""); ;       
+        // Titel bovenaan correct tonen
+        viewRender: function (view, element) {
+          $('.fc-center')[0].children[1].textContent = view.title.replace(new RegExp("undefined", 'g'), "");;
         },
-        
+        // Klik op een event en de details tonen
+        eventClick: function (calEvent, jsEvent, view) {
+          me.selectedUserTitle = me.users[calEvent.resourceId - 1].title;
+          me.selectedEventTitle = calEvent.title;
+          me.selectedEventDescription = calEvent.description;
+          me.selectedEventTime = calEvent.start.toString().match(/\d{2}:\d{2}/).toString();
+          document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
+          me.openModal('event-detail');
+          document.getElementById("event-detail").click();
 
+          // me.db.getEvents(calEvent.resourceId).then((events) => {
+          //   console.log(events[0].title);
+          // });
+
+        }
       });
-      
-     
-      //werkende optie om overschot onderaan calender weg te halen
-      $('#calendar').fullCalendar('option', 'contentHeight', "auto");
-     /*  $('#calendar').hammer().on("swipeleft",function(event) {   
-        $('#calendar').fullCalendar('next');
-      }); */
-      
+
+      // Werkende optie om overschot onderaan calender weg te halen
+      me.calendar.fullCalendar('option', 'contentHeight', "auto");
     })
   }
-//http://hammerjs.github.io/getting-started/kl
-//https://jsfiddle.net/Fahreyad/w4cab9m6/1/
- /*  var calendar=$('#calendar');
-  calendar.hammer().on("swipeleft", function(event) {   
-    calendar.fullCalendar('next');
-  });
- */
+
   openModal(id: string) {
     this.modalService.open(id);
   }
@@ -148,28 +161,23 @@ export class HomeCalendarComponent implements OnInit {
   }
 
   addEvent() {
-    var me = this;
     if (this.eventTitle != "" && this.eventTitle != null) {
-      me.calendar.fullCalendar('renderEvent', {
+      this.db.addEvent({
+        id: undefined,
         resourceId: this.selectedUser.id,
-        title: this.eventTitle,
-        start: this.selectedDate,
-        allDay: false,
-        editable: false,
-        description: this.eventDescription
-      }, false);
-      this.db.addEvent(
-        {
-          id: undefined,
-          resourceId: this.selectedUser.id, start: this.selectedDate,
-          stop: '', description: this.eventDescription,
-          title: this.eventTitle
-        });
-      this.closeModal('Event');
+        start: this.selectedDate + this.selectedStartTime,
+        stop: this.selectedDate + this.selectedEndTime,
+        description: this.eventDescription,
+        title: this.eventTitle
+      });
+      this.closeModal('event');
       this.eventTitle = "";
       this.eventDescription = "";
-      // Alert that there has been a change in the database
-      this.db.emitChange();
+      // Alert that there has been a change in the database and refetch the events
+      this.db.getEvents(undefined).then(() => {
+        this.db.emitChange();
+        this.calendar.fullCalendar('refetchEvents');
+      });
     }
   }
 }
