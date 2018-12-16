@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 /* MODAL STYLES
 -------------------------------*/
+@import "~@angular/material/prebuilt-themes/purple-green.css";
 jw-modal {
   /* modals are hidden by default */
   display: none;
@@ -84,9 +85,9 @@ body.jw-modal-open {
 
  //header
  #calendar > div.fc-toolbar.fc-header-toolbar{
-  height: 3em;
-  margin-top: 2em;
-  margin-bottom: 2em;
+  // height: 3em;
+  // margin-top: 2em;
+  // margin-bottom: 2em;
  }
  #calendar > div.fc-view-container{
   border-top-color: #2396CF;
