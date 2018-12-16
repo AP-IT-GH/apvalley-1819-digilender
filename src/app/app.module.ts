@@ -37,6 +37,7 @@ import { DatabaseService } from './database.service';
 import { ModalService } from './modal.service';
 import { registerLocaleData } from '@angular/common';
 import { StatusPanelComponent } from './status-panel/status-panel.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 registerLocaleData(localeBE, 'nl-BE');
 @NgModule({
@@ -55,7 +56,8 @@ registerLocaleData(localeBE, 'nl-BE');
     LocatieComponent,
     ThemaComponent,
     SchermComponent,
-    StatusPanelComponent
+    StatusPanelComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
