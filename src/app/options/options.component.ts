@@ -15,16 +15,5 @@ export class OptionsComponent implements OnInit {
   ngOnInit() {
   }
 
-  openModal(id: string) {
-    this.modalService.open(id);
-    //console.log("open modal "+ id);
-  }
 
-  closeModal(id: string) {
-    this.modalService.close(id);
-  }
-
-  goTo(pad:String):void{
-    this.router.navigate(['/'+ pad], { relativeTo: this.route });
-  }
 }
