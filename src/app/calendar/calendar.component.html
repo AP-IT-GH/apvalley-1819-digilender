@@ -8,81 +8,68 @@
     <script src='scheduler.js'></script> 
 </head> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
-    
-        <!-- <div class="btn-group">
-            <button>
-                <img class="header-icons "src="assets/images/round_add_white_48dp.png">       
-            </button>         
-            <button>
-                <img class="header-icons" src="assets/images/round_mail_white_48dp.png">
-            </button>
-            <button>
-                <img class="header-icons" src="assets/images/round_settings_white_48dp.png" (click)="goToOptions()">
-            </button>
-        </div>   -->
 
-        <div id='calendar'></div>
-       
-        
-            <button class="add-event-botton" mat-fab color="accent">
-                <mat-icon>add</mat-icon>
-            </button>
-        
-    
-<jw-modal id="event">
-    <div id="event-body" style="padding: 20px; border-radius: 25px; color: white" >
-        <h1>Add a new event</h1>
+    <div id='calendar'></div>
 
-        <div class="md-form input-group input-group-lg">
-            <div class="input-group-prepend">
-                <span class="input-group-text md-addon" id="inputGroupMaterial-sizing-lg" style="color: white">Title</span>
-            </div>
-            <input type="text" class="form-control" aria-describedby="inputGroupMaterial-sizing-lg" style="color: white" [(ngModel)]="eventTitle">
-        </div>
 
-        <div class="md-form input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text md-addon" style="color: white">Description</span>
-            </div>
-            <textarea class="md-textarea form-control" style="color: white" [(ngModel)]="eventDescription"></textarea>
-        </div>
+    <button class="add-event-botton" mat-fab color="primary" (click)="openModal('event')">
+        <mat-icon>add</mat-icon>
+    </button>
 
-        <div class="row">
-            <div class="col">
-                <div class="md-form input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text md-addon" style="color: white">Start time</span>
-                    </div>
-                    <input atp-time-picker type="text" class="form-control" aria-describedby="inputGroupMaterial-sizing-default" style="color: white" [(ngModel)]="selectedStartTime">
-                </div>
-            </div>
-            <div class="col">
-                <div class="md-form input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text md-addon" style="color: white">End time</span>
-                    </div>
-                    <input atp-time-picker type="text" class="form-control" aria-describedby="inputGroupMaterial-sizing-default" style="color: white" [(ngModel)]="selectedEndTime">
-                </div>
-            </div>
-        </div>
 
-        <br><br>
-        <div class="row">
-            <div class="col">
-                <button type="button" mdbBtn color="info" mdbWavesEffect style="width: 300px" (click)="addEvent()">Save</button>
-            </div>
-            <div class="col">
-                <button type="button" mdbBtn color="danger" mdbWavesEffect style="width: 300px" (click)="closeModal('event')">Cancel</button>
-            </div>
-        </div>
-    </div>
-</jw-modal>
+    <jw-modal id="event">
+        <mat-card id="event-body" style="padding: 20px;" >
 
-<jw-modal id="event-detail" style="text-align: center; color: white" (mousedown)="closeModal('event-detail')">
-    <div id="event-detail-body" style="padding: 20px; margin-left: 35%; margin-right: 35%; margin-top: 35%; border-radius: 25px">
-        <h2><b>{{selectedUserTitle}}</b></h2>
-        <p>{{selectedEventTitle}}</p>
-        <p>{{selectedEventDescription}}</p>
-        <p>{{selectedEventTime}}</p>
-    </div>
-</jw-modal>
+            <mat-card-header style="display: flex; justify-content: center">
+                <mat-card-title>New event</mat-card-title>
+            </mat-card-header>
+
+            <div class="title-note-container">
+                <mat-form-field appearance="fill">
+                    <mat-label>Title</mat-label>
+                    <input matInput type="text" placeholder="Enter title" [(ngModel)]="eventTitle">
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Note</mat-label>
+                    <textarea matInput placeholder="Add note" [(ngModel)]="eventDescription"></textarea>
+                </mat-form-field>
+            </div>
+     
+            <div class="time-container">
+                <mat-form-field class="input-time-item" appearance="fill">
+                    <mat-label>Start time</mat-label>
+                    <input matInput atp-time-picker type="text" placeholder="00:00" [(ngModel)]="selectedStartTime">
+                    <mat-icon matSuffix>access_time</mat-icon>
+                </mat-form-field>
+                <mat-form-field class="input-time-item" appearance="fill">
+                    <mat-label>End time</mat-label>
+                    <input matInput atp-time-picker type="text" placeholder="01:00" [(ngModel)]="selectedEndTime">
+                    <mat-icon matSuffix>access_time</mat-icon>
+                </mat-form-field>
+            </div>
+
+            <mat-card-actions class="buttons-event-container">
+                <button mat-raised-button color="warn" (click)="closeModal('event')">Cancel</button>
+                <button mat-raised-button color="primary" (click)="addEvent()">Save</button>
+            </mat-card-actions>
+
+        </mat-card>
+    </jw-modal>
+
+    <jw-modal id="event-detail" style="text-align: center;">
+        <mat-card id="event-detail-body" style="padding: 20px; margin-left: 35%; margin-right: 35%; margin-top: 35%; ">
+            <mat-card-header style="display: flex; justify-content: center">
+                <mat-card-title>{{selectedUserTitle}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content >
+                <p>{{selectedEventTitle}}</p>
+                <p>{{selectedEventDescription}}</p>
+                <p>{{selectedEventTime}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="closeModal('event-detail')">Ok</button>
+            </mat-card-actions>
+        </mat-card>
+    </jw-modal>

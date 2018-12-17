@@ -151,6 +151,7 @@ export class HomeCalendarComponent implements OnInit {
       me.calendar.fullCalendar('option', 'contentHeight', "auto");
     })
   }
+  
 
   openModal(id: string) {
     this.modalService.open(id);

@@ -24,3 +24,30 @@
     right:20px;
     z-index: 1;
 }
+.title-note-container{
+    display: flex;
+  flex-direction: column;
+}
+
+.title-note-container > *{
+    width: 100%;
+}
+
+.time-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-time-item{
+    width: 49%;
+}
+
+.buttons-event-container{
+    display: flex;
+    justify-content: flex-end;
+}
+.buttons-event-container>*{
+    width: 20%;
+    margin-left: 5px;
+    
+}
