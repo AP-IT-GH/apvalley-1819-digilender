@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import {DatabaseService} from '../database.service';
 
 @Component({
   selector: 'app-users',
@@ -11,47 +12,59 @@ export class UsersComponent implements OnInit {
 
   public addUser:boolean = false;
   public users: Array<IUser>= [];
+  arrayLength:number;
   public addUserForm = new FormGroup({
-    Naam: new FormControl('', Validators.required),
-    Kleur: new FormControl('', Validators.required),
-    Agenda: new FormControl('')
+    title: new FormControl('', Validators.required),
+    eventColor: new FormControl('', Validators.required),
+    //Agenda: new FormControl('')
   });
 
-  constructor( private router: Router, private route: ActivatedRoute) { }
+  constructor( private router: Router, private route: ActivatedRoute, private dbService:DatabaseService) { }
 
   ngOnInit() {
+    var me = this;
+    this.dbService.getUsers().then(function(dbUsers){
+     for(var i=0;i<dbUsers.length;i++){
+      me.users.push(dbUsers[i]);
+     }
+    })
+    
+   
   }
   goTo(pad:String):void{
     this.router.navigate(['/'+ pad], { relativeTo: this.route });
   }
 
 public saveUser(){
-  /*console.log(this.addUserForm.get('Naam').value);
-  console.log(this.addUserForm.get('Kleur').value);
-  console.log(this.addUserForm.get('Agenda').value);*/
+
+  this.arrayLength = this.users.length+1;
   let newuser:IUser = {
-    Naam: this.addUserForm.get('Naam').value,
-    Kleur: this.addUserForm.get('Kleur').value,
-    Agenda: this.addUserForm.get('Agenda').value};
+    id: undefined,
+    title: this.addUserForm.get('title').value,
+    eventColor: this.addUserForm.get('eventColor').value,
+    //Agenda: this.addUserForm.get('Agenda').value
+  };
   console.log(newuser);
   this.users.push(newuser);
 
   this.addUser = !this.addUser;
-  this.addUserForm.get('Naam').setValue("");
-  this.addUserForm.get('Kleur').setValue("");
-  this.addUserForm.get('Agenda').setValue("");
+  this.addUserForm.get('title').setValue("");
+  this.addUserForm.get('eventColor').setValue("");
+  //this.addUserForm.get('Agenda').setValue("");
+  this.dbService.addUser(newuser)
 }
 
 public cancel(){
   this.addUser = !this.addUser;
-  this.addUserForm.get('Naam').setValue("");
-  this.addUserForm.get('Kleur').setValue("");
-  this.addUserForm.get('Agenda').setValue("");
+  this.addUserForm.get('title').setValue("");
+  this.addUserForm.get('eventColor').setValue("");
+  //this.addUserForm.get('Agenda').setValue("");
 }
 }
 
 export interface IUser{
-  Naam:string;
-  Kleur:string;
-  Agenda:string;
+  id:string;
+  title:string;
+  eventColor:string;
+  //Agenda:string;
 }
