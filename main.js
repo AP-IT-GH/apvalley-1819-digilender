@@ -16,8 +16,8 @@ let db = new DBManager();
 function createWindow() {
     win = new BrowserWindow();
     win.webContents.openDevTools();
-    //win = new BrowserWindow({ width: 1280, height: 800 );
-    win.setFullScreen(true)
+    win = new BrowserWindow({ width: 1920, height: 1080} );
+    //win.setFullScreen(true)
 
     // Uncomment the following line to remove the menu bar
     // win.setMenu(null);

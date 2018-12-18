@@ -1,21 +1,18 @@
 .weather__card {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    //box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
-    height: 7em;
-    border-bottom-color: #2396CF;
-    border-bottom-width: 2px;
-    border-bottom-style: solid;
+    //height: 7em;
+     //border-bottom-color: #2396CF;
+     //border-bottom-width: 2px;
+     //border-bottom-style: solid;
     animation: fadein 1.25s ease-in-out 0ms 1;
+    //padding-bottom: 1rem;
   }
   
   .temperature-text__container{
-    flex: 1;
     flex-direction: column;
-    justify-content: space-between;
-    align-items:flex-start ;
+    align-items:baseline;
   }
   .temperature__text {
     font-size: 4rem;
@@ -28,17 +25,13 @@
     font-weight: 100;
   }
   
-  .city-name__text{
-    text-transform: uppercase;
-    font-size: 1rem;
-  }
   .weather-condition__text {
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
   }
   
-  .weather-icon__container {
-    flex: 1;
+  .weather-icon__container > * {
+    height: 80px;
   }
   

@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    //background-color: #F4F1EA;
+    //padding: 1rem;
+    border-radius: 0px;
+    background-color: #F4F1EA;
+}
+
+.date-item{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 30px;
+}
+.weather-date-item{
+
+}
+.calendar-list-item{
+
+}
+hr{
+    margin-top:40px;
+
+    border-top-color: #2396cf;
+    border-top-width: 2px;
+    border-top-style: solid;
+}
