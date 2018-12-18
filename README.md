@@ -16,6 +16,7 @@ Zij kunnen, net zoals op hun papieren kalender, afspraken rechtstreeks invoegen 
 Al deze afspraken worden overzichtelijk weergegeven per persoon per dag in een weekoverzicht.
 Om een algemener overzicht te krijgen kan je ook overschakelen naar een maandoverzicht waar per dag de afsraken weergegeven worden.
 
+
 Deze geweldige planningstool voor het gezin is een idee van de creatieve breinen van Joeri, Mirko, Jasmien, Antoine, Mohammed en Elke.
 
 
