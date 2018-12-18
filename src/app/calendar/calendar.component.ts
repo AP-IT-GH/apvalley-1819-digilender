@@ -54,21 +54,18 @@ export class HomeCalendarComponent implements OnInit {
       };
 
       var getMinTime = function () {
-        var time = me.calendar.fullCalendar('today');
-        console.log("getMinTime: " + time);
-        return time;
+        return {days: -7};
       };
 
       var getMaxTime = function () {
-        var days = 7;
-        var time = days + ".00:00:00";
-        return time;
+        return {days: 30};
       };
 
       // let containerEl: JQuery = $('#calendar');
       $('#calendar').fullCalendar({
         //themeSystem: 'bootstrap4',
-        height: $(window).height() * 0.83,
+        height: $(window).height()*0.95,
+        //contentHeight: () => { return $(window).height()*0.8; },
         defaultView: 'family',
         groupByResource: false,
         header: {
@@ -82,12 +79,21 @@ export class HomeCalendarComponent implements OnInit {
             duration: {
               days: 1
             },
+            visibleRange: (current) => {
+              return {
+                start: current.clone().subtract(7, 'days'),
+                end: current.clone().add(1, 'months')
+              }
+            },
+            // how far back you can scroll
             minTime: getMinTime(),
+            // how far forwards you can scroll
             maxTime: getMaxTime(),
             slotDuration: '24:00:00',
             titleFormat: 'MMMM YYYY',
             slotLabelFormat: 'D MMM ',
-            buttonText: 'family Calendar'
+            buttonText: 'family Calendar',
+            scrollTime: {days: 0}
           },
         },
         selectable: false,
@@ -146,9 +152,6 @@ export class HomeCalendarComponent implements OnInit {
 
         }
       });
-
-      // Werkende optie om overschot onderaan calender weg te halen
-      me.calendar.fullCalendar('option', 'contentHeight', "auto");
     })
   }
 
@@ -158,6 +161,11 @@ export class HomeCalendarComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  resetCalendar(){
+    $('#calendar').fullCalendar('render');
+    console.log($('#calendar').fullCalendar('today'));
   }
 
   addEvent() {
