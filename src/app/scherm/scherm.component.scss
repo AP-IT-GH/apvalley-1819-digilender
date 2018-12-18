@@ -1,0 +1,47 @@
+.header {
+    display: flex;
+    justify-content: center;
+}
+    
+  .main {
+    display: flex;
+    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+  }
+ 
+  .footer {
+    
+  }
+  
+  .container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 100vh;
+  }
+
+  .brightness{
+      display: flex;
+      align-items: center;
+  }
+  .sleep-mode{
+    display: flex;
+    align-items: center;
+}
+#icon-back{
+    font-size: 3em;
+}
+.button-footer{
+    height: 64px; 
+}
+
+mat-slider{
+    margin:10px; 
+ 
+}
+
+ 

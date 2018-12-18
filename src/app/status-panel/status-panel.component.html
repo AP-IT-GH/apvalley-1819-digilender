@@ -1,0 +1,13 @@
+<mat-card class="container">
+    <div class="weather-date-item">
+        <app-weather></app-weather>
+        <hr >
+        <div class="date-item">
+            <p>{{today | date:'EEEE d MMM'}}</p>
+        </div>
+    </div>
+
+    <div class="calendar-list-item">
+        <app-calendar-list></app-calendar-list>
+    </div>
+</mat-card>
