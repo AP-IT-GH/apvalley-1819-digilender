@@ -1,0 +1,84 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$bv-brand: (
+    50: #2495D3,
+    100: #dde6f3,
+    200: #b4c9e4,
+    300: #7fa3d1,
+    400: #6992c9,
+    500: #5282c1,
+    600: #4072b4,
+    700: #38649d,
+    800: #305687,
+    900: #284770,
+    A100: #ffffff,
+    A200: #dde6f3,
+    A400: #6992c9,
+    A700: #38649d,
+    contrast: (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: $black-87-opacity,
+        400: $black-87-opacity,
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: $black-87-opacity,
+        A200: $black-87-opacity,
+        A400: $black-87-opacity,
+        A700: white,
+    )
+);
+
+$bv-orange: (
+    50: #FACA13,
+    100: #fff7f4,
+    200: #fecdbd,
+    300: #fc9977,
+    400: #fc8259,
+    500: #fb6c3b,
+    600: #fa551d,
+    700: #f44205,
+    800: #d63a04,
+    900: #b83204,
+    A100: #ffffff,
+    A200: #fff7f4,
+    A400: #fc8259,
+    A700: #f44205,
+    contrast: (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: $black-87-opacity,
+        400: $black-87-opacity,
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: $black-87-opacity,
+        A200: $black-87-opacity,
+        A400: $black-87-opacity,
+        A700: white,
+    )
+);
+
+
+$digilender-theme-primary: mat-palette($bv-brand, 50);
+$digilender-theme-accent : mat-palette($bv-orange, 50);
+$digilender-theme-warn   : mat-palette($mat-red);
+
+$digilender-theme: mat-light-theme(
+    $digilender-theme-primary,
+    $digilender-theme-accent,
+    $digilender-theme-warn
+);
+
+@include angular-material-theme($digilender-theme);
+
+//@include custom-themes($digilender-theme);
