@@ -1,18 +1,21 @@
 .container-home{
   display: grid;
-  grid-template-areas:
-    "nav content";
   grid-template-columns: 300px 1fr;
-  grid-template-rows: auto;
-  height: 100vh;
+  grid-template-rows: 100vh auto;
+  grid-template-areas:
+    "status content";
+  //height: 100vh;
 }
-.container-home-left{
-  grid-area: nav;
+.container-status-panel{
+  grid-area: status;
   
 }
 
 .container-home-calendar{
   grid-area: content;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+
   
 }
 
