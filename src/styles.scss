@@ -116,7 +116,7 @@ body > app-root > app-home > div > div.column-2.container-home-left > div.weathe
   border-right-color: none !important;
   
 }
-//verwijderen van all onnodige lijnen + kleur aan lijnen waar nodig
+//verwijderen van all onnodige lijnen + kleur aan lijnen waar nodig en styling
 .fc th.fc-resource-cell{
   border:0px;
 }
@@ -139,14 +139,30 @@ body > app-root > app-home > div > div.column-2.container-home-left > div.weathe
   
 }
 #calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td.fc-axis.fc-time.fc-widget-content{
+  margin: 0 auto;
   border-left: 0px;
   border-right: 0px;
-  border-color: #FACC2E;
+  border-color: #FACA13;
+  color: #2495D3;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  vertical-align: middle; 
+  line-height: 0.9;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 400;
+
+}
+#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td.fc-axis.fc-time.fc-widget-content::first-line{
+  color: #FACA13;
+  font-size: 40px;
+  text-align: center;
+  font-weight: 400;
 }
 #calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td:nth-child(2){
   border-left: 0px;
   border-right: 0px;
-  border-color: #FACC2E;
+  border-color: #FACA13;
 }
 #calendar > div.fc-view-container > div > table > thead > tr > td > div{
   border-right: 0px;

@@ -5,6 +5,8 @@ import 'fullcalendar-scheduler';
 import { ModalService } from '../modal.service';
 import { DatabaseService } from '../database.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { toDate } from '@angular/common/src/i18n/format_date';
+import { months } from 'moment';
 
 @Component({
   selector: 'app-calendar',
@@ -38,6 +40,8 @@ export class HomeCalendarComponent implements OnInit {
     var me = this;
 
     $(function () {
+  
+      
       me.calendar = $('#calendar');
 
       var getDaysInMonth = function () {
@@ -60,7 +64,7 @@ export class HomeCalendarComponent implements OnInit {
       var getMaxTime = function () {
         return {days: 30};
       };
-
+     
       // let containerEl: JQuery = $('#calendar');
       $('#calendar').fullCalendar({
         //themeSystem: 'bootstrap4',
@@ -91,11 +95,12 @@ export class HomeCalendarComponent implements OnInit {
             maxTime: getMaxTime(),
             slotDuration: '24:00:00',
             titleFormat: 'MMMM YYYY',
-            slotLabelFormat: 'D MMM ',
+            slotLabelFormat: 'D \n'+ 'ddd',
             buttonText: 'family Calendar',
             scrollTime: {days: 0}
           },
         },
+        locale:"nl",
         selectable: false,
         editable: false,
         allDaySlot: false,
