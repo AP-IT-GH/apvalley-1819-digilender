@@ -70,6 +70,7 @@ body.jw-modal-open {
   font-size: 1.3em;
 }
 
+
 .fc-time-grid-event.fc-short .fc-time:before {
   content: none;
 }
@@ -102,15 +103,57 @@ body > app-root > app-home > div > div.column-2.container-home-left > div.weathe
 
  //onderstaande werkt niet 
  //grafiek/raster onder de namen
- #calendar > div.fc-view-container > div > table > tbody {
-  border-color: none !important;
-  border-top-color: yellow !important;
-  border-left-color: none !important;
-  border-right-color: none !important;
-}
+//  #calendar > div.fc-view-container > div > table > tbody {
+//   border-color: none !important;
+//   border-top-color: yellow !important;
+//   border-left-color: none !important;
+//   border-right-color: none !important;
+// }
 //lijntje boven de namen
 #calendar > div.fc-view-container > div > table > thead {
   border-top-color: blue !important;
   border-left-color: none !important;
   border-right-color: none !important;
+  
 }
+//verwijderen van all onnodige lijnen + kleur aan lijnen waar nodig
+.fc th.fc-resource-cell{
+  border:0px;
+}
+#calendar > div.fc-view-container > div > table > thead > tr > td > div > table > thead > tr > th.fc-axis.fc-widget-header{
+  border: 0px;
+}
+#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-bg > table > tbody > tr > td.fc-axis.fc-widget-content{
+  border: 0px;
+}
+#calendar > div.fc-view-container > div > table > thead > tr > td{
+  
+  border-right: 0px;
+  border-top: 0px;
+  border-left: 0px;
+  border-color: #FACC2E;
+}
+#calendar > div.fc-view-container > div > table > tbody > tr > td{
+  border: 0px;
+  border-top-width: 2px;
+  
+}
+#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td.fc-axis.fc-time.fc-widget-content{
+  border-left: 0px;
+  border-right: 0px;
+  border-color: #FACC2E;
+}
+#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td:nth-child(2){
+  border-left: 0px;
+  border-right: 0px;
+  border-color: #FACC2E;
+}
+#calendar > div.fc-view-container > div > table > thead > tr > td > div{
+  border-right: 0px;
+}
+
+.fc td.fc-today {
+  border-style: double;
+  border: 0px;
+}
+
