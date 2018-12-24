@@ -4,7 +4,6 @@
 //@import "~@angular/material/prebuilt-themes/purple-green.css";
 @import "theme.scss";
 
-
 jw-modal {
   /* modals are hidden by default */
   display: none;
@@ -116,60 +115,81 @@ body > app-root > app-home > div > div.column-2.container-home-left > div.weathe
   border-right-color: none !important;
   
 }
-//verwijderen van all onnodige lijnen + kleur aan lijnen waar nodig en styling
+//verwijderen van all onnodige lijnen + kleur aan lijnen waar nodig en styling:
+//individuele naam cellen
 .fc th.fc-resource-cell{
   border:0px;
 }
-#calendar > div.fc-view-container > div > table > thead > tr > td > div > table > thead > tr > th.fc-axis.fc-widget-header{
-  border: 0px;
-}
-#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-bg > table > tbody > tr > td.fc-axis.fc-widget-content{
-  border: 0px;
-}
+//individuele tabel items van naamheader
 #calendar > div.fc-view-container > div > table > thead > tr > td{
   
   border-right: 0px;
   border-top: 0px;
+  //border-bottom: 0px; lijn onder namen
   border-left: 0px;
-  border-color: #FACC2E;
+  border-color: #FACA13;
 }
+//body van de tabel
 #calendar > div.fc-view-container > div > table > tbody > tr > td{
   border: 0px;
-  border-top-width: 2px;
-  
+  border-top-width: 2px;  
 }
+
+
+//verticale lijnen verwijderen:
+//in de tabel zelf
+#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-bg > table > tbody > tr > td{
+  border: 0px;
+}
+//in de linkse kolom
+#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td:nth-child(2){
+  border-left: 0px;
+  border-right: 0px;
+  border-color: #FACA13;
+}
+//lijntje links van de namen
+#calendar > div.fc-view-container > div > table > thead > tr > td > div > table > thead > tr > th.fc-axis.fc-widget-header{
+  border: 0px;
+}
+
+
+//linkse kolom algemene instellingen
 #calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td.fc-axis.fc-time.fc-widget-content{
   margin: 0 auto;
   border-left: 0px;
   border-right: 0px;
   border-color: #FACA13;
   color: #2495D3;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Nunito', sans-serif;
   text-align: center;
   vertical-align: middle; 
   line-height: 0.9;
   text-transform: uppercase;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 300;
 
 }
+//linkse kolom: eerste lijn (dag van de maand)
 #calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td.fc-axis.fc-time.fc-widget-content::first-line{
   color: #FACA13;
   font-size: 40px;
   text-align: center;
-  font-weight: 400;
-}
-#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td:nth-child(2){
-  border-left: 0px;
-  border-right: 0px;
-  border-color: #FACA13;
-}
-#calendar > div.fc-view-container > div > table > thead > tr > td > div{
-  border-right: 0px;
+  font-weight: 300;
 }
 
-.fc td.fc-today {
-  border-style: double;
-  border: 0px;
+//Header met namen
+#calendar > div.fc-view-container > div > table > thead > tr > td > div{
+  border-right: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #2495D3;
+}
+
+//font grootte voor namen
+#calendar > div.fc-view-container > div > table > thead > tr > td > div > table > thead > tr > th{
+  font-family: Geneva, Tahoma, Verdana,  sans-serif; 
+  font-size: 20px;
+  font-style: normal;
+  font-variant: normal;
 }
 
