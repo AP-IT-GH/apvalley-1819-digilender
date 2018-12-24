@@ -63,133 +63,140 @@ body.jw-modal-open {
   border-bottom: 0;
 }
 
-//dit zou een minimum weergave grootte geven aan een event
+// Dit zou een minimum weergave grootte geven aan een event
 .fc-ltr .fc-time-grid .fc-event-container {
   min-height: 1rem;
   font-size: 1.3em;
 }
 
-
 .fc-time-grid-event.fc-short .fc-time:before {
   content: none;
 }
-//buttons in de header voor prev en volgende maand
+
+// Buttons in de header voor prev en volgende maand
 #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-center > button {
   border: none;
   box-shadow: none;
   background: none;
 }
+
 #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-center > button:focus {
   outline: none;
 }
-//titel
+
+// Titel
 #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-center > h2 {
   color: #fb743d;
 }
 
-//header
+// Header
 #calendar > div.fc-toolbar.fc-header-toolbar {
   height: 3em;
   margin-top: 2em;
   margin-bottom: 2em;
 }
+
 #calendar > div.fc-view-container {
   border-top-color: #2396cf;
   border-top-width: 2px;
   border-top-style: solid;
 }
-body > app-root > app-home > div > div.column-2.container-home-left > div.weather-item > app-weather > div
 
- //onderstaande werkt niet 
- //grafiek/raster onder de namen
+//  onderstaande werkt niet 
+//  grafiek/raster onder de namen
 //  #calendar > div.fc-view-container > div > table > tbody {
 //   border-color: none !important;
 //   border-top-color: yellow !important;
 //   border-left-color: none !important;
 //   border-right-color: none !important;
 // }
-//lijntje boven de namen
+
+// Lijntje boven de namen
 #calendar > div.fc-view-container > div > table > thead {
   border-top-color: blue !important;
   border-left-color: none !important;
   border-right-color: none !important;
-  
 }
-//verwijderen van all onnodige lijnen + kleur aan lijnen waar nodig en styling:
-//individuele naam cellen
-.fc th.fc-resource-cell{
-  border:0px;
+
+// Verwijderen van all onnodige lijnen + kleur aan lijnen waar nodig en styling:
+// Individuele naam cellen
+.fc th.fc-resource-cell {
+  border: 0px;
 }
-//individuele tabel items van naamheader
-#calendar > div.fc-view-container > div > table > thead > tr > td{
-  
+
+// Individuele tabel items van naamheader
+#calendar > div.fc-view-container > div > table > thead > tr > td {
   border-right: 0px;
   border-top: 0px;
   //border-bottom: 0px; lijn onder namen
   border-left: 0px;
-  border-color: #FACA13;
-}
-//body van de tabel
-#calendar > div.fc-view-container > div > table > tbody > tr > td{
-  border: 0px;
-  border-top-width: 2px;  
+  border-color: #faca13;
 }
 
+// Body van de tabel
+#calendar > div.fc-view-container > div > table > tbody > tr > td {
+  border: 0px;
+  border-top-width: 2px;
+}
 
-//verticale lijnen verwijderen:
-//in de tabel zelf
-#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-bg > table > tbody > tr > td{
+// Verticale lijnen verwijderen: in de tabel zelf
+#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-bg > table > tbody > tr > td {
   border: 0px;
 }
-//in de linkse kolom
-#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td:nth-child(2){
+
+// In de linkse kolom
+#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td:nth-child(2) {
   border-left: 0px;
   border-right: 0px;
-  border-color: #FACA13;
+  border-color: #faca13;
 }
-//lijntje links van de namen
-#calendar > div.fc-view-container > div > table > thead > tr > td > div > table > thead > tr > th.fc-axis.fc-widget-header{
+
+// Lijntje links van de namen
+#calendar > div.fc-view-container > div > table > thead > tr > td > div > table > thead > tr > th.fc-axis.fc-widget-header {
   border: 0px;
 }
 
-
-//linkse kolom algemene instellingen
-#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td.fc-axis.fc-time.fc-widget-content{
+// Linkse kolom algemene instellingen
+#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td.fc-axis.fc-time.fc-widget-content {
   margin: 0 auto;
   border-left: 0px;
   border-right: 0px;
-  border-color: #FACA13;
-  color: #2495D3;
-  font-family: 'Nunito', sans-serif;
+  border-color: #faca13;
+  color: #2495d3;
+  font-family: "Nunito", sans-serif;
   text-align: center;
-  vertical-align: middle; 
+  vertical-align: middle;
   line-height: 0.9;
   text-transform: uppercase;
   font-size: 15px;
   font-weight: 300;
-
 }
-//linkse kolom: eerste lijn (dag van de maand)
-#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td.fc-axis.fc-time.fc-widget-content::first-line{
-  color: #FACA13;
+
+// Linkse kolom: eerste lijn (dag van de maand)
+#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td.fc-axis.fc-time.fc-widget-content::first-line {
+  color: #faca13;
   font-size: 40px;
   text-align: center;
   font-weight: 300;
 }
 
-//Header met namen
-#calendar > div.fc-view-container > div > table > thead > tr > td > div{
+// Header met namen
+#calendar > div.fc-view-container > div > table > thead > tr > td > div {
   border-right: 0px;
   padding-top: 20px;
   padding-bottom: 20px;
-  color: #2495D3;
+  color: #2495d3;
 }
 
-//font grootte voor namen
-#calendar > div.fc-view-container > div > table > thead > tr > td > div > table > thead > tr > th{
-  font-family: Geneva, Tahoma, Verdana,  sans-serif; 
+// Font grootte voor namen
+#calendar > div.fc-view-container > div > table > thead > tr > td > div > table > thead > tr > th {
+  font-family: Geneva, Tahoma, Verdana, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-variant: normal;
 }
 
+// Witte achtergrond
+.fc-today {
+  background: #fff !important;
+}
