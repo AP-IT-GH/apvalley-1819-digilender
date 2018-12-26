@@ -65,8 +65,9 @@ body.jw-modal-open {
 
 // Dit zou een minimum weergave grootte geven aan een event
 .fc-ltr .fc-time-grid .fc-event-container {
-  min-height: 1rem;
-  font-size: 1.3em;
+  min-height: 1.4rem;
+  font-size: 1.6em;
+  line-height: 1.4rem;
 }
 
 .fc-time-grid-event.fc-short .fc-time:before {
