@@ -72,9 +72,29 @@ export class HomeCalendarComponent implements OnInit {
         //contentHeight: () => { return $(window).height()*0.8; },
         defaultView: 'family',
         groupByResource: false,
+        customButtons: {
+          myNextButton: {
+            text: 'Next',
+            icon: 'right-single-arrow',
+            click: function() {
+              $('#calendar').fullCalendar('incrementDate', {
+                months: 1
+              });
+            }
+          },
+          myPrevButton: {
+            text: 'Prev',
+            icon: 'left-single-arrow',
+            click: function() {
+              $('#calendar').fullCalendar('incrementDate', {
+                months: -1
+              });
+            }
+          }
+        },
         header: {
           left: 'today',
-          center: 'prev, title, next',
+          center: 'myPrevButton, title, myNextButton',
           right: ''
         },
         views: {
@@ -100,6 +120,7 @@ export class HomeCalendarComponent implements OnInit {
             scrollTime: {days: 0}
           },
         },
+        slotEventOverlap:false,
         locale:"nl-be",
         selectable: false,
         editable: false,
