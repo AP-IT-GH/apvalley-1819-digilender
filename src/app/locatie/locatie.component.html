@@ -1,4 +1,19 @@
-<p>
-  locatie works!
-</p>
+<mat-card class="input-container">
+  <mat-card-header>
+    <mat-card-title>Geef uw locatie</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput appGooglePlaces type="text" class="google-place-input" placeholder="Stad">
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-flat-button color="primary">BEWERKEN</button>
+  </mat-card-actions>
+</mat-card>
+
 <p (click)="goTo('options')">Back</p>
