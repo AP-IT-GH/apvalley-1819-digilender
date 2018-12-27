@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { LocationService } from '../location.service'
+
 
 @Component({
   selector: 'app-locatie',
@@ -8,12 +9,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LocatieComponent implements OnInit {
 
-  constructor( private router: Router, private route: ActivatedRoute) { }
+
+  message: string;
+
+  constructor(private data: LocationService) { }
 
   ngOnInit() {
+    this.data.currentMessage.subscribe(message => this.message = message)
   }
-  goTo(pad:String):void{
-    this.router.navigate(['/'+ pad], { relativeTo: this.route });
+
+  changeCity(newCity: string) {
+    if (newCity){
+      this.data.changeMessage(newCity)
+    }
   }
 
 }

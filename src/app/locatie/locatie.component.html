@@ -1,10 +1,8 @@
-<mat-card class="input-container">
+<!-- <mat-card class="input-container">
   <mat-card-header>
     <mat-card-title>Geef uw locatie</mat-card-title>
   </mat-card-header>
-
   <mat-card-content>
-
     <form class="example-form">
       <mat-form-field class="example-full-width">
         <input matInput appGooglePlaces type="text" class="google-place-input" placeholder="Stad">
@@ -14,6 +12,36 @@
   <mat-card-actions>
     <button mat-flat-button color="primary">BEWERKEN</button>
   </mat-card-actions>
-</mat-card>
+</mat-card> -->
 
-<p (click)="goTo('options')">Back</p>
+<div class="container">
+  <div class="header">
+    <h1>Locatie</h1>
+  </div>
+  <div class="main">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h1>Geef uw locatie in</h1>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="input-form-container">
+          <mat-form-field appearance="outline">
+            <mat-label>Stad</mat-label>
+            <input #cityName matInput appGooglePlaces type="text" class="google-place-input">
+            <mat-icon matSuffix>location_city</mat-icon>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="accent" (click)="changeCity(cityName.value)">BEWERKEN</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div class="footer">
+    <button class="button-footer" mat-button color="primary" routerLink="/options">
+      <i class="material-icons" id="icon-back">chevron_left</i>
+    </button>
+  </div>
+</div>
