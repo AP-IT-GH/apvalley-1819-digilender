@@ -63,6 +63,10 @@ body.jw-modal-open {
   border-bottom: 0;
 }
 
+#calendar > div.fc-toolbar.fc-header-toolbar{
+ max-width: 85%;
+ //margin-right: ;
+}
 // Dit zou een minimum weergave grootte geven aan een event
 .fc-ltr .fc-time-grid .fc-event-container {
   min-height: 1.4rem;
