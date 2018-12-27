@@ -1,6 +1,6 @@
 
 <!-- https://github.com/hamedbaatour/Minimus/blob/master/src/app/ui/weather-card/weather-card.component.html -->
-<div class="weather__card" [ngClass]="{'weather__card-dark': darkMode}">
+<div class="weather__card" [ngClass]="{'weather__card-dark': darkMode}" (messageLocationEvent)="receveMessage($event)">
   
    
   
