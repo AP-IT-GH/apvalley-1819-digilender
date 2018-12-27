@@ -37,6 +37,7 @@ import { ModalService } from './modal.service';
 import { registerLocaleData } from '@angular/common';
 import { StatusPanelComponent } from './status-panel/status-panel.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { GooglePlacesDirective } from './google-places.directive';
 
 registerLocaleData(localeBE, 'nl-BE');
 @NgModule({
@@ -56,7 +57,8 @@ registerLocaleData(localeBE, 'nl-BE');
     ThemaComponent,
     SchermComponent,
     StatusPanelComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    GooglePlacesDirective
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,8 @@ registerLocaleData(localeBE, 'nl-BE');
     AngularFireAuthModule,
     AngularFireStorageModule,
     MaterialModule,
-    AmazingTimePickerModule
+    AmazingTimePickerModule,
+    
   ],
   providers: [
     WeatherService,
