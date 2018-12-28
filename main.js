@@ -14,9 +14,9 @@ let db = new DBManager();
 //require('electron-reload')(__dirname);
 
 function createWindow() {
-    win = new BrowserWindow();
-    win.webContents.openDevTools();
     win = new BrowserWindow({ width: 1920, height: 1080} );
+
+    //win = new BrowserWindow();
     //win.setFullScreen(true)
 
     // Uncomment the following line to remove the menu bar
