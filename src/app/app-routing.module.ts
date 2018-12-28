@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './googleSyncCalendar/auth.component';
-import { HomeComponent } from './home/home.component';
 import { HomeCalendarComponent } from './calendar/calendar.component';
 import { OptionsComponent } from './options/options.component';
 import { UsersComponent } from './users/users.component';
