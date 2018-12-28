@@ -21,7 +21,6 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { AuthComponent } from './googleSyncCalendar/auth.component';
-import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 import { CalendarListComponent } from './calendar-list/calendar-list.component';
 import { WifiComponent } from './wifi/wifi.component';
@@ -47,7 +46,6 @@ registerLocaleData(localeBE, 'nl-BE');
     HomeCalendarComponent,
     AuthComponent,
     routingComponents,
-    HomeComponent,
     OptionsComponent,
     UsersComponent,
     ModalComponent,
