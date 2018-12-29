@@ -145,10 +145,12 @@ export class HomeCalendarComponent implements OnInit {
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
         // Klik op een lege plek op de kalender
         dayClick: function (date, jsEvent, view, resource) {
+          var currentHour = new Date().getHours();
+          var currentMinute = new Date().getMinutes();
           me.selectedUser = resource;
           me.selectedDate = date.format().match(/.*?T/).toString();
-          me.selectedStartTime = "00:00";
-          me.selectedEndTime = "01:00";
+          me.selectedStartTime = currentHour + ":" + currentMinute;
+          me.selectedEndTime = ((currentHour < 23) ? currentHour + 1 : currentHour = 0) + ":" + currentMinute; 
           document.getElementById("event-body").style.backgroundColor = me.users[resource.id - 1].eventColor;
           me.openModal('event');
           document.getElementById("event").click();
