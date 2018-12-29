@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import localeBE from '@angular/common/locales/nl-BE';
 import { MaterialModule } from './material.module';
-import { AmazingTimePickerModule } from 'amazing-time-picker';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 // Componenten
 import { AppComponent } from './app.component';
@@ -72,8 +72,7 @@ registerLocaleData(localeBE, 'nl-BE');
     AngularFireAuthModule,
     AngularFireStorageModule,
     MaterialModule,
-    AmazingTimePickerModule,
-    
+    NgxMaterialTimepickerModule.forRoot()
   ],
   providers: [
     WeatherService,

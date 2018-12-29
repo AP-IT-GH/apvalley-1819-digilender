@@ -7,18 +7,19 @@
     <script src='fullcalendar.js'></script>
     <script src='scheduler.js'></script> 
 </head> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
-
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
     <div id='calendar'></div>
 
 
-    <button class="add-event-botton" mat-fab color="primary" (click)="openModal('event')">
+    <button class="add-event-botton" mat-fab color="primary"
+        (click)="openModal('event')">
         <mat-icon>add</mat-icon>
     </button>
 
 
     <jw-modal id="event">
-        <mat-card id="event-body" style="padding: 20px;" >
+        <mat-card id="event-body" style="padding: 20px;">
 
             <mat-card-header style="display: flex; justify-content: center">
                 <mat-card-title>New event</mat-card-title>
@@ -27,31 +28,41 @@
             <div class="title-note-container">
                 <mat-form-field appearance="fill">
                     <mat-label>Title</mat-label>
-                    <input matInput type="text" placeholder="Enter title" [(ngModel)]="eventTitle">
+                    <input matInput type="text" placeholder="Enter title"
+                        [(ngModel)]="eventTitle">
                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
                     <mat-label>Note</mat-label>
-                    <textarea matInput placeholder="Add note" [(ngModel)]="eventDescription"></textarea>
+                    <textarea matInput placeholder="Add note"
+                        [(ngModel)]="eventDescription"></textarea>
                 </mat-form-field>
             </div>
-     
+
             <div class="time-container">
                 <mat-form-field class="input-time-item" appearance="fill">
                     <mat-label>Start time</mat-label>
-                    <input matInput atp-time-picker type="text" placeholder="00:00" [(ngModel)]="selectedStartTime">
+                    <input matInput type="text"
+                        placeholder="00:00" [(ngModel)]="selectedStartTime"
+                        [ngxTimepicker]="fullTimeStart" [format]="24">
+                    <ngx-material-timepicker #fullTimeStart></ngx-material-timepicker>
                     <mat-icon matSuffix>access_time</mat-icon>
                 </mat-form-field>
+
                 <mat-form-field class="input-time-item" appearance="fill">
                     <mat-label>End time</mat-label>
-                    <input matInput atp-time-picker type="text" placeholder="01:00" [(ngModel)]="selectedEndTime">
+                    <input matInput type="text"
+                        placeholder="01:00" [(ngModel)]="selectedEndTime"
+                        [ngxTimepicker]="fullTimeEnd" [format]="24">
+                    <ngx-material-timepicker #fullTimeEnd></ngx-material-timepicker>
                     <mat-icon matSuffix>access_time</mat-icon>
                 </mat-form-field>
             </div>
 
             <mat-card-actions class="buttons-event-container">
-                <button mat-raised-button color="warn" (click)="closeModal('event')">Cancel</button>
+                <button mat-raised-button color="warn"
+                    (click)="closeModal('event')">Cancel</button>
                 <button mat-raised-button color="primary" (click)="addEvent()">Save</button>
             </mat-card-actions>
 
@@ -59,17 +70,19 @@
     </jw-modal>
 
     <jw-modal id="event-detail" style="text-align: center;">
-        <mat-card id="event-detail-body" style="padding: 20px; margin-left: 35%; margin-right: 35%; margin-top: 35%; ">
+        <mat-card id="event-detail-body" style="padding: 20px; margin-left: 35%;
+            margin-right: 35%; margin-top: 35%;">
             <mat-card-header style="display: flex; justify-content: center">
                 <mat-card-title>{{selectedUserTitle}}</mat-card-title>
             </mat-card-header>
-            <mat-card-content >
+            <mat-card-content>
                 <p>{{selectedEventTitle}}</p>
                 <p>{{selectedEventDescription}}</p>
                 <p>{{selectedEventTime}}</p>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-raised-button color="primary" (click)="closeModal('event-detail')">Ok</button>
+                <button mat-raised-button color="primary"
+                    (click)="closeModal('event-detail')">Ok</button>
             </mat-card-actions>
         </mat-card>
     </jw-modal>
