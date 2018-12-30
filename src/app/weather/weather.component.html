@@ -1,19 +1,16 @@
-
-<!-- https://github.com/hamedbaatour/Minimus/blob/master/src/app/ui/weather-card/weather-card.component.html -->
 <div class="weather__card" [ngClass]="{'weather__card-dark': darkMode}" (messageLocationEvent)="receveMessage($event)">
-  
-   
-  
-    <div class="temperature-text__container">
-      <!-- <span class="city-name__text">Antwerpen</span> -->
-      <div class="temp">
-          <span class="temperature__text">{{ currentTemp }}</span>
-          <span class="temperature-metric__text">°</span>
-      </div>
-      <span class="weather-condition__text">{{condition}}</span>
+  <div class="temperature-text__container">
+      <!-- <span class="city-name__text">Antwerpen</span> --> 
+    <div class="temp">
+        <span class="temperature__text">{{ today | date:'d' }}</span>
     </div>
-  
-
+       <span class="weather-condition__text">{{ today | date:'MMM' }}</span>
+</div> 
+<div class="weer_rechts">
+  <div class="temp">
+      <span class="temperatuur_text">{{ currentTemp }}</span>
+      <span class="celsius_symbool">°C</span>
+  </div>
   <div class="weather-icon__container" [ngSwitch]="true">   
     <img *ngSwitchCase="condition === 'Clouds'" src="assets/images/cloudy.svg" >
     <img *ngSwitchCase="condition === 'Drizzle'" src="assets/images/rainy-2.svg">
@@ -23,4 +20,6 @@
     <img *ngSwitchCase="condition === 'Clear' || condition === 'Sunny'" src="assets/images/day.svg"  >
     <img *ngSwitchCase="condition === 'Snow'" src="assets/images/snowy-5.svg"  >
   </div> 
+</div>
+  
 </div>
