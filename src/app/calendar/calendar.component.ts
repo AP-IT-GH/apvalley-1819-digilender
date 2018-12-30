@@ -73,6 +73,12 @@ export class HomeCalendarComponent implements OnInit {
         defaultView: 'family',
         groupByResource: false,
         customButtons: {
+          today_custom:{
+            text: 'Today',          
+            click: function() {
+              $('#calendar').fullCalendar('today');           
+            }
+          },
           myNextButton: {
             text: 'Next',
             icon: 'right-single-arrow',
@@ -91,9 +97,9 @@ export class HomeCalendarComponent implements OnInit {
               });
             }
           }
-        },
+        },       
         header: {
-          left: 'today',
+          left: 'today_custom',
           center: 'myPrevButton, title, myNextButton',
           right: ''
         },
