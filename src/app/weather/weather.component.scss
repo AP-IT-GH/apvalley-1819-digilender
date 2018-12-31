@@ -15,23 +15,39 @@
     align-items:baseline;
   }
   .temperature__text {
-    font-size: 4rem;
-    font-weight: 100;
+    font-size: 3.3rem;
+    font-weight: 500;
     letter-spacing: 0.1rem;
   }
-  
   .temperature-metric__text {
     font-size: 4rem;
     font-weight: 100;
   }
+
+  //temperatuur
+  .temperatuur_text{
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+  }
+  .celsius_symbool{
+    font-size: 1rem;
+    font-weight: 400;
+  }
   
   .weather-condition__text {
-    font-size: 1rem;
+    font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
+    font-weight: 400;
   }
   
   .weather-icon__container > * {
     height: 80px;
+  }
+
+  div.weather-icon__container > img{
+  width: 7em;
+  height: 7em;;
   }
   
