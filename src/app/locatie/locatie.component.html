@@ -30,7 +30,10 @@
           <mat-form-field appearance="outline">
             <mat-label>Stad</mat-label>
             <input #cityName matInput appGooglePlaces type="text" class="google-place-input">
-            <mat-icon matSuffix>location_city</mat-icon>
+            <button mat-button *ngIf="cityName.value" matSuffix mat-icon-button aria-label="Clear" (click)="cityName.value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-icon *ngIf="cityName.value==''" matSuffix>location_city</mat-icon>
           </mat-form-field>
         </form>
       </mat-card-content>
