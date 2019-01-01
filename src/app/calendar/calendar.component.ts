@@ -130,7 +130,9 @@ export class HomeCalendarComponent implements OnInit {
         slotEventOverlap: false,
         locale: "nl-be",
         timeFormat: 'HH(:mm)',
+        displayEventTime: false,
         selectable: false,
+        eventOrder: "startActual",
         editable: false,
         allDaySlot: false,
         eventTextColor: 'white',
@@ -179,7 +181,7 @@ export class HomeCalendarComponent implements OnInit {
           me.selectedUserTitle = me.users[calEvent.resourceId - 1].title;
           me.selectedEventTitle = calEvent.title;
           me.selectedEventDescription = calEvent.description;
-          me.selectedEventStart = calEvent.start.toString().match(/\d{2}:\d{2}/).toString();
+          me.selectedEventStart = calEvent.startActual.toString().match(/\d{2}:\d{2}/).toString();
           me.selectedEventEnd = calEvent.stop.toString().match(/\d{2}:\d{2}/).toString();
           document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
           me.openModal('event-detail');
@@ -212,7 +214,8 @@ export class HomeCalendarComponent implements OnInit {
       this.db.addEvent({
         id: undefined,
         resourceId: this.selectedUser.id,
-        start: this.selectedDate + this.selectedStartTime,
+        start: this.selectedDate + "00:00",
+        startActual: this.selectedDate + this.selectedStartTime,
         stop: this.selectedDate + this.selectedEndTime,
         description: this.eventDescription,
         title: this.eventTitle

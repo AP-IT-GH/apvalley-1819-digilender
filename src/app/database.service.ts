@@ -61,6 +61,7 @@ export interface Event {
   id: number;
   resourceId: number;
   start: string;
+  startActual: string;
   stop: string;
   title: string;
   description: string;

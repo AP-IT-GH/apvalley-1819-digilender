@@ -27,6 +27,7 @@ class DBManager {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
       resourceId: Sequelize.INTEGER,   // ID of owning user
       start: Sequelize.STRING,    // datetime event starts
+      startActual: Sequelize.STRING,    // datetime event actually starts
       stop: Sequelize.STRING, // datetime event stops
       title: Sequelize.STRING,    //
       description: Sequelize.TEXT // description of event
