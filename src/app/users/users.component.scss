@@ -1,0 +1,58 @@
+
+
+ .container-header{
+    height: 7em;
+}
+
+.container{
+    margin-left: 2em;
+}
+
+  .align-right{
+      text-align: right;
+  }
+
+  .container{
+    font-family: Geneva, Tahoma, Verdana, sans-serif;
+    font-style: normal;
+    font-variant: normal;
+  }
+
+  table th{
+      font-size: 1.8em;
+      padding: 0;
+      font-weight: normal;
+      
+     padding-bottom: 1em;
+     padding-top: 0.5em;
+  }
+
+
+  table td{
+      font-size: 1.2em;
+  }
+
+  .button{
+      margin-right: 1em;
+  }
+
+  hr{
+   margin-left: 3.5em;
+   margin-right: 3.5em;
+   margin-bottom: 0;
+  }
+
+  .update-user-button {
+	position: absolute;
+	bottom: 20px;
+	right: 4em;
+	z-index: 1;
+	color: white;
+}
+
+.button-back{
+    position: absolute;
+	bottom: 20px;
+	left: 23em;
+	z-index: 1;
+}

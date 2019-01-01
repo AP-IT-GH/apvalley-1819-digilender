@@ -170,7 +170,8 @@ export class HomeCalendarComponent implements OnInit {
         },
         // Titel bovenaan correct tonen
         viewRender: function (view, element) {
-          $('.fc-center')[0].children[1].textContent = view.title.replace(new RegExp("undefined", 'g'), "");;
+          $('.fc-center')[0].children[1].textContent = view.title.replace(new RegExp("undefined", 'g'), "");
+
         },
         // Klik op een event en de details tonen
         eventClick: function (calEvent, jsEvent, view) {

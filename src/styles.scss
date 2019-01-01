@@ -205,3 +205,27 @@ body.jw-modal-open {
 .fc-today {
   background: #fff !important;
 }
+
+hr{
+  // margin-top:40px;
+   border-top-color: #2396cf;
+   border-top-width: 2px;
+   border-top-style: solid;
+   margin-top: 1px;
+}
+
+body > app-root > div > div.container-home-calendar.ng-trigger.ng-trigger-fadeAnimation > app-users > div.container > div > div.col-sm-4.list-users > form > table {
+  border-spacing: 0;
+  border-color: transparent;
+  border-width: 0;
+}
+body > app-root > div > div.container-home-calendar.ng-trigger.ng-trigger-fadeAnimation > app-users > div.container > div > div.col-sm-4 > form > table > thead > tr > th:nth-child(1){
+  margin-right: 1em;
+}
+
+body > app-root > div > div.container-home-calendar.ng-trigger.ng-trigger-fadeAnimation > app-users > div.container > div > div.col-sm-4{
+  border-right-color: #2396cf;
+  border-right-style: solid;
+  border-right-width: 2px;
+  padding: top 5px;
+}
