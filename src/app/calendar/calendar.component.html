@@ -71,14 +71,14 @@
 
     <jw-modal id="event-detail" style="text-align: center;">
         <mat-card id="event-detail-body" style="padding: 20px; margin-left: 35%;
-            margin-right: 35%; margin-top: 35%;">
+            margin-right: 35%; margin-top: 35%; color: white">
             <mat-card-header style="display: flex; justify-content: center">
                 <mat-card-title>{{selectedUserTitle}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <p>{{selectedEventTitle}}</p>
+                <p>{{selectedEventStart}} - {{selectedEventEnd}}</p>
                 <p>{{selectedEventDescription}}</p>
-                <p>{{selectedEventTime}}</p>
             </mat-card-content>
             <mat-card-actions>
                 <button mat-raised-button color="primary"

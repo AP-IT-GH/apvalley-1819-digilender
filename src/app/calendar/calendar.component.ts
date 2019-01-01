@@ -26,7 +26,8 @@ export class HomeCalendarComponent implements OnInit {
   selectedUserTitle: string;
   selectedEventTitle: string;
   selectedEventDescription: string;
-  selectedEventTime: string;
+  selectedEventStart: string;
+  selectedEventEnd: string;
   calendar;
   users;
   selectedUser;
@@ -178,7 +179,8 @@ export class HomeCalendarComponent implements OnInit {
           me.selectedUserTitle = me.users[calEvent.resourceId - 1].title;
           me.selectedEventTitle = calEvent.title;
           me.selectedEventDescription = calEvent.description;
-          me.selectedEventTime = calEvent.start.toString().match(/\d{2}:\d{2}/).toString();
+          me.selectedEventStart = calEvent.start.toString().match(/\d{2}:\d{2}/).toString();
+          me.selectedEventEnd = calEvent.stop.toString().match(/\d{2}:\d{2}/).toString();
           document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
           me.openModal('event-detail');
           document.getElementById("event-detail").click();
