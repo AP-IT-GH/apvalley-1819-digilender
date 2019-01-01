@@ -1,60 +1,66 @@
-.btn-group{
-    float: right;
+.btn-group {
+	float: right;
 }
-.btn-group button{
-    background-color: #2396CF;
-    border-radius: 10%;
-    box-shadow: none;
-    margin-left: 0.5rem;
-    border:none;
+
+.btn-group button {
+	background-color: #2396cf;
+	border-radius: 10%;
+	box-shadow: none;
+	margin-left: 0.5rem;
+	border: none;
 }
-.btn-group> button:focus{outline: none; }
-.btn-group button .header-icons{
-    width: 30px;
+
+.btn-group > button:focus {
+	outline: none;
 }
+
+.btn-group button .header-icons {
+	width: 30px;
+}
+
 // .container-calendar{
 //     position: relative;
 //     padding-left: 0.5rem;
 //     padding-right: 0.5rem;
 // }
 
-.add-event-botton{
-    position:absolute;
-    bottom:20px;
-    right:40px;
-    z-index: 1;
-    color: white;
-}
-.title-note-container{
-    display: flex;
-  flex-direction: column;
+.add-event-botton {
+	position: absolute;
+	bottom: 20px;
+	right: 40px;
+	z-index: 1;
+	color: white;
 }
 
-.title-note-container > *{
-    width: 100%;
+.title-note-container {
+	display: flex;
+	flex-direction: column;
 }
 
-.time-container{
-    display: flex;
-    justify-content: space-between;
+.title-note-container > * {
+	width: 100%;
 }
 
-.input-time-item{
-    width: 49%;
+.time-container {
+	display: flex;
+	justify-content: space-between;
 }
 
-.buttons-event-container{
-    display: flex;
-    justify-content: flex-end;
-}
-.buttons-event-container>*{
-    width: 20%;
-    margin-left: 5px;
-    
-}
-#calendar{
-    padding-left: 5px;
-    padding-right: 5px;
+.input-time-item {
+	width: 49%;
 }
 
+.buttons-event-container {
+	display: flex;
+	justify-content: flex-end;
+}
 
+.buttons-event-container > * {
+	width: 20%;
+	margin-left: 5px;
+}
+
+#calendar {
+	padding-left: 5px;
+	padding-right: 5px;
+}

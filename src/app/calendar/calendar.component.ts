@@ -40,8 +40,8 @@ export class HomeCalendarComponent implements OnInit {
     var me = this;
 
     $(function () {
-  
-      
+
+
       me.calendar = $('#calendar');
 
       var getDaysInMonth = function () {
@@ -58,31 +58,31 @@ export class HomeCalendarComponent implements OnInit {
       };
 
       var getMinTime = function () {
-        return {days: -7};
+        return { days: -7 };
       };
 
       var getMaxTime = function () {
-        return {days: 30};
+        return { days: 30 };
       };
-     
+
       // let containerEl: JQuery = $('#calendar');
       $('#calendar').fullCalendar({
         //themeSystem: 'bootstrap4',
-        height: $(window).height()*0.95,
+        height: $(window).height() * 0.95,
         //contentHeight: () => { return $(window).height()*0.8; },
         defaultView: 'family',
         groupByResource: false,
         customButtons: {
-          today_custom:{
-            text: 'Today',          
-            click: function() {
-              $('#calendar').fullCalendar('today');           
+          today_custom: {
+            text: 'Today',
+            click: function () {
+              $('#calendar').fullCalendar('today');
             }
           },
           myNextButton: {
             text: 'Next',
             icon: 'right-single-arrow',
-            click: function() {
+            click: function () {
               $('#calendar').fullCalendar('incrementDate', {
                 months: 1
               });
@@ -91,13 +91,13 @@ export class HomeCalendarComponent implements OnInit {
           myPrevButton: {
             text: 'Prev',
             icon: 'left-single-arrow',
-            click: function() {
+            click: function () {
               $('#calendar').fullCalendar('incrementDate', {
                 months: -1
               });
             }
           }
-        },       
+        },
         header: {
           left: 'today_custom',
           center: 'myPrevButton, title, myNextButton',
@@ -121,13 +121,13 @@ export class HomeCalendarComponent implements OnInit {
             maxTime: getMaxTime(),
             slotDuration: '24:00:00',
             titleFormat: 'MMMM YYYY',
-            slotLabelFormat: 'D \n'+ 'ddd ',
+            slotLabelFormat: 'D \n' + 'ddd ',
             buttonText: 'family Calendar',
-            scrollTime: {days: 0}
+            scrollTime: { days: 0 }
           },
         },
-        slotEventOverlap:false,
-        locale:"nl-be",
+        slotEventOverlap: false,
+        locale: "nl-be",
         selectable: false,
         editable: false,
         allDaySlot: false,
@@ -151,12 +151,13 @@ export class HomeCalendarComponent implements OnInit {
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
         // Klik op een lege plek op de kalender
         dayClick: function (date, jsEvent, view, resource) {
-          var currentHour = new Date().getHours();
-          var currentMinute = new Date().getMinutes();
+          var currentDate = new Date();
+          var currentHour = currentDate.getHours();
+          var currentMinute = (currentDate.getMinutes() < 10 ? '0' : '') + currentDate.getMinutes();
           me.selectedUser = resource;
           me.selectedDate = date.format().match(/.*?T/).toString();
           me.selectedStartTime = currentHour + ":" + currentMinute;
-          me.selectedEndTime = ((currentHour < 23) ? currentHour + 1 : currentHour = 0) + ":" + currentMinute; 
+          me.selectedEndTime = ((currentHour < 23) ? currentHour + 1 : currentHour = 0) + ":" + currentMinute;
           document.getElementById("event-body").style.backgroundColor = me.users[resource.id - 1].eventColor;
           me.openModal('event');
           document.getElementById("event").click();
@@ -188,7 +189,6 @@ export class HomeCalendarComponent implements OnInit {
       });
     })
   }
-  
 
   openModal(id: string) {
     this.modalService.open(id);
@@ -198,7 +198,7 @@ export class HomeCalendarComponent implements OnInit {
     this.modalService.close(id);
   }
 
-  resetCalendar(){
+  resetCalendar() {
     $('#calendar').fullCalendar('render');
     console.log($('#calendar').fullCalendar('today'));
   }
