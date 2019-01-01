@@ -128,7 +128,7 @@ export class HomeCalendarComponent implements OnInit {
         },
         slotEventOverlap: false,
         locale: "nl-be",
-        timeFormat: 'H(:mm)',
+        timeFormat: 'HH(:mm)',
         selectable: false,
         editable: false,
         allDaySlot: false,

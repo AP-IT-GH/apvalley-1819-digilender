@@ -29,7 +29,7 @@ export class CalendarListComponent implements OnInit {
         views: { listDay: {} },
         selectable: false,
         locale: "nl-be",
-        timeFormat: 'H(:mm)',
+        timeFormat: 'HH(:mm)',
         allDaySlot: false,
         listDayFormat: false,
         listDayAltFormat: false,
