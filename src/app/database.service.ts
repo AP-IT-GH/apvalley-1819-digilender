@@ -27,6 +27,15 @@ export class DatabaseService {
       });
   }
 
+  deleteUser(id:string){
+    return promiseIpc.send('users', {action: 'delete', value: id})
+    .then((succes) => {
+      let tmp = JSON.parse(succes);
+      return tmp;
+    });
+  }
+
+
   getEvents(userId: number) {
     return promiseIpc.send('events', { action: 'get', userId: userId })
       .then((events) => {

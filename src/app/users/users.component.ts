@@ -12,6 +12,9 @@ export class UsersComponent implements OnInit {
 
   public addUser:boolean = false;
   public users: Array<IUser>= [];
+  public colors: Array<string>=[];
+  public chosenColor: string;
+  public changeUser: IUser;
   arrayLength:number;
   public addUserForm = new FormGroup({
     title: new FormControl('', Validators.required),
@@ -29,6 +32,7 @@ export class UsersComponent implements OnInit {
      }
     })
     
+    this.colorsToChoose();
    
   }
   goTo(pad:String):void{
@@ -54,11 +58,39 @@ public saveUser(){
   this.dbService.addUser(newuser)
 }
 
-public cancel(){
-  this.addUser = !this.addUser;
-  this.addUserForm.get('title').setValue("");
-  this.addUserForm.get('eventColor').setValue("");
-  //this.addUserForm.get('Agenda').setValue("");
+public updateUser(user: IUser){
+  this.users[this.users.indexOf(user)].eventColor=this.chosenColor;
+  this.dbService.addUser(user);
+
+}
+
+
+public userToUpdate(id: string){
+  this.users.forEach(element => {
+    if(element.id == id){
+      this.changeUser= element;
+    }
+  });
+}
+
+
+public deleteUser(id: string){
+  let message = this.dbService.deleteUser(id);
+  console.log(message);
+  this.users.forEach(element => {
+    if(element.id == id)
+      this.users = this.users.splice(this.users.indexOf(element), 1);
+  });
+}
+
+
+private colorsToChoose(){
+  this.colors.push("#F47E44");
+  this.colors.push("#FACA13");
+  this.colors.push("#F4F1EA");
+  this.colors.push("#2495D3");
+  this.colors.push("#FAAE83");
+  this.colors.push("#9EC3E7");
 }
 }
 
