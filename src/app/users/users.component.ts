@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import {DatabaseService} from '../database.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-users',
@@ -14,6 +15,7 @@ export class UsersComponent implements OnInit {
   public users: Array<IUser>= [];
   public colors: Array<string>=[];
   public chosenColor: string;
+  public selected: number;
   public changeUser: IUser;
   arrayLength:number;
   public addUserForm = new FormGroup({
@@ -62,6 +64,11 @@ public updateUser(user: IUser){
   this.users[this.users.indexOf(user)].eventColor=this.chosenColor;
   this.dbService.addUser(user);
 
+}
+
+public selectedColor(color: string, i:number){
+  this.chosenColor = color;
+  this.selected = i;
 }
 
 

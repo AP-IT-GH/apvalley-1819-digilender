@@ -53,7 +53,7 @@
             <h1>{{changeUser.title}}</h1>
             <h2>Kleur</h2>
             <div class="kleurenContainer">
-                <div *ngFor="let color of colors" [style.backgroundColor]="color" class="kleur" (click)="chosenColor=color"></div>
+                <div *ngFor="let color of colors; let i = index" [style.backgroundColor]="color" [className]="i == selected ? 'clicked' : 'kleur'" (click)="selectedColor(color, i)"></div>
             </div>
             <input *ngIf="addUser" class="form-control" type="text" id="title" formControlName="title">
 

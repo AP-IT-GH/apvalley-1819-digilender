@@ -71,7 +71,10 @@
     border-radius: 25%;
 }
 
-.kleur:active{
+.clicked{
+    width: 30px;
+    height: 30px;
+    border-radius: 25%;
     border-style: solid;
     border-color: black;
     border-width: 2px;
