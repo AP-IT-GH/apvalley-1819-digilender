@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit {
   arrayLength:number;
   public addUserForm = new FormGroup({
     title: new FormControl('', Validators.required),
-    eventColor: new FormControl('', Validators.required),
+    //eventColor: new FormControl('', Validators.required),
     //Agenda: new FormControl('')
   });
 
@@ -47,17 +47,17 @@ public saveUser(){
   let newuser:IUser = {
     id: undefined,
     title: this.addUserForm.get('title').value,
-    eventColor: this.addUserForm.get('eventColor').value,
+    eventColor: this.chosenColor,
     //Agenda: this.addUserForm.get('Agenda').value
   };
   console.log(newuser);
   this.users.push(newuser);
-
-  this.addUser = !this.addUser;
-  this.addUserForm.get('title').setValue("");
-  this.addUserForm.get('eventColor').setValue("");
-  //this.addUserForm.get('Agenda').setValue("");
   this.dbService.addUser(newuser)
+
+    this.addUserForm.get('title').setValue("");
+  //this.addUserForm.get('Agenda').setValue("");
+  this.addUser = false;
+  
 }
 
 public updateUser(user: IUser){
@@ -73,6 +73,7 @@ public selectedColor(color: string, i:number){
 
 
 public userToUpdate(id: string){
+  this.addUser = false;
   this.users.forEach(element => {
     if(element.id == id){
       this.changeUser= element;

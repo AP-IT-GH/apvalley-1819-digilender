@@ -5,7 +5,6 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
-            <form [formGroup]= "addUserForm" >
                 <!--Table-->
                 <table>
             
@@ -15,7 +14,7 @@
                             <th>Gezinsleden</th>
                             <th class="align-right">
                                 <button class="button" mat-mini-fab color="primary"
-                                (click)="addUser = !addUser">
+                                (click)="addUser = true">
                                 <mat-icon >add</mat-icon>
                                 </button>
                             </th>
@@ -45,17 +44,28 @@
             
                 </table>
 
-            </form>
                 <!--Table-->
         </div>
     
-        <div class="col-sm-8"> 
+        <div class="col-sm-8" *ngIf="changeUser"> 
             <h1>{{changeUser.title}}</h1>
             <h2>Kleur</h2>
             <div class="kleurenContainer">
                 <div *ngFor="let color of colors; let i = index" [style.backgroundColor]="color" [className]="i == selected ? 'clicked' : 'kleur'" (click)="selectedColor(color, i)"></div>
             </div>
-            <input *ngIf="addUser" class="form-control" type="text" id="title" formControlName="title">
+
+        </div>
+        <div class="col-sm-8" *ngIf="addUser">
+            <form [formGroup]= "addUserForm" > 
+                <h1>
+                    <label for="title">Naam nieuwe gebruiker: </label>
+                    <input class="form-control" type="text" id="title" formControlName="title">
+                </h1>
+                <h2>Kleur</h2>
+                <div class="kleurenContainer">
+                    <div *ngFor="let color of colors; let i = index" [style.backgroundColor]="color" [className]="i == selected ? 'clicked' : 'kleur'" (click)="selectedColor(color, i)"></div>
+                </div>
+            </form>
 
         </div>
     </div>
