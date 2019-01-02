@@ -153,15 +153,9 @@ export class HomeCalendarComponent implements OnInit {
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
         // Klik op een lege plek op de kalender
         dayClick: function (date, jsEvent, view, resource) {
-          var currentDate = new Date();
-          var currentHour = currentDate.getHours();
-          var currentMinute = (currentDate.getMinutes() < 10 ? '0' : '') + currentDate.getMinutes();
           me.selectedUser = resource;
           me.selectedDate = date.format().match(/.*?T/).toString();
-          me.selectedStartTime = currentHour + ":" + currentMinute;
-          me.selectedEndTime = ((currentHour < 23) ? currentHour + 1 : currentHour = 0) + ":" + currentMinute;
-          document.getElementById("event-body").style.backgroundColor = me.users[resource.id - 1].eventColor;
-          me.openModal('event');
+          me.openModal('event', me.users[resource.id - 1].eventColor);
           document.getElementById("event").click();
         },
         // Voeg een beschrijving toe
@@ -181,8 +175,7 @@ export class HomeCalendarComponent implements OnInit {
           me.selectedEventDescription = calEvent.description;
           me.selectedEventStart = calEvent.start.toString().match(/\d{2}:\d{2}/).toString();
           me.selectedEventEnd = calEvent.stop.toString().match(/\d{2}:\d{2}/).toString();
-          document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
-          me.openModal('event-detail');
+          me.openModal('event-detail', me.users[calEvent.resourceId - 1].eventColor);
           document.getElementById("event-detail").click();
 
           // me.db.getEvents(calEvent.resourceId).then((events) => {
@@ -194,7 +187,16 @@ export class HomeCalendarComponent implements OnInit {
     })
   }
 
-  openModal(id: string) {
+  openModal(id: string, color: string) {
+    var currentDate = new Date();
+    var currentHour = currentDate.getHours();
+    var currentMinute = (currentDate.getMinutes() < 10 ? '0' : '') + currentDate.getMinutes();
+    // me.selectedUser = resource;
+    // me.selectedDate = date.format().match(/.*?T/).toString();
+    this.selectedStartTime = currentHour + ":" + currentMinute;
+    this.selectedEndTime = ((currentHour < 23) ? currentHour + 1 : currentHour = 0) + ":" + currentMinute;
+    document.getElementById("event-body").style.backgroundColor = color;
+    document.getElementById("event-detail-body").style.backgroundColor = color;
     this.modalService.open(id);
   }
 
