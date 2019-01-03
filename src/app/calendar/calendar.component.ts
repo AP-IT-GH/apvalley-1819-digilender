@@ -31,6 +31,7 @@ export class HomeCalendarComponent implements OnInit {
   calendar;
   users;
   selectedUser;
+  userFromDropdown;
 
   goToOptions(): void {
     this.router.navigate(['/options'], { relativeTo: this.route });
@@ -217,10 +218,14 @@ export class HomeCalendarComponent implements OnInit {
       var dateFromPicker = new Date(this.dateFromPicker);
       this.selectedDate = dateFromPicker.getFullYear() + "-" + ('0' + (dateFromPicker.getMonth() + 1)).slice(-2) + "-" + ('0' + dateFromPicker.getDate()).slice(-2) + "T";
     }
+    else {
+      this.userFromDropdown = this.selectedUser.id;
+    }
+
     if (this.eventTitle != "" && this.eventTitle != null && this.dateFromPicker != '') {
       this.db.addEvent({
         id: undefined,
-        resourceId: this.selectedUser.id,
+        resourceId: this.userFromDropdown,
         start: this.selectedDate + this.selectedStartTime,
         stop: this.selectedDate + this.selectedEndTime,
         description: this.eventDescription,
