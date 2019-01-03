@@ -67,10 +67,16 @@ function createWindow() {
               });
         }
         else if (arg.action == 'put'){
+            console.log("putting event");
+            console.log(arg.value);
             return db.addEvent(arg.value).then((newEvent) => {
+              console.log("returning event:");
+              console.log(newEvent);
               var tmp = JSON.stringify(newEvent);
               console.log(tmp);
               return tmp;
+            }).catch(function() {
+              console.log(arguments);
             });
         }
     });

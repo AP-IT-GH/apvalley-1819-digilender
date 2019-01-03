@@ -45,14 +45,6 @@ class DBManager {
       me.User.create({ title: "Coralie", eventColor: "#ffcc00", calType: 0, login: 'corun', pass: 'corpw' });
       return me.User.create({ title: "Elke", eventColor: "#99ccff", calType: 0, login: 'elkun', pass: 'elkpw' })
     }).then((user) => {
-      me.Event.create({ resourceId: 3, start: '2018-12-10T09:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
-      me.Event.create({ resourceId: 1, start: '2018-12-11T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
-      me.Event.create({ resourceId: 2, start: '2018-12-12T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
-      me.Event.create({ resourceId: 3, start: '2018-12-13T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
-      me.Event.create({ resourceId: 4, start: '2018-12-14T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
-      me.Event.create({ resourceId: 0, start: '2018-12-15T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
-      me.Event.create({ resourceId: 1, start: '2018-12-16T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
-      me.Event.create({ resourceId: 2, start: '2018-12-17T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
       me.initialised = true;
     });
     me.sequelize.authenticate()
@@ -67,11 +59,16 @@ class DBManager {
     console.log('adding user');
     console.log(user);
     if (user.id == undefined) {
+      console.log("new user");
       return this.User.build(user).save(); //return promise of new user
     }
     else {
+      console.log("edit user");
       return this.User.findById(user.id)
         .then((oldUser) => {
+          console.log("old user, new user:");
+          console.log(oldUser);
+          console.log(user);
           return oldUser.update(user);
         });
     }
@@ -80,12 +77,17 @@ class DBManager {
   addEvent(newEvent) {
     console.log('adding event');
     console.log(newEvent);
+    console.log(newEvent.id);
     if (newEvent.id == undefined) {
       return this.Event.build(newEvent).save(); //return promise of new event
     }
     else {
-      return this.Event.findById(event.id)
+      console.log("finding old event");
+      return this.Event.findById(newEvent.id)
         .then((oldEvent) => {
+          console.log("old event, new event:");
+          console.log(oldEvent);
+          console.log(newEvent);
           return oldEvent.update(newEvent);
         });
     }

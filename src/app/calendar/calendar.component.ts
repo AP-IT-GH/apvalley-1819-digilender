@@ -27,6 +27,7 @@ export class HomeCalendarComponent implements OnInit {
   selectedEventTitle: string;
   selectedEventDescription: string;
   selectedEventTime: string;
+  selectedEvent;
   calendar;
   users;
   selectedUser;
@@ -145,7 +146,7 @@ export class HomeCalendarComponent implements OnInit {
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
         // Klik op een lege plek op de kalender
         dayClick: function (date, jsEvent, view, resource) {
-          me.selectedUser = resource;
+          me.selectedUser = resource.id;
           me.selectedDate = date.format().match(/.*?T/).toString();
           me.selectedStartTime = "00:00";
           me.selectedEndTime = "01:00";
@@ -164,6 +165,8 @@ export class HomeCalendarComponent implements OnInit {
         },
         // Klik op een event en de details tonen
         eventClick: function (calEvent, jsEvent, view) {
+          me.selectedEvent = calEvent;
+          console.log(me.selectedEvent);
           me.selectedUserTitle = me.users[calEvent.resourceId - 1].title;
           me.selectedEventTitle = calEvent.title;
           me.selectedEventDescription = calEvent.description;
@@ -195,17 +198,46 @@ export class HomeCalendarComponent implements OnInit {
     console.log($('#calendar').fullCalendar('today'));
   }
 
+  editEvent() {
+    console.log("pressed editevent");
+    console.log(this.selectedEvent);
+    this.eventTitle = this.selectedEvent.title;
+    this.eventDescription = this.selectedEvent.description;
+    this.selectedUser = this.selectedEvent.resourceId;
+    this.selectedStartTime = this.selectedEvent.start;
+    this.selectedEndTime = this.selectedEvent.stop;
+    this.closeModal('event-detail');
+    this.openModal('event');
+  }
+
   addEvent() {
     if (this.eventTitle != "" && this.eventTitle != null) {
-      this.db.addEvent({
-        id: undefined,
-        resourceId: this.selectedUser.id,
-        start: this.selectedDate + this.selectedStartTime,
-        stop: this.selectedDate + this.selectedEndTime,
-        description: this.eventDescription,
-        title: this.eventTitle
-      });
+      if(this.selectedEvent && this.selectedEvent.id){
+        console.log("edit, not add");
+        console.log("res id:");
+        console.log(this.selectedUser);
+        console.log(this.db.addEvent({
+          id: this.selectedEvent.id,
+          resourceId: this.selectedUser,
+          start: this.selectedDate + this.selectedStartTime,
+          stop: this.selectedDate + this.selectedEndTime,
+          description: this.eventDescription,
+          title: this.eventTitle
+        }));
+        $('#calendar').fullCalendar('updateEvent', this.selectedEvent);
+      }
+      else{
+        this.db.addEvent({
+          id: undefined,
+          resourceId: this.selectedUser,
+          start: this.selectedDate + this.selectedStartTime,
+          stop: this.selectedDate + this.selectedEndTime,
+          description: this.eventDescription,
+          title: this.eventTitle
+        });
+      }
       this.closeModal('event');
+      this.selectedEvent = undefined;
       this.eventTitle = "";
       this.eventDescription = "";
       // Alert that there has been a change in the database and refetch the events

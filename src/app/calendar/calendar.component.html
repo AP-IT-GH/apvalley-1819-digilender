@@ -59,17 +59,16 @@
     </jw-modal>
 
     <jw-modal id="event-detail" style="text-align: center;">
-        <mat-card id="event-detail-body" style="padding: 20px; margin-left: 35%; margin-right: 35%; margin-top: 35%; ">
+        <mat-card id="event-detail-body" style="padding: 20px; margin-left: 20%; margin-right: 20%; margin-top: 35%; ">
+        <button mat-raised-button style="position: absolute; left: -50%; top: -33px; display: inline-block " (click)="editEvent()" >Edit</button>
+        <button mat-raised-button color="primary" style="position: absolute; left: 90%; top: -33px; display: inline-block" (click)="closeModal('event-detail')">Ok</button>
             <mat-card-header style="display: flex; justify-content: center">
                 <mat-card-title>{{selectedUserTitle}}</mat-card-title>
             </mat-card-header>
-            <mat-card-content >
-                <p>{{selectedEventTitle}}</p>
-                <p>{{selectedEventDescription}}</p>
+            <mat-card-content *ngIf="selectedEvent" >
+                <p>{{selectedEvent.title}}</p>
+                <p>{{selectedEvent.Description}}</p>
                 <p>{{selectedEventTime}}</p>
             </mat-card-content>
-            <mat-card-actions>
-                <button mat-raised-button color="primary" (click)="closeModal('event-detail')">Ok</button>
-            </mat-card-actions>
         </mat-card>
     </jw-modal>
