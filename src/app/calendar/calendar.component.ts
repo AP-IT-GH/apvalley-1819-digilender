@@ -5,8 +5,6 @@ import 'fullcalendar-scheduler';
 import { ModalService } from '../modal.service';
 import { DatabaseService } from '../database.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { toDate } from '@angular/common/src/i18n/format_date';
-import { months } from 'moment';
 
 @Component({
   selector: 'app-calendar',
@@ -19,6 +17,8 @@ export class HomeCalendarComponent implements OnInit {
   constructor(private modalService: ModalService, public db: DatabaseService, private router: Router, private route: ActivatedRoute) { }
 
   selectedDate: string;
+  dateFromPicker: string;
+  isDatePicked: boolean;
   selectedStartTime: string;
   selectedEndTime: string;
   eventTitle: string;
@@ -154,8 +154,10 @@ export class HomeCalendarComponent implements OnInit {
         // Klik op een lege plek op de kalender
         dayClick: function (date, jsEvent, view, resource) {
           me.selectedUser = resource;
+          me.dateFromPicker = date.format();
           me.selectedDate = date.format().match(/.*?T/).toString();
-          me.openModal('event', me.users[resource.id - 1].eventColor);
+          document.getElementById("event-body").style.backgroundColor = me.users[resource.id - 1].eventColor;
+          me.openModal('event', true);
           document.getElementById("event").click();
         },
         // Voeg een beschrijving toe
@@ -175,7 +177,8 @@ export class HomeCalendarComponent implements OnInit {
           me.selectedEventDescription = calEvent.description;
           me.selectedEventStart = calEvent.start.toString().match(/\d{2}:\d{2}/).toString();
           me.selectedEventEnd = calEvent.stop.toString().match(/\d{2}:\d{2}/).toString();
-          me.openModal('event-detail', me.users[calEvent.resourceId - 1].eventColor);
+          document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
+          me.openModal('event-detail', false);
           document.getElementById("event-detail").click();
 
           // me.db.getEvents(calEvent.resourceId).then((events) => {
@@ -187,16 +190,18 @@ export class HomeCalendarComponent implements OnInit {
     })
   }
 
-  openModal(id: string, color: string) {
+  openModal(id: string, isDatePicked: boolean) {
+    if (!isDatePicked) {
+      this.dateFromPicker = '';
+      document.getElementById("event-body").style.backgroundColor = '#f4f1ea';
+      document.getElementById("event-detail-body").style.backgroundColor = '#f4f1ea';
+    }
+    this.isDatePicked = isDatePicked;
     var currentDate = new Date();
     var currentHour = currentDate.getHours();
     var currentMinute = (currentDate.getMinutes() < 10 ? '0' : '') + currentDate.getMinutes();
-    // me.selectedUser = resource;
-    // me.selectedDate = date.format().match(/.*?T/).toString();
     this.selectedStartTime = currentHour + ":" + currentMinute;
     this.selectedEndTime = ((currentHour < 23) ? currentHour + 1 : currentHour = 0) + ":" + currentMinute;
-    document.getElementById("event-body").style.backgroundColor = color;
-    document.getElementById("event-detail-body").style.backgroundColor = color;
     this.modalService.open(id);
   }
 
@@ -210,7 +215,11 @@ export class HomeCalendarComponent implements OnInit {
   }
 
   addEvent() {
-    if (this.eventTitle != "" && this.eventTitle != null) {
+    if (!this.isDatePicked) {
+      var dateFromPicker = new Date(this.dateFromPicker);
+      this.selectedDate = dateFromPicker.getFullYear() + "-" + ('0' + (dateFromPicker.getMonth() + 1)).slice(-2) + "-" + ('0' + dateFromPicker.getDate()).slice(-2) + "T";
+    }
+    if (this.eventTitle != "" && this.eventTitle != null && this.dateFromPicker != '') {
       this.db.addEvent({
         id: undefined,
         resourceId: this.selectedUser.id,
