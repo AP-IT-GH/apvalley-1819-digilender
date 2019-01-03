@@ -39,11 +39,27 @@
                         [(ngModel)]="eventDescription"></textarea>
                 </mat-form-field>
 
+                <mat-form-field appearance="fill" *ngIf="eventButton">
+                    <mat-label>Gezinslid</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let user of users"
+                            [value]="user.id">
+                            {{user.title}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" *ngIf="!eventButton">
+                    <mat-label>Gezinslid</mat-label>
+                    <input matInput type="text" disabled value="{{selectedUserTitle}}">
+                </mat-form-field>
+
                 <mat-form-field class="date-picker" appearance="fill"
                     (click)="picker.open()">
                     <mat-label>Datum</mat-label>
                     <input matInput [matDatepicker]="picker" placeholder="Kies
-                        een datum" [(ngModel)]="dateFromPicker" [disabled]="!eventButton">
+                        een datum" [(ngModel)]="dateFromPicker"
+                        [disabled]="!eventButton">
                     <mat-datepicker touchUi #picker></mat-datepicker>
                     <mat-icon matSuffix>date_range</mat-icon>
                 </mat-form-field>

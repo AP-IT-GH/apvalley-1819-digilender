@@ -41,8 +41,6 @@ export class HomeCalendarComponent implements OnInit {
     var me = this;
 
     $(function () {
-
-
       me.calendar = $('#calendar');
 
       var getDaysInMonth = function () {
@@ -154,6 +152,7 @@ export class HomeCalendarComponent implements OnInit {
         // Klik op een lege plek op de kalender
         dayClick: function (date, jsEvent, view, resource) {
           me.selectedUser = resource;
+          me.selectedUserTitle = resource.title;
           me.dateFromPicker = date.format();
           me.selectedDate = date.format().match(/.*?T/).toString();
           document.getElementById("event-body").style.backgroundColor = me.users[resource.id - 1].eventColor;
@@ -178,13 +177,12 @@ export class HomeCalendarComponent implements OnInit {
           me.selectedEventStart = calEvent.start.toString().match(/\d{2}:\d{2}/).toString();
           me.selectedEventEnd = calEvent.stop.toString().match(/\d{2}:\d{2}/).toString();
           document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
-          me.openModal('event-detail', false);
+          me.openModal('event-detail', true);
           document.getElementById("event-detail").click();
 
           // me.db.getEvents(calEvent.resourceId).then((events) => {
           //   console.log(events[0].title);
           // });
-
         }
       });
     })
