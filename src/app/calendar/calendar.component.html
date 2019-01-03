@@ -43,7 +43,7 @@
                     (click)="picker.open()">
                     <mat-label>Datum</mat-label>
                     <input matInput [matDatepicker]="picker" placeholder="Kies
-                        een datum" [(ngModel)]="dateFromPicker" [disabled]="isDatePicked">
+                        een datum" [(ngModel)]="dateFromPicker" [disabled]="!eventButton">
                     <mat-datepicker touchUi #picker></mat-datepicker>
                     <mat-icon matSuffix>date_range</mat-icon>
                 </mat-form-field>

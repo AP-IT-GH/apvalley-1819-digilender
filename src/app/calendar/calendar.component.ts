@@ -18,7 +18,7 @@ export class HomeCalendarComponent implements OnInit {
 
   selectedDate: string;
   dateFromPicker: string;
-  isDatePicked: boolean;
+  eventButton: boolean;
   selectedStartTime: string;
   selectedEndTime: string;
   eventTitle: string;
@@ -196,7 +196,7 @@ export class HomeCalendarComponent implements OnInit {
       document.getElementById("event-body").style.backgroundColor = '#f4f1ea';
       document.getElementById("event-detail-body").style.backgroundColor = '#f4f1ea';
     }
-    this.isDatePicked = isDatePicked;
+    this.eventButton = !isDatePicked;
     var currentDate = new Date();
     var currentHour = currentDate.getHours();
     var currentMinute = (currentDate.getMinutes() < 10 ? '0' : '') + currentDate.getMinutes();
@@ -215,7 +215,7 @@ export class HomeCalendarComponent implements OnInit {
   }
 
   addEvent() {
-    if (!this.isDatePicked) {
+    if (this.eventButton) {
       var dateFromPicker = new Date(this.dateFromPicker);
       this.selectedDate = dateFromPicker.getFullYear() + "-" + ('0' + (dateFromPicker.getMonth() + 1)).slice(-2) + "-" + ('0' + dateFromPicker.getDate()).slice(-2) + "T";
     }
