@@ -11,20 +11,27 @@
   }
   mat-card{
       flex-basis: 25%;
+      padding: 0 0;
+      background-color: #F3F1EA;
   }
-  mat-card-header{
-   
-      justify-content: center;
-  }
-  .apply-button{
-      width: 100%;
+
+  mat-card-actions{
+    margin: 0;
+    padding: 0;
+}
+
+mat-card-content{
+    margin: 0;
+}
+
+.button-thema{
+    width: 100%;
+    padding: 0;
   }
  
-  .footer {
-    
-  }
   .vertical-stripes-digilender {
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     background: repeating-linear-gradient( 
     90deg,
     #2495D3,
@@ -42,7 +49,8 @@
     width: 100%;
   }
   .vertical-stripes-scandinavishe{
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     background: repeating-linear-gradient( 
         90deg,
         #77848C,
