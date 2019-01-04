@@ -12,7 +12,9 @@ import {
     MatTabsModule,
     MatFormFieldModule,
     MatSliderModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatButtonToggleModule,
+    MatStepperModule
 } from '@angular/material';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -33,7 +35,9 @@ import { MatSelectModule } from '@angular/material/select';
         MatSliderModule,
         MatNativeDateModule,
         MatDatepickerModule,
-        MatSelectModule
+        MatSelectModule,
+        MatButtonToggleModule,
+        MatStepperModule
     ],
     exports: [
         MatButtonModule,
@@ -49,7 +53,9 @@ import { MatSelectModule } from '@angular/material/select';
         MatSliderModule,
         MatNativeDateModule,
         MatDatepickerModule,
-        MatSelectModule
+        MatSelectModule,
+        MatButtonToggleModule,
+        MatStepperModule
     ],
 })
 
