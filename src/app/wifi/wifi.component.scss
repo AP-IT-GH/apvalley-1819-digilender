@@ -1,0 +1,63 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 100vh;
+}
+.header {
+    display: flex;
+    justify-content: center;
+}
+    
+.main {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 80%;
+}
+
+mat-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: #F3F1EA;
+    border-radius: 40px;
+    //justify-content: center;
+    //border: 1px solid black;
+     padding: 30px;
+}
+#button-ssid {
+    display: flex;
+    justify-items: flex-start;
+    width: 100%;
+    height: 100%;
+
+}
+mat-card-header{
+      justify-content: center;
+}
+mat-card-content{
+     margin-left: 25px;
+     margin-right: 25px;
+    border: 1px solid #DEDCD6;
+}
+mat-card-content > *{
+    padding: 0px;
+
+}
+
+// mat-card-actions{
+//     display: flex;
+//     justify-content: center; 
+// }
+
+
+#icon-back{
+    font-size: 3em;
+}
+.button-footer{
+    height: 64px; 
+}
+
+
+
