@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocationService } from '../location.service'
 
 
+
 @Component({
   selector: 'app-locatie',
   templateUrl: './locatie.component.html',

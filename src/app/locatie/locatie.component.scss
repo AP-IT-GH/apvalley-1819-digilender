@@ -24,9 +24,10 @@ mat-card{
     //border: 1px solid black;
     background-color: #F3F1EA;
     border-radius: 40px;
+    padding: 30px;
 
-    width: 50%;
-    height: 40%;
+    // width: 50%;
+    // height: 40%;
 }
 mat-card-header{
       justify-content: center;
@@ -36,7 +37,7 @@ mat-card-header{
     justify-content: center;
 }
 .input-form-container > * {
-    width: 80%;
+    width: 100%;
 }
 
 mat-card-actions{
