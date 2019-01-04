@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     var me = this;
     this.dbService.getUsers().then(function(dbUsers){
-     for(var i=0;i<dbUsers.length;i++){
+      for(var i=0;i<dbUsers.length;i++){
       me.users.push(dbUsers[i]);
      }
     })
@@ -37,7 +37,8 @@ export class UsersComponent implements OnInit {
     this.colorsToChoose();
    
   }
-  goTo(pad:String):void{
+
+  public goTo(pad:String):void{
     this.router.navigate(['/'+ pad], { relativeTo: this.route });
   }
 
@@ -83,11 +84,10 @@ public userToUpdate(id: string){
 
 
 public deleteUser(id: string){
-  let message = this.dbService.deleteUser(id);
-  console.log(message);
+  this.dbService.deleteUser(id);
   this.users.forEach(element => {
     if(element.id == id)
-      this.users = this.users.splice(this.users.indexOf(element), 1);
+      this.users.splice(this.users.indexOf(element), 1);
   });
 }
 

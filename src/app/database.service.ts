@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 //import { ipcRenderer } from 'electron';
 import { PromiseIpc } from 'electron-promise-ipc';
+import { Observable } from 'rxjs';
 const promiseIpc = new PromiseIpc();
 
 @Injectable({
@@ -11,7 +12,7 @@ export class DatabaseService {
   constructor() {
   }
 
-  getUsers() {
+  getUsers(){
     return promiseIpc.send('users', { action: 'get' })
       .then((users) => {
         let tmp = JSON.parse(users);
@@ -28,11 +29,7 @@ export class DatabaseService {
   }
 
   deleteUser(id:string){
-    return promiseIpc.send('users', {action: 'delete', value: id})
-    .then((succes) => {
-      let tmp = JSON.parse(succes);
-      return tmp;
-    });
+    return promiseIpc.send('users', {action: 'delete', value: id});
   }
 
 

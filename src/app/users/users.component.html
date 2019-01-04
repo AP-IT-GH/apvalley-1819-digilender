@@ -14,7 +14,7 @@
                             <th>Gezinsleden</th>
                             <th class="align-right">
                                 <button class="button" mat-mini-fab color="primary"
-                                (click)="addUser = true">
+                                (click)="addUser = true; changeUser = false">
                                 <mat-icon >add</mat-icon>
                                 </button>
                             </th>
@@ -24,7 +24,7 @@
                     <!--Table head-->
                 
                     <!--Table body *ngFor="let country of completeList; let i = index"-->
-                    <tbody>
+                    <tbody *ngIf= "users">
                         <tr *ngFor="let user of users">
                             <td>{{user.title}}</td>
                             <td class="align-right">

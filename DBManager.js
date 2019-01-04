@@ -77,6 +77,21 @@ class DBManager {
     }
   }
 
+
+  deleteUser(id) {
+    console.log('deleting user');
+    console.log(id);
+    if (id == undefined) {
+      return; //no user to delete
+    }
+    else {
+      return this.User.findById(id)
+        .then((user) => {
+          me.User.drop(user); //delete user
+        });
+    }
+  }
+
   addEvent(newEvent) {
     console.log('adding event');
     console.log(newEvent);
