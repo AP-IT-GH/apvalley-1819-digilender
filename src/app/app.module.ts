@@ -23,7 +23,7 @@ import { environment } from '../environments/environment';
 import { AuthComponent } from './googleSyncCalendar/auth.component';
 import { UsersComponent } from './users/users.component';
 import { CalendarListComponent } from './calendar-list/calendar-list.component';
-import { WifiComponent } from './wifi/wifi.component';
+import { WifiComponent, DialogContentWifi } from './wifi/wifi.component';
 import { LocatieComponent } from './locatie/locatie.component';
 import { ThemaComponent } from './thema/thema.component';
 import { SchermComponent } from './scherm/scherm.component';
@@ -63,6 +63,7 @@ registerLocaleData(localeBE, 'nl-BE');
     IntroSetupComponent,
     HomeComponent,
     SettingsComponent,
+    DialogContentWifi
   ],
   imports: [
     BrowserModule,
@@ -85,6 +86,9 @@ registerLocaleData(localeBE, 'nl-BE');
     DatabaseService,
     ModalService,
     { provide: LOCALE_ID, useValue: "nl-BE" }
+  ],
+  entryComponents: [
+    DialogContentWifi
   ],
   bootstrap: [AppComponent]
 })
