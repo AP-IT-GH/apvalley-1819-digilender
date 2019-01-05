@@ -14,7 +14,8 @@ import {
     MatSliderModule,
     MatNativeDateModule,
     MatButtonToggleModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDialogModule
 } from '@angular/material';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -37,7 +38,8 @@ import { MatSelectModule } from '@angular/material/select';
         MatDatepickerModule,
         MatSelectModule,
         MatButtonToggleModule,
-        MatStepperModule
+        MatStepperModule,
+        MatDialogModule
     ],
     exports: [
         MatButtonModule,
@@ -55,7 +57,8 @@ import { MatSelectModule } from '@angular/material/select';
         MatDatepickerModule,
         MatSelectModule,
         MatButtonToggleModule,
-        MatStepperModule
+        MatStepperModule,
+        MatDialogModule
     ],
 })
 
