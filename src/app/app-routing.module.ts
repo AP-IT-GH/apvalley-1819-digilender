@@ -11,7 +11,7 @@ import { IntroSetupComponent } from "./intro-setup/intro-setup.component";
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/home/calendar', pathMatch: 'full' },
   { path: 'intro', component: IntroSetupComponent },
   {
     path: 'home',
