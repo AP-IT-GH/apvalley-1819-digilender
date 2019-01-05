@@ -9,6 +9,7 @@ import { ThemaComponent } from './thema/thema.component';
 import { SchermComponent } from './scherm/scherm.component';
 import { IntroSetupComponent } from "./intro-setup/intro-setup.component";
 import { HomeComponent } from './home/home.component';
+import { SettingsComponent } from "./settings/settings.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home/calendar', pathMatch: 'full' },
@@ -19,28 +20,35 @@ const routes: Routes = [
     children: [
       { path: 'calendar', component: CalendarComponent },
       { path: 'options', component: OptionsComponent },
-      { path: 'users', component: UsersComponent },
-      { path: 'wifi', component: WifiComponent },
-      { path: 'locatie', component: LocatieComponent },
-      { path: 'thema', component: ThemaComponent },
-      { path: 'scherm', component: SchermComponent }
+      {
+        path: 'settings',
+        component: SettingsComponent,
+        children: [
+          { path: 'users', component: UsersComponent },
+          { path: 'wifi', component: WifiComponent },
+          { path: 'locatie', component: LocatieComponent },
+          { path: 'thema', component: ThemaComponent },
+          { path: 'scherm', component: SchermComponent }
+        ]
+      },
     ]
   },
-
-
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
-export const routingComponents = [CalendarComponent,
-  OptionsComponent,
-  UsersComponent,
-  WifiComponent,
-  LocatieComponent,
-  ThemaComponent,
-  SchermComponent,
-  IntroSetupComponent,
-  HomeComponent]
+export const routingComponents =
+  [CalendarComponent,
+    OptionsComponent,
+    UsersComponent,
+    WifiComponent,
+    LocatieComponent,
+    ThemaComponent,
+    SchermComponent,
+    IntroSetupComponent,
+    HomeComponent,
+    SettingsComponent]
