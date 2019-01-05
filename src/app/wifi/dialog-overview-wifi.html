@@ -1,0 +1,19 @@
+
+<mat-card>
+  <div class="diaglog-container">
+  <h1 mat-dialog-title>Geef uw wachtwoord in</h1>
+  <div mat-dialog-content>
+    <h5>{{data}}</h5>
+    <form class="input-form-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" >
+        </mat-form-field>
+      </form>
+  </div>
+  <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>ANNULEREN</button>
+      <button mat-button color='primary' [mat-dialog-close]="true">VERBINDEN</button>
+    </mat-dialog-actions>
+</div>
+</mat-card>
