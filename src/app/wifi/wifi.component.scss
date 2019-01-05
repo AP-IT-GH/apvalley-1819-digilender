@@ -1,19 +1,20 @@
 .container {
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    height: 100vh;
-}
-.header {
-    display: flex;
     justify-content: center;
+    flex-wrap: nowrap;
+    padding: 0;
+    height: 80vh;
 }
+// .header {
+//     display: flex;
+//     justify-content: center;
+// }
     
 .main {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 80%;
 }
 
 mat-card{
@@ -44,19 +45,6 @@ mat-card-content{
 mat-card-content > *{
     padding: 0px;
 
-}
-
-// mat-card-actions{
-//     display: flex;
-//     justify-content: center; 
-// }
-
-
-#icon-back{
-    font-size: 3em;
-}
-.button-footer{
-    height: 64px; 
 }
 
 
