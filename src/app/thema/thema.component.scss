@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex-wrap: nowrap;
   padding: 0;
   height: 80vh;
 }
@@ -74,13 +73,5 @@ mat-card-content{
         height: 200px;
         width: 100%;
   }
-
-
-#icon-back{
-    font-size: 3em;
-}
-.button-footer{
-    height: 64px; 
-}
 
 
