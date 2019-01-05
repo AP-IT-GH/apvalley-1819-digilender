@@ -47,5 +47,16 @@ mat-card-content > *{
 
 }
 
+.diaglog-container{
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.input-form-container{
+    display: flex;
+    justify-content: center;
+}
+.input-form-container > * {
+    width: 100%;
+}
 
 

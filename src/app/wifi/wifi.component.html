@@ -12,7 +12,7 @@
       <mat-card-content>
         <mat-list>
           <mat-list-item id='item-list-content' *ngFor="let SSID of dummySSIDs">
-            <button id="button-ssid" class="ssid-buttons" mat-button>{{SSID.name}}</button>
+            <button id="button-ssid" class="ssid-buttons" (click)="openDialog(SSID)" mat-button>{{SSID.name}}</button>
           </mat-list-item>
         </mat-list>
       </mat-card-content>
