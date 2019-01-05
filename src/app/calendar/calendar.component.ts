@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./calendar.component.scss']
 })
 
-export class HomeCalendarComponent implements OnInit {
+export class CalendarComponent implements OnInit {
 
   constructor(private modalService: ModalService, public db: DatabaseService, private router: Router, private route: ActivatedRoute) { }
 
