@@ -30,6 +30,7 @@ import { SchermComponent } from './scherm/scherm.component';
 import { ModalComponent } from './modal/modal.component';
 import { IntroSetupComponent } from './intro-setup/intro-setup.component';
 import { HomeComponent } from './home/home.component';
+import { SettingsComponent } from './settings/settings.component';
 
 // Services
 import { WeatherService } from './weather.service';
@@ -61,6 +62,7 @@ registerLocaleData(localeBE, 'nl-BE');
     GooglePlacesDirective,
     IntroSetupComponent,
     HomeComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
