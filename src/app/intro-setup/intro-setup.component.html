@@ -7,9 +7,11 @@
       <ng-template matStepLabel>WiFI</ng-template>
       <app-wifi></app-wifi>
       <div class="matStepperButton-container">
-        <div></div>
+          <button class="button-footer" mat-button matStepperNext disabled='true'>
+            </button>
+          <mat-progress-spinner mode="indeterminate" *ngIf='isCompletedWifiBusy'></mat-progress-spinner>  
         <button class="button-footer" mat-button matStepperNext *ngIf='isCompletedWifi'>
-          <i class="material-icons" id="icon-back">navigate_next</i>
+          <i class="material-icons" id="icon-next" *ngIf='isCompletedWifi'>navigate_next</i>
         </button>
       </div>
     </mat-step>
@@ -20,23 +22,23 @@
           <i class="material-icons" id="icon-back">navigate_before</i>
         </button>
         <button class="button-footer" mat-button matStepperNext *ngIf='isCompletedLocation'>
-          <i class="material-icons" id="icon-back">navigate_next</i>
+          <i class="material-icons" id="icon-next">navigate_next</i>
         </button>
         <div *ngIf='!isCompletedLocation'></div>
       </div>
     </mat-step>
     <mat-step label="Accounts">
-        <app-users></app-users>
-        <div class="matStepperButton-container">
-          <button class="button-footer" mat-button matStepperPrevious>
-            <i class="material-icons" id="icon-back">navigate_before</i>
-          </button>
-          <button class="button-footer" mat-button matStepperNext >
-            <i class="material-icons" id="icon-back">navigate_next</i>
-          </button>
-          <div *ngIf='!isCompletedLocation'></div>
-        </div>
-      </mat-step>
+      <app-users></app-users>
+      <div class="matStepperButton-container">
+        <button class="button-footer" mat-button matStepperPrevious>
+          <i class="material-icons" id="icon-back">navigate_before</i>
+        </button>
+        <button class="button-footer" mat-button matStepperNext>
+          <i class="material-icons" id="icon-next">navigate_next</i>
+        </button>
+        <div *ngIf='!isCompletedLocation'></div>
+      </div>
+    </mat-step>
     <mat-step label="Thema's">
       <app-thema></app-thema>
       <div class="matStepperButton-container">
@@ -44,7 +46,7 @@
           <i class="material-icons" id="icon-back">navigate_before</i>
         </button>
         <button class="button-footer" mat-button>
-          <i class="material-icons" id="icon-back" routerLink="../home/calendar">check</i>
+          <i class="material-icons" id="icon-check" routerLink="../home/calendar">check</i>
         </button>
       </div>
     </mat-step>
@@ -54,4 +56,5 @@
     <div>
     </div>
   </mat-horizontal-stepper>
+
 </div>
