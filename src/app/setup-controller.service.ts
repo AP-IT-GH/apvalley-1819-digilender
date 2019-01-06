@@ -19,7 +19,6 @@ export class SetupControllerService {
 
   setCompletedWifi(_isCompletedWifi: boolean) {
     this.isCompletedWifiBusy.next(_isCompletedWifi)
-   // console.log(this.completedWifiBusy)
     setTimeout(() => {
       this.isCompletedWifi.next(_isCompletedWifi);
     }, 3000);
@@ -28,14 +27,6 @@ export class SetupControllerService {
   setCompletedLocation(_isCompletedLocation) {
     this.isCompletedLocation.next(_isCompletedLocation);
   }
-  // getCompletedWifi() {
-  //   return this.isCompletedWifi;
-  // }
-
-
-  // getCompletedLocation() {
-  //   return this.isCompletedWifi;
-  // }
 
 }
 
