@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IntroSetupComponent implements OnInit {
 
+  isCompletedWifi=true
+  isCompletedLocation= true
+
   constructor() { }
 
   ngOnInit() {

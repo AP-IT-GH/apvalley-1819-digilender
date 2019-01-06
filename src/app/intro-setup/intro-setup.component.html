@@ -1,16 +1,57 @@
 <div class="container">
-  <mat-horizontal-stepper>
-    <mat-step label="WiFI">
+  <mat-horizontal-stepper linear>
+    <ng-template matStepperIcon="edit">
+      <mat-icon>done</mat-icon>
+    </ng-template>
+    <mat-step [completed]='isCompletedWifi'>
+      <ng-template matStepLabel>WiFI</ng-template>
       <app-wifi></app-wifi>
+      <div class="matStepperButton-container">
+        <div></div>
+        <button class="button-footer" mat-button matStepperNext *ngIf='isCompletedWifi'>
+          <i class="material-icons" id="icon-back">navigate_next</i>
+        </button>
+      </div>
     </mat-step>
+    <mat-step label="Locatie" [completed]='isCompletedLocation'>
+      <app-locatie></app-locatie>
+      <div class="matStepperButton-container">
+        <button class="button-footer" mat-button matStepperPrevious>
+          <i class="material-icons" id="icon-back">navigate_before</i>
+        </button>
+        <button class="button-footer" mat-button matStepperNext *ngIf='isCompletedLocation'>
+          <i class="material-icons" id="icon-back">navigate_next</i>
+        </button>
+        <div *ngIf='!isCompletedLocation'></div>
+      </div>
+    </mat-step>
+    <mat-step label="Accounts">
+        <app-users></app-users>
+        <div class="matStepperButton-container">
+          <button class="button-footer" mat-button matStepperPrevious>
+            <i class="material-icons" id="icon-back">navigate_before</i>
+          </button>
+          <button class="button-footer" mat-button matStepperNext >
+            <i class="material-icons" id="icon-back">navigate_next</i>
+          </button>
+          <div *ngIf='!isCompletedLocation'></div>
+        </div>
+      </mat-step>
     <mat-step label="Thema's">
       <app-thema></app-thema>
-    </mat-step>
-    <mat-step label="Locatie">
-      <app-locatie></app-locatie>
+      <div class="matStepperButton-container">
+        <button class="button-footer" mat-button matStepperPrevious>
+          <i class="material-icons" id="icon-back">navigate_before</i>
+        </button>
+        <button class="button-footer" mat-button>
+          <i class="material-icons" id="icon-back" routerLink="../home/calendar">check</i>
+        </button>
+      </div>
     </mat-step>
     <!-- <mat-step label="Accounts">
       <app-users></app-users>
     </mat-step> -->
+    <div>
+    </div>
   </mat-horizontal-stepper>
 </div>
