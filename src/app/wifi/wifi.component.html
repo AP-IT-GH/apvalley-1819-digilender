@@ -1,4 +1,30 @@
-<p>
-  wifi works!
-</p>
-<p (click)="goTo('options')">Back</p>
+<div class="container">
+  <div class="header">
+    <h1>Wifi Netwerken</h1>
+  </div>
+  <div class="main">
+    <div class=wifi-list-card>
+      <div class=wifi-list-card-inner>
+        <ul >
+          <li ui-scroll class=wifi-list-item *ngFor="let network of networks">
+            <mat-card class="wifi-card" (click)="selectClick(network)">
+              <p class="wifi-name">{{network.name}}</p>
+              <img src="" *ngIf="network.strength == 1">
+              <img src="" *ngIf="network.strength == 2">
+              <img src="" *ngIf="network.strength == 3">
+              <div *ngIf="network.secected">
+                <input matInput type="text" placeholder="paswoord"[(ngModel)]=passwd>
+                <button (click)="connect(network)">Verbinden</button>
+              </div>
+            </mat-card>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <button class="button-footer" mat-button color="primary" routerLink="/options">
+      <i class="material-icons" id="icon-back">chevron_left</i>
+    </button>
+  </div>
+</div>

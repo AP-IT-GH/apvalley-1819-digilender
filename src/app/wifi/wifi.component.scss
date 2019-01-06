@@ -1,0 +1,27 @@
+.wifi-list-card {
+  margin-left: auto;
+  margin-right: auto;
+  height: 500px;
+  width: 400px;
+  overflow: hidden;
+}
+
+.wifi-list-card-inner {
+  height: 500px;
+  width: 450px;
+  margin-right: -50px;
+  padding-right: 50px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.wifi-list-card ul {
+  list-style-type: none;
+}
+
+.wifi-list-card ul li {
+  width: 90%;
+  height: 70px;
+}
+
+

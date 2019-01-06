@@ -7,13 +7,49 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./wifi.component.scss']
 })
 export class WifiComponent implements OnInit {
+  networks;
+  selectedName: string;
+  passwd: string;
 
-  constructor( private router: Router, private route: ActivatedRoute) { }
+  constructor( private router: Router, private route: ActivatedRoute) {
+  this.networks = [{
+      name: "net A", strength: 1, selected: false}, {
+      name: "net B", strength: 2, selected: false}, {
+      name: "net A", strength: 3, selected: false}, {
+      name: "net A", strength: 1, selected: false}, {
+      name: "net A", strength: 2, selected: false}, {
+      name: "net A", strength: 3, selected: false}, {
+      name: "net B", strength: 1, selected: false}, {
+      name: "net B", strength: 2, selected: false}, {
+      name: "net A", strength: 3, selected: false}, {
+      name: "net A", strength: 3, selected: false}, {
+      name: "net A", strength: 3, selected: false}, {
+      name: "net A", strength: 3, selected: false}, {
+      name: "net B", strength: 1, selected: false}, {
+      name: "net B", strength: 1, selected: false}, {
+      name: "net B", strength: 1, selected: false}, {
+      name: "net B", strength: 1, selected: false}, {
+      name: "net B", strength: 3, selected: false}, {
+      name: "net B", strength: 1, selected: false}];
+  }
 
   ngOnInit() {
   }
-  goTo(pad:String):void{
-    this.router.navigate(['/'+ pad], { relativeTo: this.route });
+
+  selectClick(network: Inetwork){
+    network.selected = true;
+    console.log("selectClick");
+    console.log(arguments);
   }
 
+  connect(network: Inetwork){
+    console.log("connectClick");
+    console.log(arguments);
+  }
+}
+
+export interface Inetwork {
+  name: string;
+  strength: number;
+  selected: boolean;
 }
