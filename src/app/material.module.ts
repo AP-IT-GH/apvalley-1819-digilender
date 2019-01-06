@@ -15,7 +15,7 @@ import {
     MatNativeDateModule,
     MatButtonToggleModule,
     MatStepperModule,
-    MatDialogModule
+    MatDialogModule,
 } from '@angular/material';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
