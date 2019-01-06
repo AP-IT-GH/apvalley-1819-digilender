@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="header">
+  <!-- <div class="header">
     <h1>WiFi</h1>
-  </div>
+  </div> -->
   <div class="main">
     <mat-card>
       <mat-card-header>
@@ -12,15 +12,10 @@
       <mat-card-content>
         <mat-list>
           <mat-list-item id='item-list-content' *ngFor="let SSID of dummySSIDs">
-            <button id="button-ssid" class="ssid-buttons" mat-button>{{SSID.name}}</button>
+            <button id="button-ssid" class="ssid-buttons" (click)="openDialog(SSID)" mat-button>{{SSID.name}}</button>
           </mat-list-item>
         </mat-list>
       </mat-card-content>
     </mat-card>
-  </div>
-  <div class="footer">
-    <button class="button-footer" mat-button color="primary" routerLink="/options">
-      <i class="material-icons" id="icon-back">chevron_left</i>
-    </button>
   </div>
 </div>

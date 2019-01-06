@@ -33,12 +33,12 @@ export const fadeAnimation =
             query(
                 ':leave',
                 // here we apply a style and use the animate function to apply the style over 0.3 seconds
-                [style({ opacity: 1 }), animate('0.15s', style({ opacity: 0 }))],
+                [style({ opacity: 1 }), animate('0.2s', style({ opacity: 0 }))],
                 { optional: true }
             ),
             query(
                 ':enter',
-                [style({ opacity: 0 }), animate('0.15s', style({ opacity: 1 }))],
+                [style({ opacity: 0 }), animate('0.2s', style({ opacity: 1 }))],
                 { optional: true }
             )
         ])

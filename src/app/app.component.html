@@ -1,14 +1,3 @@
-<div class="container-home">
-    <div class="toolbar">
-        <app-toolbar></app-toolbar>
-    </div>
-
-    <div class="container-status-panel">
-        <app-status-panel></app-status-panel>
-    </div>
-
-    <div [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''" class="container-home-calendar">
-        <router-outlet #o="outlet"></router-outlet>
-    </div>
-
+<div [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
+    <router-outlet #o="outlet"></router-outlet>
 </div>

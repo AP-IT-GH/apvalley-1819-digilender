@@ -1,27 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Inject } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { SetupControllerService } from "../setup-controller.service";
 
 @Component({
   selector: 'app-wifi',
   templateUrl: './wifi.component.html',
   styleUrls: ['./wifi.component.scss']
 })
-export class WifiComponent implements OnInit {
+export class WifiComponent {
 
-  isLinear = true;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(public dialog: MatDialog) { }
 
-  ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+  openDialog(SSID) {
+    this.dialog.open(DialogContentWifi, {
+      data: SSID.name
+    },);
+
+
   }
+
+
 
 
 
@@ -48,6 +47,25 @@ export class WifiComponent implements OnInit {
     }
   ]
 
+}
+
+@Component({
+  templateUrl: './dialog-overview-wifi.html',
+  styleUrls: ['./wifi.component.scss']
+})
+export class DialogContentWifi {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData, private setupService: SetupControllerService) {
+
+  }
+
+  connectedToWifi(){
+    this.setupService.setCompletedWifi(true);
+    console.log('hello')
+  }
+ }
+
+export interface DialogData {
+  animal: 'panda' | 'unicorn' | 'lion';
 }
 
 

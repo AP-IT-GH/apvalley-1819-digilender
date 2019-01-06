@@ -4,6 +4,13 @@
 //@import "~@angular/material/prebuilt-themes/purple-green.css";
 @import "theme.scss";
 
+.mat-dialog-container{
+  background-color: transparent;
+  border-radius: 40px;
+  box-shadow: none;
+
+}
+
 jw-modal {
   /* modals are hidden by default */
   display: none;
