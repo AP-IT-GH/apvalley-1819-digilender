@@ -158,7 +158,7 @@ export class CalendarComponent implements OnInit {
           me.selectedDate = date.format().match(/.*?T/).toString();
           document.getElementById("event-body").style.backgroundColor = me.users[resource.id - 1].eventColor;
           me.openModal('event', true);
-          document.getElementById("event").click();
+          document.getElementById("title").click();
         },
         // Voeg een beschrijving toe
         eventRender: function (event, element) {
@@ -168,7 +168,6 @@ export class CalendarComponent implements OnInit {
         // Titel bovenaan correct tonen
         viewRender: function (view, element) {
           $('.fc-center')[0].children[1].textContent = view.title.replace(new RegExp("undefined", 'g'), "");
-
         },
         // Klik op een event en de details tonen
         eventClick: function (calEvent, jsEvent, view) {
@@ -179,7 +178,7 @@ export class CalendarComponent implements OnInit {
           me.selectedEventEnd = calEvent.stop.toString().match(/\d{2}:\d{2}/).toString();
           document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
           me.openModal('event-detail', true);
-          document.getElementById("event-detail").click();
+          document.getElementById("detail-title").click();
 
           // me.db.getEvents(calEvent.resourceId).then((events) => {
           //   console.log(events[0].title);
@@ -198,9 +197,12 @@ export class CalendarComponent implements OnInit {
     this.eventButton = !isDatePicked;
     var currentDate = new Date();
     var currentHour = currentDate.getHours();
-    var currentMinute = (currentDate.getMinutes() < 10 ? '0' : '') + currentDate.getMinutes();
-    this.selectedStartTime = currentHour + ":" + currentMinute;
-    this.selectedEndTime = ((currentHour < 23) ? currentHour + 1 : currentHour = 0) + ":" + currentMinute;
+    var currentMinute = currentDate.getMinutes();
+    this.selectedStartTime = ("0" + currentHour).slice(-2) + ":" + ("0" + currentMinute).slice(-2);
+    if (currentHour < 23)
+      this.selectedEndTime = ("0" + (currentHour + 1)).slice(-2) + ":" + ("0" + currentMinute).slice(-2);
+    else
+      this.selectedEndTime = "00:" + ("0" + currentMinute).slice(-2);
     this.modalService.open(id);
   }
 

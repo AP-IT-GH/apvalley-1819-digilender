@@ -22,7 +22,7 @@
         <mat-card id="event-body" style="padding: 20px;">
 
             <mat-card-header style="display: flex; justify-content: center">
-                <mat-card-title>Nieuw evenement</mat-card-title>
+                <mat-card-title id="title">Nieuw evenement</mat-card-title>
             </mat-card-header>
 
             <div class="title-note-container">
@@ -51,7 +51,8 @@
 
                 <mat-form-field appearance="fill" *ngIf="!eventButton">
                     <mat-label>Gezinslid</mat-label>
-                    <input matInput type="text" disabled value="{{selectedUserTitle}}">
+                    <input matInput type="text" disabled
+                        value="{{selectedUserTitle}}">
                 </mat-form-field>
 
                 <mat-form-field class="date-picker" appearance="fill"
@@ -98,7 +99,7 @@
         <mat-card id="event-detail-body" style="padding: 20px; margin-left: 35%;
             margin-right: 35%; margin-top: 35%; color: white">
             <mat-card-header style="display: flex; justify-content: center">
-                <mat-card-title>{{selectedUserTitle}}</mat-card-title>
+                <mat-card-title id="detail-title">{{selectedUserTitle}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <p>{{selectedEventTitle}}</p>
