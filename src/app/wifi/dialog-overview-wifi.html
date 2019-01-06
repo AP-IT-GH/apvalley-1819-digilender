@@ -13,7 +13,7 @@
   </div>
   <mat-dialog-actions align="end">
       <button mat-button mat-dialog-close>ANNULEREN</button>
-      <button mat-button color='primary' [mat-dialog-close]="true">VERBINDEN</button>
+      <button mat-button color='primary' [mat-dialog-close]="true" (click)='connectedToWifi()'>VERBINDEN</button>
     </mat-dialog-actions>
 </div>
 </mat-card>

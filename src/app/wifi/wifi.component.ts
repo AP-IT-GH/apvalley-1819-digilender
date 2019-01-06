@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { SetupControllerService } from "../setup-controller.service";
 
 @Component({
   selector: 'app-wifi',
@@ -12,7 +13,6 @@ export class WifiComponent {
   constructor(public dialog: MatDialog) { }
 
   openDialog(SSID) {
-    console.log(SSID)
     this.dialog.open(DialogContentWifi, {
       data: SSID.name
     },);
@@ -54,7 +54,14 @@ export class WifiComponent {
   styleUrls: ['./wifi.component.scss']
 })
 export class DialogContentWifi {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData, private setupService: SetupControllerService) {
+
+  }
+
+  connectedToWifi(){
+    this.setupService.setCompletedWifi(true);
+    console.log('hello')
+  }
  }
 
 export interface DialogData {
