@@ -1,0 +1,60 @@
+@import '~@angular/material/theming';
+@import './themes/card-theme.scss';
+@import './themes/button-theme.scss';
+
+@include mat-core();
+
+$md-mcgpalette0: (
+    50 : #fefdfc,
+    100 : #fcfbf9,
+    200 : #faf8f5,
+    300 : #f7f5f0,
+    400 : #f6f3ed,
+    500 : #f4f1ea,
+    600 : #f3efe7,
+    700 : #f1ede4,
+    800 : #efebe1,
+    900 : #ece7db,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+$default-theme-primary: mat-palette($md-mcgpalette0, 900);
+$default-theme-accent: mat-palette($mat-gray, 500);
+$default-theme-warn: mat-palette($mat-deep-orange, A200);
+$default-theme-background: mat-palette($mat-grey, 50);
+
+// create theme (use mat-dark-theme for themes with dark backgrounds)
+
+$default-theme: mat-light-theme(
+    $default-theme-primary,
+    $default-theme-accent,
+    $default-theme-warn
+);
+
+@mixin default-theme($theme) {
+    @include ml-card-theme($theme);
+    @include ml-button-theme($theme)
+}
+
+@include angular-material-theme($default-theme);
+@include default-theme($default-theme);
