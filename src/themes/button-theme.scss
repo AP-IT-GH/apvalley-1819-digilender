@@ -1,0 +1,10 @@
+@mixin ml-button-theme($theme){
+    $primary: map-get($theme, primary);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    .mat-flat-button.mat-primary, .mat-flat-button.mat-accent{
+        border-radius: 10px;
+    }
+}

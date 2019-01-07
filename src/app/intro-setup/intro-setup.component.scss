@@ -7,10 +7,25 @@
     max-width: 100%;
     margin: 0px;
     padding: 0px;
-    background-image: url('../../assets/background/achtergrond-01.png');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    // background-image: url('../../assets/background/achtergrond-01.png');
+    // background-size: 100% 100%;
+    // background-repeat: no-repeat;
+   // filter: blur(8px);
 }
+
+.bg-image {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+  
+    display: block;
+    background-image: url('../../assets/background/achtergrond-01.png');
+    height: 100vh;
+    max-width: 100%;
+  
+    filter: blur(3px);
+  }
 
 .main {
     display: flex;
@@ -34,9 +49,9 @@ mat-horizontal-stepper{
  color:white;
 
 }
-.button-footer{
+.button-footer {
     height: 64px; 
-    margin-left:40px; 
+
 }
 
 #icon-next{
@@ -63,14 +78,12 @@ mat-horizontal-stepper{
 @keyframes bounceIn {
     from { transform: scale(1) translate3d(0, 0, 0);
           }
-    to   { transform: scale(1.3) translate3d(0, 0, 0); 
+    to   { transform: scale(1.2) translate3d(0, 0, 0); 
        }
   }
 
   mat-progress-spinner{
       position: absolute;
-      
-    
   }
 
 //   @keyframes colorchange

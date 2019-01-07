@@ -1,3 +1,4 @@
+<div class="bg-image"></div>
 <div class="container">
   <mat-horizontal-stepper linear>
     <ng-template matStepperIcon="edit">
@@ -7,9 +8,9 @@
       <ng-template matStepLabel>WiFI</ng-template>
       <app-wifi></app-wifi>
       <div class="matStepperButton-container">
-          <button class="button-footer" mat-button matStepperNext disabled='true'>
-            </button>
-          <mat-progress-spinner mode="indeterminate" *ngIf='isCompletedWifiBusy'></mat-progress-spinner>  
+        <button class="button-footer" mat-button matStepperNext disabled='true'>
+        </button>
+        <mat-progress-spinner mode="indeterminate" color='accent' *ngIf='isCompletedWifiBusy'></mat-progress-spinner>
         <button class="button-footer" mat-button matStepperNext *ngIf='isCompletedWifi'>
           <i class="material-icons" id="icon-next" *ngIf='isCompletedWifi'>navigate_next</i>
         </button>
