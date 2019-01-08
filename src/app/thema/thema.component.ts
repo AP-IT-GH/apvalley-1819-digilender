@@ -8,15 +8,18 @@ import { SetupControllerService } from '../setup-controller.service';
 })
 export class ThemaComponent  {
 
+  public currentTheme: string = '"default';
  
   constructor(private setupService: SetupControllerService) { }
 
   changeThemeDefault(){
     this.setupService.changeTheme(false);
+    this.currentTheme="default";
   }
 
   changeThemeOther(){
     this.setupService.changeTheme(true);
+    this.currentTheme="scandinavian";
   }
 
 }

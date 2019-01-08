@@ -26,6 +26,7 @@ hr{
   mat-card{
       flex-basis: 25%;
       padding: 0 0;
+      
   }
 
   mat-card-actions{
@@ -83,5 +84,18 @@ mat-card-content{
         height: 200px;
         width: 100%;
   }
+
+  .current{
+    border-radius: 4%;
+    border-bottom-left-radius: 6%;
+    border-bottom-right-radius: 6%;
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+  }
+
+
+
+
 
 

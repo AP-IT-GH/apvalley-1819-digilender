@@ -224,6 +224,10 @@ body > app-root > div > app-intro-setup > div.container > mat-horizontal-stepper
   margin-top: 2em;
 }
 
+#cdk-step-content-0-2 > app-users > div{
+  margin-top: 0;
+}
+
 #cdk-step-content-0-1 > app-locatie > hr{
   display:none;
 }
