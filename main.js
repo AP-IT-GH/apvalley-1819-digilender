@@ -5,11 +5,13 @@ const url = require("url");
 const log = require('electron-log');
 const DBManager = require('./DBManager');
 const promiseIpc = require('electron-promise-ipc');
+const Wifi = require('node-wifi');
 //const electron = require('electron');
 
 let win;
 log.info("starting");
 let db = new DBManager();
+Wifi.init({iface: null});
 
 //require('electron-reload')(__dirname);
 
@@ -80,32 +82,25 @@ function createWindow() {
             });
         }
     });
-    /*
-    ipcMain.on("querryDB", (event, arg) => {
-        log.info(arg);
-        args = arg.split(" ");
-        if (args.length < 2){
-            event.returnValue = {"error": "too few arguments"};
-            return;
-        }
-        else {
-            switch (args[0]) {
-                case "events":
-                    if (args[1] == "all"){
-                        event.returnValue = db.getEvents();
-                        return;
-                    }
-                    else if (args[1] == "of"){
-                        event.returnValue = db.getEvents(args[2]);
-                        return;
-                    }
-                    break;
-            }
-            event.returnValue = {"error": "argument error"};
-        }
 
-    });
-    */
+    promiseIpc.on('wifi', (arg)=> {
+        console.log("got request");
+        console.log(arg);
+        if(arg.action == 'get'){
+            return Wifi.scan()
+            .catch((error) => {
+                console.log(error);
+                return error;
+            });
+        }
+        else{
+            return Wifi.connect(arg)
+            .catch((error) => {
+                console.log(error);  
+                return error;
+            });
+        }
+    });  
 }
 
 app.on("ready", createWindow);

@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 
-
 class DBManager {
   constructor() {
     var me = this;
@@ -13,6 +12,7 @@ class DBManager {
       storage: 'Digilender.sqlite',
       define: { timestamps: false }
     });
+
 
     me.User = me.sequelize.define('User', {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },

@@ -5,20 +5,24 @@
   <div class="main">
     <div class=wifi-list-card>
       <div class=wifi-list-card-inner>
-        <ul >
-          <li ui-scroll class=wifi-list-item *ngFor="let network of networks">
-            <mat-card class="wifi-card" (click)="selectClick(network)">
-              <p class="wifi-name">{{network.name}}</p>
-              <img src="" *ngIf="network.strength == 1">
-              <img src="" *ngIf="network.strength == 2">
-              <img src="" *ngIf="network.strength == 3">
-              <div *ngIf="network.secected">
-                <input matInput type="text" placeholder="paswoord"[(ngModel)]=passwd>
-                <button (click)="connect(network)">Verbinden</button>
-              </div>
-            </mat-card>
-          </li>
-        </ul>
+        <p>{{loaded}}</p>        
+        
+        <div class=wifi-list-item *ngFor="let network of networksObs | async">
+          hey
+          <!-- <mat-card class="wifi-card" (click)="selectClick(network)">
+            <p class="wifi-name">{{network.ssid}}</p>
+            <p class="wifi-name">{{network.quality}}%</p>
+            <img src="" *ngIf="network.strength == 1">
+            <img src="" *ngIf="network.strength == 2">
+            <img src="" *ngIf="network.strength == 3">
+            <div *ngIf="network.selected">
+              <input matInput type="text" placeholder="paswoord"[(ngModel)]=passwd>
+              <button (click)="connect(network)">Verbinden</button>
+            </div>
+         </mat-card> -->
+        </div>
+        
+        <div>{{networks?.length}}</div>
       </div>
     </div>
   </div>

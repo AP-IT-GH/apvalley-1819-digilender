@@ -38,6 +38,7 @@ import { registerLocaleData } from '@angular/common';
 import { StatusPanelComponent } from './status-panel/status-panel.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { GooglePlacesDirective } from './google-places.directive';
+import { WifiService } from './wifi.service';
 
 registerLocaleData(localeBE, 'nl-BE');
 @NgModule({
@@ -81,6 +82,7 @@ registerLocaleData(localeBE, 'nl-BE');
     WeatherService,
     DatabaseService,
     ModalService,
+    WifiService,
     { provide: LOCALE_ID, useValue: "nl-BE" }
   ],
   bootstrap: [AppComponent]
