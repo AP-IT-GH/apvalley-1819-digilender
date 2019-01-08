@@ -47,13 +47,13 @@ hr{
   }
 
 
-  .update-user-button {
-	position: absolute;
-	bottom: 20px;
-	right: 4em;
-	z-index: 1;
-	color: white;
-}
+//   .update-user-button {
+// 	position: absolute;
+// 	bottom: 50px;
+// 	right: 4em;
+// 	z-index: 1;
+// 	color: white;
+// }
 
 .kleurenContainer{
     display: flex;
@@ -77,4 +77,16 @@ hr{
     border-color: black;
     border-width: 2px;
     border-radius: 25%;
+}
+.material-icons{
+    color: black;
+}
+
+.button-footer{
+    height: 64px; 
+    margin-left:40px; 
+}
+
+#icon-back{
+    font-size: 3em;
 }
