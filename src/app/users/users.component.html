@@ -74,12 +74,13 @@
     </div>
 
     <!-- <app-auth></app-auth> -->
-
-    <button *ngIf="addUser" class="update-user-button" mat-fab color="primary" (click)="saveUser()">
-        <mat-icon>Ok</mat-icon>
+    <div class="container-footer">
+    <button *ngIf="addUser" class="button-footer" mat-flat-button color="primary" (click)="saveUser()">
+            <i class="material-icons" id="icon-back">check</i>
     </button>
 
-    <button *ngIf="!addUser" class="update-user-button" mat-fab color="primary" (click)="updateUser(changeUser)">
-        <mat-icon>Ok</mat-icon>
+    <button *ngIf="!addUser" class="button-footer" mat-flat-button color="primary" (click)="updateUser(changeUser)">
+            <i class="material-icons" id="icon-back">check</i>
     </button>
+</div>
 </div>
