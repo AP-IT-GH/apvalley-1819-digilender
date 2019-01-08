@@ -1,0 +1,8 @@
+<div [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''" class="container-home-content">
+  <router-outlet #o="outlet"></router-outlet>
+</div>
+<div class="footer">
+  <button class="button-footer" mat-button color="primary" routerLink="../options">
+    <i class="material-icons" id="icon-back">chevron_left</i>
+  </button>
+</div>

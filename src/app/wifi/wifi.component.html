@@ -1,4 +1,21 @@
-<p>
-  wifi works!
-</p>
-<p (click)="goTo('options')">Back</p>
+<div class="container">
+  <!-- <div class="header">
+    <h1>WiFi</h1>
+  </div> -->
+  <div class="main">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h1>Selecteer uw netwerk</h1>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item id='item-list-content' *ngFor="let SSID of dummySSIDs">
+            <button id="button-ssid" class="ssid-buttons" (click)="openDialog(SSID)" mat-button>{{SSID.name}}</button>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
