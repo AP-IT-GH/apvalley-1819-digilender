@@ -90,7 +90,8 @@ registerLocaleData(localeBE, 'nl-BE');
     { provide: LOCALE_ID, useValue: "nl-BE" }
   ],
   entryComponents: [
-    DialogContentWifi
+    CalendarComponent,
+     DialogContentWifi
   ],
   bootstrap: [AppComponent]
 })
