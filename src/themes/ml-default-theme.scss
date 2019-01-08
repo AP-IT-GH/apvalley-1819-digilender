@@ -1,10 +1,18 @@
-@mixin ml-button-theme($theme){
+@mixin ml-default-theme($theme){
     $primary: map-get($theme, primary);
     $warn: map-get($theme, warn);
     $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
 
+    .mat-card{
+        background-color: mat-color($primary, 500);
+    }
+    .mat-dialog-container{
+        background-color: transparent;
+        box-shadow: none;
+    }
     .mat-flat-button.mat-primary, .mat-flat-button.mat-accent{
         border-radius: 10px;
     }
 }
+
