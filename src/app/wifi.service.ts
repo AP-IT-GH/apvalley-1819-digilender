@@ -10,11 +10,18 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class WifiService {
+  networks;
 
   constructor() {
   }
 
-  getNetworks() {
+  init() {
+    this.updateNetworks().then((networks) => {
+      this.networks = networks;
+    });
+  }
+
+  updateNetworks() {
     return promiseIpc.send('wifi', { action: 'get' })
       .then((result) => {
         console.log(result);
@@ -22,12 +29,19 @@ export class WifiService {
         });
   }
 
+  getNetworks() {
+    return this.networks;
+  }
+
   connect(network) {
+    console.log("got connect request");
+    console.log(network);
     return promiseIpc.send('wifi', { 
       action: 'connect',
       ssid: network.ssid,
       password: network.pass
     }).then((result) => {
+      console.log("got result");
       console.log(result);
       let tmp = JSON.parse(JSON.stringify(result));
       return tmp;

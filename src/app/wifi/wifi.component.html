@@ -5,24 +5,13 @@
   <div class="main">
     <div class=wifi-list-card>
       <div class=wifi-list-card-inner>
-        <p>{{loaded}}</p>        
-        
-        <div class=wifi-list-item *ngFor="let network of networksObs | async">
-          hey
-          <!-- <mat-card class="wifi-card" (click)="selectClick(network)">
-            <p class="wifi-name">{{network.ssid}}</p>
-            <p class="wifi-name">{{network.quality}}%</p>
-            <img src="" *ngIf="network.strength == 1">
-            <img src="" *ngIf="network.strength == 2">
-            <img src="" *ngIf="network.strength == 3">
-            <div *ngIf="network.selected">
-              <input matInput type="text" placeholder="paswoord"[(ngModel)]=passwd>
-              <button (click)="connect(network)">Verbinden</button>
-            </div>
-         </mat-card> -->
-        </div>
-        
-        <div>{{networks?.length}}</div>
+        <ul>
+          <li class=wifi-list-item *ngFor="let network of networks">
+            <mat-card class="wifi-card" (click)="selectClick(network)">
+              <p class="wifi-name">{{network.ssid}}</p>
+            </mat-card>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -32,3 +21,17 @@
     </button>
   </div>
 </div>
+
+<jw-modal id="wifi-detail" style="text-align: center;">
+  <mat-card id="wifi-detail-body" style="padding: 20px; margin-left: 20%; margin-right: 20%; margin-top: 35%; ">
+    <mat-card-header style="display: flex; justify-content: center">
+      <mat-card-title>{{selWifi.ssid}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content >
+      <p>qualiteit: {{selWifi.quality}}</p>
+      <input matInput type="text" placeholder="Paswoord..." [(ngModel)]="pass">
+    </mat-card-content>
+    <button mat-raised-button color="primary" style="position: absolute; left: 90%; top: -33px; display: inline-block" (click)="connect()">Ok</button>
+    <button mat-raised-button color="primary" style="position: absolute; right: 90%; top: -33px; display: inline-block" (click)="cancel()">cancel</button>
+  </mat-card>
+</jw-modal>

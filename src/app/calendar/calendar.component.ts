@@ -4,6 +4,7 @@ import 'fullcalendar';
 import 'fullcalendar-scheduler';
 import { ModalService } from '../modal.service';
 import { DatabaseService } from '../database.service';
+import { WifiService } from '../wifi.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { toDate } from '@angular/common/src/i18n/format_date';
 import { months } from 'moment';
@@ -16,7 +17,7 @@ import { months } from 'moment';
 
 export class HomeCalendarComponent implements OnInit {
 
-  constructor(private modalService: ModalService, public db: DatabaseService, private router: Router, private route: ActivatedRoute) { }
+  constructor(public wservice: WifiService, private modalService: ModalService, public db: DatabaseService, private router: Router, private route: ActivatedRoute) { }
 
   selectedDate: string;
   selectedStartTime: string;
@@ -37,6 +38,7 @@ export class HomeCalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.wservice.init();
     // Selector om de scope te veranderen
     var me = this;
 
