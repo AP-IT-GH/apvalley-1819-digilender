@@ -12,6 +12,7 @@ export class IntroSetupComponent implements OnInit {
   isCompletedLocation: boolean
 
   isCompletedWifiBusy: boolean
+  streepje:boolean;
 
   constructor(private setupService: SetupControllerService) { }
 
@@ -20,6 +21,7 @@ export class IntroSetupComponent implements OnInit {
       this.isCompletedWifiBusy = false
       this.isCompletedWifi = isCompleted;
       console.log(this.isCompletedWifi)
+      this.streepje =true;
     })
 
     this.setupService.completedLocation.subscribe((isCompleted:boolean) => {
