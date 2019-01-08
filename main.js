@@ -72,6 +72,12 @@ function createWindow() {
                 console.log(tmp);
                 return tmp;
               });
+        }else if (arg.action == 'delete'){
+            return db.deleteEvent(arg.value).then((event) => {
+              var tmp = JSON.stringify(event);
+              console.log(tmp);
+              return tmp;
+            });
         }
         else if (arg.action == 'put'){
             return db.addEvent(arg.value).then((newEvent) => {
