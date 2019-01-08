@@ -1,8 +1,7 @@
 <hr>
 <div class="container">
     <div class="main">
-        <div class="row">
-            <div class="col-sm-4">
+        <div class="left">
                 <!--Table-->
                 <table>
 
@@ -44,7 +43,7 @@
                 <!--Table-->
             </div>
 
-            <div class="col-sm-8" *ngIf="changeUser">
+            <div class="right" *ngIf="changeUser">
                 <h1>{{changeUser.title}}</h1>
                 <h2>Kleur</h2>
                 <div class="kleurenContainer">
@@ -53,7 +52,7 @@
                 </div>
 
             </div>
-            <div class="col-sm-8" *ngIf="addUser">
+            <div class="right" *ngIf="addUser">
                 <form [formGroup]="addUserForm">
                     <h1>
                         <label for="title">Naam nieuwe gebruiker: </label>
@@ -72,13 +71,14 @@
         <!-- <app-auth></app-auth> -->
 
 
-<!-- <app-auth></app-auth> -->
-<div class="container-footer">
-    <button *ngIf="addUser" class="button-footer" mat-flat-button color="primary" (click)="saveUser()">
-        <i class="material-icons" id="icon-back">check</i>
-    </button>
+    <!-- <app-auth></app-auth> -->
+    <div class="container-footer">
+        <button *ngIf="addUser" class="button-footer" mat-flat-button color="primary" (click)="saveUser()">
+            <i class="material-icons" id="icon-back">check</i>
+        </button>
 
-    <button *ngIf="!addUser" class="button-footer" mat-flat-button color="primary" (click)="updateUser(changeUser)">
-        <i class="material-icons" id="icon-back">check</i>
-    </button>
+        <button *ngIf="!addUser" class="button-footer" mat-flat-button color="primary" (click)="updateUser(changeUser)">
+            <i class="material-icons" id="icon-back">check</i>
+        </button>
+    </div>
 </div>
