@@ -31,6 +31,7 @@ import { ModalComponent } from './modal/modal.component';
 import { IntroSetupComponent } from './intro-setup/intro-setup.component';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 // Services
 import { WeatherService } from './weather.service';
@@ -80,6 +81,7 @@ registerLocaleData(localeBE, 'nl-BE');
     AngularFireAuthModule,
     AngularFireStorageModule,
     MaterialModule,
+    MatSnackBarModule,
     NgxMaterialTimepickerModule.forRoot()
   ],
   providers: [

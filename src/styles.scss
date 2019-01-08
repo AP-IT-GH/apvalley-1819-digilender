@@ -220,6 +220,25 @@ hr{
    margin-top: 1px;
 }
 
+body > app-root > div > app-intro-setup > div.container > mat-horizontal-stepper > div.mat-horizontal-stepper-header-container{
+  margin-top: 2em;
+}
+
+#cdk-step-content-0-1 > app-locatie > hr{
+  display:none;
+}
+#cdk-step-content-0-0 > app-wifi > hr{
+  display:none;
+}
+
+#cdk-step-content-0-2 > app-users > hr{
+  display:none;
+}
+
+#cdk-step-content-0-3 > app-thema > hr{
+  display:none;
+}
+
 body > app-root > div > div.container-home-calendar.ng-trigger.ng-trigger-fadeAnimation > app-users > div.container > div > div.col-sm-4.list-users > form > table {
   border-spacing: 0;
   border-color: transparent;
