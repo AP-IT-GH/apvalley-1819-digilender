@@ -1,12 +1,13 @@
-<div class="container">
+<div class="container" >
   <!-- <div class="header">
     <h1>Thema</h1>
   </div> -->
   <div class="main">
     <mat-card class="digilender-theme">
-      <mat-card-content class="vertical-stripes-digilender">
+      <mat-card-content>
+      <div class="vertical-stripes-digilender"></div> 
       </mat-card-content>
-      <button mat-button class="button-thema">
+      <button mat-flat-button color="primary" class="button-thema" (click)="changeThemeDefault()">
         <mat-card-actions>
           Digilender
         </mat-card-actions>
@@ -14,9 +15,9 @@
     </mat-card>
 
     <mat-card class="scandinavishe-theme">
-      <mat-card-content class="vertical-stripes-scandinavishe">
+      <mat-card-content class="vertical-stripes-scandinavishe" >
       </mat-card-content>
-      <button mat-button class="button-thema" >
+      <button mat-flat-button color="primary" class="button-thema" (click)="changeThemeOther()">
         <mat-card-actions>
           Scandinavishe
         </mat-card-actions>
