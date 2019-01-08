@@ -1,6 +1,5 @@
 @import '~@angular/material/theming';
-@import './themes/card-theme.scss';
-@import './themes/button-theme.scss';
+@import './themes/ml-default-theme.scss';
 
 @include mat-core();
 
@@ -52,9 +51,22 @@ $default-theme: mat-light-theme(
 );
 
 @mixin default-theme($theme) {
-    @include ml-card-theme($theme);
-    @include ml-button-theme($theme)
+    @include ml-default-theme($theme);
 }
 
 @include angular-material-theme($default-theme);
 @include default-theme($default-theme);
+
+
+
+
+
+$alt-primary: mat-palette($mat-brown);
+$alt-accent:  mat-palette($mat-brown);
+
+$alt-theme: mat-dark-theme($alt-primary, $alt-accent);
+
+.alternative{
+    @include angular-material-theme($alt-theme);
+    //@include default-theme($alt-theme);
+}

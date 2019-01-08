@@ -26,20 +26,20 @@
             </mat-card-header>
 
             <div class="title-note-container">
-                <mat-form-field appearance="fill">
+                <mat-form-field appearance="outline">
                     <mat-label>Titel</mat-label>
                     <input matInput type="text" placeholder="Titel invoeren"
                         [(ngModel)]="eventTitle">
-                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                 </mat-form-field>
 
-                <mat-form-field appearance="fill">
+                <mat-form-field appearance="outline">
                     <mat-label>Notitie</mat-label>
                     <textarea matInput placeholder="Notitie invoeren"
                         [(ngModel)]="eventDescription"></textarea>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill" *ngIf="eventButton">
+                <mat-form-field appearance="outline" *ngIf="eventButton">
                     <mat-label>Gezinslid</mat-label>
                     <mat-select [(value)]="userFromDropdown">
                         <mat-option *ngFor="let user of users"
@@ -49,13 +49,13 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill" *ngIf="!eventButton">
+                <mat-form-field appearance="outline" *ngIf="!eventButton">
                     <mat-label>Gezinslid</mat-label>
                     <input matInput type="text" disabled
                         value="{{selectedUserTitle}}">
                 </mat-form-field>
 
-                <mat-form-field class="date-picker" appearance="fill"
+                <mat-form-field class="date-picker" appearance="outline"
                     (click)="picker.open()">
                     <mat-label>Datum</mat-label>
                     <input matInput [matDatepicker]="picker" placeholder="Kies
@@ -67,7 +67,7 @@
             </div>
 
             <div class="time-container">
-                <mat-form-field class="input-time-item" appearance="fill">
+                <mat-form-field class="input-time-item" appearance="outline">
                     <mat-label>Start tijd</mat-label>
                     <input matInput type="text"
                         placeholder="00:00" [(ngModel)]="selectedStartTime"
@@ -76,7 +76,7 @@
                     <mat-icon matSuffix>access_time</mat-icon>
                 </mat-form-field>
 
-                <mat-form-field class="input-time-item" appearance="fill">
+                <mat-form-field class="input-time-item" appearance="outline">
                     <mat-label>Eind tijd</mat-label>
                     <input matInput type="text"
                         placeholder="01:00" [(ngModel)]="selectedEndTime"
@@ -87,9 +87,9 @@
             </div>
 
             <mat-card-actions class="buttons-event-container">
-                <button mat-raised-button color="warn"
-                    (click)="closeModal('event')">Annuleren</button>
-                <button mat-raised-button color="primary" (click)="addEvent()">Toevoegen</button>
+                <button mat-button
+                    (click)="closeModal('event')">ANNULEREN</button>
+                <button mat-flat-button color='accent' (click)="addEvent()">TOEVOEGEN</button>
             </mat-card-actions>
 
         </mat-card>

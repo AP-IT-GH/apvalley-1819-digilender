@@ -2,14 +2,13 @@
 /* MODAL STYLES
 -------------------------------*/
 //@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
-@import "themes.scss";
+// @import "themes.scss";
 
-.mat-dialog-container{
-  background-color: transparent;
-  border-radius: 40px;
-  box-shadow: none;
-
-}
+// .mat-dialog-container{
+//   background-color: transparent;
+//   border-radius: 40px;
+//   box-shadow: none;
+// }
 
 jw-modal {
   /* modals are hidden by default */
