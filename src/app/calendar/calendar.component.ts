@@ -215,6 +215,15 @@ export class CalendarComponent implements OnInit {
     console.log($('#calendar').fullCalendar('today'));
   }
 
+  updateEndTime() {
+    var selectedStartHour = this.selectedStartTime.slice(0, 2);
+    var selectedStartMinute = this.selectedStartTime.slice(3);
+    if (+selectedStartHour < 23)
+      this.selectedEndTime = ("0" + (+selectedStartHour + 1)).slice(-2) + ":" + selectedStartMinute;
+    else
+      this.selectedEndTime = "00:" + selectedStartMinute;
+  }
+
   addEvent() {
     if (this.eventButton) {
       var dateFromPicker = new Date(this.dateFromPicker);

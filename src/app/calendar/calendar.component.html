@@ -7,16 +7,12 @@
     <script src='fullcalendar.js'></script>
     <script src='scheduler.js'></script> 
 </head> -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
     <div id='calendar'></div>
 
-
-    <button class="add-event-botton" mat-fab color="primary"
-        (click)="openModal('event', false)">
+    <button class="add-event-botton" mat-fab color="primary" (click)="openModal('event', false)">
         <mat-icon>add</mat-icon>
     </button>
-
 
     <jw-modal id="event">
         <mat-card id="event-body" style="padding: 20px;">
@@ -28,22 +24,19 @@
             <div class="title-note-container">
                 <mat-form-field appearance="fill">
                     <mat-label>Titel</mat-label>
-                    <input matInput type="text" placeholder="Titel invoeren"
-                        [(ngModel)]="eventTitle">
+                    <input matInput type="text" placeholder="Titel invoeren" [(ngModel)]="eventTitle">
                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
                     <mat-label>Notitie</mat-label>
-                    <textarea matInput placeholder="Notitie invoeren"
-                        [(ngModel)]="eventDescription"></textarea>
+                    <textarea matInput placeholder="Notitie invoeren" [(ngModel)]="eventDescription"></textarea>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill" *ngIf="eventButton">
                     <mat-label>Gezinslid</mat-label>
                     <mat-select [(value)]="userFromDropdown">
-                        <mat-option *ngFor="let user of users"
-                            [value]="user.id">
+                        <mat-option *ngFor="let user of users" [value]="user.id">
                             {{user.title}}
                         </mat-option>
                     </mat-select>
@@ -51,16 +44,14 @@
 
                 <mat-form-field appearance="fill" *ngIf="!eventButton">
                     <mat-label>Gezinslid</mat-label>
-                    <input matInput type="text" disabled
-                        value="{{selectedUserTitle}}">
+                    <input matInput type="text" disabled value="{{selectedUserTitle}}">
                 </mat-form-field>
 
-                <mat-form-field class="date-picker" appearance="fill"
-                    (click)="picker.open()">
+                <mat-form-field class="date-picker" appearance="fill" (click)="picker.open()">
                     <mat-label>Datum</mat-label>
                     <input matInput [matDatepicker]="picker" placeholder="Kies
-                        een datum" [(ngModel)]="dateFromPicker"
-                        [disabled]="!eventButton">
+                        een datum"
+                        [(ngModel)]="dateFromPicker" [disabled]="!eventButton">
                     <mat-datepicker touchUi #picker></mat-datepicker>
                     <mat-icon matSuffix>date_range</mat-icon>
                 </mat-form-field>
@@ -69,26 +60,21 @@
             <div class="time-container">
                 <mat-form-field class="input-time-item" appearance="fill">
                     <mat-label>Start tijd</mat-label>
-                    <input matInput type="text"
-                        placeholder="00:00" [(ngModel)]="selectedStartTime"
-                        [ngxTimepicker]="fullTimeStart" [format]="24">
-                    <ngx-material-timepicker #fullTimeStart></ngx-material-timepicker>
+                    <input matInput type="text" [(ngModel)]="selectedStartTime" [ngxTimepicker]="fullTimeStart" [format]="24">
+                    <ngx-material-timepicker #fullTimeStart (closed)="updateEndTime()"></ngx-material-timepicker>
                     <mat-icon matSuffix>access_time</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field class="input-time-item" appearance="fill">
                     <mat-label>Eind tijd</mat-label>
-                    <input matInput type="text"
-                        placeholder="01:00" [(ngModel)]="selectedEndTime"
-                        [ngxTimepicker]="fullTimeEnd" [format]="24">
+                    <input matInput type="text" [(ngModel)]="selectedEndTime" [ngxTimepicker]="fullTimeEnd" [format]="24" [min]="selectedStartTime">
                     <ngx-material-timepicker #fullTimeEnd></ngx-material-timepicker>
                     <mat-icon matSuffix>access_time</mat-icon>
                 </mat-form-field>
             </div>
 
             <mat-card-actions class="buttons-event-container">
-                <button mat-raised-button color="warn"
-                    (click)="closeModal('event')">Annuleren</button>
+                <button mat-raised-button color="warn" (click)="closeModal('event')">Annuleren</button>
                 <button mat-raised-button color="primary" (click)="addEvent()">Toevoegen</button>
             </mat-card-actions>
 
@@ -107,8 +93,7 @@
                 <p>{{selectedEventDescription}}</p>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-raised-button color="primary"
-                    (click)="closeModal('event-detail')">Ok</button>
+                <button mat-raised-button color="primary" (click)="closeModal('event-detail')">Ok</button>
             </mat-card-actions>
         </mat-card>
     </jw-modal>
