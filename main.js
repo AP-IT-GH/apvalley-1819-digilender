@@ -54,6 +54,13 @@ function createWindow() {
               return tmp;
             });
         }
+        else if (arg.action == 'delete'){
+            return db.deleteUser(arg.value).then((user) => {
+              var tmp = JSON.stringify(user);
+              console.log(tmp);
+              return tmp;
+            });
+        }
         else{
             return {error: "invalid action"};
         }

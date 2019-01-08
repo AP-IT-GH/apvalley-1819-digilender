@@ -87,7 +87,7 @@ class DBManager {
     else {
       return this.User.findById(id)
         .then((user) => {
-          me.User.drop(user); //delete user
+           return user.destroy(); //delete user
         });
     }
   }
