@@ -1,16 +1,26 @@
-.example-icon {
-    margin-left: 4px;
-  }
-  .test{
-    background-color: white;
-    padding: 0;
+
+  .toolbar-container{
+   
+    //padding: 0;
   
   }
   
-  .example-spacer {
+  .spacer {
     flex: 1 1 auto;
   }
 
-  mat-icon{
-    color: white;
+  button{
+    
+    max-width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    padding: 0;
+    
   }
+  
+  mat-icon{
+    font-size: 2.5em;
+    height: 37px;
+    width: 37px;
+  }
+

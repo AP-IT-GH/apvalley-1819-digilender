@@ -1,10 +1,10 @@
-.container-options {
+.container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    height: 80%;
-    width: auto;
+    height: 80vh;
+    padding: 0;
 }
 
 .button{
@@ -20,21 +20,19 @@
 
 .button-footer{
     height: 64px; 
+    margin-left:40px; 
 }
 
 #icon-back{
     font-size: 3em;
 }
 
-.container-header{
-    display: flex;
-    justify-content: center;
-    height: 7em;
+hr{
+    margin-bottom: 0;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    margin-top: 7em;
 }
-
-.material-icons{
-    color: white;
-  }
   
 
 

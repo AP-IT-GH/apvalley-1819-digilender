@@ -1,3 +1,5 @@
+
+<hr>
 <div class="container">
   <!-- <div class="header">
     <h1>Locatie</h1>
@@ -11,7 +13,7 @@
       </mat-card-header>
       <mat-card-content>
         <form class="input-form-container">
-          <mat-form-field appearance="outline">
+          <mat-form-field color='accent' appearance="outline">
             <mat-label>Stad</mat-label>
             <input #cityName matInput appGooglePlaces type="text" class="google-place-input">
             <button mat-button *ngIf="cityName.value" matSuffix mat-icon-button aria-label="Clear" (click)="cityName.value=''">
@@ -22,7 +24,7 @@
         </form>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-flat-button color="primary" (click)="changeCity(cityName.value)">BEWERKEN</button>
+        <button mat-flat-button color="accent" (click)="changeCity(cityName.value)">BEWERKEN</button>
       </mat-card-actions>
     </mat-card>
   </div>

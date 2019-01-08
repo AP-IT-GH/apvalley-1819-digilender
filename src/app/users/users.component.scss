@@ -1,23 +1,32 @@
+hr{
+    margin-bottom: 0;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    margin-top: 7em;
+}
 
-
- .container-header{
-    height: 7em;
+.main {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .container{
-    margin-left: 2em;
-    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+    padding: 0;
+    height: 80vh;
+    font-family: Geneva, Tahoma, Verdana, sans-serif;
+    font-style: normal;
+    font-variant: normal;
 }
 
   .align-right{
       text-align: right;
   }
 
-  .container{
-    font-family: Geneva, Tahoma, Verdana, sans-serif;
-    font-style: normal;
-    font-variant: normal;
-  }
 
   table th{
       font-size: 1.8em;
@@ -37,19 +46,14 @@
       margin-right: 1em;
   }
 
-  hr{
-   margin-left: 3.5em;
-   margin-right: 3.5em;
-   margin-bottom: 0;
-  }
 
-  .update-user-button {
-	position: absolute;
-	bottom: 20px;
-	right: 4em;
-	z-index: 1;
-	color: white;
-}
+//   .update-user-button {
+// 	position: absolute;
+// 	bottom: 50px;
+// 	right: 4em;
+// 	z-index: 1;
+// 	color: white;
+// }
 
 .kleurenContainer{
     display: flex;
@@ -73,4 +77,16 @@
     border-color: black;
     border-width: 2px;
     border-radius: 25%;
+}
+.material-icons{
+    color: black;
+}
+
+.button-footer{
+    height: 64px; 
+    margin-left:40px; 
+}
+
+#icon-back{
+    font-size: 3em;
 }

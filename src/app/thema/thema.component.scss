@@ -1,3 +1,10 @@
+hr{
+  margin-bottom: 0;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+  margin-top: 7em;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -19,7 +26,6 @@
   mat-card{
       flex-basis: 25%;
       padding: 0 0;
-      background-color: #F3F1EA;
   }
 
   mat-card-actions{
@@ -34,7 +40,10 @@ mat-card-content{
 .button-thema{
     width: 100%;
     padding: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
+ 
  
   .vertical-stripes-digilender {
     border-top-left-radius: 5px;

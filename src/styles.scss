@@ -1,15 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 /* MODAL STYLES
 -------------------------------*/
-//@import "~@angular/material/prebuilt-themes/purple-green.css";
-@import "theme.scss";
+//@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+// @import "themes.scss";
 
-.mat-dialog-container{
-  background-color: transparent;
-  border-radius: 40px;
-  box-shadow: none;
-
-}
+// .mat-dialog-container{
+//   background-color: transparent;
+//   border-radius: 40px;
+//   box-shadow: none;
+// }
 
 jw-modal {
   /* modals are hidden by default */
@@ -219,6 +218,25 @@ hr{
    border-top-width: 2px;
    border-top-style: solid;
    margin-top: 1px;
+}
+
+body > app-root > div > app-intro-setup > div.container > mat-horizontal-stepper > div.mat-horizontal-stepper-header-container{
+  margin-top: 2em;
+}
+
+#cdk-step-content-0-1 > app-locatie > hr{
+  display:none;
+}
+#cdk-step-content-0-0 > app-wifi > hr{
+  display:none;
+}
+
+#cdk-step-content-0-2 > app-users > hr{
+  display:none;
+}
+
+#cdk-step-content-0-3 > app-thema > hr{
+  display:none;
 }
 
 body > app-root > div > div.container-home-calendar.ng-trigger.ng-trigger-fadeAnimation > app-users > div.container > div > div.col-sm-4.list-users > form > table {

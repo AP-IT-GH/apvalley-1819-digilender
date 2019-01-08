@@ -5,7 +5,7 @@
   <div mat-dialog-content>
     <h5>{{data}}</h5>
     <form class="input-form-container">
-        <mat-form-field appearance="outline">
+        <mat-form-field color='accent' appearance="outline">
           <mat-label>Wachtwoord</mat-label>
           <input matInput type="password" >
         </mat-form-field>
@@ -13,7 +13,7 @@
   </div>
   <mat-dialog-actions align="end">
       <button mat-button mat-dialog-close>ANNULEREN</button>
-      <button mat-button color='primary' [mat-dialog-close]="true" (click)='connectedToWifi()'>VERBINDEN</button>
+      <button mat-flat-button color='accent' [mat-dialog-close]="true" (click)='connectedToWifi()'>VERBINDEN</button>
     </mat-dialog-actions>
 </div>
 </mat-card>

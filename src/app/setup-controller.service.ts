@@ -17,6 +17,11 @@ export class SetupControllerService {
   completedWifi = this.isCompletedWifi.asObservable();
   completedLocation = this.isCompletedLocation.asObservable();
 
+  private isChangedTheme = new BehaviorSubject(false);
+  changeThemes = this.isChangedTheme.asObservable();
+
+
+
   setCompletedWifi(_isCompletedWifi: boolean) {
     this.isCompletedWifiBusy.next(_isCompletedWifi)
     setTimeout(() => {
@@ -28,12 +33,14 @@ export class SetupControllerService {
     this.isCompletedLocation.next(_isCompletedLocation);
   }
 
+
+  changeTheme(_change){
+    this.isChangedTheme.next(_change)
+  }
+
 }
 
-interface ICompleted {
-  isCompletedWifi: boolean,
-  isCompletedLocation: boolean
-}
+
 
 
 
