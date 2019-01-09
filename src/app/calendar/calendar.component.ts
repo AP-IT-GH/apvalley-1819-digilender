@@ -202,7 +202,7 @@ export class CalendarComponent implements OnInit {
     if (currentHour < 23)
       this.selectedEndTime = ("0" + (currentHour + 1)).slice(-2) + ":" + ("0" + currentMinute).slice(-2);
     else
-      this.selectedEndTime = "00:" + ("0" + currentMinute).slice(-2);
+      this.selectedEndTime = "23:59";
     this.modalService.open(id);
   }
 
@@ -221,7 +221,7 @@ export class CalendarComponent implements OnInit {
     if (+selectedStartHour < 23)
       this.selectedEndTime = ("0" + (+selectedStartHour + 1)).slice(-2) + ":" + selectedStartMinute;
     else
-      this.selectedEndTime = "00:" + selectedStartMinute;
+      this.selectedEndTime = "23:59";
   }
 
   addEvent() {
