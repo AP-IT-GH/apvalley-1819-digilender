@@ -16,7 +16,7 @@ export class AuthService {
   calendarItems: any[];
 
   constructor(public afAuth: AngularFireAuth) {
-    this.initClient();
+    //this.initClient();
     this.user$ = afAuth.authState;
   }
 
@@ -34,7 +34,6 @@ export class AuthService {
       })
 
       gapi.client.load('calendar', 'v3', () => console.log('loaded calendar'));
-      console.log(new Date().toISOString())
 
     });
 
