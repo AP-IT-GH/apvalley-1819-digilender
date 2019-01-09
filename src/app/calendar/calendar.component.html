@@ -7,15 +7,17 @@
     <script src='fullcalendar.js'></script>
     <script src='scheduler.js'></script> 
 </head> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
     <div id='calendar'></div>
 
-    <button class="add-event-botton" mat-fab color="primary" (click)="openModal('event', false)">
+    <button class="add-event-botton" mat-fab color="primary"
+        (click)="openModal('event', false)">
         <mat-icon>add</mat-icon>
     </button>
 
     <jw-modal id="event">
-        <mat-card id="event-body" style="padding: 20px;">
+        <mat-card id="event-body">
 
             <mat-card-header style="display: flex; justify-content: center">
                 <mat-card-title id="title">Nieuw evenement</mat-card-title>
@@ -31,13 +33,15 @@
 
                 <mat-form-field appearance="outline">
                     <mat-label>Notitie</mat-label>
-                    <textarea matInput placeholder="Notitie invoeren" [(ngModel)]="eventDescription"></textarea>
+                    <textarea matInput placeholder="Notitie invoeren"
+                        [(ngModel)]="eventDescription"></textarea>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" *ngIf="eventButton">
                     <mat-label>Gezinslid</mat-label>
                     <mat-select [(value)]="userFromDropdown">
-                        <mat-option *ngFor="let user of users" [value]="user.id">
+                        <mat-option *ngFor="let user of users"
+                            [value]="user.id">
                             {{user.title}}
                         </mat-option>
                     </mat-select>
@@ -45,7 +49,8 @@
 
                 <mat-form-field appearance="outline" *ngIf="!eventButton">
                     <mat-label>Gezinslid</mat-label>
-                    <input matInput type="text" disabled value="{{selectedUserTitle}}">
+                    <input matInput type="text" disabled
+                        value="{{selectedUserTitle}}">
                 </mat-form-field>
 
                 <mat-form-field class="date-picker" appearance="outline"
@@ -62,14 +67,18 @@
             <div class="time-container">
                 <mat-form-field class="input-time-item" appearance="outline">
                     <mat-label>Start tijd</mat-label>
-                    <input matInput type="text" [(ngModel)]="selectedStartTime" [ngxTimepicker]="fullTimeStart" [format]="24">
-                    <ngx-material-timepicker #fullTimeStart (closed)="updateEndTime()"></ngx-material-timepicker>
+                    <input matInput type="text" [(ngModel)]="selectedStartTime"
+                        [ngxTimepicker]="fullTimeStart" [format]="24">
+                    <ngx-material-timepicker #fullTimeStart
+                        (closed)="updateEndTime()"></ngx-material-timepicker>
                     <mat-icon matSuffix>access_time</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field class="input-time-item" appearance="outline">
                     <mat-label>Eind tijd</mat-label>
-                    <input matInput type="text" [(ngModel)]="selectedEndTime" [ngxTimepicker]="fullTimeEnd" [format]="24" [min]="selectedStartTime">
+                    <input matInput type="text" [(ngModel)]="selectedEndTime"
+                        [ngxTimepicker]="fullTimeEnd" [format]="24"
+                        [min]="selectedStartTime">
                     <ngx-material-timepicker #fullTimeEnd></ngx-material-timepicker>
                     <mat-icon matSuffix>access_time</mat-icon>
                 </mat-form-field>
@@ -85,18 +94,18 @@
     </jw-modal>
 
     <jw-modal id="event-detail" style="text-align: center;">
-        <mat-card id="event-detail-body" style="padding: 20px; margin-left: 35%;
-            margin-right: 35%; margin-top: 35%; color: white">
+        <mat-card id="event-detail-body">
             <mat-card-header style="display: flex; justify-content: center">
                 <mat-card-title id="detail-title">{{selectedUserTitle}}</mat-card-title>
             </mat-card-header>
-            <mat-card-content>
+            <mat-card-content id="detail-content">
                 <p>{{selectedEventTitle}}</p>
                 <p>{{selectedEventStart}} - {{selectedEventEnd}}</p>
                 <p>{{selectedEventDescription}}</p>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-raised-button color="primary" (click)="closeModal('event-detail')">Ok</button>
+                <button mat-raised-button color="primary"
+                    (click)="closeModal('event-detail')">Ok</button>
             </mat-card-actions>
         </mat-card>
     </jw-modal>
