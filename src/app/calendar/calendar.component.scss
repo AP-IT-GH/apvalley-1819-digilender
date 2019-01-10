@@ -70,7 +70,7 @@
 
 #event-detail-body {
 	padding: 5%;
-	margin-top: 35%;
+	margin-top: 40%;
 	margin-left: 20%;
 	margin-right: 20%;
 	color: white;
@@ -82,4 +82,10 @@
 
 #detail-content {
 	font-size: 1.3em;
+}
+
+.delete-event-button {
+	position: absolute;
+	bottom: 1%;
+	right: 1%;
 }

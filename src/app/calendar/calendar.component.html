@@ -103,9 +103,8 @@
                 <p>{{selectedEventStart}} - {{selectedEventEnd}}</p>
                 <p>{{selectedEventDescription}}</p>
             </mat-card-content>
-            <mat-card-actions>
-                <button mat-raised-button color="primary"
-                    (click)="closeModal('event-detail')">Ok</button>
-            </mat-card-actions>
+            <button class="delete-event-button" mat-fab color="primary">
+                <mat-icon>delete</mat-icon>
+            </button>
         </mat-card>
     </jw-modal>
