@@ -99,6 +99,10 @@
                 (click)="editEvent()">
                 <mat-icon>edit</mat-icon>
             </button>
+            <button class="close-event-button" mat-mini-fab color="primary"
+                (click)="closeModal('event-detail')">
+                <mat-icon>close</mat-icon>
+            </button>
             <mat-card-header style="display: flex; justify-content: center">
                 <mat-card-title id="detail-title">{{selectedUserTitle}}</mat-card-title>
             </mat-card-header>
