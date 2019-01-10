@@ -158,7 +158,7 @@ export class CalendarComponent implements OnInit {
           me.dateFromPicker = date.format();
           me.selectedDate = date.format().match(/.*?T/).toString();
           document.getElementById("event-body").style.backgroundColor = me.users[resource.id - 1].eventColor;
-          me.openModal('event', true);
+          me.openModal('event', true, true);
           document.getElementById("title").click();
         },
         // Voeg een beschrijving toe
@@ -179,7 +179,7 @@ export class CalendarComponent implements OnInit {
           me.selectedEventStart = calEvent.start.toString().match(/\d{2}:\d{2}/).toString();
           me.selectedEventEnd = calEvent.stop.toString().match(/\d{2}:\d{2}/).toString();
           document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
-          me.openModal('event-detail', true);
+          me.openModal('event-detail', true, true);
           document.getElementById("detail-title").click();
 
           // me.db.getEvents(calEvent.resourceId).then((events) => {
@@ -190,21 +190,28 @@ export class CalendarComponent implements OnInit {
     })
   }
 
-  openModal(id: string, isDatePicked: boolean) {
+  openModal(id: string, isDatePicked: boolean, startFromNow: boolean) {
     if (!isDatePicked) {
       this.dateFromPicker = '';
       document.getElementById("event-body").style.backgroundColor = '#f4f1ea';
       document.getElementById("event-detail-body").style.backgroundColor = '#f4f1ea';
     }
+
     this.eventButton = !isDatePicked;
-    var currentDate = new Date();
-    var currentHour = currentDate.getHours();
-    var currentMinute = currentDate.getMinutes();
-    this.selectedStartTime = ("0" + currentHour).slice(-2) + ":" + ("0" + currentMinute).slice(-2);
-    if (currentHour < 23)
-      this.selectedEndTime = ("0" + (currentHour + 1)).slice(-2) + ":" + ("0" + currentMinute).slice(-2);
-    else
-      this.selectedEndTime = "23:59";
+
+    if (startFromNow) {
+      this.eventTitle = "";
+      this.eventDescription = "";
+      var currentDate = new Date();
+      var currentHour = currentDate.getHours();
+      var currentMinute = currentDate.getMinutes();
+      this.selectedStartTime = ("0" + currentHour).slice(-2) + ":" + ("0" + currentMinute).slice(-2);
+      if (currentHour < 23)
+        this.selectedEndTime = ("0" + (currentHour + 1)).slice(-2) + ":" + ("0" + currentMinute).slice(-2);
+      else
+        this.selectedEndTime = "23:59";
+    }
+
     this.modalService.open(id);
   }
 
@@ -261,5 +268,15 @@ export class CalendarComponent implements OnInit {
       this.calendar.fullCalendar('refetchEvents');
       this.closeModal('event-detail');
     });
+  }
+
+  editEvent() {
+    this.eventTitle = this.selectedEvent.title;
+    this.eventDescription = this.selectedEvent.description;
+    this.dateFromPicker = this.selectedEvent.start._i.toString().match(/[^T]*/).toString();
+    this.selectedStartTime = this.selectedEvent.start._i.toString().match(/[^T]*$/).toString();
+    this.selectedEndTime = this.selectedEvent.stop.toString().match(/[^T]*$/).toString();
+    this.closeModal('event-detail');
+    this.openModal('event', true, false);
   }
 }

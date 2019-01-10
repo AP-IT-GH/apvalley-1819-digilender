@@ -12,7 +12,7 @@
     <div id='calendar'></div>
 
     <button class="add-event-botton" mat-fab color="primary"
-        (click)="openModal('event', false)">
+        (click)="openModal('event', false, true)">
         <mat-icon>add</mat-icon>
     </button>
 
@@ -26,15 +26,12 @@
             <div class="title-note-container">
                 <mat-form-field appearance="outline">
                     <mat-label>Titel</mat-label>
-                    <input matInput type="text" placeholder="Titel invoeren"
-                        [(ngModel)]="eventTitle">
-                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <input matInput type="text" [(ngModel)]="eventTitle">
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Notitie</mat-label>
-                    <textarea matInput placeholder="Notitie invoeren"
-                        [(ngModel)]="eventDescription"></textarea>
+                    <textarea matInput [(ngModel)]="eventDescription"></textarea>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" *ngIf="eventButton">
@@ -56,8 +53,7 @@
                 <mat-form-field class="date-picker" appearance="outline"
                     (click)="picker.open()">
                     <mat-label>Datum</mat-label>
-                    <input matInput [matDatepicker]="picker" placeholder="Kies
-                        een datum"
+                    <input matInput [matDatepicker]="picker"
                         [(ngModel)]="dateFromPicker" [disabled]="!eventButton">
                     <mat-datepicker touchUi #picker></mat-datepicker>
                     <mat-icon matSuffix>date_range</mat-icon>
