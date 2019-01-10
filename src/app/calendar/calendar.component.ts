@@ -32,6 +32,7 @@ export class CalendarComponent implements OnInit {
   users;
   selectedUser;
   userFromDropdown;
+  selectedEvent;
 
   goToOptions(): void {
     this.router.navigate(['/options'], { relativeTo: this.route });
@@ -171,6 +172,7 @@ export class CalendarComponent implements OnInit {
         },
         // Klik op een event en de details tonen
         eventClick: function (calEvent, jsEvent, view) {
+          me.selectedEvent = calEvent;
           me.selectedUserTitle = me.users[calEvent.resourceId - 1].title;
           me.selectedEventTitle = calEvent.title;
           me.selectedEventDescription = calEvent.description;
@@ -251,5 +253,13 @@ export class CalendarComponent implements OnInit {
         this.calendar.fullCalendar('refetchEvents');
       });
     }
+  }
+
+  deleteEvent() {
+    this.db.deleteEvent(this.selectedEvent).then(() => {
+      this.db.emitChange();
+      this.calendar.fullCalendar('refetchEvents');
+      this.closeModal('event-detail');
+    });
   }
 }

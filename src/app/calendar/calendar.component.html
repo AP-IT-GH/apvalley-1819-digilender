@@ -103,7 +103,7 @@
                 <p>{{selectedEventStart}} - {{selectedEventEnd}}</p>
                 <p>{{selectedEventDescription}}</p>
             </mat-card-content>
-            <button class="delete-event-button" mat-fab color="primary">
+            <button class="delete-event-button" mat-fab color="primary" (click)="deleteEvent()">
                 <mat-icon>delete</mat-icon>
             </button>
         </mat-card>

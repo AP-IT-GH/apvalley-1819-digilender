@@ -107,7 +107,7 @@ class DBManager {
   }
 
   deleteEvent(event) {
-    console.log('deleting user');
+    console.log('deleting event');
     console.log(event.id);
     if (event.id == undefined) {
       return; //no event to delete
@@ -115,7 +115,7 @@ class DBManager {
     else {
       return this.Event.findById(event.id)
         .then((eventToDelete) => {
-           return eventToDelete.destroy(); //delete user
+           return eventToDelete.destroy(); //delete event
         });
     }
   }
