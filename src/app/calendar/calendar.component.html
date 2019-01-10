@@ -95,6 +95,10 @@
 
     <jw-modal id="event-detail" style="text-align: center;">
         <mat-card id="event-detail-body">
+            <button class="edit-event-button" mat-mini-fab color="primary"
+                (click)="editEvent()">
+                <mat-icon>edit</mat-icon>
+            </button>
             <mat-card-header style="display: flex; justify-content: center">
                 <mat-card-title id="detail-title">{{selectedUserTitle}}</mat-card-title>
             </mat-card-header>
@@ -103,7 +107,8 @@
                 <p>{{selectedEventStart}} - {{selectedEventEnd}}</p>
                 <p>{{selectedEventDescription}}</p>
             </mat-card-content>
-            <button class="delete-event-button" mat-fab color="primary" (click)="deleteEvent()">
+            <button class="delete-event-button" mat-fab color="primary"
+                (click)="deleteEvent()">
                 <mat-icon>delete</mat-icon>
             </button>
         </mat-card>

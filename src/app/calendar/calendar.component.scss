@@ -86,6 +86,12 @@
 
 .delete-event-button {
 	position: absolute;
-	bottom: 1%;
-	right: 1%;
+	bottom: 15px;
+	right: 15px;
+}
+
+.edit-event-button {
+	position: absolute;
+	top: -15px;
+	left: -15px;
 }
