@@ -179,7 +179,7 @@ export class CalendarComponent implements OnInit {
           me.selectedEventStart = calEvent.start.toString().match(/\d{2}:\d{2}/).toString();
           me.selectedEventEnd = calEvent.stop.toString().match(/\d{2}:\d{2}/).toString();
           document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
-          me.openModal('event-detail', true, true);
+          me.openModal('event-detail', true, false);
           document.getElementById("detail-title").click();
 
           // me.db.getEvents(calEvent.resourceId).then((events) => {
@@ -200,6 +200,7 @@ export class CalendarComponent implements OnInit {
     this.eventButton = !isDatePicked;
 
     if (startFromNow) {
+      this.selectedEvent = null;
       this.eventTitle = "";
       this.eventDescription = "";
       var currentDate = new Date();
@@ -234,17 +235,24 @@ export class CalendarComponent implements OnInit {
   }
 
   addEvent() {
-    if (this.eventButton) {
-      var dateFromPicker = new Date(this.dateFromPicker);
-      this.selectedDate = dateFromPicker.getFullYear() + "-" + ('0' + (dateFromPicker.getMonth() + 1)).slice(-2) + "-" + ('0' + dateFromPicker.getDate()).slice(-2) + "T";
+    var eventId = undefined;
+    if (this.selectedEvent != null) {
+      eventId = this.selectedEvent.id;
+      this.userFromDropdown = this.selectedEvent.resourceId;
     }
     else {
-      this.userFromDropdown = this.selectedUser.id;
+      if (this.eventButton) {
+        var dateFromPicker = new Date(this.dateFromPicker);
+        this.selectedDate = dateFromPicker.getFullYear() + "-" + ('0' + (dateFromPicker.getMonth() + 1)).slice(-2) + "-" + ('0' + dateFromPicker.getDate()).slice(-2) + "T";
+      }
+      else {
+        this.userFromDropdown = this.selectedUser.id;
+      }
     }
 
     if (this.eventTitle != "" && this.eventTitle != null && this.dateFromPicker != '') {
       this.db.addEvent({
-        id: undefined,
+        id: eventId,
         resourceId: this.userFromDropdown,
         start: this.selectedDate + this.selectedStartTime,
         stop: this.selectedDate + this.selectedEndTime,
@@ -271,9 +279,11 @@ export class CalendarComponent implements OnInit {
   }
 
   editEvent() {
+    document.getElementById("event-body").style.backgroundColor = this.users[this.selectedEvent.resourceId - 1].eventColor;
     this.eventTitle = this.selectedEvent.title;
     this.eventDescription = this.selectedEvent.description;
     this.dateFromPicker = this.selectedEvent.start._i.toString().match(/[^T]*/).toString();
+    this.selectedDate = this.dateFromPicker + "T";
     this.selectedStartTime = this.selectedEvent.start._i.toString().match(/[^T]*$/).toString();
     this.selectedEndTime = this.selectedEvent.stop.toString().match(/[^T]*$/).toString();
     this.closeModal('event-detail');

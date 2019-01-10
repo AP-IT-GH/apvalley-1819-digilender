@@ -99,7 +99,7 @@ class DBManager {
       return this.Event.build(newEvent).save(); //return promise of new event
     }
     else {
-      return this.Event.findById(event.id)
+      return this.Event.findById(newEvent.id)
         .then((oldEvent) => {
           return oldEvent.update(newEvent);
         });
