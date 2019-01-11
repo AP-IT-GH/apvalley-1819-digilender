@@ -31,7 +31,7 @@ import { ModalComponent } from './modal/modal.component';
 import { IntroSetupComponent } from './intro-setup/intro-setup.component';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Services
 import { WeatherService } from './weather.service';
@@ -42,6 +42,8 @@ import { StatusPanelComponent } from './status-panel/status-panel.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { GooglePlacesDirective } from './google-places.directive';
 import { SetupControllerService } from "./setup-controller.service";
+import { authService } from './auth.service'
+import { GoogleCalendarService } from './google-calendar.service'
 
 registerLocaleData(localeBE, 'nl-BE');
 @NgModule({
@@ -89,11 +91,13 @@ registerLocaleData(localeBE, 'nl-BE');
     DatabaseService,
     ModalService,
     SetupControllerService,
+    authService,
+    GoogleCalendarService,
     { provide: LOCALE_ID, useValue: "nl-BE" }
   ],
   entryComponents: [
     CalendarComponent,
-     DialogContentWifi
+    DialogContentWifi
   ],
   bootstrap: [AppComponent]
 })
