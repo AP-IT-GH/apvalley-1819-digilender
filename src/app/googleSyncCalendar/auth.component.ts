@@ -25,7 +25,9 @@ export class AuthComponent implements OnInit {
   // }
 
   login() {
-    this.auth.login()
+    this.auth.login().then(res =>{
+      console.log(res.user.displayName)
+    })
     //this.isUserInlogged()
   }
 
