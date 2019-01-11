@@ -29,9 +29,7 @@ export class authService {
     provider.setCustomParameters({
       prompt: 'select_account'
     })
-    this.afAuth.auth.signInWithPopup(provider).then(res => {
-      console.log(res.credential.accessToken)
-    })
+    return this.afAuth.auth.signInWithPopup(provider)
   }
 
   logout() {
