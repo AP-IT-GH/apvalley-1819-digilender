@@ -44,7 +44,7 @@
                 <mat-list-item *ngFor="let user of users">
                     <div class="mat-list-name-avatar"></div>
                     <img matListAvatar *ngIf='user.avatar' src={{user.avatar}}>
-                    <img matListAvatar *ngIf='user.avatar' src={{user.avatar}}>
+
                     <h1 matLine> {{user.title}} </h1>
                     <mat-action-list>
                             <mat-icon *ngIf='user.isGoogleAccount' svgIcon="google-logo"></mat-icon>

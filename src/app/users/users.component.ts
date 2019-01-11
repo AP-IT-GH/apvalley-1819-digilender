@@ -60,15 +60,31 @@ export class UsersComponent implements OnInit {
   login() {
     this.auth.login().then(res => {
       console.log(res)
-      this.createUserWithGoogleAccount(res.user.displayName, res.user.photoURL)
-
+      this.createUserWithGoogleAccount(res.user.displayName, res.user.photoURL, '114228719032288976509')
     })
+
     //this.isUserInlogged()
   }
 
-  createUserWithGoogleAccount(userName: string, avatarUrl) {
+  addEventFromGoogleCalendar() {
+    // let event: IEvent = {
+    //   id: undefined,
+    //   resourceId: number,
+    //   start: string,
+    //   stop: string,
+    //   title: string,
+    //   description: string,
+    // }
+    // this.dbService.addEvent({
+
+    // })
+
+  }
+
+  createUserWithGoogleAccount(userName: string, avatarUrl, id: string) {
     let newuser: IUser = {
       id: undefined,
+      googleId: id,
       title: userName,
       eventColor: '#fffff',
       avatar: avatarUrl,
@@ -81,6 +97,7 @@ export class UsersComponent implements OnInit {
     newuser = null;
     this.snackBar.open('Nieuwe gebruiker toegevoegd', 'close', { duration: 3000 });
     this.addUser = false;
+    console.log(newuser);
   }
 
   public goTo(pad: String): void {
@@ -92,6 +109,7 @@ export class UsersComponent implements OnInit {
     this.arrayLength = this.users.length + 1;
     let newuser: IUser = {
       id: undefined,
+      googleId: null,
       title: this.addUserForm.get('title').value,
       eventColor: this.chosenColor,
       avatar: '',
@@ -158,9 +176,20 @@ export class UsersComponent implements OnInit {
 
 export interface IUser {
   id: string;
+  googleId: String
   title: string;
   eventColor: string;
   avatar: string;
-  isGoogleAccount: Boolean
+  isGoogleAccount: Boolean;
   //Agenda:string;
 }
+
+export interface IEvent {
+  id: number;
+  resourceId: number;
+  start: string;
+  stop: string;
+  title: string;
+  description: string;
+}
+
