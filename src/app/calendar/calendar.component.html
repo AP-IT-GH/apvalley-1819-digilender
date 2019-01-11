@@ -12,7 +12,7 @@
     <div id='calendar'></div>
 
     <button class="add-event-botton" mat-fab color="primary"
-        (click)="openModal('event', false, true)">
+        (click)="editBool = false; openModal('event', false, true)">
         <mat-icon>add</mat-icon>
     </button>
 
@@ -34,7 +34,7 @@
                     <textarea matInput [(ngModel)]="eventDescription"></textarea>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" *ngIf="eventButton">
+                <mat-form-field appearance="outline" *ngIf="eventButton && editBool == false">
                     <mat-label>Gezinslid</mat-label>
                     <mat-select [(value)]="userFromDropdown">
                         <mat-option *ngFor="let user of users"
@@ -44,7 +44,7 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" *ngIf="!eventButton">
+                <mat-form-field appearance="outline" *ngIf="!eventButton || editBool == true">
                     <mat-label>Gezinslid</mat-label>
                     <input matInput type="text" disabled
                         value="{{selectedUserTitle}}">

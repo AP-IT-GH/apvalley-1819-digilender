@@ -19,6 +19,7 @@ export class CalendarComponent implements OnInit {
   selectedDate: string;
   dateFromPicker: string;
   eventButton: boolean;
+  editBool: boolean;
   selectedStartTime: string;
   selectedEndTime: string;
   eventTitle: string;
@@ -41,6 +42,7 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     // Selector om de scope te veranderen
     var me = this;
+    this.editBool = false;
 
     $(function () {
       me.calendar = $('#calendar');
@@ -153,6 +155,8 @@ export class CalendarComponent implements OnInit {
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
         // Klik op een lege plek op de kalender
         dayClick: function (date, jsEvent, view, resource) {
+          this.selectedEvent = null;
+          me.editBool = false;
           me.selectedUser = resource;
           me.selectedUserTitle = resource.title;
           me.dateFromPicker = date.format();
@@ -172,6 +176,8 @@ export class CalendarComponent implements OnInit {
         },
         // Klik op een event en de details tonen
         eventClick: function (calEvent, jsEvent, view) {
+          me.editBool = false;
+          me.eventButton = false;
           me.selectedEvent = calEvent;
           me.selectedUserTitle = me.users[calEvent.resourceId - 1].title;
           me.selectedEventTitle = calEvent.title;
@@ -192,12 +198,15 @@ export class CalendarComponent implements OnInit {
 
   openModal(id: string, isDatePicked: boolean, startFromNow: boolean) {
     if (!isDatePicked) {
+      this.selectedEvent = null;
       this.dateFromPicker = '';
       document.getElementById("event-body").style.backgroundColor = '#f4f1ea';
-      document.getElementById("event-detail-body").style.backgroundColor = '#f4f1ea';
     }
 
     this.eventButton = !isDatePicked;
+
+    if (this.selectedEvent != null && !startFromNow)
+      this.eventButton = true;
 
     if (startFromNow) {
       this.selectedEvent = null;
@@ -240,14 +249,13 @@ export class CalendarComponent implements OnInit {
       eventId = this.selectedEvent.id;
       this.userFromDropdown = this.selectedEvent.resourceId;
     }
+
+    if (this.eventButton) {
+      var dateFromPicker = new Date(this.dateFromPicker);
+      this.selectedDate = dateFromPicker.getFullYear() + "-" + ('0' + (dateFromPicker.getMonth() + 1)).slice(-2) + "-" + ('0' + dateFromPicker.getDate()).slice(-2) + "T";
+    }
     else {
-      if (this.eventButton) {
-        var dateFromPicker = new Date(this.dateFromPicker);
-        this.selectedDate = dateFromPicker.getFullYear() + "-" + ('0' + (dateFromPicker.getMonth() + 1)).slice(-2) + "-" + ('0' + dateFromPicker.getDate()).slice(-2) + "T";
-      }
-      else {
-        this.userFromDropdown = this.selectedUser.id;
-      }
+      this.userFromDropdown = this.selectedUser.id;
     }
 
     if (this.eventTitle != "" && this.eventTitle != null && this.dateFromPicker != '') {
@@ -279,6 +287,7 @@ export class CalendarComponent implements OnInit {
   }
 
   editEvent() {
+    this.editBool = true;
     document.getElementById("event-body").style.backgroundColor = this.users[this.selectedEvent.resourceId - 1].eventColor;
     this.eventTitle = this.selectedEvent.title;
     this.eventDescription = this.selectedEvent.description;
