@@ -9,6 +9,7 @@ import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 
 
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -38,7 +39,8 @@ export class UsersComponent implements OnInit {
     private dbService: DatabaseService,
     public snackBar: MatSnackBar,
     private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private auth: authService
   ) {
     this.matIconRegistry.addSvgIcon("google-calendar", this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/logo/google-calendar.svg"));
     this.matIconRegistry.addSvgIcon('google-logo', this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/logo/google-logo.svg"))
@@ -53,7 +55,32 @@ export class UsersComponent implements OnInit {
     })
 
     this.colorsToChoose();
+  }
 
+  login() {
+    this.auth.login().then(res => {
+      console.log(res)
+      this.createUserWithGoogleAccount(res.user.displayName, res.user.photoURL)
+
+    })
+    //this.isUserInlogged()
+  }
+
+  createUserWithGoogleAccount(userName: string, avatarUrl) {
+    let newuser: IUser = {
+      id: undefined,
+      title: userName,
+      eventColor: '#fffff',
+      avatar: avatarUrl,
+      isGoogleAccount: true
+      //Agenda: this.addUserForm.get('Agenda').value
+    };
+
+    this.users.push(newuser);
+    this.dbService.addUser(newuser);
+    newuser = null;
+    this.snackBar.open('Nieuwe gebruiker toegevoegd', 'close', { duration: 3000 });
+    this.addUser = false;
   }
 
   public goTo(pad: String): void {
@@ -67,6 +94,8 @@ export class UsersComponent implements OnInit {
       id: undefined,
       title: this.addUserForm.get('title').value,
       eventColor: this.chosenColor,
+      avatar: '',
+      isGoogleAccount: false
       //Agenda: this.addUserForm.get('Agenda').value
     };
     if (newuser.title != "" && newuser != null) {
@@ -131,5 +160,7 @@ export interface IUser {
   id: string;
   title: string;
   eventColor: string;
+  avatar: string;
+  isGoogleAccount: Boolean
   //Agenda:string;
 }
