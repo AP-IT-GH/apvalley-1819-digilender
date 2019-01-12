@@ -29,12 +29,21 @@ export class authService {
     provider.setCustomParameters({
       prompt: 'select_account'
     })
-    return this.afAuth.auth.signInWithPopup(provider)
+
+    return await this.afAuth.auth.signInWithPopup(provider)
   }
+
 
   logout() {
     this.afAuth.auth.signOut();
   }
 }
+
+export interface IGoogleProfiel {
+  name: string;
+  profielImgUrl: string;
+  googleId: string;
+}
+
 
 
