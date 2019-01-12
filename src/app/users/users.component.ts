@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material'
 import { authService } from '../auth.service';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
+import { GoogleCalendarService } from "../google-calendar.service";
 
 
 
@@ -29,6 +30,7 @@ export class UsersComponent implements OnInit {
   googleProfiel: IGoogleProfiel;
   newuser: IUser;
   isGoogleAccount: boolean
+  gCalPar: IGCalParameters
 
   imageAvatar = '../assets/svg/baseline-person.svg'
 
@@ -46,7 +48,8 @@ export class UsersComponent implements OnInit {
     public snackBar: MatSnackBar,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
-    private auth: authService
+    private authService: authService,
+    private gCalService: GoogleCalendarService
   ) {
     this.matIconRegistry.addSvgIcon("google-calendar", this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/logo/google-calendar.svg"));
     this.matIconRegistry.addSvgIcon('google-logo', this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/logo/google-logo.svg"))
@@ -63,13 +66,11 @@ export class UsersComponent implements OnInit {
     this.colorsToChoose();
   }
 
-  login() {
+  googleAuthSignIn() {
     let response: any
 
-    this.auth.login().then(res => {
+    this.authService.login().then(res => {
       response = res
-
-      console.log(response)
 
       this.googleProfiel = {
         name: response.additionalUserInfo.profile.given_name,
@@ -81,32 +82,33 @@ export class UsersComponent implements OnInit {
       this.googleUserName = this.googleProfiel.name
       this.isGoogleAccount = true
 
-      //this.createUserWithGoogleAccount(profiel.name, profiel.profielImgUrl, profiel.googleId)
-
+      console.log(response.credential.accessToken)
+       this.addEventFromGoogleCalendar(response.credential.accessToken)
     })
-
-
-
-    //this.isUserInlogged()
   }
 
-  addEventFromGoogleCalendar() {
-    // let event: IEvent = {
-    //   id: undefined,
-    //   resourceId: number,
-    //   start: string,
-    //   stop: string,
-    //   title: string,
-    //   description: string,
-    // }
-    // this.dbService.addEvent({
+  addEventFromGoogleCalendar(accessToken: string) {
 
-    // })
+    this.gCalPar = {
+      calendarId: 'primary',
+      timeMin: new Date().toISOString(),
+      showDeleted: false,
+      orderBy: 'startTime'
+    }
+    this.gCalService.getEvents(
+      this.gCalPar.calendarId,
+      this.gCalPar.showDeleted,
+      this.gCalPar.timeMin,
+      this.gCalPar.orderBy,
+      accessToken
+    ).subscribe(res => {
+      console.log(res)
+    })
+
 
   }
 
   createUserWithGoogleAccount() {
-
     this.newuser = {
       id: undefined,
       googleId: this.googleProfiel.googleId,
@@ -115,8 +117,8 @@ export class UsersComponent implements OnInit {
       avatar: this.googleProfiel.profielImgUrl,
       isGoogleAccount: true,
       calType: 1
-      //Agenda: this.addUserForm.get('Agenda').value
     };
+
     this.arrayLength = this.users.length + 1;
     this.users.push(this.newuser);
     this.dbService.addUser(this.newuser);
@@ -230,4 +232,11 @@ export interface IGoogleProfiel {
   name: string;
   profielImgUrl: string;
   googleId: string;
+}
+
+export interface IGCalParameters {
+  calendarId: string;
+  timeMin: string;
+  showDeleted: boolean;
+  orderBy: string;
 }
