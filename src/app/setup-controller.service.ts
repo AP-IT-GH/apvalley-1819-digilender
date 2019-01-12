@@ -8,8 +8,8 @@ export class SetupControllerService {
 
   constructor() { }
 
-  private isCompletedWifi = new BehaviorSubject(false);
-  private isCompletedLocation = new BehaviorSubject(false);
+  private isCompletedWifi = new BehaviorSubject(true); //TODO set these 2 back to false
+  private isCompletedLocation = new BehaviorSubject(true);
 
   private isCompletedWifiBusy = new BehaviorSubject(false);
   completedWifiBusy = this.isCompletedWifiBusy.asObservable();
