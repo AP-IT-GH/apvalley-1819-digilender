@@ -43,18 +43,19 @@
             <mat-list *ngIf="users">
                 <mat-list-item *ngFor="let user of users">
                     <div class="mat-list-name-avatar"></div>
-                    <img matListAvatar *ngIf='user.avatar' src={{user.avatar}}>
+                    <img matListAvatar src={{user.avatar}}>
 
                     <h1 matLine> {{user.title}} </h1>
                     <mat-action-list>
-                            <mat-icon *ngIf='user.isGoogleAccount' svgIcon="google-logo"></mat-icon>
-                        <button class="button" mat-button color="primary" *ngIf='!user.isGoogleAccount' (click)="userToUpdate(user.id)">
+                            <mat-icon class='google-icon-account' *ngIf='user.isGoogleAccount' svgIcon="google-logo"></mat-icon>
+                        <button class="button" mat-icon-button color="primary" *ngIf='!user.isGoogleAccount' (click)="userToUpdate(user.id)">
                             <mat-icon>create</mat-icon>
                         </button>
-                        <button class="button" mat-button color="primary" (click)="deleteUser(user.id)">
+                        <button class="button" mat-icon-button color="primary" (click)="deleteUser(user.id)">
                             <mat-icon>cancel</mat-icon>
                         </button>
                     </mat-action-list>
+                    <mat-divider></mat-divider>
                 </mat-list-item>
             </mat-list>
 
@@ -75,8 +76,9 @@
         <div class="right" *ngIf="addUser">
             <form [formGroup]="addUserForm">
                 <h1>
-                    <label for="title">Naam nieuwe gebruiker: </label>
+                    <!-- <label for="title">Naam nieuwe gebruiker: </label> -->
                     <input class="form-control" type="text" id="title" formControlName="title">
+                    <h1 *ngIf='googleUserName'>{{googleUserName}}</h1>
                 </h1>
                 <h2>Kleur</h2>
                 <div class="kleurenContainer">
