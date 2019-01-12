@@ -48,7 +48,7 @@
                     <h1 matLine> {{user.title}} </h1>
                     <mat-action-list>
                             <mat-icon class='google-icon-account' *ngIf='user.isGoogleAccount' svgIcon="google-logo"></mat-icon>
-                        <button class="button" mat-icon-button color="primary" *ngIf='!user.isGoogleAccount' (click)="userToUpdate(user.id)">
+                        <button class="button" mat-icon-button color="primary" (click)="userToUpdate(user.id)">
                             <mat-icon>create</mat-icon>
                         </button>
                         <button class="button" mat-icon-button color="primary" (click)="deleteUser(user.id)">
