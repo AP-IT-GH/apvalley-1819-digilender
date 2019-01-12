@@ -19,6 +19,8 @@ class DBManager {
       title: Sequelize.STRING,      // user name
       eventColor: Sequelize.STRING,   // colour asociated with user
       calType: Sequelize.INTEGER,   // type of calendar, 0=purely local, 1=google
+      googleId: Sequelize.STRING,
+      avatar: Sequelize.STRING,
       login: Sequelize.STRING,      // login for third party calendars?
       pass: Sequelize.STRING        // possible key for third party calendars?
     });
@@ -39,11 +41,12 @@ class DBManager {
     }).then(() => {
       return me.Event.sync();
     }).then(() => {
-      me.User.create({ title: "Antoinne", eventColor: "#ff6600", calType: 0, login: 'antun', pass: 'antpw' });
-      me.User.create({ title: "Mohammed", eventColor: "#0066ff", calType: 0, login: 'moun', pass: 'mopw' });
-      me.User.create({ title: "Reno", eventColor: "#ff9999", calType: 0, login: 'renun', pass: 'renpw' });
-      me.User.create({ title: "Coralie", eventColor: "#ffcc00", calType: 0, login: 'corun', pass: 'corpw' });
-      return me.User.create({ title: "Elke", eventColor: "#99ccff", calType: 0, login: 'elkun', pass: 'elkpw' })
+      let avatarUrl = '../assets/svg/baseline-person.svg'
+      me.User.create({ title: "Antoinne", eventColor: "#ff6600", googleId: null, avatar: avatarUrl, calType: 0, login: 'antun', pass: 'antpw' });
+      me.User.create({ title: "Mohammed", eventColor: "#0066ff", googleId: null, avatar: avatarUrl, calType: 0, login: 'moun', pass: 'mopw' });
+      me.User.create({ title: "Reno", eventColor: "#ff9999", googleId: null, avatar: avatarUrl, calType: 0, login: 'renun', pass: 'renpw' });
+      me.User.create({ title: "Coralie", eventColor: "#ffcc00", googleId: null, avatar: avatarUrl, calType: 0, login: 'corun', pass: 'corpw' });
+      return me.User.create({ title: "Elke", eventColor: "#99ccff", googleId: null, avatar: avatarUrl, calType: 0, login: 'elkun', pass: 'elkpw' })
     }).then((user) => {
       me.Event.create({ resourceId: 3, start: '2018-12-10T09:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
       me.Event.create({ resourceId: 1, start: '2018-12-11T08:00:00', stop: null, description: 'wash my spaceship', title: 'wash ship' });
@@ -87,7 +90,7 @@ class DBManager {
     else {
       return this.User.findById(id)
         .then((user) => {
-           return user.destroy(); //delete user
+          return user.destroy(); //delete user
         });
     }
   }
@@ -115,7 +118,7 @@ class DBManager {
     else {
       return this.Event.findById(event.id)
         .then((eventToDelete) => {
-           return eventToDelete.destroy(); //delete user
+          return eventToDelete.destroy(); //delete user
         });
     }
   }

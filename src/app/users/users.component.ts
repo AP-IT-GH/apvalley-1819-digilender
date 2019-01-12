@@ -113,7 +113,8 @@ export class UsersComponent implements OnInit {
       title: this.googleProfiel.name,
       eventColor: this.chosenColor,
       avatar: this.googleProfiel.profielImgUrl,
-      isGoogleAccount: true
+      isGoogleAccount: true,
+      calType: 1
       //Agenda: this.addUserForm.get('Agenda').value
     };
     this.arrayLength = this.users.length + 1;
@@ -147,7 +148,8 @@ export class UsersComponent implements OnInit {
       title: this.addUserForm.get('title').value,
       eventColor: this.chosenColor,
       avatar: this.imageAvatar,
-      isGoogleAccount: false
+      isGoogleAccount: false,
+      calType: 0
       //Agenda: this.addUserForm.get('Agenda').value
     };
     if (this.newuser.title != "" && this.newuser != null) {
@@ -206,11 +208,12 @@ export class UsersComponent implements OnInit {
 
 export interface IUser {
   id: string;
-  googleId: String
   title: string;
   eventColor: string;
+  googleId: String
   avatar: string;
   isGoogleAccount: Boolean;
+  calType: number
   //Agenda:string;
 }
 
