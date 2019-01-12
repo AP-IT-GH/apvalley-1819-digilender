@@ -95,8 +95,8 @@
 
     <jw-modal id="event-detail" style="text-align: center;">
         <mat-card id="event-detail-body" >
-        <button mat-raised-button style="position: absolute; left: -50%; top: -33px; display: inline-block " (click)="editEvent()" >Edit</button>
-        <button mat-raised-button color="primary" style="position: absolute; left: 90%; top: -33px; display: inline-block" (click)="closeModal('event-detail')">Ok</button>
+          <button mat-raised-button color="primary" style="position: absolute; left: -20px; top: -26px; display: inline-block " (click)="editEvent()" ><mat-icon>create</mat-icon></button>
+          <button mat-raised-button color="primary" style="position: absolute; right: -20px; top: -26px; display: inline-block" (click)="closeModal('event-detail')"><mat-icon>clear</mat-icon></button>
             <mat-card-header style="display: flex; justify-content: center">
                 <mat-card-title id="detail-title">{{selectedUserTitle}}</mat-card-title>
             </mat-card-header>
