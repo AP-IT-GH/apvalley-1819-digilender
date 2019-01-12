@@ -6,8 +6,6 @@ import { ModalService } from '../modal.service';
 import { DatabaseService } from '../database.service';
 import { WifiService } from '../wifi.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { toDate } from '@angular/common/src/i18n/format_date';
-import { months } from 'moment';
 
 @Component({
   selector: 'app-calendar',
@@ -15,11 +13,13 @@ import { months } from 'moment';
   styleUrls: ['./calendar.component.scss']
 })
 
-export class HomeCalendarComponent implements OnInit {
+export class CalendarComponent implements OnInit {
 
   constructor(public wservice: WifiService, private modalService: ModalService, public db: DatabaseService, private router: Router, private route: ActivatedRoute) { }
 
   selectedDate: string;
+  dateFromPicker: string;
+  eventButton: boolean;
   selectedStartTime: string;
   selectedEndTime: string;
   eventTitle: string;
@@ -27,11 +27,13 @@ export class HomeCalendarComponent implements OnInit {
   selectedUserTitle: string;
   selectedEventTitle: string;
   selectedEventDescription: string;
-  selectedEventTime: string;
   selectedEvent;
+  selectedEventStart: string;
+  selectedEventEnd: string;
   calendar;
   users;
   selectedUser;
+  userFromDropdown;
 
   goToOptions(): void {
     this.router.navigate(['/options'], { relativeTo: this.route });
@@ -43,8 +45,6 @@ export class HomeCalendarComponent implements OnInit {
     var me = this;
 
     $(function () {
-  
-      
       me.calendar = $('#calendar');
 
       var getDaysInMonth = function () {
@@ -61,25 +61,31 @@ export class HomeCalendarComponent implements OnInit {
       };
 
       var getMinTime = function () {
-        return {days: -7};
+        return { days: -7 };
       };
 
       var getMaxTime = function () {
-        return {days: 30};
+        return { days: 30 };
       };
-     
+
       // let containerEl: JQuery = $('#calendar');
       $('#calendar').fullCalendar({
         //themeSystem: 'bootstrap4',
-        height: $(window).height()*0.95,
+        height: $(window).height() * 0.95,
         //contentHeight: () => { return $(window).height()*0.8; },
         defaultView: 'family',
         groupByResource: false,
         customButtons: {
+          today_custom: {
+            text: 'Today',
+            click: function () {
+              $('#calendar').fullCalendar('today');
+            }
+          },
           myNextButton: {
             text: 'Next',
             icon: 'right-single-arrow',
-            click: function() {
+            click: function () {
               $('#calendar').fullCalendar('incrementDate', {
                 months: 1
               });
@@ -88,7 +94,7 @@ export class HomeCalendarComponent implements OnInit {
           myPrevButton: {
             text: 'Prev',
             icon: 'left-single-arrow',
-            click: function() {
+            click: function () {
               $('#calendar').fullCalendar('incrementDate', {
                 months: -1
               });
@@ -96,7 +102,7 @@ export class HomeCalendarComponent implements OnInit {
           }
         },
         header: {
-          left: 'today',
+          left: 'today_custom',
           center: 'myPrevButton, title, myNextButton',
           right: ''
         },
@@ -118,13 +124,14 @@ export class HomeCalendarComponent implements OnInit {
             maxTime: getMaxTime(),
             slotDuration: '24:00:00',
             titleFormat: 'MMMM YYYY',
-            slotLabelFormat: 'D \n'+ 'ddd ',
+            slotLabelFormat: 'D \n' + 'ddd ',
             buttonText: 'family Calendar',
-            scrollTime: {days: 0}
+            scrollTime: { days: 0 }
           },
         },
-        slotEventOverlap:false,
-        locale:"nl-be",
+        slotEventOverlap: false,
+        locale: "nl-be",
+        timeFormat: 'HH(:mm)',
         selectable: false,
         editable: false,
         allDaySlot: false,
@@ -148,13 +155,12 @@ export class HomeCalendarComponent implements OnInit {
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
         // Klik op een lege plek op de kalender
         dayClick: function (date, jsEvent, view, resource) {
-          me.selectedUser = resource.id;
+          me.selectedUser = resource;
+          me.dateFromPicker = date.format();
           me.selectedDate = date.format().match(/.*?T/).toString();
-          me.selectedStartTime = "00:00";
-          me.selectedEndTime = "01:00";
           document.getElementById("event-body").style.backgroundColor = me.users[resource.id - 1].eventColor;
-          me.openModal('event');
-          document.getElementById("event").click();
+          me.openModal('event', true);
+          document.getElementById("title").click();
         },
         // Voeg een beschrijving toe
         eventRender: function (event, element) {
@@ -163,7 +169,7 @@ export class HomeCalendarComponent implements OnInit {
         },
         // Titel bovenaan correct tonen
         viewRender: function (view, element) {
-          $('.fc-center')[0].children[1].textContent = view.title.replace(new RegExp("undefined", 'g'), "");;
+          $('.fc-center')[0].children[1].textContent = view.title.replace(new RegExp("undefined", 'g'), "");
         },
         // Klik op een event en de details tonen
         eventClick: function (calEvent, jsEvent, view) {
@@ -172,22 +178,35 @@ export class HomeCalendarComponent implements OnInit {
           me.selectedUserTitle = me.users[calEvent.resourceId - 1].title;
           me.selectedEventTitle = calEvent.title;
           me.selectedEventDescription = calEvent.description;
-          me.selectedEventTime = calEvent.start.toString().match(/\d{2}:\d{2}/).toString();
+          me.selectedEventStart = calEvent.start.toString().match(/\d{2}:\d{2}/).toString();
+          me.selectedEventEnd = calEvent.stop.toString().match(/\d{2}:\d{2}/).toString();
           document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
-          me.openModal('event-detail');
-          document.getElementById("event-detail").click();
+          me.openModal('event-detail', true);
+          document.getElementById("detail-title").click();
 
           // me.db.getEvents(calEvent.resourceId).then((events) => {
           //   console.log(events[0].title);
           // });
-
         }
       });
     })
   }
-  
 
-  openModal(id: string) {
+  openModal(id: string, isDatePicked: boolean) {
+    if (!isDatePicked) {
+      this.dateFromPicker = '';
+      document.getElementById("event-body").style.backgroundColor = '#f4f1ea';
+      document.getElementById("event-detail-body").style.backgroundColor = '#f4f1ea';
+    }
+    this.eventButton = !isDatePicked;
+    var currentDate = new Date();
+    var currentHour = currentDate.getHours();
+    var currentMinute = currentDate.getMinutes();
+    this.selectedStartTime = ("0" + currentHour).slice(-2) + ":" + ("0" + currentMinute).slice(-2);
+    if (currentHour < 23)
+      this.selectedEndTime = ("0" + (currentHour + 1)).slice(-2) + ":" + ("0" + currentMinute).slice(-2);
+    else
+      this.selectedEndTime = "00:" + ("0" + currentMinute).slice(-2);
     this.modalService.open(id);
   }
 
@@ -195,7 +214,7 @@ export class HomeCalendarComponent implements OnInit {
     this.modalService.close(id);
   }
 
-  resetCalendar(){
+  resetCalendar() {
     $('#calendar').fullCalendar('render');
     console.log($('#calendar').fullCalendar('today'));
   }
@@ -209,15 +228,23 @@ export class HomeCalendarComponent implements OnInit {
     this.selectedStartTime = this.selectedEvent.start;
     this.selectedEndTime = this.selectedEvent.stop;
     this.closeModal('event-detail');
-    this.openModal('event');
+    this.openModal('event', true);
   }
 
   addEvent() {
-    if (this.eventTitle != "" && this.eventTitle != null) {
+    if (this.eventButton) {
+      var dateFromPicker = new Date(this.dateFromPicker);
+      this.selectedDate = dateFromPicker.getFullYear() + "-" + ('0' + (dateFromPicker.getMonth() + 1)).slice(-2) + "-" + ('0' + dateFromPicker.getDate()).slice(-2) + "T";
+    }
+    else {
+      this.userFromDropdown = this.selectedUser.id;
+    }
+
+    if (this.eventTitle != "" && this.eventTitle != null && this.dateFromPicker != '') {
       if(this.selectedEvent && this.selectedEvent.id){
         console.log("edit, not add");
         console.log("res id:");
-        console.log(this.selectedUser);
+        resourceId: this.userFromDropdown,
         console.log(this.db.addEvent({
           id: this.selectedEvent.id,
           resourceId: this.selectedUser,
@@ -231,7 +258,7 @@ export class HomeCalendarComponent implements OnInit {
       else{
         this.db.addEvent({
           id: undefined,
-          resourceId: this.selectedUser,
+          resourceId: this.userFromDropdown,
           start: this.selectedDate + this.selectedStartTime,
           stop: this.selectedDate + this.selectedEndTime,
           description: this.eventDescription,

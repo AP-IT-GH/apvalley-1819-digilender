@@ -33,13 +33,14 @@ export class WifiService {
     return this.networks;
   }
 
-  connect(network) {
+  connect(ssid, pass) {
     console.log("got connect request");
-    console.log(network);
+    console.log(ssid);
+    console.log(pass);
     return promiseIpc.send('wifi', { 
       action: 'connect',
-      ssid: network.ssid,
-      password: network.pass
+      ssid: ssid,
+      password: pass
     }).then((result) => {
       console.log("got result");
       console.log(result);

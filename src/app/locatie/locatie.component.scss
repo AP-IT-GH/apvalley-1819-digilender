@@ -1,19 +1,20 @@
 .container {
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    height: 100vh;
-}
-.header {
-    display: flex;
     justify-content: center;
+    flex-wrap: nowrap;
+    padding: 0;
+    height: 80vh;
 }
+// .header {
+//     display: flex;
+//     justify-content: center;
+// }
     
 .main {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 80%;
 }
 
 mat-card{
@@ -24,9 +25,10 @@ mat-card{
     //border: 1px solid black;
     background-color: #F3F1EA;
     border-radius: 40px;
+    padding: 30px;
 
-    width: 50%;
-    height: 40%;
+    // width: 50%;
+    // height: 40%;
 }
 mat-card-header{
       justify-content: center;
@@ -36,20 +38,12 @@ mat-card-header{
     justify-content: center;
 }
 .input-form-container > * {
-    width: 80%;
+    width: 100%;
 }
 
 mat-card-actions{
     display: flex;
     justify-content: center; 
-}
-
-
-#icon-back{
-    font-size: 3em;
-}
-.button-footer{
-    height: 64px; 
 }
 
 

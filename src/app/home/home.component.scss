@@ -1,28 +1,26 @@
 .container-home{
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  grid-template-rows: 100vh auto;
-  grid-template-areas:
-    "status content";
-  //height: 100vh;
-}
-.container-status-panel{
-  grid-area: status;
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-template-rows: 100vh auto;
+    grid-template-areas:
+      "status content";
+    //height: 100vh;
+  }
+  .container-status-panel{
+    grid-area: status;
+    
+  }
   
-}
-
-.container-home-calendar{
-  grid-area: content;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-
+  .container-home-content{
+    grid-area: content;
+  }
   
-}
-
-.toolbar{
-  position: absolute;
-  top: 1.7%;
-  left: 88.5%
+  .toolbar{
+    position: absolute;
+    top: 1.7%;
+    left: 88%
+    
+  }
   
-}
-
+  
+  

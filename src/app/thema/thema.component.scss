@@ -1,30 +1,44 @@
-.header {
-    display: flex;
-    justify-content: center;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: nowrap;
+  padding: 0;
+  height: 80vh;
 }
+// .header {
+//     display: flex;
+//     justify-content: center;
+// }
     
   .main {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 80%;
   }
   mat-card{
       flex-basis: 25%;
+      padding: 0 0;
+      background-color: #F3F1EA;
   }
-  mat-card-header{
-   
-      justify-content: center;
-  }
-  .apply-button{
-      width: 100%;
+
+  mat-card-actions{
+    margin: 0;
+    padding: 0;
+}
+
+mat-card-content{
+    margin: 0;
+}
+
+.button-thema{
+    width: 100%;
+    padding: 0;
   }
  
-  .footer {
-    
-  }
   .vertical-stripes-digilender {
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     background: repeating-linear-gradient( 
     90deg,
     #2495D3,
@@ -42,7 +56,8 @@
     width: 100%;
   }
   .vertical-stripes-scandinavishe{
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     background: repeating-linear-gradient( 
         90deg,
         #77848C,
@@ -59,20 +74,5 @@
         height: 200px;
         width: 100%;
   }
-  .container {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    height: 100vh;
-  }
-
-
-#icon-back{
-    font-size: 3em;
-}
-.button-footer{
-    height: 64px; 
-}
 
 

@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { fadeAnimation } from '../routing-animations';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'app-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss'],
   animations: [fadeAnimation] // register the animation
 })
-export class HomeComponent implements OnInit {
+export class SettingsComponent implements OnInit {
 
   constructor() { }
 

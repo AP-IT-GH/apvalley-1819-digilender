@@ -1,37 +1,21 @@
 <div class="container">
-  <div class="header">
-    <h1>Wifi Netwerken</h1>
-  </div>
+  <!-- <div class="header">
+    <h1>WiFi</h1>
+  </div> -->
   <div class="main">
-    <div class=wifi-list-card>
-      <div class=wifi-list-card-inner>
-        <ul>
-          <li class=wifi-list-item *ngFor="let network of networks">
-            <mat-card class="wifi-card" (click)="selectClick(network)">
-              <p class="wifi-name">{{network.ssid}}</p>
-            </mat-card>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="footer">
-    <button class="button-footer" mat-button color="primary" routerLink="/options">
-      <i class="material-icons" id="icon-back">chevron_left</i>
-    </button>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h1>Selecteer uw netwerk</h1>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item id='item-list-content' *ngFor="let network of networks">
+            <button id="button-ssid" class="ssid-buttons" (click)="openDialog(network)" mat-button>{{network.ssid}}</button>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
-
-<jw-modal id="wifi-detail" style="text-align: center;">
-  <mat-card id="wifi-detail-body" style="padding: 20px; margin-left: 20%; margin-right: 20%; margin-top: 35%; ">
-    <mat-card-header style="display: flex; justify-content: center">
-      <mat-card-title>{{selWifi.ssid}}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content >
-      <p>qualiteit: {{selWifi.quality}}</p>
-      <input matInput type="text" placeholder="Paswoord..." [(ngModel)]="pass">
-    </mat-card-content>
-    <button mat-raised-button color="primary" style="position: absolute; left: 90%; top: -33px; display: inline-block" (click)="connect()">Ok</button>
-    <button mat-raised-button color="primary" style="position: absolute; right: 90%; top: -33px; display: inline-block" (click)="cancel()">cancel</button>
-  </mat-card>
-</jw-modal>

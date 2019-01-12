@@ -9,6 +9,7 @@ import { LocationService } from '../location.service'
 })
 export class WeatherComponent implements OnInit {
 
+  today: number = Date.now();
   condition: string;
   currentTemp: number;
   maxTemp: number;

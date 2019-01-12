@@ -1,43 +1,85 @@
-<div class="text-center">
-        <form [formGroup]= "addUserForm" >
-    <!--Table-->
-    <table class="table table-hover table-sm">
 
-        <!--Table head-->
-        <thead>
-            <tr>
-                <th  class="font-weight-bold">Naam</th>
-                <th  class="font-weight-bold">Kleur</th>
-                <!-- <th  class="font-weight-bold">Agenda</th> -->
-            </tr>
-        </thead>
-        <!--Table head-->
-    
-        <!--Table body *ngFor="let country of completeList; let i = index"-->
-        <tbody>
-            <tr *ngFor="let user of users">
-                <td>{{user.title}}</td>
-                <td>{{user.eventColor}}</td>
-                
-                <!-- <td>{{user.Agenda}}</td> -->
-            </tr>
-            <tr *ngIf="addUser">
-                
-                    <td><input class="form-control" type="text" id="title" formControlName="title"></td>
-                    <td><input class="form-control" type="text" id="eventColor" formControlName="eventColor"></td>
-                    <!-- <td><input class="form-control" type="text" id="Agenda" formControlName="Agenda"></td> -->
-                    <td><button (click)= saveUser()>Save</button></td>
 
-                
-            </tr>
-        </tbody>
-        <!--Table body-->
-
-    </table>
-</form>
-    <!--Table-->
-    <button *ngIf="!addUser" (click)= "addUser = !addUser" >Nieuwe gebruiker</button>
-    <button *ngIf="addUser" (click)= "cancel()" >Cancel</button>
+<div class="container-header">
+    <h1></h1>
 </div>
-<app-auth></app-auth>
-<p (click)="goTo('options')">Back</p>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <!--Table-->
+            <table>
+
+                <!--Table head-->
+                <thead>
+                    <tr>
+                        <th>Gezinsleden</th>
+                        <th class="align-right">
+                            <button class="button" mat-mini-fab color="primary" (click)="addUser = true; changeUser = false">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </th>
+                        <!-- <th  class="font-weight-bold">Agenda</th> -->
+                    </tr>
+                </thead>
+                <!--Table head-->
+
+                <!--Table body *ngFor="let country of completeList; let i = index"-->
+                <tbody *ngIf="users">
+                    <tr *ngFor="let user of users">
+                        <td>{{user.title}}</td>
+                        <td class="align-right">
+                            <button class="button" mat-mini-fab color="primary" (click)="userToUpdate(user.id)">
+                                <mat-icon>create</mat-icon>
+                            </button>
+                            <button class="button" mat-mini-fab color="primary" (click)="deleteUser(user.id)">
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </td>
+
+                        <!-- <td>{{user.Agenda}}</td> -->
+                    </tr>
+
+                </tbody>
+                <!--Table body-->
+
+            </table>
+
+            <!--Table-->
+        </div>
+
+        <div class="col-sm-8" *ngIf="changeUser">
+            <h1>{{changeUser.title}}</h1>
+            <h2>Kleur</h2>
+            <div class="kleurenContainer">
+                <div *ngFor="let color of colors; let i = index" [style.backgroundColor]="color" [className]="i == selected ? 'clicked' : 'kleur'"
+                    (click)="selectedColor(color, i)"></div>
+            </div>
+
+        </div>
+        <div class="col-sm-8" *ngIf="addUser">
+            <form [formGroup]="addUserForm">
+                <h1>
+                    <label for="title">Naam nieuwe gebruiker: </label>
+                    <input class="form-control" type="text" id="title" formControlName="title">
+                </h1>
+                <h2>Kleur</h2>
+                <div class="kleurenContainer">
+                    <div *ngFor="let color of colors; let i = index" [style.backgroundColor]="color" [className]="i == selected ? 'clicked' : 'kleur'"
+                        (click)="selectedColor(color, i)"></div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <app-auth></app-auth>
+
+    <button *ngIf="addUser" class="update-user-button" mat-fab color="primary" (click)="saveUser()">
+        <mat-icon>Ok</mat-icon>
+    </button>
+
+    <button *ngIf="!addUser" class="update-user-button" mat-fab color="primary" (click)="updateUser(changeUser)">
+        <mat-icon>Ok</mat-icon>
+    </button>
+</div>

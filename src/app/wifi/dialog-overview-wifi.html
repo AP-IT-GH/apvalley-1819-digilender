@@ -1,0 +1,17 @@
+
+<mat-card>
+  <div class="diaglog-container">
+  <h1 mat-dialog-title>Geef uw wachtwoord in</h1>
+  <div mat-dialog-content>
+    <h5>{{data.ssid}}</h5>
+        <mat-form-field appearance="outline">
+          <mat-label>Wachtwoord</mat-label>
+          <input matInput [(ngModel)]="pass" type="password" >
+        </mat-form-field>
+  </div>
+  <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>ANNULEREN</button>
+      <button mat-button color='primary' [mat-dialog-close]="true" (click)='connect()'>VERBINDEN</button>
+    </mat-dialog-actions>
+  </div>
+</mat-card>
