@@ -59,6 +59,10 @@ export class DatabaseService {
       });
   }
 
+  deleteEvent(event: Event) {
+    return promiseIpc.send('events', { action: 'delete', value: event });
+  }
+
   public change: EventEmitter<any> = new EventEmitter();
 
   public emitChange() {

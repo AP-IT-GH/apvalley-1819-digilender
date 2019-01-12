@@ -1,3 +1,10 @@
+hr{
+    margin-bottom: 0;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    margin-top: 7em;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -21,7 +28,6 @@ mat-card{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: #F3F1EA;
     border-radius: 40px;
     //justify-content: center;
     //border: 1px solid black;
@@ -41,7 +47,7 @@ mat-card-content{
     height: 500px;
     margin-left: 25px;
     margin-right: 25px;
-    border: 1px solid #DEDCD6;
+    border: 1px;
     overflow-x: hide;
     overflow-y: scroll;
 }

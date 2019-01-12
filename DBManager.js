@@ -84,7 +84,7 @@ class DBManager {
     else {
       return this.User.findById(id)
         .then((user) => {
-          me.User.drop(user); //delete user
+           return user.destroy(); //delete user
         });
     }
   }
@@ -104,6 +104,20 @@ class DBManager {
           console.log(oldEvent);
           console.log(newEvent);
           return oldEvent.update(newEvent);
+        });
+    }
+  }
+
+  deleteEvent(event) {
+    console.log('deleting user');
+    console.log(event.id);
+    if (event.id == undefined) {
+      return; //no event to delete
+    }
+    else {
+      return this.Event.findById(event.id)
+        .then((eventToDelete) => {
+           return eventToDelete.destroy(); //delete user
         });
     }
   }

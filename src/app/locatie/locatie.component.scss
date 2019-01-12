@@ -23,7 +23,6 @@ mat-card{
     justify-content: space-evenly;
     //justify-content: center;
     //border: 1px solid black;
-    background-color: #F3F1EA;
     border-radius: 40px;
     padding: 30px;
 
@@ -46,5 +45,11 @@ mat-card-actions{
     justify-content: center; 
 }
 
+hr{
+    margin-bottom: 0;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    margin-top: 7em;
+}
 
 

@@ -16,13 +16,13 @@ Wifi.init({iface: null});
 //require('electron-reload')(__dirname);
 
 function createWindow() {
-    win = new BrowserWindow({ width: 1920, height: 1080} );
+    //win = new BrowserWindow({ width: 1920, height: 1080} );
 
-    //win = new BrowserWindow();
-    //win.setFullScreen(true)
+    win = new BrowserWindow();
+    win.setFullScreen(true)
 
     // Uncomment the following line to remove the menu bar
-    // win.setMenu(null);
+     //win.setMenu(null);
 
     // load the dist folder from Angular
     win.loadURL(
@@ -54,6 +54,13 @@ function createWindow() {
               return tmp;
             });
         }
+        else if (arg.action == 'delete'){
+            return db.deleteUser(arg.value).then((user) => {
+              var tmp = JSON.stringify(user);
+              console.log(tmp);
+              return tmp;
+            });
+        }
         else{
             return {error: "invalid action"};
         }
@@ -67,6 +74,12 @@ function createWindow() {
                 console.log(tmp);
                 return tmp;
               });
+        }else if (arg.action == 'delete'){
+            return db.deleteEvent(arg.value).then((event) => {
+              var tmp = JSON.stringify(event);
+              console.log(tmp);
+              return tmp;
+            });
         }
         else if (arg.action == 'put'){
             console.log("putting event");

@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import 'fullcalendar';
 import 'fullcalendar-scheduler';
 import { DatabaseService } from '../database.service';
+import { moment } from 'fullcalendar';
 
 @Component({
   selector: 'app-calendar-list',
@@ -38,6 +39,17 @@ export class CalendarListComponent implements OnInit {
         events: (start, end, timezone, callback) => {
           self.db.getEvents(undefined).then((events) => {
             callback(events);
+            console.log(events);
+           /*  for(var i =0; i<events.lenght(); i++){
+              if (events.start.contains())
+            } */
+            //var todayEvents = events.filter()
+              var vandaag = moment().inspect();   
+              console.log("Vandaag: "+vandaag);
+              var eventsVandaag = $('#calendar').fullCalendar('clientEvents', function(evt) {
+              return evt.start == vandaag;             
+              });
+              console.log(eventsVandaag)
           });
         },
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',

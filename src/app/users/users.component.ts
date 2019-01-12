@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router';
 import {DatabaseService} from '../database.service';
 import { ThrowStmt } from '@angular/compiler';
+import {MatSnackBar} from '@angular/material'
 
 @Component({
   selector: 'app-users',
@@ -17,6 +18,7 @@ export class UsersComponent implements OnInit {
   public chosenColor: string;
   public selected: number;
   public changeUser: IUser;
+  public snackbar;
   arrayLength:number;
   public addUserForm = new FormGroup({
     title: new FormControl('', Validators.required),
@@ -24,7 +26,7 @@ export class UsersComponent implements OnInit {
     //Agenda: new FormControl('')
   });
 
-  constructor( private router: Router, private route: ActivatedRoute, private dbService:DatabaseService) { }
+  constructor( private router: Router, private route: ActivatedRoute, private dbService:DatabaseService,public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     var me = this;
@@ -51,12 +53,18 @@ public saveUser(){
     eventColor: this.chosenColor,
     //Agenda: this.addUserForm.get('Agenda').value
   };
-  console.log(newuser);
-  this.users.push(newuser);
-  this.dbService.addUser(newuser)
-
+  if(newuser.title != "" && newuser != null){
+    console.log(newuser);
+    this.users.push(newuser);
+    this.dbService.addUser(newuser);
+  
+    newuser = null;
     this.addUserForm.get('title').setValue("");
-  //this.addUserForm.get('Agenda').setValue("");
+    //this.addUserForm.get('Agenda').setValue("");
+
+    this.snackBar.open('Nieuwe gebruiker toegevoegd', 'close', {duration: 3000});
+  }
+
   this.addUser = false;
   
 }
@@ -64,6 +72,7 @@ public saveUser(){
 public updateUser(user: IUser){
   this.users[this.users.indexOf(user)].eventColor=this.chosenColor;
   this.dbService.addUser(user);
+  this.snackBar.open('Kleur gebruiker aangepast', 'close', {duration: 3000});
 
 }
 

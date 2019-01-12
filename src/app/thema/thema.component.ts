@@ -1,16 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, EventEmitter, Input, Output, OnInit  } from '@angular/core';
+import { SetupControllerService } from '../setup-controller.service';
 
 @Component({
   selector: 'app-thema',
   templateUrl: './thema.component.html',
   styleUrls: ['./thema.component.scss']
 })
-export class ThemaComponent implements OnInit {
+export class ThemaComponent  {
 
-  constructor() { }
+  public currentTheme: string = '"default';
+ 
+  constructor(private setupService: SetupControllerService) { }
 
-  ngOnInit() {
+  changeThemeDefault(){
+    this.setupService.changeTheme(false);
+    this.currentTheme="default";
+  }
+
+  changeThemeOther(){
+    this.setupService.changeTheme(true);
+    this.currentTheme="scandinavian";
   }
 
 }

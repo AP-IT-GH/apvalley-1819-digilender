@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SetupControllerService } from "../setup-controller.service";
+import { WifiService } from '../wifi.service';
 
 @Component({
   selector: 'app-intro-setup',
@@ -12,14 +13,18 @@ export class IntroSetupComponent implements OnInit {
   isCompletedLocation: boolean
 
   isCompletedWifiBusy: boolean
+  streepje:boolean;
 
-  constructor(private setupService: SetupControllerService) { }
+  constructor(private setupService: SetupControllerService, public wService: WifiService) {
+    this.wService.init();
+  }
 
   ngOnInit() {
     this.setupService.completedWifi.subscribe((isCompleted:boolean) => {
       this.isCompletedWifiBusy = false
       this.isCompletedWifi = isCompleted;
       console.log(this.isCompletedWifi)
+      this.streepje =true;
     })
 
     this.setupService.completedLocation.subscribe((isCompleted:boolean) => {

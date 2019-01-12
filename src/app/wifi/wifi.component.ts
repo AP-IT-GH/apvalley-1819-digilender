@@ -12,10 +12,13 @@ export class WifiComponent {
     
   networks;
     
-  constructor(public dialog: MatDialog, public wService: WifiService ) { }
+  constructor(public dialog: MatDialog, public wService: WifiService ) { 
+      this.wService.updateNetworks().then(networks => {
+        this.networks = networks;
+      });
+  }
 
   ngOnInit() {
-    this.networks = this.wService.getNetworks();
     console.log(this.networks);
   }
   
