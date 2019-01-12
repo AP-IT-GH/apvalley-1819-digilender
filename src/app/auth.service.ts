@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { first } from 'rxjs/operators';
-import { resolve } from 'bluebird';
 
 //declare var gapi: any;
 
@@ -29,21 +28,13 @@ export class authService {
     provider.setCustomParameters({
       prompt: 'select_account'
     })
-
+    
     return await this.afAuth.auth.signInWithPopup(provider)
   }
-
 
   logout() {
     this.afAuth.auth.signOut();
   }
 }
-
-export interface IGoogleProfiel {
-  name: string;
-  profielImgUrl: string;
-  googleId: string;
-}
-
 
 

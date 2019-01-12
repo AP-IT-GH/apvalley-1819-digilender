@@ -25,6 +25,12 @@ export class UsersComponent implements OnInit {
   public changeUser: IUser;
   public snackbar;
   arrayLength: number;
+  googleUserName: string;
+  googleProfiel: IGoogleProfiel;
+  newuser: IUser;
+  isGoogleAccount: boolean
+
+  imageAvatar = '../assets/svg/baseline-person.svg'
 
 
   public addUserForm = new FormGroup({
@@ -58,10 +64,28 @@ export class UsersComponent implements OnInit {
   }
 
   login() {
+    let response: any
+
     this.auth.login().then(res => {
-      console.log(res)
-      this.createUserWithGoogleAccount(res.user.displayName, res.user.photoURL, '114228719032288976509')
+      response = res
+
+      console.log(response)
+
+      this.googleProfiel = {
+        name: response.additionalUserInfo.profile.given_name,
+        profielImgUrl: response.additionalUserInfo.profile.picture,
+        googleId: response.additionalUserInfo.profile.id
+      }
+
+      this.addUser = true
+      this.googleUserName = this.googleProfiel.name
+      this.isGoogleAccount = true
+
+      //this.createUserWithGoogleAccount(profiel.name, profiel.profielImgUrl, profiel.googleId)
+
     })
+
+
 
     //this.isUserInlogged()
   }
@@ -81,23 +105,26 @@ export class UsersComponent implements OnInit {
 
   }
 
-  createUserWithGoogleAccount(userName: string, avatarUrl, id: string) {
-    let newuser: IUser = {
+  createUserWithGoogleAccount() {
+
+    this.newuser = {
       id: undefined,
-      googleId: id,
-      title: userName,
-      eventColor: '#fffff',
-      avatar: avatarUrl,
+      googleId: this.googleProfiel.googleId,
+      title: this.googleProfiel.name,
+      eventColor: this.chosenColor,
+      avatar: this.googleProfiel.profielImgUrl,
       isGoogleAccount: true
       //Agenda: this.addUserForm.get('Agenda').value
     };
-
-    this.users.push(newuser);
-    this.dbService.addUser(newuser);
-    newuser = null;
+    this.arrayLength = this.users.length + 1;
+    this.users.push(this.newuser);
+    this.dbService.addUser(this.newuser);
     this.snackBar.open('Nieuwe gebruiker toegevoegd', 'close', { duration: 3000 });
     this.addUser = false;
-    console.log(newuser);
+    this.isGoogleAccount = false
+    console.log('!!!!!!!!!!!!!!!!')
+    console.log(this.newuser);
+    this.newuser = null;
   }
 
   public goTo(pad: String): void {
@@ -105,31 +132,34 @@ export class UsersComponent implements OnInit {
   }
 
   public saveUser() {
+    if (this.isGoogleAccount)
+      this.createUserWithGoogleAccount();
+    else
+      this.createLocalUser();
 
+  }
+
+  private createLocalUser() {
     this.arrayLength = this.users.length + 1;
-    let newuser: IUser = {
+    this.newuser = {
       id: undefined,
       googleId: null,
       title: this.addUserForm.get('title').value,
       eventColor: this.chosenColor,
-      avatar: '',
+      avatar: this.imageAvatar,
       isGoogleAccount: false
       //Agenda: this.addUserForm.get('Agenda').value
     };
-    if (newuser.title != "" && newuser != null) {
-      console.log(newuser);
-      this.users.push(newuser);
-      this.dbService.addUser(newuser);
-
-      newuser = null;
+    if (this.newuser.title != "" && this.newuser != null) {
+      console.log(this.newuser);
+      this.users.push(this.newuser);
+      this.dbService.addUser(this.newuser);
+      this.newuser = null;
       this.addUserForm.get('title').setValue("");
       //this.addUserForm.get('Agenda').setValue("");
-
       this.snackBar.open('Nieuwe gebruiker toegevoegd', 'close', { duration: 3000 });
     }
-
     this.addUser = false;
-
   }
 
   public updateUser(user: IUser) {
@@ -193,3 +223,8 @@ export interface IEvent {
   description: string;
 }
 
+export interface IGoogleProfiel {
+  name: string;
+  profielImgUrl: string;
+  googleId: string;
+}
