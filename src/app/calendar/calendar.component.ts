@@ -205,8 +205,15 @@ export class CalendarComponent implements OnInit {
 
     this.eventButton = !isDatePicked;
 
-    if (this.selectedEvent != null && !startFromNow)
+    if (this.selectedEvent != null && !startFromNow) {
       this.eventButton = true;
+      document.getElementById("title").textContent = "Evenement aanpassen";
+      document.getElementById("add-event-button").textContent = "AANPASSEN";
+    }
+    else {
+      document.getElementById("title").textContent = "Nieuw evenement";
+      document.getElementById("add-event-button").textContent = "TOEVOEGEN";
+    }
 
     if (startFromNow) {
       this.selectedEvent = null;
