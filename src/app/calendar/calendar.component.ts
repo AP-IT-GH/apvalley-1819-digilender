@@ -28,7 +28,6 @@ export class CalendarComponent implements OnInit {
   selectedUserTitle: string;
   selectedEventTitle: string;
   selectedEventDescription: string;
-  selectedEvent;
   selectedEventStart: string;
   selectedEventEnd: string;
   calendar;
@@ -168,6 +167,7 @@ export class CalendarComponent implements OnInit {
           this.selectedEvent = null;
           me.editBool = false;
           me.selectedUser = resource;
+          me.selectedUserTitle = resource.title;
           me.dateFromPicker = date.format();
           me.selectedDate = date.format().match(/.*?T/).toString();
           document.getElementById("event-body").style.backgroundColor = me.users[resource.id - 1].eventColor;
@@ -249,7 +249,7 @@ export class CalendarComponent implements OnInit {
     $('#calendar').fullCalendar('render');
     console.log($('#calendar').fullCalendar('today'));
   }
-    
+
   updateEndTime() {
     var selectedStartHour = this.selectedStartTime.slice(0, 2);
     var selectedStartMinute = this.selectedStartTime.slice(3);
@@ -285,7 +285,6 @@ export class CalendarComponent implements OnInit {
         title: this.eventTitle
       });
       this.closeModal('event');
-      this.selectedEvent = undefined;
       this.eventTitle = "";
       this.eventDescription = "";
       // Alert that there has been a change in the database and refetch the events

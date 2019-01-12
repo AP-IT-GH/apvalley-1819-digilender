@@ -34,7 +34,8 @@
                     <textarea matInput [(ngModel)]="eventDescription"></textarea>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" *ngIf="eventButton && editBool == false">
+                <mat-form-field appearance="outline" *ngIf="eventButton &&
+                    editBool == false">
                     <mat-label>Gezinslid</mat-label>
                     <mat-select [(value)]="userFromDropdown">
                         <mat-option *ngFor="let user of users"
@@ -44,7 +45,8 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" *ngIf="!eventButton || editBool == true">
+                <mat-form-field appearance="outline" *ngIf="!eventButton ||
+                    editBool == true">
                     <mat-label>Gezinslid</mat-label>
                     <input matInput type="text" disabled
                         value="{{selectedUserTitle}}">
@@ -83,7 +85,8 @@
             <mat-card-actions class="buttons-event-container">
                 <button mat-button
                     (click)="closeModal('event')">ANNULEREN</button>
-                <button mat-flat-button id="add-event-button" color='accent' (click)="addEvent()">TOEVOEGEN</button>
+                <button mat-flat-button id="add-event-button" color='accent'
+                    (click)="addEvent()">TOEVOEGEN</button>
             </mat-card-actions>
 
         </mat-card>
@@ -102,10 +105,10 @@
             <mat-card-header style="display: flex; justify-content: center">
                 <mat-card-title id="detail-title">{{selectedUserTitle}}</mat-card-title>
             </mat-card-header>
-            <mat-card-content *ngIf="selectedEvent" >
-                <p>{{selectedEvent.title}}</p>
-                <p>{{selectedEvent.Description}}</p>
+            <mat-card-content id="detail-content">
+                <p>{{selectedEventTitle}}</p>
                 <p>{{selectedEventStart}} - {{selectedEventEnd}}</p>
+                <p>{{selectedEventDescription}}</p>
             </mat-card-content>
             <button class="delete-event-button" mat-fab color="primary"
                 (click)="deleteEvent()">
