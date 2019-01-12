@@ -132,7 +132,9 @@ export class CalendarComponent implements OnInit {
         slotEventOverlap: false,
         locale: "nl-be",
         timeFormat: 'HH(:mm)',
+        displayEventTime: false,
         selectable: false,
+        eventOrder: "startActual",
         editable: false,
         allDaySlot: false,
         eventTextColor: 'white',
@@ -182,7 +184,7 @@ export class CalendarComponent implements OnInit {
           me.selectedUserTitle = me.users[calEvent.resourceId - 1].title;
           me.selectedEventTitle = calEvent.title;
           me.selectedEventDescription = calEvent.description;
-          me.selectedEventStart = calEvent.start.toString().match(/\d{2}:\d{2}/).toString();
+          me.selectedEventStart = calEvent.startActual.toString().match(/\d{2}:\d{2}/).toString();
           me.selectedEventEnd = calEvent.stop.toString().match(/\d{2}:\d{2}/).toString();
           document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
           me.openModal('event-detail', true, false);
@@ -269,7 +271,8 @@ export class CalendarComponent implements OnInit {
       this.db.addEvent({
         id: eventId,
         resourceId: this.userFromDropdown,
-        start: this.selectedDate + this.selectedStartTime,
+        start: this.selectedDate + "03:00",
+        startActual: this.selectedDate + this.selectedStartTime,
         stop: this.selectedDate + this.selectedEndTime,
         description: this.eventDescription,
         title: this.eventTitle
@@ -298,9 +301,9 @@ export class CalendarComponent implements OnInit {
     document.getElementById("event-body").style.backgroundColor = this.users[this.selectedEvent.resourceId - 1].eventColor;
     this.eventTitle = this.selectedEvent.title;
     this.eventDescription = this.selectedEvent.description;
-    this.dateFromPicker = this.selectedEvent.start._i.toString().match(/[^T]*/).toString();
+    this.dateFromPicker = this.selectedEvent.startActual.toString().match(/[^T]*/).toString();
     this.selectedDate = this.dateFromPicker + "T";
-    this.selectedStartTime = this.selectedEvent.start._i.toString().match(/[^T]*$/).toString();
+    this.selectedStartTime = this.selectedEvent.startActual.toString().match(/[^T]*$/).toString();
     this.selectedEndTime = this.selectedEvent.stop.toString().match(/[^T]*$/).toString();
     this.closeModal('event-detail');
     this.openModal('event', true, false);

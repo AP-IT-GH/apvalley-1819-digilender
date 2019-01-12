@@ -27,6 +27,7 @@ class DBManager {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
       resourceId: Sequelize.INTEGER,   // ID of owning user
       start: Sequelize.STRING,    // datetime event starts
+      startActual: Sequelize.STRING,    // datetime event actually starts
       stop: Sequelize.STRING, // datetime event stops
       title: Sequelize.STRING,    //
       description: Sequelize.TEXT // description of event
@@ -77,7 +78,6 @@ class DBManager {
     }
   }
 
-
   deleteUser(id) {
     console.log('deleting user');
     console.log(id);
@@ -87,7 +87,7 @@ class DBManager {
     else {
       return this.User.findById(id)
         .then((user) => {
-           return user.destroy(); //delete user
+          return user.destroy(); //delete user
         });
     }
   }
@@ -115,7 +115,7 @@ class DBManager {
     else {
       return this.Event.findById(event.id)
         .then((eventToDelete) => {
-           return eventToDelete.destroy(); //delete event
+          return eventToDelete.destroy(); //delete event
         });
     }
   }

@@ -34,23 +34,32 @@ export class CalendarListComponent implements OnInit {
         allDaySlot: false,
         listDayFormat: false,
         listDayAltFormat: false,
-        noEventsMessage: "There are no events today",
+        noEventsMessage: "Er zijn geen evenementen vandaag",
         eventTextColor: 'white',
         events: (start, end, timezone, callback) => {
           self.db.getEvents(undefined).then((events) => {
+            events.forEach(element => {
+              element.start = element.startActual;
+              // element.end = element.stop;
+            });
             callback(events);
             console.log(events);
-           /*  for(var i =0; i<events.lenght(); i++){
-              if (events.start.contains())
-            } */
+            /*  for(var i =0; i<events.lenght(); i++){
+               if (events.start.contains())
+             } */
             //var todayEvents = events.filter()
-              var vandaag = moment().inspect();   
-              console.log("Vandaag: "+vandaag);
-              var eventsVandaag = $('#calendar').fullCalendar('clientEvents', function(evt) {
-              return evt.start == vandaag;             
-              });
-              console.log(eventsVandaag)
+            var vandaag = moment().inspect();
+            console.log("Vandaag: " + vandaag);
+            var eventsVandaag = $('#calendar').fullCalendar('clientEvents', function (evt) {
+              return evt.start == vandaag;
+            });
+            console.log(eventsVandaag)
           });
+        },
+        eventRender: function (event, element) {
+          // element["0"].textContent = element["0"].textContent.replace(/undefinedundefined/g, "");
+          // console.log(event);
+          // console.log(element);
         },
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
         dayClick: function (date, jsEvent, view) {
