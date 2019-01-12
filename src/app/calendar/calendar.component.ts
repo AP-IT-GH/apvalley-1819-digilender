@@ -151,6 +151,11 @@ export class CalendarComponent implements OnInit {
         // Haal de events uit de database
         events: (start, end, timezone, callback) => {
           me.db.getEvents(undefined).then((events) => {
+            events.forEach(element => {
+              if (element.start == null) {
+                element.start = element.startActual.match(/.*?T/).toString() + "03:00";
+              }
+            });
             callback(events);
           });
         },
@@ -271,7 +276,7 @@ export class CalendarComponent implements OnInit {
       this.db.addEvent({
         id: eventId,
         resourceId: this.userFromDropdown,
-        start: this.selectedDate + "03:00",
+        start: null,
         startActual: this.selectedDate + this.selectedStartTime,
         stop: this.selectedDate + this.selectedEndTime,
         description: this.eventDescription,
