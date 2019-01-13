@@ -1,3 +1,4 @@
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css"> -->
-
-<div id='calendar-list'></div>
+<div id='calendar-list'>
+    <mat-card *ngFor="let event of events">{{event.title}}</mat-card>
+</div>
