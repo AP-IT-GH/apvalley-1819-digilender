@@ -14,7 +14,7 @@ export class WifiComponent {
     
   constructor(public dialog: MatDialog, public wService: WifiService ) { 
       this.wService.updateNetworks().then(networks => {
-        this.networks = networks;
+        this.networks = [...networks];
       });
   }
 
