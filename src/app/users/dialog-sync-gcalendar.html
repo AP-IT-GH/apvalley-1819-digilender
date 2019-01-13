@@ -1,0 +1,12 @@
+<mat-card>
+  <div class="diaglog-container">
+    <h2 mat-dialog-title>Google Calendar synchroniseren</h2>
+    <mat-dialog-content class="mat-typography">
+      <p>Wilt u graag uw Google Calendar synchroniseren?</p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Nee</button>
+      <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ja</button>
+    </mat-dialog-actions>
+  </div>
+</mat-card>

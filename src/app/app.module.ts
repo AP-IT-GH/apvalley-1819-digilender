@@ -21,7 +21,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { AuthComponent } from './googleSyncCalendar/auth.component';
-import { UsersComponent } from './users/users.component';
+import { UsersComponent, DialogSyncGcalendar } from './users/users.component';
 import { CalendarListComponent } from './calendar-list/calendar-list.component';
 import { WifiComponent, DialogContentWifi } from './wifi/wifi.component';
 import { LocatieComponent } from './locatie/locatie.component';
@@ -31,7 +31,7 @@ import { ModalComponent } from './modal/modal.component';
 import { IntroSetupComponent } from './intro-setup/intro-setup.component';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Services
 import { WeatherService } from './weather.service';
@@ -43,6 +43,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { GooglePlacesDirective } from './google-places.directive';
 import { WifiService } from './wifi.service';
 import { SetupControllerService } from "./setup-controller.service";
+import { authService } from './auth.service'
+import { GoogleCalendarService } from './google-calendar.service'
 
 registerLocaleData(localeBE, 'nl-BE');
 @NgModule({
@@ -66,7 +68,8 @@ registerLocaleData(localeBE, 'nl-BE');
     IntroSetupComponent,
     HomeComponent,
     SettingsComponent,
-    DialogContentWifi
+    DialogContentWifi,
+    DialogSyncGcalendar
   ],
   imports: [
     BrowserModule,
@@ -91,11 +94,14 @@ registerLocaleData(localeBE, 'nl-BE');
     ModalService,
     WifiService,
     SetupControllerService,
+    authService,
+    GoogleCalendarService,
     { provide: LOCALE_ID, useValue: "nl-BE" }
   ],
   entryComponents: [
     CalendarComponent,
-     DialogContentWifi
+    DialogContentWifi,
+    DialogSyncGcalendar
   ],
   bootstrap: [AppComponent]
 })
