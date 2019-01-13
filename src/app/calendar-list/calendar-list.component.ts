@@ -41,6 +41,7 @@ export class CalendarListComponent implements OnInit {
       });
 
       this.events = tempEvents;
+      this.events.sort(function (a, b) { return (a.startActual > b.startActual) ? 1 : ((b.startActual > a.startActual) ? -1 : 0); });
     });
   }
 
