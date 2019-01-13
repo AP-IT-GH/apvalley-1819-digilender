@@ -39,8 +39,8 @@ export class CalendarListComponent implements OnInit {
           this.db.getUsers(element.resourceId).then((user) => {
             element.color = user.eventColor;
             tempEvents.push(element);
+            tempEvents.sort(function (a, b) { return (a.startActual > b.startActual) ? 1 : ((b.startActual > a.startActual) ? -1 : 0); });
             this.events = tempEvents;
-            this.events.sort(function (a, b) { return (a.startActual > b.startActual) ? 1 : ((b.startActual > a.startActual) ? -1 : 0); });
           });
         }
       });
