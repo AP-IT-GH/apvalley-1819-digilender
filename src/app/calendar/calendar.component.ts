@@ -17,12 +17,12 @@ export class CalendarComponent implements OnInit {
 
   constructor(public wservice: WifiService, private modalService: ModalService, public db: DatabaseService, private router: Router, private route: ActivatedRoute) { }
 
-  selectedMonth:number;
-  months:any[];
-  mt:any = new Date();
-  tdMonth:string;
+  selectedMonth: number;
+  months: any[];
+  mt: any = new Date();
+  tdMonth: string;
   tdyear: string;
-  tdTitle:string;
+  tdTitle: string;
   selectedDate: string;
   dateFromPicker: string;
   eventButton: boolean;
@@ -35,6 +35,8 @@ export class CalendarComponent implements OnInit {
   selectedEventTitle: string;
   selectedEventDescription: string;
   selectedEventStart: string;
+  selectedEventDay: string;
+  selectedEventDayNumber: string;
   selectedEventEnd: string;
   calendar;
   users;
@@ -47,10 +49,10 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.months=['Januari','Februari','Maart','April','Mei','Juni','Juli','Augustus','September','Oktober','November','December'];
+    this.months = ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'];
     this.tdMonth = this.months[this.mt.getMonth()];
     this.tdyear = this.mt.getFullYear();
-    this.tdTitle = '['+  this.tdMonth + " " + this.tdyear+']';
+    this.tdTitle = '[' + this.tdMonth + " " + this.tdyear + ']';
     this.selectedMonth = this.mt.getMonth();
     this.wservice.init();
     // Selector om de scope te veranderen
@@ -83,7 +85,7 @@ export class CalendarComponent implements OnInit {
 
       // let containerEl: JQuery = $('#calendar');
       $('#calendar').fullCalendar({
-        
+
         //themeSystem: 'bootstrap4',
         height: $(window).height() * 0.95,
         //contentHeight: () => { return $(window).height()*0.8; },
@@ -96,9 +98,9 @@ export class CalendarComponent implements OnInit {
               me.selectedMonth = me.months.indexOf(me.tdMonth);
               var tdMonth = me.months[me.selectedMonth];
               var tdYear = me.mt.getFullYear();
-              var tdTitle = '['+  tdMonth + " " + tdYear+']';
+              var tdTitle = '[' + tdMonth + " " + tdYear + ']';
               $('#calendar').fullCalendar('today');
-              $('#calendar').fullCalendar('option','titleFormat',tdTitle)
+              $('#calendar').fullCalendar('option', 'titleFormat', tdTitle)
             }
           },
           myNextButton: {
@@ -108,26 +110,26 @@ export class CalendarComponent implements OnInit {
               me.selectedMonth++;
               var tdMonth = me.months[me.selectedMonth];
               var tdYear = me.mt.getFullYear();
-              var tdTitle = '['+  tdMonth + " " + tdYear+']';
+              var tdTitle = '[' + tdMonth + " " + tdYear + ']';
               $('#calendar').fullCalendar('incrementDate', {
-                months: 1            
+                months: 1
               });
-              $('#calendar').fullCalendar('option','titleFormat',tdTitle)
+              $('#calendar').fullCalendar('option', 'titleFormat', tdTitle)
             }
           },
           myPrevButton: {
-            
+
             text: 'Prev',
             icon: 'left-single-arrow',
             click: function () {
               me.selectedMonth--;
               var tdMonth = me.months[me.selectedMonth];
               var tdYear = me.mt.getFullYear();
-              var tdTitle = '['+  tdMonth + " " + tdYear+']';
+              var tdTitle = '[' + tdMonth + " " + tdYear + ']';
               $('#calendar').fullCalendar('incrementDate', {
                 months: -1
               });
-              $('#calendar').fullCalendar('option','titleFormat',tdTitle)
+              $('#calendar').fullCalendar('option', 'titleFormat', tdTitle)
             }
           }
         },
@@ -221,6 +223,10 @@ export class CalendarComponent implements OnInit {
           me.selectedEventDescription = calEvent.description;
           me.selectedEventStart = calEvent.startActual.toString().match(/\d{2}:\d{2}/).toString();
           me.selectedEventEnd = calEvent.stop.toString().match(/\d{2}:\d{2}/).toString();
+          var d = new Date(calEvent.startActual);
+          var days = ["Zon", "Maa", "Din", "Woe", "Don", "Vrij", "Zat"];
+          me.selectedEventDay = days[d.getDay()];
+          me.selectedEventDayNumber = d.getDate().toString();
           document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
           me.openModal('event-detail', true, false);
           document.getElementById("detail-title").click();

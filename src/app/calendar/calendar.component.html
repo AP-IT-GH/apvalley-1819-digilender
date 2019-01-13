@@ -12,7 +12,7 @@
     <div id='calendar'></div>
 
     <button class="add-event-botton" mat-fab color="primary"
-        (click)="editBool = false; openModal('event', false, true)">
+        (click)="editBool= false; openModal('event', false, true)">
         <mat-icon>add</mat-icon>
     </button>
 
@@ -94,6 +94,14 @@
 
     <jw-modal id="event-detail" style="text-align: center;">
         <mat-card id="event-detail-body">
+            <div class="event-detail-date">
+                <div style="font-size: 48px">
+                    {{selectedEventDayNumber}}
+                </div>
+                <div style="font-size: 24px; margin-top: -20px">
+                    {{selectedEventDay}}
+                </div>
+            </div>
             <button class="edit-event-button" mat-mini-fab color="primary"
                 (click)="editEvent()">
                 <mat-icon>edit</mat-icon>
