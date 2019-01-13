@@ -17,6 +17,12 @@ export class CalendarComponent implements OnInit {
 
   constructor(public wservice: WifiService, private modalService: ModalService, public db: DatabaseService, private router: Router, private route: ActivatedRoute) { }
 
+  selectedMonth:number;
+  months:any[];
+  mt:any = new Date();
+  tdMonth:string;
+  tdyear: string;
+  tdTitle:string;
   selectedDate: string;
   dateFromPicker: string;
   eventButton: boolean;
@@ -40,20 +46,25 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.months=['Januari','Februari','Maart','April','Mei','Juni','Juli','Augustus','September','Oktober','November','December'];
+    this.tdMonth = this.months[this.mt.getMonth()];
+    this.tdyear = this.mt.getFullYear();
+    this.tdTitle = '['+  this.tdMonth + " " + this.tdyear+']';
+    this.selectedMonth = this.mt.getMonth();
     this.wservice.init();
     // Selector om de scope te veranderen
     var me = this;
 
     $(function () {
       me.calendar = $('#calendar');
-
       var getDaysInMonth = function () {
         var d = new Date();
         var year = d.getFullYear();
         var month = d.getMonth() + 1;
         return new Date(year, month, 0).getDate();
       };
-
+      var lol = escape(me.tdTitle);
+      console.log("tis the title of the season " + me.tdTitle);
       // Niet meer nodig door today-functie
       var getMonthDay = function () {
         var d = new Date();
@@ -70,6 +81,7 @@ export class CalendarComponent implements OnInit {
 
       // let containerEl: JQuery = $('#calendar');
       $('#calendar').fullCalendar({
+        
         //themeSystem: 'bootstrap4',
         height: $(window).height() * 0.95,
         //contentHeight: () => { return $(window).height()*0.8; },
@@ -79,25 +91,41 @@ export class CalendarComponent implements OnInit {
           today_custom: {
             text: 'Today',
             click: function () {
+              me.selectedMonth = me.months.indexOf(me.tdMonth);
+              var tdMonth = me.months[me.selectedMonth];
+              var tdYear = me.mt.getFullYear();
+              var tdTitle = '['+  tdMonth + " " + tdYear+']';
               $('#calendar').fullCalendar('today');
+              $('#calendar').fullCalendar('option','titleFormat',tdTitle)
             }
           },
           myNextButton: {
             text: 'Next',
             icon: 'right-single-arrow',
             click: function () {
+              me.selectedMonth++;
+              var tdMonth = me.months[me.selectedMonth];
+              var tdYear = me.mt.getFullYear();
+              var tdTitle = '['+  tdMonth + " " + tdYear+']';
               $('#calendar').fullCalendar('incrementDate', {
-                months: 1
+                months: 1            
               });
+              $('#calendar').fullCalendar('option','titleFormat',tdTitle)
             }
           },
           myPrevButton: {
+            
             text: 'Prev',
             icon: 'left-single-arrow',
             click: function () {
+              me.selectedMonth--;
+              var tdMonth = me.months[me.selectedMonth];
+              var tdYear = me.mt.getFullYear();
+              var tdTitle = '['+  tdMonth + " " + tdYear+']';
               $('#calendar').fullCalendar('incrementDate', {
                 months: -1
               });
+              $('#calendar').fullCalendar('option','titleFormat',tdTitle)
             }
           }
         },
@@ -123,7 +151,7 @@ export class CalendarComponent implements OnInit {
             // how far forwards you can scroll
             maxTime: getMaxTime(),
             slotDuration: '24:00:00',
-            titleFormat: 'MMMM YYYY',
+            titleFormat: `${me.tdTitle}`,
             slotLabelFormat: 'D \n' + 'ddd ',
             buttonText: 'family Calendar',
             scrollTime: { days: 0 }

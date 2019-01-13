@@ -108,7 +108,7 @@ body.jw-modal-open {
 }
 
 #calendar > div.fc-view-container {
-  border-top-color: #2396cf;
+  border-top-color: #000000;
   border-top-width: 2px;
   border-top-style: solid;
 }
@@ -121,10 +121,24 @@ body.jw-modal-open {
 //   border-left-color: none !important;
 //   border-right-color: none !important;
 // }
-
+//Header
+#calendar > div.fc-toolbar.fc-header-toolbar > div.fc-center > h2{
+  color: #000000;
+}
+#calendar > div.fc-view-container > div > table > thead > tr > td > div > table > thead > tr > th{
+  border-bottom: 1px solid;
+  padding-bottom: 20px;
+}
+#calendar > div.fc-view-container > div > table > thead > tr > td > div > table{
+  border-bottom:2px;
+}
+#calendar > div.fc-view-container > div > table > thead > tr > td{
+  border-bottom: 0px;
+}
 // Lijntje boven de namen
 #calendar > div.fc-view-container > div > table > thead {
-  border-top-color: blue !important;
+  border-top: 0px;
+  border-top-color: rgb(0, 0, 0) !important;
   border-left-color: none !important;
   border-right-color: none !important;
 }
@@ -141,7 +155,7 @@ body.jw-modal-open {
   border-top: 0px;
   //border-bottom: 0px; lijn onder namen
   border-left: 0px;
-  border-color: #faca13;
+  border-color: #000000;
 }
 
 // Body van de tabel
@@ -159,7 +173,8 @@ body.jw-modal-open {
 #calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td:nth-child(2) {
   border-left: 0px;
   border-right: 0px;
-  border-color: #faca13;
+  border-bottom: 0px;
+  border-color: #000000;
 }
 
 // Lijntje links van de namen
@@ -170,10 +185,8 @@ body.jw-modal-open {
 // Linkse kolom algemene instellingen
 #calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td.fc-axis.fc-time.fc-widget-content {
   margin: 0 auto;
-  border-left: 0px;
-  border-right: 0px;
-  border-color: #faca13;
-  color: #2495d3;
+  border:0px;
+  color: #000000;
   font-family: "Nunito", sans-serif;
   text-align: center;
   vertical-align: middle;
@@ -185,7 +198,7 @@ body.jw-modal-open {
 
 // Linkse kolom: eerste lijn (dag van de maand)
 #calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr > td.fc-axis.fc-time.fc-widget-content::first-line {
-  color: #faca13;
+  color: #000000;
   font-size: 40px;
   text-align: center;
   font-weight: 300;
@@ -196,7 +209,7 @@ body.jw-modal-open {
   border-right: 0px;
   padding-top: 20px;
   padding-bottom: 20px;
-  color: #2495d3;
+  color: #000000;
 }
 
 // Font grootte voor namen
@@ -259,4 +272,37 @@ body > app-root > div > div.container-home-calendar.ng-trigger.ng-trigger-fadeAn
   border-right-style: solid;
   border-right-width: 2px;
   padding: top 5px;
+}
+body > app-root > div > app-home > div > div.container-status-panel > app-status-panel > mat-card > div.weather-date-item > hr{
+  border-top-width: 1px;
+  border-top-color: #000000;
+  margin-top: 1px;
+  border-top-style: solid;
+
+}
+body > app-root > div > app-home > div > div.container-status-panel > app-status-panel > mat-card > div.weather-date-item > app-weather > div > div.temperature-text__container{
+  padding-top: 40px;
+  padding-left: 15px;
+}
+body > app-root > div > app-home > div > div.container-status-panel > app-status-panel > mat-card > div.weather-date-item > app-weather > div > div.weer_rechts > div.weather-icon__container{
+  height: 30px;
+  padding-top: 10px;
+}
+body > app-root > div > app-home > div > div.container-status-panel > app-status-panel > mat-card > div.weather-date-item > app-weather > div > div.weer_rechts > div.temp > span.temperatuur_text{
+  font-size: 30px;
+  font-weight: 300;
+}
+body > app-root > div > app-home > div > div.container-status-panel > app-status-panel > mat-card > div.weather-date-item > app-weather > div > div.weer_rechts{
+  padding-right: 0px;
+  padding-top: 10px;
+  height: 130px;
+  margin-left: 125px;
+}
+body > app-root > div > app-home > div > div.container-status-panel > app-status-panel > mat-card > div.weather-date-item > app-weather > div > div.weer_rechts > div.temp > span.celsius_symbool{
+  font-size: 30px;
+  font-weight: 300;
+}
+body > app-root > div > app-home > div > div.container-status-panel > app-status-panel > mat-card > div.weather-date-item > app-weather > div > div.weer_rechts > div.temp{
+  height:30px;
+  padding-top: 20px;
 }

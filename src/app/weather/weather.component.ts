@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
 import { LocationService } from '../location.service'
+import { mapTo } from 'rxjs/operators';
 
 @Component({
   selector: 'app-weather',
@@ -8,7 +9,9 @@ import { LocationService } from '../location.service'
   styleUrls: ['./weather.component.scss']
 })
 export class WeatherComponent implements OnInit {
-
+  months:string[];
+  mt:any = new Date();
+  tdMonth:string;
   today: number = Date.now();
   condition: string;
   currentTemp: number;
@@ -25,7 +28,9 @@ export class WeatherComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    
+    this.months=["Jan","Feb","Maa","Apr","Mei","Jun","Jul","Aug","Sep","Okt","Nov","Dec"];
+    this.tdMonth = this.months[this.mt.getMonth()];
     this.data.currentMessage.subscribe(message => {
       this.city = message
       
@@ -44,7 +49,7 @@ export class WeatherComponent implements OnInit {
       });
     })
     //this.city = 'Los Ángeles, California, EE. UU.';
-
+    
 
   }
 
