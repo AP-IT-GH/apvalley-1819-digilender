@@ -21,7 +21,7 @@ export class IntroSetupComponent implements OnInit {
 
   ngOnInit() {
     this.setupService.completedWifi.subscribe((isCompleted:boolean) => {
-      this.isCompletedWifiBusy = false
+      this.isCompletedWifiBusy = false;
       this.isCompletedWifi = isCompleted;
       console.log(this.isCompletedWifi)
       this.streepje =true;

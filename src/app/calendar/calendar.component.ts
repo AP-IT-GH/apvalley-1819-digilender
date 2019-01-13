@@ -26,6 +26,7 @@ export class CalendarComponent implements OnInit {
   selectedDate: string;
   dateFromPicker: string;
   eventButton: boolean;
+  editBool: boolean;
   selectedStartTime: string;
   selectedEndTime: string;
   eventTitle: string;
@@ -33,13 +34,13 @@ export class CalendarComponent implements OnInit {
   selectedUserTitle: string;
   selectedEventTitle: string;
   selectedEventDescription: string;
-  selectedEvent;
   selectedEventStart: string;
   selectedEventEnd: string;
   calendar;
   users;
   selectedUser;
   userFromDropdown;
+  selectedEvent;
 
   goToOptions(): void {
     this.router.navigate(['/options'], { relativeTo: this.route });
@@ -54,6 +55,7 @@ export class CalendarComponent implements OnInit {
     this.wservice.init();
     // Selector om de scope te veranderen
     var me = this;
+    this.editBool = false;
 
     $(function () {
       me.calendar = $('#calendar');
@@ -160,7 +162,9 @@ export class CalendarComponent implements OnInit {
         slotEventOverlap: false,
         locale: "nl-be",
         timeFormat: 'HH(:mm)',
+        displayEventTime: false,
         selectable: false,
+        eventOrder: "startActual",
         editable: false,
         allDaySlot: false,
         eventTextColor: 'white',
@@ -177,17 +181,25 @@ export class CalendarComponent implements OnInit {
         // Haal de events uit de database
         events: (start, end, timezone, callback) => {
           me.db.getEvents(undefined).then((events) => {
+            events.forEach(element => {
+              if (element.start == null) {
+                element.start = element.startActual.match(/.*?T/).toString() + "03:00";
+              }
+            });
             callback(events);
           });
         },
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
         // Klik op een lege plek op de kalender
         dayClick: function (date, jsEvent, view, resource) {
+          this.selectedEvent = null;
+          me.editBool = false;
           me.selectedUser = resource;
+          me.selectedUserTitle = resource.title;
           me.dateFromPicker = date.format();
           me.selectedDate = date.format().match(/.*?T/).toString();
           document.getElementById("event-body").style.backgroundColor = me.users[resource.id - 1].eventColor;
-          me.openModal('event', true);
+          me.openModal('event', true, true);
           document.getElementById("title").click();
         },
         // Voeg een beschrijving toe
@@ -201,15 +213,16 @@ export class CalendarComponent implements OnInit {
         },
         // Klik op een event en de details tonen
         eventClick: function (calEvent, jsEvent, view) {
+          me.editBool = false;
+          me.eventButton = false;
           me.selectedEvent = calEvent;
-          console.log(me.selectedEvent);
           me.selectedUserTitle = me.users[calEvent.resourceId - 1].title;
           me.selectedEventTitle = calEvent.title;
           me.selectedEventDescription = calEvent.description;
-          me.selectedEventStart = calEvent.start.toString().match(/\d{2}:\d{2}/).toString();
+          me.selectedEventStart = calEvent.startActual.toString().match(/\d{2}:\d{2}/).toString();
           me.selectedEventEnd = calEvent.stop.toString().match(/\d{2}:\d{2}/).toString();
           document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
-          me.openModal('event-detail', true);
+          me.openModal('event-detail', true, false);
           document.getElementById("detail-title").click();
 
           // me.db.getEvents(calEvent.resourceId).then((events) => {
@@ -220,21 +233,39 @@ export class CalendarComponent implements OnInit {
     })
   }
 
-  openModal(id: string, isDatePicked: boolean) {
+  openModal(id: string, isDatePicked: boolean, startFromNow: boolean) {
     if (!isDatePicked) {
+      this.selectedEvent = null;
       this.dateFromPicker = '';
       document.getElementById("event-body").style.backgroundColor = '#f4f1ea';
-      document.getElementById("event-detail-body").style.backgroundColor = '#f4f1ea';
     }
+
     this.eventButton = !isDatePicked;
-    var currentDate = new Date();
-    var currentHour = currentDate.getHours();
-    var currentMinute = currentDate.getMinutes();
-    this.selectedStartTime = ("0" + currentHour).slice(-2) + ":" + ("0" + currentMinute).slice(-2);
-    if (currentHour < 23)
-      this.selectedEndTime = ("0" + (currentHour + 1)).slice(-2) + ":" + ("0" + currentMinute).slice(-2);
-    else
-      this.selectedEndTime = "23:59";
+
+    if (this.selectedEvent != null && !startFromNow) {
+      this.eventButton = true;
+      document.getElementById("title").textContent = "Evenement aanpassen";
+      document.getElementById("add-event-button").textContent = "AANPASSEN";
+    }
+    else {
+      document.getElementById("title").textContent = "Nieuw evenement";
+      document.getElementById("add-event-button").textContent = "TOEVOEGEN";
+    }
+
+    if (startFromNow) {
+      this.selectedEvent = null;
+      this.eventTitle = "";
+      this.eventDescription = "";
+      var currentDate = new Date();
+      var currentHour = currentDate.getHours();
+      var currentMinute = currentDate.getMinutes();
+      this.selectedStartTime = ("0" + currentHour).slice(-2) + ":" + ("0" + currentMinute).slice(-2);
+      if (currentHour < 23)
+        this.selectedEndTime = ("0" + (currentHour + 1)).slice(-2) + ":" + ("0" + currentMinute).slice(-2);
+      else
+        this.selectedEndTime = "23:59";
+    }
+
     this.modalService.open(id);
   }
 
@@ -247,18 +278,6 @@ export class CalendarComponent implements OnInit {
     console.log($('#calendar').fullCalendar('today'));
   }
 
-  editEvent() {
-    console.log("pressed editevent");
-    console.log(this.selectedEvent);
-    this.eventTitle = this.selectedEvent.title;
-    this.eventDescription = this.selectedEvent.description;
-    this.selectedUser = this.selectedEvent.resourceId;
-    this.selectedStartTime = this.selectedEvent.start;
-    this.selectedEndTime = this.selectedEvent.stop;
-    this.closeModal('event-detail');
-    this.openModal('event', true);
-  }
-    
   updateEndTime() {
     var selectedStartHour = this.selectedStartTime.slice(0, 2);
     var selectedStartMinute = this.selectedStartTime.slice(3);
@@ -269,6 +288,12 @@ export class CalendarComponent implements OnInit {
   }
 
   addEvent() {
+    var eventId = undefined;
+    if (this.selectedEvent != null) {
+      eventId = this.selectedEvent.id;
+      this.userFromDropdown = this.selectedEvent.resourceId;
+    }
+
     if (this.eventButton) {
       var dateFromPicker = new Date(this.dateFromPicker);
       this.selectedDate = dateFromPicker.getFullYear() + "-" + ('0' + (dateFromPicker.getMonth() + 1)).slice(-2) + "-" + ('0' + dateFromPicker.getDate()).slice(-2) + "T";
@@ -278,32 +303,16 @@ export class CalendarComponent implements OnInit {
     }
 
     if (this.eventTitle != "" && this.eventTitle != null && this.dateFromPicker != '') {
-      if(this.selectedEvent && this.selectedEvent.id){
-        console.log("edit, not add");
-        console.log("res id:");
+      this.db.addEvent({
+        id: eventId,
         resourceId: this.userFromDropdown,
-        console.log(this.db.addEvent({
-          id: this.selectedEvent.id,
-          resourceId: this.selectedUser,
-          start: this.selectedDate + this.selectedStartTime,
-          stop: this.selectedDate + this.selectedEndTime,
-          description: this.eventDescription,
-          title: this.eventTitle
-        }));
-        $('#calendar').fullCalendar('updateEvent', this.selectedEvent);
-      }
-      else{
-        this.db.addEvent({
-          id: undefined,
-          resourceId: this.userFromDropdown,
-          start: this.selectedDate + this.selectedStartTime,
-          stop: this.selectedDate + this.selectedEndTime,
-          description: this.eventDescription,
-          title: this.eventTitle
-        });
-      }
+        start: null,
+        startActual: this.selectedDate + this.selectedStartTime,
+        stop: this.selectedDate + this.selectedEndTime,
+        description: this.eventDescription,
+        title: this.eventTitle
+      });
       this.closeModal('event');
-      this.selectedEvent = undefined;
       this.eventTitle = "";
       this.eventDescription = "";
       // Alert that there has been a change in the database and refetch the events
@@ -312,5 +321,26 @@ export class CalendarComponent implements OnInit {
         this.calendar.fullCalendar('refetchEvents');
       });
     }
+  }
+
+  deleteEvent() {
+    this.db.deleteEvent(this.selectedEvent).then(() => {
+      this.db.emitChange();
+      this.calendar.fullCalendar('refetchEvents');
+      this.closeModal('event-detail');
+    });
+  }
+
+  editEvent() {
+    this.editBool = true;
+    document.getElementById("event-body").style.backgroundColor = this.users[this.selectedEvent.resourceId - 1].eventColor;
+    this.eventTitle = this.selectedEvent.title;
+    this.eventDescription = this.selectedEvent.description;
+    this.dateFromPicker = this.selectedEvent.startActual.toString().match(/[^T]*/).toString();
+    this.selectedDate = this.dateFromPicker + "T";
+    this.selectedStartTime = this.selectedEvent.startActual.toString().match(/[^T]*$/).toString();
+    this.selectedEndTime = this.selectedEvent.stop.toString().match(/[^T]*$/).toString();
+    this.closeModal('event-detail');
+    this.openModal('event', true, false);
   }
 }

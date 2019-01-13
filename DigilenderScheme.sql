@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS events (
   id integer PRIMARY KEY,
   userName text,
   startDate text,
+  startDateActual text,
   stopDate text,
   description text,
   FOREIGN KEY (userName) REFERENCES users(name)

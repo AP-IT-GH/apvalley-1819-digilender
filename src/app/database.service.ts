@@ -72,14 +72,18 @@ export class DatabaseService {
 
 export interface User {
   id: String;
+  googleId: String
   title: String;
   eventColor: String;
+  avatar: string;
+  isGoogleAccount: Boolean;
 }
 
 export interface Event {
   id: number;
   resourceId: number;
   start: string;
+  startActual: string;
   stop: string;
   title: string;
   description: string;
