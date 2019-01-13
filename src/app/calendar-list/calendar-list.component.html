@@ -2,9 +2,10 @@
 <div id='calendar-list'>
     <mat-card class="calendar-list-item" *ngFor="let event of events" [style.backgroundColor]="users[event.resourceId - 1].eventColor">
 
-        <p style="text-align:left;">
+        <p>
             {{event.title}}
-            <span style="float:right;">{{event.startActual.substr(11)}} - {{event.stop.substr(11)}}</span>
+            <span>{{event.startActual.substr(11)}} -
+                {{event.stop.substr(11)}}</span>
         </p>
 
     </mat-card>
