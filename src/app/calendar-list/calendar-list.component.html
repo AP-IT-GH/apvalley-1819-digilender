@@ -1,4 +1,5 @@
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css"> -->
 <div id='calendar-list'>
-    <mat-card *ngFor="let event of events">{{event.title}}</mat-card>
+    <!-- <mat-card *ngFor="let event of events; let i = users[event.resourceId].eventColor" [ngStyle]="{'background-color':i}">{{event.title}}</mat-card> -->
+    <mat-card *ngFor="let event of events" [style.backgroundColor]="users[event.resourceId - 1].eventColor">{{event.title}}</mat-card>
 </div>

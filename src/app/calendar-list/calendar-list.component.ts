@@ -13,13 +13,16 @@ export class CalendarListComponent implements OnInit {
 
   constructor(public db: DatabaseService) { }
   events;
+  users;
 
   ngOnInit(): void {
     this.getTodayEvents();
+    this.getCurrentUsers();
 
     this.db.change.subscribe(result => {
       console.log("Change detected from calendar component");
       this.getTodayEvents();
+      this.getCurrentUsers();
     });
   }
 
@@ -38,6 +41,12 @@ export class CalendarListComponent implements OnInit {
       });
 
       this.events = tempEvents;
+    });
+  }
+
+  getCurrentUsers() {
+    this.db.getUsers().then((users) => {
+      this.users = users;
     });
   }
 }
