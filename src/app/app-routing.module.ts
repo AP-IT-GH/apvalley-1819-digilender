@@ -12,7 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from "./settings/settings.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/intro', pathMatch: 'full' },
+  { path: '', redirectTo: '/home/settings/users', pathMatch: 'full' },
   { path: 'intro', component: IntroSetupComponent },
   {
     path: 'home',

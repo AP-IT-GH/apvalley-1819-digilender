@@ -7,7 +7,7 @@ import { MatSnackBar } from '@angular/material'
 import { authService } from '../auth.service';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
-import { GoogleCalendarService } from "../google-calendar.service";
+import { GoogleCalendarService, IGcalendar } from "../google-calendar.service";
 
 
 
@@ -26,11 +26,15 @@ export class UsersComponent implements OnInit {
   public changeUser: IUser;
   public snackbar;
   arrayLength: number;
+  newuser: IUser;
+
   googleUserName: string;
   googleProfiel: IGoogleProfiel;
-  newuser: IUser;
   isGoogleAccount: boolean
-  gCalPar: IGCalParameters
+  gCalPar: IGCalParameters;
+  gCalendar: IGcalendar;
+  gEvent: IEvent;
+  userId: number
 
   imageAvatar = '../assets/svg/baseline-person.svg'
 
@@ -57,13 +61,19 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     var me = this;
+    this.getInitUsers(me);
+
+    this.colorsToChoose();
+  }
+
+  private getInitUsers(me: this) {
     this.dbService.getUsers().then(function (dbUsers) {
+
+      console.log(dbUsers);
       for (var i = 0; i < dbUsers.length; i++) {
         me.users.push(dbUsers[i]);
       }
-    })
-
-    this.colorsToChoose();
+    });
   }
 
   googleAuthSignIn() {
@@ -75,19 +85,22 @@ export class UsersComponent implements OnInit {
       this.googleProfiel = {
         name: response.additionalUserInfo.profile.given_name,
         profielImgUrl: response.additionalUserInfo.profile.picture,
-        googleId: response.additionalUserInfo.profile.id
+        googleId: response.additionalUserInfo.profile.id,
+        accessTokken: response.credential.accessToken
       }
 
       this.addUser = true
       this.googleUserName = this.googleProfiel.name
       this.isGoogleAccount = true
 
-      console.log(response.credential.accessToken)
-       this.addEventFromGoogleCalendar(response.credential.accessToken)
+      this.snackBar.open('Google account van ' + this.googleProfiel.name + ' is gelinkt', 'close', { duration: 3000 });
+
+      // console.log(response.credential.accessToken)
+      // this.addEventFromGoogleCalendar(response.credential.accessToken)
     })
   }
 
-  addEventFromGoogleCalendar(accessToken: string) {
+  getEventFromGoogleCalendar(accessToken: string) {
 
     this.gCalPar = {
       calendarId: 'primary',
@@ -102,13 +115,38 @@ export class UsersComponent implements OnInit {
       this.gCalPar.orderBy,
       accessToken
     ).subscribe(res => {
-      console.log(res)
+      this.addEventFromGoogleCalendar(res);
     })
-
 
   }
 
+  addEventFromGoogleCalendar(res: IGcalendar) {
+
+    let events = new Array();
+    this.gCalendar = res;
+ 
+    for (var i = 0; i < this.gCalendar.items.length; i++) {
+      let event = this.gEvent = {
+        id: undefined,
+        resourceId: this.userId,
+        start: String(this.gCalendar.items[i].start.dateTime),
+        description: this.gCalendar.items[i].description,
+        title: this.gCalendar.items[i].summary,
+        stop: String(this.gCalendar.items[i].end.dateTime)
+      };
+      events.push(event);
+      this.dbService.addEvent(events[i]);
+    }
+
+    this.snackBar.open('Google Calendar van ' + this.googleProfiel.name + ' is gesynchroniseerd', 'close', { duration: 3000 });
+  }
+
+
+
   createUserWithGoogleAccount() {
+
+    let googleId = this.googleProfiel.googleId
+
     this.newuser = {
       id: undefined,
       googleId: this.googleProfiel.googleId,
@@ -122,13 +160,28 @@ export class UsersComponent implements OnInit {
     this.arrayLength = this.users.length + 1;
     this.users.push(this.newuser);
     this.dbService.addUser(this.newuser);
-    this.snackBar.open('Nieuwe gebruiker toegevoegd', 'close', { duration: 3000 });
     this.addUser = false;
     this.isGoogleAccount = false
-    console.log('!!!!!!!!!!!!!!!!')
     console.log(this.newuser);
     this.newuser = null;
+
+    this.dbService.getUsers().then(function (dbUsers) {
+      // console.log("this.googleProfiel.googleId: " + this.googleProfiel.googleId)
+      // console.log(dbUsers)
+      
+      for (var i = 0; i < dbUsers.length; i++) {
+        if (dbUsers[i].googleId == googleId) {
+          console.log('userId !!!!!!!!!!!!!!!!!')
+          this.userId = dbUsers[i].id
+          console.log(this.userId)
+        }
+      }
+    });
+    
+    this.getEventFromGoogleCalendar(this.googleProfiel.accessTokken)
   }
+
+
 
   public goTo(pad: String): void {
     this.router.navigate(['/' + pad], { relativeTo: this.route });
@@ -232,6 +285,7 @@ export interface IGoogleProfiel {
   name: string;
   profielImgUrl: string;
   googleId: string;
+  accessTokken: string;
 }
 
 export interface IGCalParameters {

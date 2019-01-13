@@ -19,8 +19,8 @@ export class GoogleCalendarService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents(calendarId: String, showDeleted: boolean, timeMin: String, orderBy: String, accesToken: String): Observable<Icalendar> {
-    return this.http.get<Icalendar>(this.apiUrl + `${calendarId}/events?showDeleted=${showDeleted}&timeMin=${timeMin}&access_token=${accesToken}`)
+  getEvents(calendarId: String, showDeleted: boolean, timeMin: String, orderBy: String, accesToken: String): Observable<IGcalendar> {
+    return this.http.get<IGcalendar>(this.apiUrl + `${calendarId}/events?showDeleted=${showDeleted}&timeMin=${timeMin}&access_token=${accesToken}`)
   }
 
 }
@@ -92,7 +92,7 @@ export interface Item {
   source: Source;
 }
 
-export interface Icalendar {
+export interface IGcalendar {
   kind: string;
   etag: string;
   summary: string;
