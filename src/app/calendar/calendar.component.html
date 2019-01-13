@@ -12,7 +12,7 @@
     <div id='calendar'></div>
 
     <button class="add-event-botton" mat-fab color="primary"
-        (click)="openModal('event', false)">
+        (click)="editBool = false; openModal('event', false, true)">
         <mat-icon>add</mat-icon>
     </button>
 
@@ -26,18 +26,16 @@
             <div class="title-note-container">
                 <mat-form-field appearance="outline">
                     <mat-label>Titel</mat-label>
-                    <input matInput type="text" placeholder="Titel invoeren"
-                        [(ngModel)]="eventTitle">
-                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <input matInput type="text" [(ngModel)]="eventTitle">
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Notitie</mat-label>
-                    <textarea matInput placeholder="Notitie invoeren"
-                        [(ngModel)]="eventDescription"></textarea>
+                    <textarea matInput [(ngModel)]="eventDescription"></textarea>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" *ngIf="eventButton">
+                <mat-form-field appearance="outline" *ngIf="eventButton &&
+                    editBool == false">
                     <mat-label>Gezinslid</mat-label>
                     <mat-select [(value)]="userFromDropdown">
                         <mat-option *ngFor="let user of users"
@@ -47,7 +45,8 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" *ngIf="!eventButton">
+                <mat-form-field appearance="outline" *ngIf="!eventButton ||
+                    editBool == true">
                     <mat-label>Gezinslid</mat-label>
                     <input matInput type="text" disabled
                         value="{{selectedUserTitle}}">
@@ -56,8 +55,7 @@
                 <mat-form-field class="date-picker" appearance="outline"
                     (click)="picker.open()">
                     <mat-label>Datum</mat-label>
-                    <input matInput [matDatepicker]="picker" placeholder="Kies
-                        een datum"
+                    <input matInput [matDatepicker]="picker"
                         [(ngModel)]="dateFromPicker" [disabled]="!eventButton">
                     <mat-datepicker touchUi #picker></mat-datepicker>
                     <mat-icon matSuffix>date_range</mat-icon>
@@ -87,23 +85,34 @@
             <mat-card-actions class="buttons-event-container">
                 <button mat-button
                     (click)="closeModal('event')">ANNULEREN</button>
-                <button mat-flat-button color='accent' (click)="addEvent()">TOEVOEGEN</button>
+                <button mat-flat-button id="add-event-button" color='accent'
+                    (click)="addEvent()">TOEVOEGEN</button>
             </mat-card-actions>
 
         </mat-card>
     </jw-modal>
 
     <jw-modal id="event-detail" style="text-align: center;">
-        <mat-card id="event-detail-body" >
-          <button mat-raised-button color="primary" style="position: absolute; left: -20px; top: -26px; display: inline-block " (click)="editEvent()" ><mat-icon>create</mat-icon></button>
-          <button mat-raised-button color="primary" style="position: absolute; right: -20px; top: -26px; display: inline-block" (click)="closeModal('event-detail')"><mat-icon>clear</mat-icon></button>
+        <mat-card id="event-detail-body">
+            <button class="edit-event-button" mat-mini-fab color="primary"
+                (click)="editEvent()">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button class="close-event-button" mat-mini-fab color="primary"
+                (click)="closeModal('event-detail')">
+                <mat-icon>close</mat-icon>
+            </button>
             <mat-card-header style="display: flex; justify-content: center">
                 <mat-card-title id="detail-title">{{selectedUserTitle}}</mat-card-title>
             </mat-card-header>
-            <mat-card-content *ngIf="selectedEvent" >
-                <p>{{selectedEvent.title}}</p>
-                <p>{{selectedEvent.Description}}</p>
+            <mat-card-content id="detail-content">
+                <p>{{selectedEventTitle}}</p>
                 <p>{{selectedEventStart}} - {{selectedEventEnd}}</p>
+                <p>{{selectedEventDescription}}</p>
             </mat-card-content>
+            <button class="delete-event-button" mat-fab color="primary"
+                (click)="deleteEvent()">
+                <mat-icon>delete</mat-icon>
+            </button>
         </mat-card>
     </jw-modal>

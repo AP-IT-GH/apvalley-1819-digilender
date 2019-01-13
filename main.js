@@ -16,13 +16,19 @@ Wifi.init({iface: null});
 //require('electron-reload')(__dirname);
 
 function createWindow() {
-    //win = new BrowserWindow({ width: 1920, height: 1080} );
+    win = new BrowserWindow({
+        width: 1920,
+        height: 1080,
+        webPreferences: {
+            nativeWindowOpen: true
+        }
+    });
 
-    win = new BrowserWindow();
-    win.setFullScreen(true)
+    // win = new BrowserWindow();
+    // win.setFullScreen(true)
 
     // Uncomment the following line to remove the menu bar
-     //win.setMenu(null);
+    //win.setMenu(null);
 
     // load the dist folder from Angular
     win.loadURL(
@@ -30,7 +36,7 @@ function createWindow() {
             pathname: 'http://localhost:4200'
         })
     );
-  
+
     // The following is optional and will open the DevTools:
     win.webContents.openDevTools()
     win.on("closed", () => {
@@ -39,46 +45,46 @@ function createWindow() {
 
     //respond to messages
     promiseIpc.on('users', (arg) => {
-        if (arg.action == 'get'){
+        if (arg.action == 'get') {
             return db.getUsers().then((users) => {
-              var tmp = JSON.stringify(users);
-              console.log("get users: ");
-              console.log(tmp);
-              return tmp;
+                var tmp = JSON.stringify(users);
+                console.log("get users: ");
+                console.log(tmp);
+                return tmp;
             });
         }
-        else if (arg.action == 'put'){
+        else if (arg.action == 'put') {
             return db.addUser(arg.value).then((user) => {
-              var tmp = JSON.stringify(user);
-              console.log(tmp);
-              return tmp;
+                var tmp = JSON.stringify(user);
+                console.log(tmp);
+                return tmp;
             });
         }
-        else if (arg.action == 'delete'){
+        else if (arg.action == 'delete') {
             return db.deleteUser(arg.value).then((user) => {
-              var tmp = JSON.stringify(user);
-              console.log(tmp);
-              return tmp;
+                var tmp = JSON.stringify(user);
+                console.log(tmp);
+                return tmp;
             });
         }
-        else{
-            return {error: "invalid action"};
+        else {
+            return { error: "invalid action" };
         }
     });
 
     promiseIpc.on('events', (arg) => {
-        if (arg.action == 'get'){
+        if (arg.action == 'get') {
             return db.getEvents(arg.userId)
-              .then((events) => {
-                var tmp = JSON.stringify(events);
+                .then((events) => {
+                    var tmp = JSON.stringify(events);
+                    console.log(tmp);
+                    return tmp;
+                });
+        } else if (arg.action == 'delete') {
+            return db.deleteEvent(arg.value).then((event) => {
+                var tmp = JSON.stringify(event);
                 console.log(tmp);
                 return tmp;
-              });
-        }else if (arg.action == 'delete'){
-            return db.deleteEvent(arg.value).then((event) => {
-              var tmp = JSON.stringify(event);
-              console.log(tmp);
-              return tmp;
             });
         }
         else if (arg.action == 'put'){

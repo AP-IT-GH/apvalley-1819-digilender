@@ -93,3 +93,45 @@ hr{
 #icon-back{
     font-size: 3em;
 }
+
+.google-calendar-icon{
+    height: 100%;
+    width: 3em;
+}
+
+.google-calendar-button{
+//height: 100px;
+//width: 200px;
+padding: 10px
+}
+
+mat-list{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+mat-action-list{
+    display: flex;
+    align-items: center;
+    
+}
+.google-icon-account{
+    margin: 10px;
+}
+
+.diaglog-container{
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+mat-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 40px;
+    //justify-content: center;
+    //border: 1px solid black;
+     padding: 30px;
+}
