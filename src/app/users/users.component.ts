@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DatabaseService } from '../database.service';
@@ -8,8 +8,7 @@ import { authService } from '../auth.service';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { GoogleCalendarService, IGcalendar } from "../google-calendar.service";
-
-
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-users',
@@ -34,7 +33,6 @@ export class UsersComponent implements OnInit {
   gCalPar: IGCalParameters;
   gCalendar: IGcalendar;
   gEvent: IEvent;
-  userId: number
 
   imageAvatar = '../assets/svg/baseline-person.svg'
 
@@ -53,7 +51,8 @@ export class UsersComponent implements OnInit {
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
     private authService: authService,
-    private gCalService: GoogleCalendarService
+    private gCalService: GoogleCalendarService,
+    public dialog: MatDialog
   ) {
     this.matIconRegistry.addSvgIcon("google-calendar", this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/logo/google-calendar.svg"));
     this.matIconRegistry.addSvgIcon('google-logo', this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/logo/google-logo.svg"))
@@ -95,12 +94,10 @@ export class UsersComponent implements OnInit {
 
       this.snackBar.open('Google account van ' + this.googleProfiel.name + ' is gelinkt', 'close', { duration: 3000 });
 
-      // console.log(response.credential.accessToken)
-      // this.addEventFromGoogleCalendar(response.credential.accessToken)
     })
   }
 
-  getEventFromGoogleCalendar(accessToken: string) {
+  getEventFromGoogleCalendar(accessToken: string, userId: number) {
 
     this.gCalPar = {
       calendarId: 'primary',
@@ -115,20 +112,20 @@ export class UsersComponent implements OnInit {
       this.gCalPar.orderBy,
       accessToken
     ).subscribe(res => {
-      this.addEventFromGoogleCalendar(res);
+      this.addEventFromGoogleCalendar(res, userId);
     })
 
   }
 
-  addEventFromGoogleCalendar(res: IGcalendar) {
+  addEventFromGoogleCalendar(res: IGcalendar, userId: number) {
 
     let events = new Array();
     this.gCalendar = res;
- 
+
     for (var i = 0; i < this.gCalendar.items.length; i++) {
       let event = this.gEvent = {
         id: undefined,
-        resourceId: this.userId,
+        resourceId: userId,
         start: String(this.gCalendar.items[i].start.dateTime),
         description: this.gCalendar.items[i].description,
         title: this.gCalendar.items[i].summary,
@@ -144,9 +141,6 @@ export class UsersComponent implements OnInit {
 
 
   createUserWithGoogleAccount() {
-
-    let googleId = this.googleProfiel.googleId
-
     this.newuser = {
       id: undefined,
       googleId: this.googleProfiel.googleId,
@@ -165,21 +159,31 @@ export class UsersComponent implements OnInit {
     console.log(this.newuser);
     this.newuser = null;
 
+
+    let userId: number
+    let googleId = this.googleProfiel.googleId
+
+
     this.dbService.getUsers().then(function (dbUsers) {
-      // console.log("this.googleProfiel.googleId: " + this.googleProfiel.googleId)
-      // console.log(dbUsers)
-      
+
       for (var i = 0; i < dbUsers.length; i++) {
         if (dbUsers[i].googleId == googleId) {
           console.log('userId !!!!!!!!!!!!!!!!!')
-          this.userId = dbUsers[i].id
-          console.log(this.userId)
+          userId = dbUsers[i].id
+          console.log(userId)
         }
       }
     });
-    
-    this.getEventFromGoogleCalendar(this.googleProfiel.accessTokken)
+
+    const dialogRef = this.dialog.open(DialogSyncGcalendar);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      if (result)
+        this.getEventFromGoogleCalendar(this.googleProfiel.accessTokken, userId)
+    });
   }
+
 
 
 
@@ -259,6 +263,14 @@ export class UsersComponent implements OnInit {
     this.colors.push("#FAAE83");
     this.colors.push("#9EC3E7");
   }
+}
+
+@Component({
+  templateUrl: './dialog-sync-gcalendar.html',
+  styleUrls: ['./users.component.scss']
+})
+export class DialogSyncGcalendar {
+  constructor() { }
 }
 
 export interface IUser {
