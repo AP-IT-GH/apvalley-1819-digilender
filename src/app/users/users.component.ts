@@ -66,7 +66,7 @@ export class UsersComponent implements OnInit {
   }
 
   private getInitUsers(me: this) {
-    this.dbService.getUsers().then(function (dbUsers) {
+    this.dbService.getUsers(undefined).then(function (dbUsers) {
 
       console.log(dbUsers);
       for (var i = 0; i < dbUsers.length; i++) {
@@ -164,7 +164,7 @@ export class UsersComponent implements OnInit {
     let googleId = this.googleProfiel.googleId
 
 
-    this.dbService.getUsers().then(function (dbUsers) {
+    this.dbService.getUsers(undefined).then(function (dbUsers) {
 
       for (var i = 0; i < dbUsers.length; i++) {
         if (dbUsers[i].googleId == googleId) {

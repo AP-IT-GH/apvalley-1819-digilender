@@ -55,8 +55,13 @@ class DBManager {
       .then(() => console.log('authed'));
   }
 
-  getUsers() {
-    return this.User.findAll();
+  getUsers(userId) {
+    if (userId == undefined) {
+      return this.User.findAll();
+    }
+    else {
+      return this.User.find({ where: { id: userId } });
+    }
   }
 
   addUser(user) {

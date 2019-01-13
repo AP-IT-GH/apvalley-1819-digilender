@@ -46,7 +46,7 @@ export class CalendarListComponent implements OnInit {
   }
 
   getCurrentUsers() {
-    this.db.getUsers().then((users) => {
+    this.db.getUsers(undefined).then((users) => {
       this.users = users;
     });
   }
