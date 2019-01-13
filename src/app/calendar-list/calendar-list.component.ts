@@ -32,6 +32,7 @@ export class CalendarListComponent implements OnInit {
       var today = new Date();
       var todayString: String = today.getFullYear() + "-" + ('0' + (today.getMonth() + 1)).slice(-2) + "-" + ('0' + today.getDate()).slice(-2) + "T";
       var tempEvents = new Array();
+      this.events = null;
 
       events.forEach(element => {
         var eventDate: String = element.startActual.match(/.*?T/).toString();
