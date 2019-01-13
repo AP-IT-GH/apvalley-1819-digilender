@@ -110,8 +110,7 @@ body.jw-modal-open {
 
 #calendar > div.fc-view-container {
   border-top-color: #000000;
-  border-top-width: 2px;
-  border-top-style: solid;
+  border-top-width: 0px;
 }
 
 //  onderstaande werkt niet 
@@ -128,10 +127,13 @@ body.jw-modal-open {
 }
 #calendar > div.fc-view-container > div > table > thead > tr > td > div > table > thead > tr > th{
   border-bottom: 1px solid;
+  border-top:1px solid #000000;
   padding-bottom: 20px;
+  padding-top: 20px;
 }
 #calendar > div.fc-view-container > div > table > thead > tr > td > div > table{
   border-bottom:2px;
+  
 }
 #calendar > div.fc-view-container > div > table > thead > tr > td{
   border-bottom: 0px;
@@ -306,4 +308,8 @@ body > app-root > div > app-home > div > div.container-status-panel > app-status
 body > app-root > div > app-home > div > div.container-status-panel > app-status-panel > mat-card > div.weather-date-item > app-weather > div > div.weer_rechts > div.temp{
   height:30px;
   padding-top: 10px;
+}
+
+#calendar > div.fc-view-container > div > table > thead > tr > td > div:first-child table{
+  border: 0px;
 }
