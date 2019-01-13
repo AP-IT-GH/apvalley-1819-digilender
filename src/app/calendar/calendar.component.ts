@@ -6,6 +6,7 @@ import { ModalService } from '../modal.service';
 import { DatabaseService } from '../database.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -40,6 +41,23 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     // Selector om de scope te veranderen
     var me = this;
+
+    
+    var myElement = document.getElementById('calendar');
+    var mc = new Hammer(myElement);
+    mc.on("panleft", function(ev) {
+      $('#calendar').fullCalendar('incrementDate', {
+        months: 1
+      });
+    });
+    mc.on("panright", function(ev) {
+      $('#calendar').fullCalendar('incrementDate', {
+        months: -1
+      });
+    });
+    mc.on("tap", function(ev) {
+     
+    });
 
     $(function () {
       me.calendar = $('#calendar');
@@ -132,6 +150,7 @@ export class CalendarComponent implements OnInit {
         selectable: false,
         editable: false,
         allDaySlot: false,
+        longPressDelay: 0,    
         eventTextColor: 'white',
         // Haal de resources vanuit de database (= users)
         resources: function (callback) {
@@ -150,7 +169,7 @@ export class CalendarComponent implements OnInit {
           });
         },
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
-        // Klik op een lege plek op de kalender
+        // Klik op een lege plek op de kalender 
         dayClick: function (date, jsEvent, view, resource) {
           me.selectedUser = resource;
           me.selectedUserTitle = resource.title;
