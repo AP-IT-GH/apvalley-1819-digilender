@@ -120,3 +120,18 @@ mat-action-list{
 .google-icon-account{
     margin: 10px;
 }
+
+.diaglog-container{
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+mat-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 40px;
+    //justify-content: center;
+    //border: 1px solid black;
+     padding: 30px;
+}
