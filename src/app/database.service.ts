@@ -12,8 +12,8 @@ export class DatabaseService {
   constructor() {
   }
 
-  getUsers(){
-    return promiseIpc.send('users', { action: 'get' })
+  getUsers(userId: number) {
+    return promiseIpc.send('users', { action: 'get', userId: userId })
       .then((users) => {
         let tmp = JSON.parse(users);
         return tmp;
@@ -28,10 +28,9 @@ export class DatabaseService {
       });
   }
 
-  deleteUser(id:string){
-    return promiseIpc.send('users', {action: 'delete', value: id});
+  deleteUser(id: string) {
+    return promiseIpc.send('users', { action: 'delete', value: id });
   }
-
 
   getEvents(userId: number) {
     return promiseIpc.send('events', { action: 'get', userId: userId })
@@ -46,14 +45,14 @@ export class DatabaseService {
     console.log("adding event");
     console.log(event);
     return promiseIpc.send('events', { action: 'put', value: event })
-      .then(function(newEvent) {
+      .then(function (newEvent) {
         console.log("added event:");
         console.log(newEvent);
         console.log("ayyylmao1");
         let tmp = JSON.parse(newEvent);
         console.log("ayyylmao2");
         return tmp;
-      }).catch(function() {
+      }).catch(function () {
         console.log("addevent error");
         console.log(arguments);
       });

@@ -173,7 +173,7 @@ export class CalendarComponent implements OnInit {
         // Haal de resources vanuit de database (= users)
         resources: function (callback) {
           console.log("getting resources");
-          me.db.getUsers().then(function (users) {
+          me.db.getUsers(undefined).then(function (users) {
             console.log("got resources");
             console.log(users);
             callback(users);
@@ -200,9 +200,12 @@ export class CalendarComponent implements OnInit {
           me.selectedUserTitle = resource.title;
           me.dateFromPicker = date.format();
           me.selectedDate = date.format().match(/.*?T/).toString();
-          document.getElementById("event-body").style.backgroundColor = me.users[resource.id - 1].eventColor;
-          me.openModal('event', true, true);
-          document.getElementById("title").click();
+
+          me.db.getUsers(resource.id).then((user) => {
+            document.getElementById("event-body").style.backgroundColor = user.eventColor;
+            me.openModal('event', true, true);
+            document.getElementById("title").click();
+          });
         },
         // Voeg een beschrijving toe
         eventRender: function (event, element) {
@@ -218,7 +221,6 @@ export class CalendarComponent implements OnInit {
           me.editBool = false;
           me.eventButton = false;
           me.selectedEvent = calEvent;
-          me.selectedUserTitle = me.users[calEvent.resourceId - 1].title;
           me.selectedEventTitle = calEvent.title;
           me.selectedEventDescription = calEvent.description;
           me.selectedEventStart = calEvent.startActual.toString().match(/\d{2}:\d{2}/).toString();
@@ -227,13 +229,13 @@ export class CalendarComponent implements OnInit {
           var days = ["Zon", "Maa", "Din", "Woe", "Don", "Vrij", "Zat"];
           me.selectedEventDay = days[d.getDay()];
           me.selectedEventDayNumber = d.getDate().toString();
-          document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
-          me.openModal('event-detail', true, false);
-          document.getElementById("detail-title").click();
 
-          // me.db.getEvents(calEvent.resourceId).then((events) => {
-          //   console.log(events[0].title);
-          // });
+          me.db.getUsers(calEvent.resourceId).then((user) => {
+            me.selectedUserTitle = user.title;
+            document.getElementById("event-detail-body").style.backgroundColor = user.eventColor;
+            me.openModal('event-detail', true, false);
+            document.getElementById("detail-title").click();
+          });
         }
       });
     })
@@ -339,14 +341,17 @@ export class CalendarComponent implements OnInit {
 
   editEvent() {
     this.editBool = true;
-    document.getElementById("event-body").style.backgroundColor = this.users[this.selectedEvent.resourceId - 1].eventColor;
     this.eventTitle = this.selectedEvent.title;
     this.eventDescription = this.selectedEvent.description;
     this.dateFromPicker = this.selectedEvent.startActual.toString().match(/[^T]*/).toString();
     this.selectedDate = this.dateFromPicker + "T";
     this.selectedStartTime = this.selectedEvent.startActual.toString().match(/[^T]*$/).toString();
     this.selectedEndTime = this.selectedEvent.stop.toString().match(/[^T]*$/).toString();
-    this.closeModal('event-detail');
-    this.openModal('event', true, false);
+
+    this.db.getUsers(this.selectedEvent.resourceId).then((user) => {
+      document.getElementById("event-body").style.backgroundColor = user.eventColor;
+      this.closeModal('event-detail');
+      this.openModal('event', true, false);
+    });
   }
 }
