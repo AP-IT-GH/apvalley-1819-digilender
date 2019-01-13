@@ -154,7 +154,7 @@ export class CalendarComponent implements OnInit {
             maxTime: getMaxTime(),
             slotDuration: '24:00:00',
             titleFormat: `${me.tdTitle}`,
-            slotLabelFormat: 'D \n' + 'ddd ',
+            slotLabelFormat: 'D \n' + "dd",
             buttonText: 'family Calendar',
             scrollTime: { days: 0 }
           },
