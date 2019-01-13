@@ -36,17 +36,14 @@ export class CalendarListComponent implements OnInit {
       events.forEach(element => {
         var eventDate: String = element.startActual.match(/.*?T/).toString();
         if (eventDate == todayString) {
-
-          this.db.getUsers(element.resourceId).then((user) => { 
+          this.db.getUsers(element.resourceId).then((user) => {
             element.color = user.eventColor;
+            tempEvents.push(element);
+            this.events = tempEvents;
+            this.events.sort(function (a, b) { return (a.startActual > b.startActual) ? 1 : ((b.startActual > a.startActual) ? -1 : 0); });
           });
-          
-          tempEvents.push(element);
         }
       });
-
-      this.events = tempEvents;
-      this.events.sort(function (a, b) { return (a.startActual > b.startActual) ? 1 : ((b.startActual > a.startActual) ? -1 : 0); });
     });
   }
 
