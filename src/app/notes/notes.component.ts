@@ -18,7 +18,7 @@ export class NotesComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, public dServ: DatabaseService, public mServ: ModalService) { 
     this.dServ.getNotes().then((notes)=>{console.log(notes)});
-    this.usersProm = this.dServ.getUsers()
+    this.usersProm = this.dServ.getUsers(undefined)
     .then(users => {
       let tempUsers = []
       console.log("filling users array");
