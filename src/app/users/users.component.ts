@@ -126,7 +126,8 @@ export class UsersComponent implements OnInit {
       let event = this.gEvent = {
         id: undefined,
         resourceId: userId,
-        start: String(this.gCalendar.items[i].start.dateTime),
+        start: null,
+        startActual:String(this.gCalendar.items[i].start.dateTime),
         description: this.gCalendar.items[i].description,
         title: this.gCalendar.items[i].summary,
         stop: String(this.gCalendar.items[i].end.dateTime)
@@ -291,6 +292,7 @@ export interface IEvent {
   stop: string;
   title: string;
   description: string;
+  startActual: string
 }
 
 export interface IGoogleProfiel {
