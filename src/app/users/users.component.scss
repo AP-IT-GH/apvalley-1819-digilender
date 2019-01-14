@@ -4,14 +4,6 @@ hr{
     margin-right: 1.5em;
     margin-top: 7em;
 }
-
-.main {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: start;
-}
-
 .container{
     display: flex;
     flex-direction: column;
@@ -20,11 +12,18 @@ hr{
     flex-wrap: nowrap;
     padding: 0;
     height: 80vh;
-    font-family: Geneva, Tahoma, Verdana, sans-serif;
-    font-style: normal;
-    font-variant: normal;
-    margin: 2em;
+    
+    //margin: 2em;
 }
+
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: start;
+}
+
+
 
 .container-footer{
     display: flex;
@@ -96,7 +95,7 @@ hr{
 
 .google-calendar-icon{
     height: 100%;
-    width: 3em;
+    
 }
 
 .google-calendar-button{
@@ -118,7 +117,7 @@ mat-action-list{
     
 }
 .google-icon-account{
-    margin: 10px;
+     margin: 10px;
 }
 
 .diaglog-container{
