@@ -1,8 +1,14 @@
+#calendar-list{
+    height: 30em;
+    overflow: auto;
+}
+
 .calendar-list-item {
     color: white;
     font-size: 1.2em;
     margin-bottom: 10%;
     border-radius: 10px;
+    margin-right: 2%;
 }
 
 p {
