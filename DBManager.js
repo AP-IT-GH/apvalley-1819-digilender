@@ -13,7 +13,6 @@ class DBManager {
       define: { timestamps: false }
     });
 
-
     me.User = me.sequelize.define('User', {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
       title: Sequelize.STRING,      // user name
@@ -35,13 +34,25 @@ class DBManager {
       description: Sequelize.TEXT // description of event
     });
 
+    me.Note = me.sequelize.define('Note', {
+      id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
+      resourceId: Sequelize.INTEGER,
+      text: Sequelize.STRING
+    });
+
     me.Event.belongsTo(me.User, { foreignKey: "resourceId" });
+    me.Note.belongsTo(me.User, { foreignKey: "resourceId" });
 
     me.Event.drop().then(() => {
+      return me.Note.drop()
+    }).then(() => {
+      console.log("sync user");
       return me.User.sync({ force: true })
     }).then(() => {
+      console.log("sync event");
       return me.Event.sync();
     }).then(() => {
+      console.log("adding users");
       let avatarUrl = '../assets/svg/baseline-person.svg'
       me.User.create({ title: "Antoinne", eventColor: "#ff6600", googleId: null, avatar: avatarUrl, calType: 0, login: 'antun', pass: 'antpw' });
       me.User.create({ title: "Mohammed", eventColor: "#0066ff", googleId: null, avatar: avatarUrl, calType: 0, login: 'moun', pass: 'mopw' });
@@ -49,10 +60,15 @@ class DBManager {
       me.User.create({ title: "Coralie", eventColor: "#ffcc00", googleId: null, avatar: avatarUrl, calType: 0, login: 'corun', pass: 'corpw' });
       return me.User.create({ title: "Elke", eventColor: "#99ccff", googleId: null, avatar: avatarUrl, calType: 0, login: 'elkun', pass: 'elkpw' })
     }).then((user) => {
+      console.log("sync Note");
+      return me.Note.sync();
+    }).then(() => {
+      return me.Note.create({ resourceId: 1, text: "dit is een test, herriner paps er aan dat hij het vuil buiten zet, samen met je oma OOHH"});
+    }).then(() => {
       me.initialised = true;
+      me.sequelize.authenticate()
+        .then(() => console.log('authed'));
     });
-    me.sequelize.authenticate()
-      .then(() => console.log('authed'));
   }
 
   getUsers() {
@@ -131,6 +147,43 @@ class DBManager {
     }
     else {
       return this.Event.findAll({ where: { resourceId: userId } });
+    }
+  }
+
+  getNotes() {
+    return this.Note.findAll();
+  }
+
+  deleteNote(note) {
+    console.log('deleting note');
+    console.log(note.id);
+    if (note.id == undefined) {
+      return; //no event to delete
+    }
+    else {
+      return this.Note.findById(note.id)
+        .then((noteToDelete) => {
+          return noteToDelete.destroy(); //delete event
+        });
+    }
+  }
+
+  addNote(newNote) {
+    console.log('adding note');
+    console.log(newNote);
+    console.log(newNote.id);
+    if (newNote.id == undefined) {
+      return this.Note.build(newNote).save(); //return promise of new event
+    }
+    else {
+      console.log("finding old note");
+      return this.Note.findById(newNote.id)
+        .then((oldNote) => {
+          console.log("old note, new note:");
+          console.log(oldNote);
+          console.log(newNote);
+          return oldNote.update(newNote);
+        });
     }
   }
 }

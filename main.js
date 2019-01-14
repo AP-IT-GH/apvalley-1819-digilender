@@ -102,6 +102,36 @@ function createWindow() {
         }
     });
 
+    promiseIpc.on('notes', (arg) => {
+        if (arg.action == 'get') {
+            return db.getNotes()
+                .then((notes) => {
+                    var tmp = JSON.stringify(notes);
+                    console.log(tmp);
+                    return tmp;
+                });
+        } else if (arg.action == 'delete') {
+            return db.deleteNote(arg.value).then((note) => {
+                var tmp = JSON.stringify(note);
+                console.log(tmp);
+                return tmp;
+            });
+        }
+        else if (arg.action == 'put'){
+            console.log("putting note");
+            console.log(arg.value);
+            return db.addNote(arg.value).then((newNote) => {
+              console.log("returning note:");
+              console.log(newNote);
+              var tmp = JSON.stringify(newNote);
+              console.log(tmp);
+              return tmp;
+            }).catch(function() {
+              console.log(arguments);
+            });
+        }
+    });
+    
     promiseIpc.on('wifi', (arg)=> {
         console.log("got request");
         console.log(arg);
