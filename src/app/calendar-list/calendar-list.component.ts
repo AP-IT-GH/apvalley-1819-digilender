@@ -12,33 +12,33 @@ import { DatabaseService } from '../database.service';
 export class CalendarListComponent implements OnInit {
 
   constructor(public db: DatabaseService) { }
-  events;
+  events = new Array();
 
   ngOnInit(): void {
     this.getTodayEvents();
 
     this.db.change.subscribe(result => {
       console.log("Change detected from calendar component");
+      this.events = [];
       this.getTodayEvents();
     });
   }
 
   getTodayEvents() {
+    console.log(this.events);
     this.db.getEvents(undefined).then((events) => {
 
       var today = new Date();
       var todayString: String = today.getFullYear() + "-" + ('0' + (today.getMonth() + 1)).slice(-2) + "-" + ('0' + today.getDate()).slice(-2) + "T";
-      var tempEvents = new Array();
 
       events.forEach(element => {
-        this.events = null;
         var eventDate: String = element.startActual.match(/.*?T/).toString();
         if (eventDate == todayString) {
           this.db.getUsers(element.resourceId).then((user) => {
             element.color = user.eventColor;
-            tempEvents.push(element);
-            tempEvents.sort(function (a, b) { return (a.startActual > b.startActual) ? 1 : ((b.startActual > a.startActual) ? -1 : 0); });
-            this.events = tempEvents;
+            this.events.push(element);
+            this.events.sort(function (a, b) { return (a.startActual > b.startActual) ? 1 : ((b.startActual > a.startActual) ? -1 : 0); });
+            document.getElementById("calendar-list").click();
           });
         }
       });

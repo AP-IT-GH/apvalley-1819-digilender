@@ -5,16 +5,24 @@
       <h1>Scherm</h1>
   </div> -->
   <div class="main">
-    <div class="brightness">
-      <mat-icon>brightness_low</mat-icon>
-      <mat-slider thumbLabel tickInterval="1000" color='primary' min="1" max="100" style="width: 500px;"></mat-slider>
-      <mat-icon>brightness_high</mat-icon>
+    <div class="container-title">
+        <h2>Helderheid</h2>
+        <div class="brightness">
+          <mat-icon>brightness_high</mat-icon>
+          <mat-slider thumbLabel tickInterval="1000" color='primary' min="1" max="100" style="width: 500px;" [(ngModel)]="valueBrightness"></mat-slider>
+          <mat-icon>brightness_low</mat-icon>
+        </div>
     </div>
-    <div class="sleep-mode">
-      <mat-icon>brightness_3</mat-icon>
-      <mat-slider thumbLabel tickInterval="1000" min="1" max="100" style="width: 500px;"></mat-slider>
-      <mat-icon>brightness_2</mat-icon>
-    </div>
+
+  <div class="container-title">
+      <h2>Slaapstand</h2>
+      <div class="sleep-mode">
+        <mat-icon>brightness_2</mat-icon>
+        <mat-slider thumbLabel tickInterval="1000" min="1" max="100" style="width: 500px;" [(ngModel)]="valueBrightness"></mat-slider>
+        <mat-icon>brightness_3</mat-icon>
+      </div>
+  </div>
+
   </div>
   <!-- <div class="footer">
       <button class="button-footer" mat-button color="primary" routerLink="/options">

@@ -127,13 +127,14 @@ export class UsersComponent implements OnInit {
         id: undefined,
         resourceId: userId,
         start: null,
-        startActual:String(this.gCalendar.items[i].start.dateTime),
+        startActual: String(this.gCalendar.items[i].start.dateTime).substr(0, 16),
         description: this.gCalendar.items[i].description,
         title: this.gCalendar.items[i].summary,
-        stop: String(this.gCalendar.items[i].end.dateTime)
+        stop: String(this.gCalendar.items[i].end.dateTime).substr(0, 16)
       };
       events.push(event);
       this.dbService.addEvent(events[i]);
+      this.dbService.emitChange();
     }
 
     this.snackBar.open('Google Calendar van ' + this.googleProfiel.name + ' is gesynchroniseerd', 'close', { duration: 3000 });
@@ -174,6 +175,7 @@ export class UsersComponent implements OnInit {
           console.log(userId)
         }
       }
+      this.dbService.emitChange();
     });
 
     const dialogRef = this.dialog.open(DialogSyncGcalendar);
@@ -198,6 +200,7 @@ export class UsersComponent implements OnInit {
     else
       this.createLocalUser();
 
+    this.dbService.emitChange();
   }
 
   private createLocalUser() {
@@ -228,14 +231,13 @@ export class UsersComponent implements OnInit {
     this.users[this.users.indexOf(user)].eventColor = this.chosenColor;
     this.dbService.addUser(user);
     this.snackBar.open('Kleur gebruiker aangepast', 'close', { duration: 3000 });
-
+    this.dbService.emitChange();
   }
 
   public selectedColor(color: string, i: number) {
     this.chosenColor = color;
     this.selected = i;
   }
-
 
   public userToUpdate(id: string) {
     this.addUser = false;
@@ -246,15 +248,15 @@ export class UsersComponent implements OnInit {
     });
   }
 
-
   public deleteUser(id: string) {
     this.dbService.deleteUser(id);
     this.users.forEach(element => {
-      if (element.id == id)
+      if (element.id == id) {
         this.users.splice(this.users.indexOf(element), 1);
+        this.dbService.emitChange();
+      }
     });
   }
-
 
   private colorsToChoose() {
     this.colors.push("#F47E44");
