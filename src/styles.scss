@@ -230,8 +230,8 @@ body.jw-modal-open {
 
 hr{
   // margin-top:40px;
-   border-top-color: #2396cf;
-   border-top-width: 2px;
+   border-top-color: #000000;
+   border-top-width: 1px;
    border-top-style: solid;
    margin-top: 1px;
 }
@@ -271,7 +271,7 @@ body > app-root > div > div.container-home-calendar.ng-trigger.ng-trigger-fadeAn
 }
 
 body > app-root > div > div.container-home-calendar.ng-trigger.ng-trigger-fadeAnimation > app-users > div.container > div > div.col-sm-4{
-  border-right-color: #2396cf;
+  border-right-color: #000000;
   border-right-style: solid;
   border-right-width: 2px;
   padding: top 5px;
