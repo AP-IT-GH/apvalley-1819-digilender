@@ -107,9 +107,15 @@ export class CalendarComponent implements OnInit {
             text: 'Next',
             icon: 'right-single-arrow',
             click: function () {
+              if(me.selectedMonth == 11){
+                var tdYear = me.mt.getFullYear()+1;
+              }
+              else{
+                var tdYear = me.mt.getFullYear();
+              }
               me.selectedMonth++;
               var tdMonth = me.months[me.selectedMonth];
-              var tdYear = me.mt.getFullYear();
+              //var tdYear = me.mt.getFullYear();
               var tdTitle = '[' + tdMonth + " " + tdYear + ']';
               $('#calendar').fullCalendar('incrementDate', {
                 months: 1
@@ -122,9 +128,15 @@ export class CalendarComponent implements OnInit {
             text: 'Prev',
             icon: 'left-single-arrow',
             click: function () {
+              if(me.selectedMonth == 1){
+                var tdYear = me.mt.getFullYear()-1;
+              }
+              else{
+                //var tdYear = me.mt.getFullYear();
+              }
               me.selectedMonth--;
               var tdMonth = me.months[me.selectedMonth];
-              var tdYear = me.mt.getFullYear();
+              //var tdYear = me.mt.getFullYear();
               var tdTitle = '[' + tdMonth + " " + tdYear + ']';
               $('#calendar').fullCalendar('incrementDate', {
                 months: -1
