@@ -237,8 +237,10 @@ body.jw-modal-open {
   background: #fff !important;
 }
 
-.mat-form-field-flex{
-  background-color: white;
+
+
+#event-body > div.title-note-container > mat-form-field.mat-form-field.ng-tns-c13-4.mat-primary.mat-form-field-type-mat-input.mat-form-field-appearance-fill.mat-form-field-can-float.mat-form-field-hide-placeholder.ng-untouched.ng-pristine.ng-valid > div > div.mat-form-field-flex{
+  background-color: none;
 }
 
 hr{
