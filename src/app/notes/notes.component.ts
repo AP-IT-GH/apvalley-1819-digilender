@@ -55,19 +55,18 @@ export class NotesComponent implements OnInit {
     console.log("confirm add");
     console.log(this.resourceIdDropdown);
     console.log(this.noteText);
-    this.dServ.addNote({
-      id: undefined,
-      resourceId: this.resourceIdDropdown,
-      text: this.noteText
-    }).then(() => { 
-      this.notesProm = this.dServ.getNotes();
-    });
-  }
-  neverCalled() {
-    let note = undefined;
-    this.dServ.getNotes();
-    this.dServ.addNote(note);
-    this.dServ.deleteNote(note);
+    if(this.noteText && this.resourceIdDropdown) {
+      this.dServ.addNote({
+        id: undefined,
+        resourceId: this.resourceIdDropdown,
+        text: this.noteText
+      }).then(() => { 
+        this.notesProm = this.dServ.getNotes();
+      });
+      this.resourceIdDropdown = undefined;
+      this.noteText = undefined;
+      this.closeAdd();
+    }
   }
   
   findUser(resourceId: number){
@@ -80,6 +79,13 @@ export class NotesComponent implements OnInit {
     });
     console.log(tmp);
     return tmp;
+  }
+    
+  neverCalled() {
+    let note = undefined;
+    this.dServ.getNotes();
+    this.dServ.addNote(note);
+    this.dServ.deleteNote(note);
   }
 }
 
