@@ -8,7 +8,7 @@ import { SetupControllerService } from '../setup-controller.service';
 })
 export class ThemaComponent  {
 
-  public currentTheme: string = '"default';
+  public currentTheme: string = 'default';
  
   constructor(private setupService: SetupControllerService) { }
 
