@@ -15,27 +15,29 @@
 </button>
 
 <jw-modal id="add-note" style="text-align: center;">
-  <mat-card id="add-note-body">
+  <mat-card id="add-note-body" color="white">
     <button class="close-add-button" mat-mini-fab color="primary"
       (click)="closeAdd()">
       <mat-icon>close</mat-icon>
     </button>
     <mat-card-content id="detail-content">
-    <mat-label>Van</mat-label>
-    <mat-select [(value)]="resourceIdDropdown" *ngIf="users">
+    <mat-form-field appearance="outline">
+      <mat-label>Van</mat-label>
+      <mat-select [(value)]="resourceIdDropdown" *ngIf="users">
         <mat-option *ngFor="let user of users"
           [value]="user.id">
           {{user.title}}
         </mat-option>
-    </mat-select>
+      </mat-select>
+    </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Boodschap</mat-label>
       <textarea matInput [(ngModel)]="noteText"></textarea>
     </mat-form-field>
     </mat-card-content>
-    <button class="confirm-add-button" mat-mini-fab color="primary"
+    <button mat-flat-button class="confirm-add-button" color="primary"
       (click)="confirmAdd()">
-      <mat-icon>edit</mat-icon>
+      Opslaan
     </button>
   </mat-card>
 </jw-modal>
