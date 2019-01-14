@@ -1,3 +1,12 @@
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css"> -->
+<div id='calendar-list' *ngIf="events">
+    <mat-card class="calendar-list-item" *ngFor="let event of events" [style.backgroundColor]="event.color">
 
-<div id='calendar-list'></div>
+        <p>
+            {{event.title}}
+            <span>{{event.startActual.substr(11)}} -
+                {{event.stop.substr(11)}}</span>
+        </p>
+
+    </mat-card>
+</div>

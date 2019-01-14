@@ -3,7 +3,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import 'fullcalendar';
 import 'fullcalendar-scheduler';
 import { DatabaseService } from '../database.service';
-import { moment } from 'fullcalendar';
 
 @Component({
   selector: 'app-calendar-list',
@@ -13,62 +12,36 @@ import { moment } from 'fullcalendar';
 export class CalendarListComponent implements OnInit {
 
   constructor(public db: DatabaseService) { }
+  events;
 
   ngOnInit(): void {
-    var self = this;
-    // Dynamically add events to the list when one is added to the database
-    this.db.change.subscribe(result => {
-      $('#calendar-list').fullCalendar('refetchEvents');
-      console.log("Change detected from calendar component");
-    });
-    $(function () {
-      $('#calendar-list').fullCalendar({
-        height: $(window).height() * 0.83,
-        defaultView: 'listDay',
-        groupByResource: true,
-        header: false,
-        views: { listDay: {} },
-        selectable: false,
-        locale: "nl-be",
-        timeFormat: 'HH(:mm)',
-        allDaySlot: false,
-        listDayFormat: false,
-        listDayAltFormat: false,
-        noEventsMessage: "Er zijn geen evenementen vandaag",
-        eventTextColor: 'white',
-        events: (start, end, timezone, callback) => {
-          self.db.getEvents(undefined).then((events) => {
-            events.forEach(element => {
-              element.start = element.startActual;
-              // element.end = element.stop;
-            });
-            callback(events);
-            console.log(events);
-            /*  for(var i =0; i<events.lenght(); i++){
-               if (events.start.contains())
-             } */
-            //var todayEvents = events.filter()
-            var vandaag = moment().inspect();
-            console.log("Vandaag: " + vandaag);
-            var eventsVandaag = $('#calendar').fullCalendar('clientEvents', function (evt) {
-              return evt.start == vandaag;
-            });
-            console.log(eventsVandaag)
-          });
-        },
-        eventRender: function (event, element) {
-          // element["0"].textContent = element["0"].textContent.replace(/undefinedundefined/g, "");
-          // console.log(event);
-          // console.log(element);
-        },
-        schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
-        dayClick: function (date, jsEvent, view) {
-          date.utc()
-        },
-      });
+    this.getTodayEvents();
 
-      // Werkende optie om overschot onderaan calender weg te halen
-      $('#calendar-list').fullCalendar('option', 'contentHeight', "auto");
-    })
+    this.db.change.subscribe(result => {
+      console.log("Change detected from calendar component");
+      this.getTodayEvents();
+    });
+  }
+
+  getTodayEvents() {
+    this.db.getEvents(undefined).then((events) => {
+
+      var today = new Date();
+      var todayString: String = today.getFullYear() + "-" + ('0' + (today.getMonth() + 1)).slice(-2) + "-" + ('0' + today.getDate()).slice(-2) + "T";
+      var tempEvents = new Array();
+
+      events.forEach(element => {
+        this.events = null;
+        var eventDate: String = element.startActual.match(/.*?T/).toString();
+        if (eventDate == todayString) {
+          this.db.getUsers(element.resourceId).then((user) => {
+            element.color = user.eventColor;
+            tempEvents.push(element);
+            tempEvents.sort(function (a, b) { return (a.startActual > b.startActual) ? 1 : ((b.startActual > a.startActual) ? -1 : 0); });
+            this.events = tempEvents;
+          });
+        }
+      });
+    });
   }
 }

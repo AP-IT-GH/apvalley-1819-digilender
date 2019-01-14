@@ -17,6 +17,12 @@ export class CalendarComponent implements OnInit {
 
   constructor(public wservice: WifiService, private modalService: ModalService, public db: DatabaseService, private router: Router, private route: ActivatedRoute) { }
 
+  selectedMonth: number;
+  months: any[];
+  mt: any = new Date();
+  tdMonth: string;
+  tdyear: string;
+  tdTitle: string;
   selectedDate: string;
   dateFromPicker: string;
   eventButton: boolean;
@@ -29,6 +35,8 @@ export class CalendarComponent implements OnInit {
   selectedEventTitle: string;
   selectedEventDescription: string;
   selectedEventStart: string;
+  selectedEventDay: string;
+  selectedEventDayNumber: string;
   selectedEventEnd: string;
   calendar;
   users;
@@ -41,6 +49,11 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.months = ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'];
+    this.tdMonth = this.months[this.mt.getMonth()];
+    this.tdyear = this.mt.getFullYear();
+    this.tdTitle = '[' + this.tdMonth + " " + this.tdyear + ']';
+    this.selectedMonth = this.mt.getMonth();
     this.wservice.init();
     // Selector om de scope te veranderen
     var me = this;
@@ -48,14 +61,14 @@ export class CalendarComponent implements OnInit {
 
     $(function () {
       me.calendar = $('#calendar');
-
       var getDaysInMonth = function () {
         var d = new Date();
         var year = d.getFullYear();
         var month = d.getMonth() + 1;
         return new Date(year, month, 0).getDate();
       };
-
+      var lol = escape(me.tdTitle);
+      console.log("tis the title of the season " + me.tdTitle);
       // Niet meer nodig door today-functie
       var getMonthDay = function () {
         var d = new Date();
@@ -72,6 +85,7 @@ export class CalendarComponent implements OnInit {
 
       // let containerEl: JQuery = $('#calendar');
       $('#calendar').fullCalendar({
+
         //themeSystem: 'bootstrap4',
         height: $(window).height() * 0.95,
         //contentHeight: () => { return $(window).height()*0.8; },
@@ -81,25 +95,41 @@ export class CalendarComponent implements OnInit {
           today_custom: {
             text: 'Today',
             click: function () {
+              me.selectedMonth = me.months.indexOf(me.tdMonth);
+              var tdMonth = me.months[me.selectedMonth];
+              var tdYear = me.mt.getFullYear();
+              var tdTitle = '[' + tdMonth + " " + tdYear + ']';
               $('#calendar').fullCalendar('today');
+              $('#calendar').fullCalendar('option', 'titleFormat', tdTitle)
             }
           },
           myNextButton: {
             text: 'Next',
             icon: 'right-single-arrow',
             click: function () {
+              me.selectedMonth++;
+              var tdMonth = me.months[me.selectedMonth];
+              var tdYear = me.mt.getFullYear();
+              var tdTitle = '[' + tdMonth + " " + tdYear + ']';
               $('#calendar').fullCalendar('incrementDate', {
                 months: 1
               });
+              $('#calendar').fullCalendar('option', 'titleFormat', tdTitle)
             }
           },
           myPrevButton: {
+
             text: 'Prev',
             icon: 'left-single-arrow',
             click: function () {
+              me.selectedMonth--;
+              var tdMonth = me.months[me.selectedMonth];
+              var tdYear = me.mt.getFullYear();
+              var tdTitle = '[' + tdMonth + " " + tdYear + ']';
               $('#calendar').fullCalendar('incrementDate', {
                 months: -1
               });
+              $('#calendar').fullCalendar('option', 'titleFormat', tdTitle)
             }
           }
         },
@@ -125,8 +155,8 @@ export class CalendarComponent implements OnInit {
             // how far forwards you can scroll
             maxTime: getMaxTime(),
             slotDuration: '24:00:00',
-            titleFormat: 'MMMM YYYY',
-            slotLabelFormat: 'D \n' + 'ddd ',
+            titleFormat: `${me.tdTitle}`,
+            slotLabelFormat: 'D \n' + "dd",
             buttonText: 'family Calendar',
             scrollTime: { days: 0 }
           },
@@ -143,7 +173,7 @@ export class CalendarComponent implements OnInit {
         // Haal de resources vanuit de database (= users)
         resources: function (callback) {
           console.log("getting resources");
-          me.db.getUsers().then(function (users) {
+          me.db.getUsers(undefined).then(function (users) {
             console.log("got resources");
             console.log(users);
             callback(users);
@@ -170,9 +200,12 @@ export class CalendarComponent implements OnInit {
           me.selectedUserTitle = resource.title;
           me.dateFromPicker = date.format();
           me.selectedDate = date.format().match(/.*?T/).toString();
-          document.getElementById("event-body").style.backgroundColor = me.users[resource.id - 1].eventColor;
-          me.openModal('event', true, true);
-          document.getElementById("title").click();
+
+          me.db.getUsers(resource.id).then((user) => {
+            document.getElementById("event-body").style.backgroundColor = user.eventColor;
+            me.openModal('event', true, true);
+            document.getElementById("title").click();
+          });
         },
         // Voeg een beschrijving toe
         eventRender: function (event, element) {
@@ -188,18 +221,21 @@ export class CalendarComponent implements OnInit {
           me.editBool = false;
           me.eventButton = false;
           me.selectedEvent = calEvent;
-          me.selectedUserTitle = me.users[calEvent.resourceId - 1].title;
           me.selectedEventTitle = calEvent.title;
           me.selectedEventDescription = calEvent.description;
           me.selectedEventStart = calEvent.startActual.toString().match(/\d{2}:\d{2}/).toString();
           me.selectedEventEnd = calEvent.stop.toString().match(/\d{2}:\d{2}/).toString();
-          document.getElementById("event-detail-body").style.backgroundColor = me.users[calEvent.resourceId - 1].eventColor;
-          me.openModal('event-detail', true, false);
-          document.getElementById("detail-title").click();
+          var d = new Date(calEvent.startActual);
+          var days = ["Zon", "Maa", "Din", "Woe", "Don", "Vrij", "Zat"];
+          me.selectedEventDay = days[d.getDay()];
+          me.selectedEventDayNumber = d.getDate().toString();
 
-          // me.db.getEvents(calEvent.resourceId).then((events) => {
-          //   console.log(events[0].title);
-          // });
+          me.db.getUsers(calEvent.resourceId).then((user) => {
+            me.selectedUserTitle = user.title;
+            document.getElementById("event-detail-body").style.backgroundColor = user.eventColor;
+            me.openModal('event-detail', true, false);
+            document.getElementById("detail-title").click();
+          });
         }
       });
     })
@@ -305,14 +341,17 @@ export class CalendarComponent implements OnInit {
 
   editEvent() {
     this.editBool = true;
-    document.getElementById("event-body").style.backgroundColor = this.users[this.selectedEvent.resourceId - 1].eventColor;
     this.eventTitle = this.selectedEvent.title;
     this.eventDescription = this.selectedEvent.description;
     this.dateFromPicker = this.selectedEvent.startActual.toString().match(/[^T]*/).toString();
     this.selectedDate = this.dateFromPicker + "T";
     this.selectedStartTime = this.selectedEvent.startActual.toString().match(/[^T]*$/).toString();
     this.selectedEndTime = this.selectedEvent.stop.toString().match(/[^T]*$/).toString();
-    this.closeModal('event-detail');
-    this.openModal('event', true, false);
+
+    this.db.getUsers(this.selectedEvent.resourceId).then((user) => {
+      document.getElementById("event-body").style.backgroundColor = user.eventColor;
+      this.closeModal('event-detail');
+      this.openModal('event', true, false);
+    });
   }
 }

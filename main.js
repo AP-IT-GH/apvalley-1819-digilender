@@ -11,7 +11,7 @@ const Wifi = require('node-wifi');
 let win;
 log.info("starting");
 let db = new DBManager();
-Wifi.init({iface: null});
+Wifi.init({ iface: null });
 
 //require('electron-reload')(__dirname);
 
@@ -46,12 +46,13 @@ function createWindow() {
     //respond to messages
     promiseIpc.on('users', (arg) => {
         if (arg.action == 'get') {
-            return db.getUsers().then((users) => {
-                var tmp = JSON.stringify(users);
-                console.log("get users: ");
-                console.log(tmp);
-                return tmp;
-            });
+            return db.getUsers(arg.userId)
+                .then((users) => {
+                    var tmp = JSON.stringify(users);
+                    console.log("get users: ");
+                    console.log(tmp);
+                    return tmp;
+                });
         }
         else if (arg.action == 'put') {
             return db.addUser(arg.value).then((user) => {
@@ -87,39 +88,39 @@ function createWindow() {
                 return tmp;
             });
         }
-        else if (arg.action == 'put'){
+        else if (arg.action == 'put') {
             console.log("putting event");
             console.log(arg.value);
             return db.addEvent(arg.value).then((newEvent) => {
-              console.log("returning event:");
-              console.log(newEvent);
-              var tmp = JSON.stringify(newEvent);
-              console.log(tmp);
-              return tmp;
-            }).catch(function() {
-              console.log(arguments);
+                console.log("returning event:");
+                console.log(newEvent);
+                var tmp = JSON.stringify(newEvent);
+                console.log(tmp);
+                return tmp;
+            }).catch(function () {
+                console.log(arguments);
             });
         }
     });
 
-    promiseIpc.on('wifi', (arg)=> {
+    promiseIpc.on('wifi', (arg) => {
         console.log("got request");
         console.log(arg);
-        if(arg.action == 'get'){
+        if (arg.action == 'get') {
             return Wifi.scan()
-            .catch((error) => {
-                console.log(error);
-                return error;
-            });
+                .catch((error) => {
+                    console.log(error);
+                    return error;
+                });
         }
-        else{
+        else {
             return Wifi.connect(arg)
-            .catch((error) => {
-                console.log(error);  
-                return error;
-            });
+                .catch((error) => {
+                    console.log(error);
+                    return error;
+                });
         }
-    });  
+    });
 }
 
 app.on("ready", createWindow);

@@ -1,10 +1,12 @@
 <div class="weather__card" [ngClass]="{'weather__card-dark': darkMode}" (messageLocationEvent)="receveMessage($event)">
   <div class="temperature-text__container">
       <!-- <span class="city-name__text">Antwerpen</span> --> 
-    <div class="temp">
-        <span class="temperature__text">{{ today | date:'d' }}</span>
+    <div class="temp" style="text-align: center;">
+        <span class="temperature__text">{{ today | date:'d'}}</span>
+        <br>
+        <span class="weather-condition__text">{{tdMonth}}</span>
     </div>
-       <span class="weather-condition__text">{{ today | date:'MMM' }}</span>
+       
 </div> 
 <div class="weer_rechts">
   <div class="temp">

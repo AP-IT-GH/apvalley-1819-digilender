@@ -1,21 +1,21 @@
 .btn-group {
-	float: right;
+    float: right;
 }
 
 .btn-group button {
-	background-color: #2396cf;
-	border-radius: 10%;
-	box-shadow: none;
-	margin-left: 0.5rem;
-	border: none;
+    background-color: #2396cf;
+    border-radius: 10%;
+    box-shadow: none;
+    margin-left: 0.5rem;
+    border: none;
 }
 
 .btn-group > button:focus {
-	outline: none;
+    outline: none;
 }
 
 .btn-group button .header-icons {
-	width: 30px;
+    width: 30px;
 }
 
 // .container-calendar{
@@ -25,79 +25,85 @@
 // }
 
 .add-event-botton {
-	position: absolute;
-	bottom: 20px;
-	right: 40px;
-	z-index: 1;
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    z-index: 1;
 }
 
 .title-note-container {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .title-note-container > * {
-	width: 100%;
+    width: 100%;
 }
 
 .time-container {
-	display: flex;
-	justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .input-time-item {
-	width: 49%;
+    width: 49%;
 }
 
 .buttons-event-container {
-	display: flex;
-	justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .buttons-event-container > * {
-	width: 20%;
-	margin-left: 5px;
+    width: 20%;
+    margin-left: 5px;
 }
 
 #calendar {
-	padding-left: 5px;
-	padding-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 #event-body {
-	padding: 4%;
+    padding: 4%;
 }
 
 #event-detail-body {
-	padding: 5%;
-	margin-top: 40%;
-	margin-left: 20%;
-	margin-right: 20%;
-	color: white;
+    padding: 10%;
+    margin-top: 40%;
+    margin-left: 20%;
+    margin-right: 20%;
+    color: white;
 }
 
 #detail-title {
-	font-size: 2em;
+    font-size: 2em;
 }
 
 #detail-content {
-	font-size: 1.3em;
+    font-size: 1.3em;
 }
 
 .delete-event-button {
-	position: absolute;
-	bottom: 15px;
-	right: 15px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
 }
 
 .edit-event-button {
-	position: absolute;
-	top: -15px;
-	left: -15px;
+    position: absolute;
+    top: -15px;
+    left: -15px;
 }
 
 .close-event-button {
-	position: absolute;
-	top: -15px;
-	right: -15px;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+}
+
+.event-detail-date {
+    position: absolute;
+    top: 4%;
+    left: 4%;
 }
