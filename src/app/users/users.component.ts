@@ -175,6 +175,7 @@ export class UsersComponent implements OnInit {
           console.log(userId)
         }
       }
+      this.dbService.emitChange();
     });
 
     const dialogRef = this.dialog.open(DialogSyncGcalendar);
@@ -199,6 +200,7 @@ export class UsersComponent implements OnInit {
     else
       this.createLocalUser();
 
+    this.dbService.emitChange();
   }
 
   private createLocalUser() {
@@ -229,14 +231,13 @@ export class UsersComponent implements OnInit {
     this.users[this.users.indexOf(user)].eventColor = this.chosenColor;
     this.dbService.addUser(user);
     this.snackBar.open('Kleur gebruiker aangepast', 'close', { duration: 3000 });
-
+    this.dbService.emitChange();
   }
 
   public selectedColor(color: string, i: number) {
     this.chosenColor = color;
     this.selected = i;
   }
-
 
   public userToUpdate(id: string) {
     this.addUser = false;
@@ -247,15 +248,15 @@ export class UsersComponent implements OnInit {
     });
   }
 
-
   public deleteUser(id: string) {
     this.dbService.deleteUser(id);
     this.users.forEach(element => {
-      if (element.id == id)
+      if (element.id == id) {
         this.users.splice(this.users.indexOf(element), 1);
+        this.dbService.emitChange();
+      }
     });
   }
-
 
   private colorsToChoose() {
     this.colors.push("#F47E44");
