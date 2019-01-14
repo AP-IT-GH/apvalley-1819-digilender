@@ -26,5 +26,15 @@
       </button>
     </mat-card>
 
+    <mat-card class="lente-theme" [className]="currentTheme == 'lente' ? 'current' : 'lente-theme'">
+      <mat-card-content class="vertical-stripes-lente">
+      </mat-card-content>
+      <button mat-flat-button color="primary" class="button-thema" (click)="changeThemeLente()">
+        <mat-card-actions>
+          Lente
+        </mat-card-actions>
+      </button>
+    </mat-card>
+
   </div>
 </div>

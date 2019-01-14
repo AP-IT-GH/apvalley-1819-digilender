@@ -22,4 +22,9 @@ export class ThemaComponent  {
     this.currentTheme="scandinavian";
   }
 
+  changeThemeLente(){
+    //this.setupService.changeTheme(true);
+    this.currentTheme="lente";
+  }
+
 }
