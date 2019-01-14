@@ -10,7 +10,7 @@
                     <tr>
                         <th>Gezinsleden</th>
                         <th class="align-right">
-                            <button class="button" mat-mini-fab color="primary" (click)="addUser = true; changeUser = false">
+                            <button class="button" mat-mini-fab color="primary" (click)="addUser = true; changeUser = false; update=false">
                                 <mat-icon>add</mat-icon>
                             </button>
                         </th>
@@ -107,7 +107,7 @@
             <i class="material-icons" id="icon-back">check</i>
         </button>
 
-        <button *ngIf="!addUser" class="button-footer" mat-flat-button color="primary" (click)="updateUser(changeUser)">
+        <button *ngIf="update" class="button-footer" mat-flat-button color="primary" (click)="updateUser(changeUser)">
             <i class="material-icons" id="icon-back">check</i>
         </button>
     </div>

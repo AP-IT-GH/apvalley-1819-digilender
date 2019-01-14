@@ -18,6 +18,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 export class UsersComponent implements OnInit {
 
   public addUser: boolean = false;
+  public update: boolean = false;
   public users: Array<IUser> = [];
   public colors: Array<string> = [];
   public chosenColor: string;
@@ -232,6 +233,7 @@ export class UsersComponent implements OnInit {
     this.dbService.addUser(user);
     this.snackBar.open('Kleur gebruiker aangepast', 'close', { duration: 3000 });
     this.dbService.emitChange();
+    this.update = false;
   }
 
   public selectedColor(color: string, i: number) {
@@ -241,6 +243,7 @@ export class UsersComponent implements OnInit {
 
   public userToUpdate(id: string) {
     this.addUser = false;
+    this.update = true;
     this.users.forEach(element => {
       if (element.id == id) {
         this.changeUser = element;
