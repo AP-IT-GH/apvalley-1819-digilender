@@ -117,12 +117,18 @@ body.jw-modal-open {
 #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-center > button:focus {
   outline: none;
 }
+//oranje lijntje rond de 3 buttons rechts weg
+body > app-root > div > app-home > div > div.toolbar > app-toolbar > div > button:focus{
+  outline: none;
+}
 
 #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-left > button{
   background-image: none;
   border: none;
   background-color: none;
   box-shadow: none;
+  border-radius: 10px;
+  height: 50px;
 }
 
 // Titel
@@ -255,6 +261,10 @@ body.jw-modal-open {
 // Witte achtergrond
 .fc-today {
   background: #fff !important;
+}
+
+.mat-form-field-flex{
+  background-color: white;
 }
 
 hr{

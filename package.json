@@ -58,6 +58,7 @@
     "moment": "^2.23.0",
     "ng-fullcalendar": "^1.7.1",
     "ngx-material-timepicker": "^2.11.0",
+    "ngx-perfect-scrollbar": "^7.2.0",
     "node-wifi": "^2.0.5",
     "npm": "^6.5.0",
     "rxjs": "~6.3.3",
