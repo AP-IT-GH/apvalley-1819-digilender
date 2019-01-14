@@ -10,7 +10,9 @@
 .note {
     max-height: 50%;
     width: 30%;
-    margin: 6px
+    margin: 5px;
+    margin-right: 8px
+    
 }
 
 .note-content {
@@ -38,8 +40,6 @@
 }
 
 .confirm-add-button {
-	bottom: 40px;
-	right: 40px;
 }
 
 .button{
@@ -70,12 +70,14 @@ hr{
 }
   
 .mat-select {
-    width: 10em;
 }
 
 .mat-form-field {
-    width: 20em;
-
+    width: 40em;
+    min-height: 5em;
 }
 
+.add-note-body{
+
+}
 
