@@ -42,15 +42,9 @@ export class DatabaseService {
   }
 
   addEvent(event: Event) {
-    console.log("adding event");
-    console.log(event);
     return promiseIpc.send('events', { action: 'put', value: event })
       .then(function (newEvent) {
-        console.log("added event:");
-        console.log(newEvent);
-        console.log("ayyylmao1");
         let tmp = JSON.parse(newEvent);
-        console.log("ayyylmao2");
         return tmp;
       }).catch(function () {
         console.log("addevent error");

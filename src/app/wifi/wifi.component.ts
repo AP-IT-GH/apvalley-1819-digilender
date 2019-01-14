@@ -43,7 +43,6 @@ export class DialogContentWifi {
   }
 
   connect(){
-    console.log("connectClick");
     this.wService.connect(this.data.ssid, this.pass);
     this.setupService.setCompletedWifi(true);
     this.dialogRef.close();
