@@ -62,6 +62,26 @@ export class DatabaseService {
     return promiseIpc.send('events', { action: 'delete', value: event });
   }
 
+  getNotes(){
+    return promiseIpc.send('notes', { action: 'get' })
+      .then((notes) => {
+        let tmp = JSON.parse(notes);
+        return tmp;
+      });
+  }
+
+  addNote(note: Note) {
+    return promiseIpc.send('notes', { action: 'put', value: note })
+      .then((note) => {
+        let tmp = JSON.parse(note);
+        return tmp;
+      });
+  }
+
+  deleteNote(note: Note){
+    return promiseIpc.send('notes', {action: 'delete', value: note});
+  }
+    
   public change: EventEmitter<any> = new EventEmitter();
 
   public emitChange() {
@@ -86,6 +106,12 @@ export interface Event {
   stop: string;
   title: string;
   description: string;
+}
+
+export interface Note {
+  id: number;
+  resourceId: number;
+  text: String;
 }
 
 
