@@ -1,3 +1,3 @@
-<div [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''" [class.alternative]="otherTheme">
+<div [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''" [class.alternative]="otherTheme" [ngStyle]="getStyle()">
     <router-outlet #o="outlet"></router-outlet>
 </div>

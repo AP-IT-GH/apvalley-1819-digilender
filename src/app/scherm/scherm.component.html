@@ -9,7 +9,7 @@
         <h2>Helderheid</h2>
         <div class="brightness">
           <mat-icon>brightness_high</mat-icon>
-          <mat-slider thumbLabel tickInterval="1000" color='primary' min="1" max="100" style="width: 500px;" [(ngModel)]="valueBrightness"></mat-slider>
+          <mat-slider thumbLabel tickInterval="1000" color='primary' min="1" max="100" style="width: 500px;" [(ngModel)]="valueBrightness" (input)="onChangeBrightness($event.value)"></mat-slider>
           <mat-icon>brightness_low</mat-icon>
         </div>
     </div>
@@ -18,7 +18,7 @@
       <h2>Slaapstand</h2>
       <div class="sleep-mode">
         <mat-icon>brightness_2</mat-icon>
-        <mat-slider thumbLabel tickInterval="1000" min="1" max="100" style="width: 500px;" [(ngModel)]="valueBrightness"></mat-slider>
+        <mat-slider thumbLabel tickInterval="1000" min="1" max="100" style="width: 500px;" [(ngModel)]="valueSleepmode" (input)="onChangeSleepmode($event.value)"></mat-slider>
         <mat-icon>brightness_3</mat-icon>
       </div>
   </div>

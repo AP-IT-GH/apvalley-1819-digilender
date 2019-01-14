@@ -14,10 +14,30 @@ export class AppComponent implements OnInit {
   constructor(private setupService: SetupControllerService) { }
 
   otherTheme = false
+
+  brightnessValue :number
+
   ngOnInit() {
     this.setupService.changeThemes.subscribe((isChanged) => {
       this.otherTheme = isChanged
     })
+
+    this.setupService.onChangeBrightness.subscribe((value)=>{
+      console.log(value)
+     // this.getStyle(value)
+     this.brightnessValue = value
+
+    })
+  }
+
+  getStyle() {
+
+    let style = {
+      'filter': `brightness(${this.brightnessValue}%)`
+      
+    }
+
+    return style;
   }
 
 
