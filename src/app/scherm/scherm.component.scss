@@ -29,10 +29,17 @@ hr{
   .brightness{
       display: flex;
       align-items: center;
+      margin-bottom: 3em;
   }
   .sleep-mode{
     display: flex;
     align-items: center;
+}
+
+.container-title{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 mat-slider{

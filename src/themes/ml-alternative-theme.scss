@@ -1,0 +1,16 @@
+@mixin ml-alternative-theme($theme){
+    $primary: map-get($theme, primary);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+ 
+    #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-left > button{
+        background-image: none;
+        border: none;
+        background-color: mat-color($primary, 500);
+        box-shadow: none;
+        color: white;
+      }
+}
+
