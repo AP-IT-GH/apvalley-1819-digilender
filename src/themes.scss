@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 @import './themes/ml-default-theme.scss';
+@import './themes/ml-alternative-theme.scss';
 
 @include mat-core();
 
@@ -66,7 +67,11 @@ $alt-accent:  mat-palette($mat-brown);
 
 $alt-theme: mat-dark-theme($alt-primary, $alt-accent);
 
+@mixin alternative-theme($theme) {
+    @include ml-alternative-theme($theme)
+}
+
 .alternative{
     @include angular-material-theme($alt-theme);
-    //@include default-theme($alt-theme);
+    @include alternative-theme($alt-theme);
 }

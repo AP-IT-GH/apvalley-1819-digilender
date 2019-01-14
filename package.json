@@ -34,6 +34,7 @@
     "@angular/platform-browser": "^7.0.3",
     "@angular/platform-browser-dynamic": "^7.0.3",
     "@angular/router": "^7.0.3",
+    "@mdi/font": "^3.3.92",
     "@types/chart.js": "^2.7.40",
     "@types/lodash": "^4.14.118",
     "angular-bootstrap-md": "^6.3.0",

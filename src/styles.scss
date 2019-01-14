@@ -96,6 +96,13 @@ body.jw-modal-open {
   outline: none;
 }
 
+#calendar > div.fc-toolbar.fc-header-toolbar > div.fc-left > button{
+  background-image: none;
+  border: none;
+  background-color: none;
+  box-shadow: none;
+}
+
 // Titel
 #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-center > h2 {
   color: #fb743d;
