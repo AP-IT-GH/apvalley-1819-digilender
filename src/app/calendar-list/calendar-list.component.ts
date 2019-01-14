@@ -31,7 +31,6 @@ export class CalendarListComponent implements OnInit {
       var tempEvents = new Array();
 
       events.forEach(element => {
-        this.events = null;
         var eventDate: String = element.startActual.match(/.*?T/).toString();
         if (eventDate == todayString) {
           this.db.getUsers(element.resourceId).then((user) => {
@@ -42,6 +41,10 @@ export class CalendarListComponent implements OnInit {
           });
         }
       });
+
+      if (tempEvents === undefined || tempEvents.length == 0) {
+        this.events = null;
+      }
     });
   }
 }

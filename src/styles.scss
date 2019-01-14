@@ -32,7 +32,7 @@ jw-modal {
       background: transparent;
 
       /* margin exposes part of the modal background */
-      margin-top: 10%;
+      margin-top: 5%;
       margin-right: 20%;
       margin-left: 20%;
     }
@@ -112,7 +112,7 @@ body.jw-modal-open {
 #calendar > div.fc-toolbar.fc-header-toolbar {
   height: 3em;
   margin-top: 2em;
-  margin-bottom: 2em;
+  margin-bottom: 12px;
 }
 
 #calendar > div.fc-view-container {
@@ -237,8 +237,8 @@ body.jw-modal-open {
 
 hr{
   // margin-top:40px;
-   border-top-color: #2396cf;
-   border-top-width: 2px;
+   border-top-color: #000000;
+   border-top-width: 1px;
    border-top-style: solid;
    margin-top: 1px;
 }
@@ -278,7 +278,7 @@ body > app-root > div > div.container-home-calendar.ng-trigger.ng-trigger-fadeAn
 }
 
 body > app-root > div > div.container-home-calendar.ng-trigger.ng-trigger-fadeAnimation > app-users > div.container > div > div.col-sm-4{
-  border-right-color: #2396cf;
+  border-right-color: #000000;
   border-right-style: solid;
   border-right-width: 2px;
   padding: top 5px;
@@ -319,4 +319,33 @@ body > app-root > div > app-home > div > div.container-status-panel > app-status
 
 #calendar > div.fc-view-container > div > table > thead > tr > td > div:first-child table{
   border: 0px;
+}
+
+#calendar > div.fc-toolbar.fc-header-toolbar > div.fc-left > button {
+  left: 60%;
+  width: 122px;
+  right: auto;
+  -moz-box-shadow:inset 0px 1px 3px 0px #e8e7e2;
+  -webkit-box-shadow:inset 0px 1px 3px 0px #e8e7e2;
+  box-shadow:inset 0px 1px 3px 0px #e8e7e2;
+  background-color:#e8e7e2;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+  border:1px solid #e8e7e2;
+  display:inline-block;
+  cursor:pointer;
+  color:#050505;
+  text-decoration:none;
+  text-shadow:0px -1px 0px #e8e7e2;
+  text-align: center;
+  
+
+}
+#calendar > div.fc-toolbar.fc-header-toolbar > div.fc-left > button:hover {
+  background-color:#e8e7e2;
+}
+#calendar > div.fc-toolbar.fc-header-toolbar > div.fc-left > button:active {
+  position:relative;
+  top:1px;
 }

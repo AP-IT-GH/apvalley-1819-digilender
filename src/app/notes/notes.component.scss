@@ -7,17 +7,18 @@
     padding: 15px;
 }
 
-.note-wrap {
-}
-
 .note {
     max-height: 50%;
     width: 30%;
-    overflow-x: hidden;
-    overflow-y: scroll;
     margin: 6px
 }
 
+.note-content {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 .remove-button {
 	position: absolute;
 	top: -15px;
@@ -68,6 +69,13 @@ hr{
     margin-top: 7em;
 }
   
+.mat-select {
+    width: 10em;
+}
 
+.mat-form-field {
+    width: 20em;
+
+}
 
 
