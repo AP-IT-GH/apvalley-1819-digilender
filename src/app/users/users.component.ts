@@ -122,18 +122,22 @@ export class UsersComponent implements OnInit {
     let events = new Array();
     this.gCalendar = res;
 
+
     for (var i = 0; i < this.gCalendar.items.length; i++) {
+      console.log('date !!!!!!!!!')
+      console.log(String(this.gCalendar.items[i].start.dateTime).substr(0, 16))
       let event = this.gEvent = {
         id: undefined,
         resourceId: userId,
         start: null,
-        startActual:String(this.gCalendar.items[i].start.dateTime),
+        startActual: String(this.gCalendar.items[i].start.dateTime).substr(0, 16),
         description: this.gCalendar.items[i].description,
         title: this.gCalendar.items[i].summary,
-        stop: String(this.gCalendar.items[i].end.dateTime)
+        stop: String(this.gCalendar.items[i].end.dateTime).substr(0, 16)
       };
       events.push(event);
       this.dbService.addEvent(events[i]);
+      this.dbService.emitChange();
     }
 
     this.snackBar.open('Google Calendar van ' + this.googleProfiel.name + ' is gesynchroniseerd', 'close', { duration: 3000 });
