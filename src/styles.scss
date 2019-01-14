@@ -105,7 +105,7 @@ body.jw-modal-open {
 #calendar > div.fc-toolbar.fc-header-toolbar {
   height: 3em;
   margin-top: 2em;
-  margin-bottom: 2em;
+  margin-bottom: 12px;
 }
 
 #calendar > div.fc-view-container {
@@ -312,4 +312,33 @@ body > app-root > div > app-home > div > div.container-status-panel > app-status
 
 #calendar > div.fc-view-container > div > table > thead > tr > td > div:first-child table{
   border: 0px;
+}
+
+#calendar > div.fc-toolbar.fc-header-toolbar > div.fc-left > button {
+  left: 60%;
+  width: 122px;
+  right: auto;
+  -moz-box-shadow:inset 0px 1px 3px 0px #e8e7e2;
+  -webkit-box-shadow:inset 0px 1px 3px 0px #e8e7e2;
+  box-shadow:inset 0px 1px 3px 0px #e8e7e2;
+  background-color:#e8e7e2;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+  border:1px solid #e8e7e2;
+  display:inline-block;
+  cursor:pointer;
+  color:#050505;
+  text-decoration:none;
+  text-shadow:0px -1px 0px #e8e7e2;
+  text-align: center;
+  
+
+}
+#calendar > div.fc-toolbar.fc-header-toolbar > div.fc-left > button:hover {
+  background-color:#e8e7e2;
+}
+#calendar > div.fc-toolbar.fc-header-toolbar > div.fc-left > button:active {
+  position:relative;
+  top:1px;
 }
