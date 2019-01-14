@@ -10,6 +10,28 @@
 //   box-shadow: none;
 // }
 
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: rgba(232, 231, 226, 0.897);
+ 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+background:#E8E7E2; 
+}
+
 jw-modal {
   /* modals are hidden by default */
   display: none;
@@ -95,12 +117,18 @@ body.jw-modal-open {
 #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-center > button:focus {
   outline: none;
 }
+//oranje lijntje rond de 3 buttons rechts weg
+body > app-root > div > app-home > div > div.toolbar > app-toolbar > div > button:focus{
+  outline: none;
+}
 
 #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-left > button{
   background-image: none;
   border: none;
   background-color: none;
   box-shadow: none;
+  border-radius: 10px;
+  height: 50px;
 }
 
 // Titel
@@ -204,6 +232,7 @@ body.jw-modal-open {
   text-transform: uppercase;
   font-size: 15px;
   font-weight: 300;
+  
 }
 
 // Linkse kolom: eerste lijn (dag van de maand)
@@ -233,6 +262,12 @@ body.jw-modal-open {
 // Witte achtergrond
 .fc-today {
   background: #fff !important;
+}
+
+
+
+#event-body > div.title-note-container > mat-form-field.mat-form-field.ng-tns-c13-4.mat-primary.mat-form-field-type-mat-input.mat-form-field-appearance-fill.mat-form-field-can-float.mat-form-field-hide-placeholder.ng-untouched.ng-pristine.ng-valid > div > div.mat-form-field-flex{
+  background-color: none;
 }
 
 hr{

@@ -47,6 +47,7 @@ import { SetupControllerService } from "./setup-controller.service";
 import { authService } from './auth.service'
 import { GoogleCalendarService } from './google-calendar.service'
 
+
 registerLocaleData(localeBE, 'nl-BE');
 @NgModule({
   declarations: [
