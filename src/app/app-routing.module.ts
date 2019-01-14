@@ -10,6 +10,8 @@ import { SchermComponent } from './scherm/scherm.component';
 import { IntroSetupComponent } from "./intro-setup/intro-setup.component";
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from "./settings/settings.component";
+import { NotesComponent } from "./notes/notes.component";
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/intro', pathMatch: 'full' },
@@ -20,6 +22,7 @@ const routes: Routes = [
     children: [
       { path: 'calendar', component: CalendarComponent },
       { path: 'options', component: OptionsComponent },
+      { path: 'notes', component: NotesComponent },
       {
         path: 'settings',
         component: SettingsComponent,
@@ -51,4 +54,5 @@ export const routingComponents =
     SchermComponent,
     IntroSetupComponent,
     HomeComponent,
-    SettingsComponent]
+    SettingsComponent,
+    NotesComponent]
