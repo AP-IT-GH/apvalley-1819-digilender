@@ -10,6 +10,8 @@
 //   box-shadow: none;
 // }
 
+
+
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -25,11 +27,11 @@
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  background: rgba(232, 231, 226, 0.897);
+  background: rgba(0, 0, 0, 0.26);
  
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-background:#E8E7E2; 
+background:rgba(0, 0, 0, 0.26);
 }
 
 jw-modal {
@@ -77,9 +79,21 @@ jw-modal {
   }
 }
 
+// #calendar[_ngcontent-c9] {
+//   padding-left: none;
+//   padding-right: none;
+//   box-shadow: inset 0px -5px 6px -7px black;
+// }
+
+
 body.jw-modal-open {
   /* body overflow is hidden to hide main scrollbar when modal window is open */
   overflow: hidden;
+}
+
+#calendar > div.fc-view-container > div > table > thead > tr > td {
+  box-shadow: 0px 5px 6px -7px black;
+  margin: 0;
 }
 
 .fc-cell-content {
@@ -120,6 +134,12 @@ body.jw-modal-open {
 //oranje lijntje rond de 3 buttons rechts weg
 body > app-root > div > app-home > div > div.toolbar > app-toolbar > div > button:focus{
   outline: none;
+}
+
+body{
+  font-family: Geneva, Tahoma, Verdana, sans-serif;
+    font-style: normal;
+    font-variant: normal;
 }
 
 #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-left > button{
