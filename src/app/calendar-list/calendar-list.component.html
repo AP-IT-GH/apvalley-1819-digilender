@@ -3,7 +3,7 @@
     <mat-card class="calendar-list-item" *ngFor="let event of events" [style.backgroundColor]="event.color">
 
         <p>
-            {{event.title}}
+            {{event.title.substr(0, 12)}}
             <span>{{event.startActual.substr(11)}} -
                 {{event.stop.substr(11)}}</span>
         </p>
