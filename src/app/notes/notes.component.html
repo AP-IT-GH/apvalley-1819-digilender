@@ -1,0 +1,41 @@
+<hr>
+<div class="container" *ngIf="notesProm">
+    <mat-card *ngFor="let note of notesProm | async" class="note" [style.backgroundColor]="findUser(note.resourceId).eventColor">
+    <button class="remove-button" mat-mini-fab color="primary"
+      (click)="deleteNote(note)">
+      <mat-icon>close</mat-icon>
+    </button>
+      <mat-card-title>{{findUser(note.resourceId).title}}</mat-card-title>
+      <mat-card-content class="note-content" ><p>{{note.text}}</p></mat-card-content>
+    </mat-card>
+</div>
+<button class="add-button" mat-mini-fab color="primary"
+  (click)="openAdd()">
+  <mat-icon>add</mat-icon>
+</button>
+
+<jw-modal id="add-note" style="text-align: center;">
+  <mat-card id="add-note-body">
+    <button class="close-add-button" mat-mini-fab color="primary"
+      (click)="closeAdd()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-card-content id="detail-content">
+    <mat-label>Van</mat-label>
+    <mat-select [(value)]="resourceIdDropdown" *ngIf="users">
+        <mat-option *ngFor="let user of users"
+          [value]="user.id">
+          {{user.title}}
+        </mat-option>
+    </mat-select>
+    <mat-form-field appearance="outline">
+      <mat-label>Boodschap</mat-label>
+      <textarea matInput [(ngModel)]="noteText"></textarea>
+    </mat-form-field>
+    </mat-card-content>
+    <button class="confirm-add-button" mat-mini-fab color="primary"
+      (click)="confirmAdd()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </mat-card>
+</jw-modal>

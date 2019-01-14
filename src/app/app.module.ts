@@ -31,6 +31,7 @@ import { ModalComponent } from './modal/modal.component';
 import { IntroSetupComponent } from './intro-setup/intro-setup.component';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
+import { NotesComponent } from './notes/notes.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Services
@@ -68,6 +69,7 @@ registerLocaleData(localeBE, 'nl-BE');
     IntroSetupComponent,
     HomeComponent,
     SettingsComponent,
+    NotesComponent,
     DialogContentWifi,
     DialogSyncGcalendar
   ],

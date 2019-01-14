@@ -42,15 +42,9 @@ export class DatabaseService {
   }
 
   addEvent(event: Event) {
-    console.log("adding event");
-    console.log(event);
     return promiseIpc.send('events', { action: 'put', value: event })
       .then(function (newEvent) {
-        console.log("added event:");
-        console.log(newEvent);
-        console.log("ayyylmao1");
         let tmp = JSON.parse(newEvent);
-        console.log("ayyylmao2");
         return tmp;
       }).catch(function () {
         console.log("addevent error");
@@ -62,6 +56,26 @@ export class DatabaseService {
     return promiseIpc.send('events', { action: 'delete', value: event });
   }
 
+  getNotes(){
+    return promiseIpc.send('notes', { action: 'get' })
+      .then((notes) => {
+        let tmp = JSON.parse(notes);
+        return tmp;
+      });
+  }
+
+  addNote(note: Note) {
+    return promiseIpc.send('notes', { action: 'put', value: note })
+      .then((note) => {
+        let tmp = JSON.parse(note);
+        return tmp;
+      });
+  }
+
+  deleteNote(note: Note){
+    return promiseIpc.send('notes', {action: 'delete', value: note});
+  }
+    
   public change: EventEmitter<any> = new EventEmitter();
 
   public emitChange() {
@@ -86,6 +100,12 @@ export interface Event {
   stop: string;
   title: string;
   description: string;
+}
+
+export interface Note {
+  id: number;
+  resourceId: number;
+  text: String;
 }
 
 
