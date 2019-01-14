@@ -33,9 +33,6 @@ import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
 import { NotesComponent } from './notes/notes.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 // Services
 import { WeatherService } from './weather.service';
@@ -50,9 +47,6 @@ import { SetupControllerService } from "./setup-controller.service";
 import { authService } from './auth.service'
 import { GoogleCalendarService } from './google-calendar.service'
 
-const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true
-};
 
 registerLocaleData(localeBE, 'nl-BE');
 @NgModule({
@@ -81,7 +75,6 @@ registerLocaleData(localeBE, 'nl-BE');
     DialogSyncGcalendar
   ],
   imports: [
-    PerfectScrollbarModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -99,8 +92,6 @@ registerLocaleData(localeBE, 'nl-BE');
     NgxMaterialTimepickerModule.forRoot()
   ],
   providers: [
-    {provide: PERFECT_SCROLLBAR_CONFIG,
-    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG},
     WeatherService,
     DatabaseService,
     ModalService,
