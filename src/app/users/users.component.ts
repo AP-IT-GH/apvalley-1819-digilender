@@ -122,10 +122,7 @@ export class UsersComponent implements OnInit {
     let events = new Array();
     this.gCalendar = res;
 
-
     for (var i = 0; i < this.gCalendar.items.length; i++) {
-      console.log('date !!!!!!!!!')
-      console.log(String(this.gCalendar.items[i].start.dateTime).substr(0, 16))
       let event = this.gEvent = {
         id: undefined,
         resourceId: userId,
