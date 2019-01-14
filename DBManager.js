@@ -40,8 +40,8 @@ class DBManager {
       text: Sequelize.STRING
     });
 
-    me.Event.belongsTo(me.User, { foreignKey: "resourceId" });
-    me.Note.belongsTo(me.User, { foreignKey: "resourceId" });
+    me.Event.belongsTo(me.User, { foreignKey: "resourceId", onDelete:"cascade" });
+    me.Note.belongsTo(me.User, { foreignKey: "resourceId", onDelete:"cascade" });
 
     me.Event.drop().then(() => {
       return me.Note.drop()
