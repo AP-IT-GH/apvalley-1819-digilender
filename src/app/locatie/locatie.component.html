@@ -13,7 +13,7 @@
       </mat-card-header>
       <mat-card-content>
         <form class="input-form-container">
-          <mat-form-field color='accent' appearance="outline">
+          <mat-form-field color='accent' appearance="fill">
             <mat-label>Stad</mat-label>
             <input #cityName matInput appGooglePlaces type="text" class="google-place-input">
             <button mat-button *ngIf="cityName.value" matSuffix mat-icon-button aria-label="Clear" (click)="cityName.value=''">
