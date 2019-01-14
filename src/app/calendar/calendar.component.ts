@@ -16,12 +16,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CalendarComponent implements OnInit {
 
   constructor(public wservice: WifiService, private modalService: ModalService, public db: DatabaseService, private router: Router, private route: ActivatedRoute) { }
-
+  tdSlotLabel: string;
+  tdDay:string;
+  addedYear: number;
+  days:any[];
   selectedMonth: number;
   months: any[];
   mt: any = new Date();
   tdMonth: string;
-  tdyear: string;
+  thisYear: string;
   tdTitle: string;
   selectedDate: string;
   dateFromPicker: string;
@@ -49,11 +52,15 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.addedYear = 0;
     this.months = ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'];
     this.tdMonth = this.months[this.mt.getMonth()];
-    this.tdyear = this.mt.getFullYear();
-    this.tdTitle = '[' + this.tdMonth + " " + this.tdyear + ']';
+    this.thisYear = this.mt.getFullYear();
+    this.tdTitle = '[' + this.tdMonth + " " + this.thisYear + ']';
     this.selectedMonth = this.mt.getMonth();
+    this.days = ['Maa','Din','Woe','Don','Vri','Zat','Zon'];
+    this.tdDay = this.days[this.mt.getDay()];
+    this.tdSlotLabel = '['+this.tdDay.indexOf(this.tdDay)+'\n'+this.tdDay+']';
     this.wservice.init();
     // Selector om de scope te veranderen
     var me = this;
@@ -95,6 +102,7 @@ export class CalendarComponent implements OnInit {
           today_custom: {
             text: 'Today',
             click: function () {
+              me.addedYear = 0;
               me.selectedMonth = me.months.indexOf(me.tdMonth);
               var tdMonth = me.months[me.selectedMonth];
               var tdYear = me.mt.getFullYear();
@@ -107,15 +115,13 @@ export class CalendarComponent implements OnInit {
             text: 'Next',
             icon: 'right-single-arrow',
             click: function () {
-              if(me.selectedMonth == 11){
-                var tdYear = me.mt.getFullYear()+1;
-              }
-              else{
-                var tdYear = me.mt.getFullYear();
-              }
-              me.selectedMonth++;
+              me.selectedMonth++;              
+              if(me.selectedMonth == 12){
+                me.addedYear++;              
+                me.selectedMonth = 0;
+              }         
+              var tdYear = me.mt.getFullYear()+me.addedYear;
               var tdMonth = me.months[me.selectedMonth];
-              //var tdYear = me.mt.getFullYear();
               var tdTitle = '[' + tdMonth + " " + tdYear + ']';
               $('#calendar').fullCalendar('incrementDate', {
                 months: 1
@@ -127,16 +133,16 @@ export class CalendarComponent implements OnInit {
 
             text: 'Prev',
             icon: 'left-single-arrow',
-            click: function () {
-              if(me.selectedMonth == 1){
-                var tdYear = me.mt.getFullYear()-1;
+            click: function () {             
+              if(me.selectedMonth == 0){
+                me.selectedMonth=11;
+                me.addedYear--;              
               }
-              else{
-                //var tdYear = me.mt.getFullYear();
-              }
-              me.selectedMonth--;
+              else{  
+                me.selectedMonth-- 
+              }      
+              var tdYear = me.mt.getFullYear()+me.addedYear;
               var tdMonth = me.months[me.selectedMonth];
-              //var tdYear = me.mt.getFullYear();
               var tdTitle = '[' + tdMonth + " " + tdYear + ']';
               $('#calendar').fullCalendar('incrementDate', {
                 months: -1
@@ -168,7 +174,7 @@ export class CalendarComponent implements OnInit {
             maxTime: getMaxTime(),
             slotDuration: '24:00:00',
             titleFormat: `${me.tdTitle}`,
-            slotLabelFormat: 'D \n' + "dd",
+            slotLabelFormat:'D \n ddd',
             buttonText: 'family Calendar',
             scrollTime: { days: 0 }
           },
