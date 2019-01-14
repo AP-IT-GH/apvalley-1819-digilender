@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-scherm',
@@ -8,11 +7,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SchermComponent implements OnInit {
 
-  constructor( private router: Router, private route: ActivatedRoute) { }
+  constructor() {}
 
   ngOnInit() {
+
   }
-  goTo(pad:String):void{
-    this.router.navigate(['/'+ pad], { relativeTo: this.route });
-  }
+
+  valueBrightness = 100;
+  valueSleepmode = 100;
+
+  
+
+ 
 }

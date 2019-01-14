@@ -10,6 +10,28 @@
 //   box-shadow: none;
 // }
 
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: rgba(232, 231, 226, 0.897);
+ 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+background:#E8E7E2; 
+}
+
 jw-modal {
   /* modals are hidden by default */
   display: none;
@@ -93,6 +115,10 @@ body.jw-modal-open {
 }
 
 #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-center > button:focus {
+  outline: none;
+}
+//oranje lijntje rond de 3 buttons rechts weg
+body > app-root > div > app-home > div > div.toolbar > app-toolbar > div > button:focus{
   outline: none;
 }
 
