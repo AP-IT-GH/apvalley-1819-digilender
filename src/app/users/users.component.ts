@@ -268,7 +268,7 @@ export class UsersComponent implements OnInit {
   private colorsToChoose() {
     this.colors.push("#F47E44");
     this.colors.push("#FACA13");
-    this.colors.push("#F4F1EA");
+    //this.colors.push("#F4F1EA");
     this.colors.push("#2495D3");
     this.colors.push("#FAAE83");
     this.colors.push("#9EC3E7");
