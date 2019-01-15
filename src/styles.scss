@@ -178,7 +178,8 @@ body{
 }
 #calendar > div.fc-view-container > div > table > thead > tr > td > div > table > thead > tr > th{
   border-bottom: 1px solid;
-  border-top:1px solid #000000;
+  border-top:1px solid #EAEAEA;
+  border-bottom:1px solid #EAEAEA;
   padding-bottom: 20px;
   padding-top: 20px;
 }
@@ -285,7 +286,7 @@ body{
 
 hr{
   // margin-top:40px;
-   border-top-color: #000000;
+   border-top-color: #EAEAEA;
    border-top-width: 1px;
    border-top-style: solid;
    margin-top: 1px;
@@ -333,7 +334,7 @@ body > app-root > div > div.container-home-calendar.ng-trigger.ng-trigger-fadeAn
 }
 body > app-root > div > app-home > div > div.container-status-panel > app-status-panel > mat-card > div.weather-date-item > hr{
   border-top-width: 1px;
-  border-top-color: #000000;
+  border-top-color: #cacaca;
   margin-top: 1px;
   border-top-style: solid;
 
