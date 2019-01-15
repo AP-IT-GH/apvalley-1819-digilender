@@ -91,10 +91,6 @@ body.jw-modal-open {
   overflow: hidden;
 }
 
-#calendar > div.fc-view-container > div > table > thead > tr > td {
-  box-shadow: 0px 5px 6px -7px black;
-  margin: 0;
-}
 
 .fc-cell-content {
   min-height: 100px !important;
@@ -232,7 +228,7 @@ body{
   border-left: 0px;
   border-right: 0px;
   border-bottom: 0px;
-  border-color: #000000;
+  border-color: #ECECEC;
 }
 
 // Lijntje links van de namen
@@ -373,6 +369,8 @@ body > app-root > div > app-home > div > div.container-status-panel > app-status
   border: 0px;
 }
 
+
+
 #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-left > button {
   left: 60%;
   width: 122px;
@@ -380,10 +378,10 @@ body > app-root > div > app-home > div > div.container-status-panel > app-status
   -moz-box-shadow:inset 0px 1px 3px 0px #e8e7e2;
   -webkit-box-shadow:inset 0px 1px 3px 0px #e8e7e2;
   box-shadow:inset 0px 1px 3px 0px #e8e7e2;
-  background-color:#e8e7e2;
-  -moz-border-radius:5px;
-  -webkit-border-radius:5px;
-  border-radius:5px;
+  background-color:#ece7db;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px;
   border:1px solid #e8e7e2;
   display:inline-block;
   cursor:pointer;
