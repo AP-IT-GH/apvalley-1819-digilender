@@ -11,6 +11,9 @@
 // }
 
 
+.mat-stepper-horizontal, .mat-stepper-vertical {
+  background-color: transparent;
+}
 
 ::-webkit-scrollbar {
   width: 6px;

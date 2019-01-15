@@ -14,5 +14,8 @@
     .mat-flat-button.mat-primary, .mat-flat-button.mat-accent{
         border-radius: 10px;
     }
+    .mat-stepper-horizontal, .mat-stepper-vertical {
+        background-color: transparent;
+      }
 }
 
