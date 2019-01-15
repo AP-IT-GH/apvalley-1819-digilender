@@ -16,19 +16,23 @@ Wifi.init({ iface: null });
 //require('electron-reload')(__dirname);
 
 function createWindow() {
+    // win = new BrowserWindow({
+    //     width: 1920,
+    //     height: 1080,
+    //     webPreferences: {
+    //         nativeWindowOpen: true
+    //     }
+    // });
+
     win = new BrowserWindow({
-        width: 1920,
-        height: 1080,
         webPreferences: {
             nativeWindowOpen: true
         }
     });
-
-    // win = new BrowserWindow();
-    // win.setFullScreen(true)
+    win.setFullScreen(true)
 
     // Uncomment the following line to remove the menu bar
-    //win.setMenu(null);
+    win.setMenu(null);
 
     // load the dist folder from Angular
     win.loadURL(
@@ -118,22 +122,22 @@ function createWindow() {
                 return tmp;
             });
         }
-        else if (arg.action == 'put'){
+        else if (arg.action == 'put') {
             console.log("putting note");
             console.log(arg.value);
             return db.addNote(arg.value).then((newNote) => {
-              console.log("returning note:");
-              console.log(newNote);
-              var tmp = JSON.stringify(newNote);
-              console.log(tmp);
-              return tmp;
-            }).catch(function() {
-              console.log(arguments);
+                console.log("returning note:");
+                console.log(newNote);
+                var tmp = JSON.stringify(newNote);
+                console.log(tmp);
+                return tmp;
+            }).catch(function () {
+                console.log(arguments);
             });
         }
     });
-    
-    promiseIpc.on('wifi', (arg)=> {
+
+    promiseIpc.on('wifi', (arg) => {
         console.log("got request");
         console.log(arg);
         if (arg.action == 'get') {

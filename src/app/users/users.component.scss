@@ -4,59 +4,91 @@ hr{
     margin-right: 1.5em;
     margin-top: 7em;
 }
-
-.main {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: start;
-}
-
 .container{
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-content: space-between;
-    flex-wrap: nowrap;
     padding: 0;
     height: 70vh;
-    font-family: Geneva, Tahoma, Verdana, sans-serif;
-    font-style: normal;
-    font-variant: normal;
-    margin: 2em;
+    // font-family: Geneva, Tahoma, Verdana, sans-serif;
+    // font-style: normal;
+    // font-variant: normal;
+    // margin: 2em;
 }
 
-.container-footer{
+.main {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-.left{
-    flex-grow:1;
+mat-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 40px;
+    //justify-content: center;
+    //border: 1px solid black;
+     padding: 30px;
+     
 }
+
+mat-card-actions{
+    display: flex;
+    justify-content: center;
+}
+
+
+mat-card-header{
+    
+    justify-content: center;
+}
+
+.input-form-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.input-form-container > * {
+    width: 100%;
+}
+
+
+
+
+// .container-footer{
+//     display: flex;
+//     justify-content: flex-end;
+// }
+
+// .left{
+//     flex-grow:1;
+// }
 
 .right{
     flex-grow: 5;
 }
 
-  .align-right{
-      text-align: right;
-  }
+//   .align-right{
+//       text-align: right;
+//   }
 
 
-  table th{
-      font-size: 1.8em;
-      padding: 0;
-      font-weight: normal;
+//   table th{
+//       font-size: 1.8em;
+//       padding: 0;
+//       font-weight: normal;
       
-     padding-bottom: 1em;
-     padding-top: 0.5em;
-  }
+//      padding-bottom: 1em;
+//      padding-top: 0.5em;
+//   }
 
 
-  table td{
-      font-size: 1.2em;
-  }
+//   table td{
+//       font-size: 1.2em;
+//   }
 
 
 .kleurenContainer{
@@ -81,28 +113,35 @@ hr{
     border-color: black;
     border-width: 2px;
 }
-.material-icons{
-    color: black;
-}
 
-.button-footer{
-    height: 64px;
-    margin-right: 4em;
-}
+// .material-icons{
+//     color: black;
+// }
 
-#icon-back{
-    font-size: 3em;
-}
+// .button-footer{
+//     height: 64px;
+//     margin-right: 4em;
+// }
+
+// #icon-back{
+//     font-size: 3em;
+// }
 
 .google-calendar-icon{
     height: 100%;
-    width: 3em;
+    
+}
+
+h1{
+    text-align: center;
 }
 
 .google-calendar-button{
+    display: flex;
+    justify-content: center;
 //height: 100px;
 //width: 200px;
-padding: 10px
+//padding: 10px
 }
 
 mat-list{
@@ -117,16 +156,16 @@ mat-action-list{
     align-items: center;
     
 }
-.google-icon-account{
-    margin: 10px;
-}
+// .google-icon-account{
+//     // margin: 10px;
+// }
 
 .diaglog-container{
     margin-left: 25px;
     margin-right: 25px;
 }
 
-mat-card{
+.mat-card-dialog{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
