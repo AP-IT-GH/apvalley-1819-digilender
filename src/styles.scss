@@ -7,6 +7,11 @@
 //   box-shadow: none;
 // }
 
+
+.mat-stepper-horizontal, .mat-stepper-vertical {
+  background-color: transparent;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -22,11 +27,11 @@
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  background: rgba(232, 231, 226, 0.897);
+  background: rgba(0, 0, 0, 0.26);
  
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-background:#E8E7E2; 
+background:rgba(0, 0, 0, 0.26);
 }
 
 jw-modal {
@@ -74,10 +79,18 @@ jw-modal {
   }
 }
 
+// #calendar[_ngcontent-c9] {
+//   padding-left: none;
+//   padding-right: none;
+//   box-shadow: inset 0px -5px 6px -7px black;
+// }
+
+
 body.jw-modal-open {
   /* body overflow is hidden to hide main scrollbar when modal window is open */
   overflow: hidden;
 }
+
 
 .fc-cell-content {
   min-height: 100px !important;
@@ -117,6 +130,12 @@ body.jw-modal-open {
 //oranje lijntje rond de 3 buttons rechts weg
 body > app-root > div > app-home > div > div.toolbar > app-toolbar > div > button:focus{
   outline: none;
+}
+
+body{
+  font-family: Geneva, Tahoma, Verdana, sans-serif;
+    font-style: normal;
+    font-variant: normal;
 }
 
 #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-left > button{
@@ -159,7 +178,8 @@ body > app-root > div > app-home > div > div.toolbar > app-toolbar > div > butto
 }
 #calendar > div.fc-view-container > div > table > thead > tr > td > div > table > thead > tr > th{
   border-bottom: 1px solid;
-  border-top:1px solid #000000;
+  border-top:1px solid #EAEAEA;
+  border-bottom:1px solid #EAEAEA;
   padding-bottom: 20px;
   padding-top: 20px;
 }
@@ -209,7 +229,7 @@ body > app-root > div > app-home > div > div.toolbar > app-toolbar > div > butto
   border-left: 0px;
   border-right: 0px;
   border-bottom: 0px;
-  border-color: #000000;
+  border-color: #ECECEC;
 }
 
 // Lijntje links van de namen
@@ -266,7 +286,7 @@ body > app-root > div > app-home > div > div.toolbar > app-toolbar > div > butto
 
 hr{
   // margin-top:40px;
-   border-top-color: #000000;
+   border-top-color: #EAEAEA;
    border-top-width: 1px;
    border-top-style: solid;
    margin-top: 1px;
@@ -314,7 +334,7 @@ body > app-root > div > div.container-home-calendar.ng-trigger.ng-trigger-fadeAn
 }
 body > app-root > div > app-home > div > div.container-status-panel > app-status-panel > mat-card > div.weather-date-item > hr{
   border-top-width: 1px;
-  border-top-color: #000000;
+  border-top-color: #cacaca;
   margin-top: 1px;
   border-top-style: solid;
 
@@ -350,6 +370,8 @@ body > app-root > div > app-home > div > div.container-status-panel > app-status
   border: 0px;
 }
 
+
+
 #calendar > div.fc-toolbar.fc-header-toolbar > div.fc-left > button {
   left: 60%;
   width: 122px;
@@ -357,10 +379,10 @@ body > app-root > div > app-home > div > div.container-status-panel > app-status
   -moz-box-shadow:inset 0px 1px 3px 0px #e8e7e2;
   -webkit-box-shadow:inset 0px 1px 3px 0px #e8e7e2;
   box-shadow:inset 0px 1px 3px 0px #e8e7e2;
-  background-color:#e8e7e2;
-  -moz-border-radius:5px;
-  -webkit-border-radius:5px;
-  border-radius:5px;
+  background-color:#ece7db;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px;
   border:1px solid #e8e7e2;
   display:inline-block;
   cursor:pointer;

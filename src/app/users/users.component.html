@@ -1,12 +1,152 @@
 <hr>
 <div class="container">
     <div class="main">
-        <div class="left">
-            <!--Table-->
-            <table>
+        <mat-horizontal-stepper linear>
+            <!-- <ng-template matStepperIcon="edit">
+                <mat-icon>done</mat-icon>
+            </ng-template> -->
+            <mat-step label="Accounts">
+                <mat-card class="mat-card-accounts-">
+                    <mat-card-header>
 
-                <!--Table head-->
-                <thead>
+                        <mat-card-title>
+                            <h1>Gezinsleden</h1>
+                        </mat-card-title>
+
+                        <mat-card-subtitle *ngIf="users">Voeg gezinsleden toe of sync met Google Calendar</mat-card-subtitle>
+
+                    </mat-card-header>
+
+                    <mat-card-content>
+
+                        <mat-list *ngIf="users">
+                            <mat-list-item *ngFor="let user of users">
+                                <div class="mat-list-name-avatar"></div>
+                                <img matListAvatar src={{user.avatar}}>
+
+                                <h1 matLine> {{user.title}} </h1>
+                                <mat-action-list>
+                                    <!-- <mat-icon class='google-icon-account' *ngIf='user.isGoogleAccount' svgIcon="google-logo"></mat-icon> -->
+                                    <button class="button" mat-icon-button (click)="userToUpdate(user.id)"
+                                        matStepperNext>
+                                        <mat-icon>create</mat-icon>
+                                    </button>
+                                    <button class="button" mat-icon-button (click)="deleteUser(user.id)">
+                                        <mat-icon>cancel</mat-icon>
+                                    </button>
+                                </mat-action-list>
+                                <mat-divider></mat-divider>
+                            </mat-list-item>
+                        </mat-list>
+
+
+                    </mat-card-content>
+
+                    <mat-card-actions>
+                        <button mat-button  (click)="addUser = true; changeUser = false"
+                            matStepperNext>
+                            <mat-icon>add</mat-icon>
+                            Toevoegen
+                        </button>
+                        <button mat-button class="google-calendar-button" (click)="googleAuthSignIn()" matStepperNext>
+                            <mat-icon class='google-calendar-icon' svgIcon="google-logo" ></mat-icon>
+                            Toevoegen met Google
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+
+            </mat-step>
+            <mat-step label="Account instellingen">
+
+                <mat-card class="mat-card-accounts">
+                    <mat-card-header class="mat-card-header-accounts">
+
+                        <mat-card-title>
+                            <h1>Account intellingen</h1>
+                        </mat-card-title>
+
+
+                    </mat-card-header>
+                    <mat-card-content>
+
+                        <div class="right" *ngIf="changeUser">
+                            <!-- <h1>Edit</h1>
+                            <h2>Kleur</h2> -->
+                            <mat-card-subtitle>Kies een kleur</mat-card-subtitle>
+                            <div class="kleurenContainer">
+                                <div *ngFor="let color of colors; let i = index" [style.backgroundColor]="color"
+                                    [className]="i == selected ? '
+                                                            clicked' : 'kleur'"
+                                    (click)=" selectedColor(color, i)">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="right" *ngIf="addUser">
+                            <form [formGroup]="addUserForm" class="input-form-container">
+
+                                <mat-form-field *ngIf='!googleUserName' appearance="outline">
+                                    <mat-label>Voeg uw naam in</mat-label>
+                                    <input matInput placeholder="Naam" type="text" id="title" formControlName="title" autofocus>
+
+                                </mat-form-field>
+
+                                <!-- <h3 *ngIf='googleUserName'>{{googleUserName}}</h3> -->
+                                <mat-card-subtitle>Kies een kleur voor uw events</mat-card-subtitle>
+                                <div class="kleurenContainer">
+                                    <div *ngFor="let color of colors; let i = index" [style.backgroundColor]="color"
+                                        [className]="i == selected ? 'clicked' : 'kleur'" (click)="selectedColor(color, i)"></div>
+                                </div>
+                            </form>
+
+                            <!-- <form [formGroup]="addUserForm">
+                                <h1>
+                          
+                                    <input class="form-control" type="text" id="title" formControlName="title">
+                                </h1>
+                                <h2>Kleur</h2>
+                                <div class="kleurenContainer">
+                                    <div *ngFor="let color of colors; let i = index" [style.backgroundColor]="color"
+                                        [className]="i == selected ? 'clicked' : 'kleur'" (click)="selectedColor(color, i)"></div>
+                                </div>
+                            </form> -->
+
+                        </div>
+
+
+                    </mat-card-content>
+                    <mat-card-actions>
+
+                     
+                            <button *ngIf="addUser && isColorSelected" class="button-footer" mat-button matStepperPrevious (click)="saveUser()">
+                                <i class="material-icons" id="icon-back">check</i>
+                                Opslaan
+                            </button>
+
+                            <button *ngIf="!addUser && isColorSelected" class="button-footer" mat-button matStepperPrevious (click)="updateUser(changeUser)">
+                                <i class="material-icons" id="icon-back">check</i>
+                                Opslaan
+                            </button>
+                 
+
+
+                    </mat-card-actions>
+                </mat-card>
+
+
+            </mat-step>
+
+
+        </mat-horizontal-stepper>
+
+
+
+        <!-- <div class="left"> -->
+        <!--Table-->
+        <!-- <table> -->
+
+        <!--Table head-->
+        <!-- <thead>
                     <tr>
                         <th>Gezinsleden</th>
                         <th class="align-right">
@@ -14,13 +154,13 @@
                                 <mat-icon>add</mat-icon>
                             </button>
                         </th>
-                        <!-- <th  class="font-weight-bold">Agenda</th> -->
+                      
                     </tr>
-                </thead>
-                <!--Table head-->
+                </thead> -->
+        <!--Table head-->
 
-                <!--Table body *ngFor="let country of completeList; let i = index"-->
-                <!-- <tbody *ngIf="users">
+        <!--Table body *ngFor="let country of completeList; let i = index"-->
+        <!-- <tbody *ngIf="users">
                     <tr *ngFor="let user of users">
                         <td>{{user.title}}</td>
                         <td class="align-right">
@@ -37,17 +177,17 @@
 
                 </tbody> -->
 
-                <!--Table body-->
+        <!--Table body-->
 
-            </table>
-            <mat-list *ngIf="users">
+        <!-- </table> -->
+        <!-- <mat-list *ngIf="users">
                 <mat-list-item *ngFor="let user of users">
                     <div class="mat-list-name-avatar"></div>
                     <img matListAvatar src={{user.avatar}}>
 
                     <h1 matLine> {{user.title}} </h1>
                     <mat-action-list>
-                            <mat-icon class='google-icon-account' *ngIf='user.isGoogleAccount' svgIcon="google-logo"></mat-icon>
+                        <mat-icon class='google-icon-account' *ngIf='user.isGoogleAccount' svgIcon="google-logo"></mat-icon>
                         <button class="button" mat-icon-button color="primary" (click)="userToUpdate(user.id)">
                             <mat-icon>create</mat-icon>
                         </button>
@@ -57,12 +197,12 @@
                     </mat-action-list>
                     <mat-divider></mat-divider>
                 </mat-list-item>
-            </mat-list>
+            </mat-list> -->
 
-            <!--Table-->
-        </div>
+        <!--Table-->
+        <!-- </div> -->
 
-        <div class="right" *ngIf="changeUser">
+        <!-- <div class="right" *ngIf="changeUser">
             <h1>{{changeUser.title}}</h1>
             <h2>Kleur</h2>
             <div class="kleurenContainer">
@@ -76,7 +216,7 @@
         <div class="right" *ngIf="addUser">
             <form [formGroup]="addUserForm">
                 <h1>
-                    <!-- <label for="title">Naam nieuwe gebruiker: </label> -->
+                     <label for="title">Naam nieuwe gebruiker: </label> 
                     <input class="form-control" type="text" id="title" formControlName="title">
                     <h1 *ngIf='googleUserName'>{{googleUserName}}</h1>
                 </h1>
@@ -87,22 +227,21 @@
                 </div>
             </form>
 
-        </div>
-        <button mat-flat-button color='primary' class="google-calendar-button">
+        </div> -->
+        <!-- <button mat-flat-button color='primary' class="google-calendar-button">
             <mat-icon class='google-calendar-icon' svgIcon="google-calendar"></mat-icon>
             Sync met Google Calendar
-
         </button>
         <button mat-flat-button color='primary' class="google-calendar-button" (click)="googleAuthSignIn()">
             <mat-icon class='google-calendar-icon' svgIcon="google-logo"></mat-icon>
             Aanmaken met Google
-        </button>
+        </button> -->
     </div>
 
     <!-- <app-auth></app-auth>  -->
 
     <!-- <app-auth></app-auth> -->
-    <div class="container-footer">
+    <!-- <div>
         <button *ngIf="addUser" class="button-footer" mat-flat-button color="primary" (click)="saveUser()">
             <i class="material-icons" id="icon-back">check</i>
         </button>
@@ -110,5 +249,5 @@
         <button *ngIf="update" class="button-footer" mat-flat-button color="primary" (click)="updateUser(changeUser)">
             <i class="material-icons" id="icon-back">check</i>
         </button>
-    </div>
+    </div> -->
 </div>

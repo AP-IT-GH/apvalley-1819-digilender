@@ -44,7 +44,7 @@ mat-card-header{
       justify-content: center;
 }
 mat-card-content{
-    height: 400px;
+    max-height: 250px;
     margin-left: 25px;
     margin-right: 25px;
     border: 1px;
