@@ -33,8 +33,14 @@ mat-card{
      
 }
 
+mat-card-actions{
+    display: flex;
+    justify-content: center;
+}
+
 
 mat-card-header{
+    
     justify-content: center;
 }
 
@@ -125,6 +131,8 @@ mat-card-header{
 }
 
 .google-calendar-button{
+    display: flex;
+    justify-content: center;
 //height: 100px;
 //width: 200px;
 //padding: 10px

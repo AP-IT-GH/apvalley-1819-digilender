@@ -26,6 +26,7 @@ export class UsersComponent implements OnInit {
   public snackbar;
   arrayLength: number;
   newuser: IUser;
+  isColorSelected: boolean
 
   googleUserName: string;
   googleProfiel: IGoogleProfiel;
@@ -200,6 +201,7 @@ export class UsersComponent implements OnInit {
     else
       this.createLocalUser();
 
+    this.isColorSelected = false
     this.dbService.emitChange();
   }
 
@@ -232,11 +234,13 @@ export class UsersComponent implements OnInit {
     this.dbService.addUser(user);
     this.snackBar.open('Kleur gebruiker aangepast', 'close', { duration: 3000 });
     this.dbService.emitChange();
+    this.isColorSelected = false
   }
 
   public selectedColor(color: string, i: number) {
     this.chosenColor = color;
     this.selected = i;
+    this.isColorSelected = true;
   }
 
   public userToUpdate(id: string) {

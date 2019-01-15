@@ -7,13 +7,13 @@
             </ng-template> -->
             <mat-step label="Accounts">
                 <mat-card class="mat-card-accounts-">
-                    <mat-card-header >
+                    <mat-card-header>
 
                         <mat-card-title>
                             <h1>Gezinsleden</h1>
                         </mat-card-title>
 
-                        <mat-card-subtitle>Voeg gezinsleden toe of sync met Google Calendar</mat-card-subtitle>
+                        <mat-card-subtitle *ngIf="users">Voeg gezinsleden toe of sync met Google Calendar</mat-card-subtitle>
 
                     </mat-card-header>
 
@@ -43,13 +43,13 @@
                     </mat-card-content>
 
                     <mat-card-actions>
-                        <button mat-button class="google-calendar-button" (click)="addUser = true; changeUser = false"
+                        <button mat-button  (click)="addUser = true; changeUser = false"
                             matStepperNext>
                             <mat-icon>add</mat-icon>
                             Toevoegen
                         </button>
-                        <button mat-button class="google-calendar-button" (click)="googleAuthSignIn()">
-                            <mat-icon class='google-calendar-icon' svgIcon="google-logo"></mat-icon>
+                        <button mat-button class="google-calendar-button" (click)="googleAuthSignIn()" matStepperNext>
+                            <mat-icon class='google-calendar-icon' svgIcon="google-logo" ></mat-icon>
                             Toevoegen met Google
                         </button>
                     </mat-card-actions>
@@ -62,17 +62,17 @@
                     <mat-card-header class="mat-card-header-accounts">
 
                         <mat-card-title>
-                            <h1>Kleur</h1>
+                            <h1>Account intellingen</h1>
                         </mat-card-title>
 
-                        <mat-card-subtitle>Kies een kleur</mat-card-subtitle>
 
                     </mat-card-header>
                     <mat-card-content>
 
                         <div class="right" *ngIf="changeUser">
-                            <h1>Edit</h1>
-                            <h2>Kleur</h2>
+                            <!-- <h1>Edit</h1>
+                            <h2>Kleur</h2> -->
+                            <mat-card-subtitle>Kies een kleur</mat-card-subtitle>
                             <div class="kleurenContainer">
                                 <div *ngFor="let color of colors; let i = index" [style.backgroundColor]="color"
                                     [className]="i == selected ? '
@@ -87,17 +87,17 @@
 
                                 <mat-form-field *ngIf='!googleUserName' appearance="outline">
                                     <mat-label>Voeg uw naam in</mat-label>
-                                    <input matInput placeholder="Naam" type="text" id="title" formControlName="title">
+                                    <input matInput placeholder="Naam" type="text" id="title" formControlName="title" autofocus>
 
                                 </mat-form-field>
 
-                                <h1 *ngIf='googleUserName'>{{googleUserName}}</h1>
-                                <h2>Kleur</h2>
+                                <!-- <h3 *ngIf='googleUserName'>{{googleUserName}}</h3> -->
+                                <mat-card-subtitle>Kies een kleur voor uw events</mat-card-subtitle>
                                 <div class="kleurenContainer">
                                     <div *ngFor="let color of colors; let i = index" [style.backgroundColor]="color"
                                         [className]="i == selected ? 'clicked' : 'kleur'" (click)="selectedColor(color, i)"></div>
                                 </div>
-                            </form> 
+                            </form>
 
                             <!-- <form [formGroup]="addUserForm">
                                 <h1>
@@ -117,19 +117,17 @@
                     </mat-card-content>
                     <mat-card-actions>
 
-                        <div>
-                            <button *ngIf="addUser" class="button-footer" mat-button 
-                                matStepperPrevious (click)="saveUser()">
+                     
+                            <button *ngIf="addUser && isColorSelected" class="button-footer" mat-button matStepperPrevious (click)="saveUser()">
                                 <i class="material-icons" id="icon-back">check</i>
                                 Opslaan
                             </button>
 
-                            <button *ngIf="!addUser" class="button-footer" mat-button 
-                                matStepperPrevious (click)="updateUser(changeUser)">
+                            <button *ngIf="!addUser && isColorSelected" class="button-footer" mat-button matStepperPrevious (click)="updateUser(changeUser)">
                                 <i class="material-icons" id="icon-back">check</i>
                                 Opslaan
                             </button>
-                        </div>
+                 
 
 
                     </mat-card-actions>
