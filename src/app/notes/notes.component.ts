@@ -11,6 +11,7 @@ import { DatabaseService } from '../database.service';
 export class NotesComponent implements OnInit {
 
   notesProm;
+  notes;
   usersProm;
   users;
   resourceIdDropdown;
@@ -29,17 +30,25 @@ export class NotesComponent implements OnInit {
       this.users = users;
     }).then(() => {
       console.log(this.users);
-      this.notesProm = this.dServ.getNotes();
+      this.getNotes()
     });
   }
 
   ngOnInit() {
   }
-  
+
+  getNotes() {
+    this.notesProm = this.dServ.getNotes().then((notes) => {
+      this.notes = [...notes];
+      return notes;
+    });
+    return this.notesProm;
+  }
+
   deleteNote(note) {
     this.dServ.deleteNote(note)
     .then( () => {
-      this.notesProm = this.dServ.getNotes();
+      this.getNotes();
     });
   }
 

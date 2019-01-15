@@ -1,5 +1,5 @@
 <hr>
-<div class="container" *ngIf="notesProm">
+<div class="container" *ngIf="notes && (notes.length > 0)">
     <mat-card *ngFor="let note of notesProm | async" class="note" [style.backgroundColor]="findUser(note.resourceId).eventColor">
     <button class="remove-button" mat-mini-fab color="primary"
       (click)="deleteNote(note)">
@@ -8,6 +8,12 @@
       <mat-card-title>{{findUser(note.resourceId).title}}</mat-card-title>
       <mat-card-content class="note-content" ><p>{{note.text}}</p></mat-card-content>
     </mat-card>
+</div>
+<div *ngIf="!notes || (notes.length == 0)">
+  <div id=no-events>
+      <h3>Nog geen berichten.</h3>
+      <h3>Raak de knop rechtsonder aan om toe te voegen</h3>
+  </div>
 </div>
 <button class="add-button" mat-fab color="primary"
   (click)="openAdd()">
