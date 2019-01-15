@@ -52,14 +52,10 @@ class DBManager {
       console.log("sync event");
       return me.Event.sync();
     }).then(() => {
+      return;
+    }).then(() => {
       console.log("adding users");
       let avatarUrl = '../assets/svg/baseline-person.svg'
-      me.User.create({ title: "Antoinne", eventColor: "#ff6600", googleId: null, avatar: avatarUrl, calType: 0, login: 'antun', pass: 'antpw' });
-      me.User.create({ title: "Mohammed", eventColor: "#0066ff", googleId: null, avatar: avatarUrl, calType: 0, login: 'moun', pass: 'mopw' });
-      me.User.create({ title: "Reno", eventColor: "#ff9999", googleId: null, avatar: avatarUrl, calType: 0, login: 'renun', pass: 'renpw' });
-      me.User.create({ title: "Coralie", eventColor: "#ffcc00", googleId: null, avatar: avatarUrl, calType: 0, login: 'corun', pass: 'corpw' });
-      return me.User.create({ title: "Elke", eventColor: "#99ccff", googleId: null, avatar: avatarUrl, calType: 0, login: 'elkun', pass: 'elkpw' })
-    }).then((user) => {
       console.log("sync Note");
       return me.Note.sync();
     }).then(() => {
